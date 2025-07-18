@@ -1,10 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOS Sideloading Guide</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>test</h1>
+    <header>
+        <div class="container">
+            <h1>iOS Sideloading Guide</h1>
+            <nav>
+                <ul>
+                    <li><a href="#intro">Introduction</a></li>
+                    <li><a href="#preparation">Preparation</a></li>
+                    <li><a href="#methods">Sideloading Methods</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <section id="intro" class="card">
+            <h2>What is Sideloading?</h2>
+            <p>
+                Sideloading is the process of installing apps on your iOS device from sources outside the official App Store. This allows you to use apps not available on the App Store, beta versions, or custom apps.
+            </p>
+            <p>
+                <strong>Disclaimer:</strong> Sideloading may void your warranty or violate Apple's terms of service. Proceed at your own risk.
+            </p>
+        </section>
+
+        <section id="preparation" class="card">
+            <h2>Preparation</h2>
+            <ol>
+                <li>Ensure your device is running a supported iOS version.</li>
+                <li>Have a computer (Windows, macOS, or Linux) ready.</li>
+                <li>Download the necessary tools (see below).</li>
+                <li>Backup your device using iCloud or iTunes/Finder.</li>
+            </ol>
+        </section>
+
+        <section id="methods" class="card">
+            <h2>Sideloading Methods</h2>
+            <div class="method">
+                <h3>1. Using AltStore</h3>
+                <ul>
+                    <li>Download <a href="https://altstore.io/" target="_blank">AltStore</a> on your computer.</li>
+                    <li>Install AltServer and follow the on-screen instructions.</li>
+                    <li>Connect your iOS device via USB and install AltStore.</li>
+                    <li>On your device, open AltStore and sign in with your Apple ID.</li>
+                    <li>Download or import the .ipa file you wish to sideload.</li>
+                    <li>Install the app via AltStore.</li>
+                </ul>
+            </div>
+            <div class="method">
+                <h3>2. Using Sideloadly</h3>
+                <ul>
+                    <li>Download <a href="https://sideloadly.io/" target="_blank">Sideloadly</a> for your OS.</li>
+                    <li>Open Sideloadly and connect your device.</li>
+                    <li>Drag and drop the .ipa file into Sideloadly.</li>
+                    <li>Enter your Apple ID credentials when prompted.</li>
+                    <li>Click "Start" and wait for the process to complete.</li>
+                    <li>Trust the developer profile in Settings &gt; General &gt; Device Management.</li>
+                </ul>
+            </div>
+            <div class="method">
+                <h3>3. Using Xcode (macOS only)</h3>
+                <ul>
+                    <li>Download the app's source code or .ipa file.</li>
+                    <li>Open Xcode and create a new project or open the source code.</li>
+                    <li>Connect your device and select it as the build target.</li>
+                    <li>Sign the app with your Apple ID (free or paid developer account).</li>
+                    <li>Build and run the app on your device.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="troubleshooting" class="card">
+            <h2>Troubleshooting</h2>
+            <ul>
+                <li><strong>App won't open:</strong> Make sure you have trusted the developer profile in Settings &gt; General &gt; Device Management.</li>
+                <li><strong>App expires after 7 days:</strong> Free Apple IDs require re-signing apps every 7 days. Paid developer accounts last 1 year.</li>
+                <li><strong>Installation failed:</strong> Try restarting your device and computer, and ensure all software is up to date.</li>
+                <li><strong>Apple ID issues:</strong> Use a secondary Apple ID for sideloading to avoid account lockouts.</li>
+            </ul>
+        </section>
+
+        <section id="faq" class="card">
+            <h2>Frequently Asked Questions</h2>
+            <details>
+                <summary>Is sideloading safe?</summary>
+                <p>Sideloading is generally safe if you trust the source of the app. Only sideload apps from reputable sources.</p>
+            </details>
+            <details>
+                <summary>Can I sideload apps without a computer?</summary>
+                <p>Some online services claim to offer this, but they are often unreliable or unsafe. Using a computer is recommended.</p>
+            </details>
+            <details>
+                <summary>Will sideloading void my warranty?</summary>
+                <p>Sideloading itself does not void your warranty, but misuse or installing malicious apps can cause issues.</p>
+            </details>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 iOS Sideloading Guide. Not affiliated with Apple Inc.</p>
+        </div>
+    </footer>
 </body>
 </html>
+
+<!-- styles.css -->
+<style>
+:root {
+    --main-bg: rgba(26,26,26,1);
+    --card-bg: rgba(36,36,36,1);
+    --accent: #1e90ff;
+    --text: #f1f1f1;
+    --muted: #b0b0b0;
+    --border: #333;
+}
+
+body {
+    background: var(--main-bg);
+    color: var(--text);
+    font-family: 'SF Pro Display', 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+header {
+    background: #181818;
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 0;
+}
+
+header .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0.5rem 0 0.2rem 0;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    color: var(--accent);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+}
+
+.card h2 {
+    color: var(--accent);
+    margin-top: 0;
+}
+
+.method h3 {
+    margin-bottom: 0.5rem;
+    color: #7ecfff;
+}
+
+.method ul {
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+}
+
+footer {
+    background: #181818;
+    color: var(--muted);
+    text-align: center;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.95rem;
+}
+
+details {
+    margin-bottom: 1rem;
+    background: #222;
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--border);
+}
+
+details summary {
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--accent);
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0.7rem;
+    }
+    header h1 {
+        font-size: 1.3rem;
+    }
+    .card {
+        padding: 1rem 0.7rem 0.7rem 0.7rem;
+    }
+    nav ul {
+        gap: 0.7rem;
+        font-size: 0.95rem;
+    }
+}
+</style>
