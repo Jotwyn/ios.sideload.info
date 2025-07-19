@@ -15,13 +15,11 @@
         --box-outline: #353535;
         --transition: 0.4s cubic-bezier(.4,0,.2,1);
     }
-
     html, body {
         height: 100%;
         margin: 0;
         padding: 0;
     }
-
     body {
         background: var(--main-bg);
         color: var(--text);
@@ -30,11 +28,9 @@
         margin: 0;
         box-sizing: border-box;
     }
-
-    /* Large box outline, not full edge-to-edge */
     .main-box-outline {
         position: fixed;
-        top: 2vw; left: 2vw; right: 2vw; bottom: 2vw;
+        top: 1vw; left: 1vw; right: 1vw; bottom: 1vw;
         border: 3px solid var(--box-outline);
         box-sizing: border-box;
         z-index: 0;
@@ -42,7 +38,6 @@
         pointer-events: none;
         transition: border-color var(--transition);
     }
-
     header {
         background: #181818;
         border-bottom: 1px solid var(--border);
@@ -50,21 +45,18 @@
         z-index: 2;
         position: relative;
     }
-
     header .container {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        margin-left: 6vw;
+        margin-left: 4vw;
     }
-
     header h1 {
         margin: 0.5rem 0 0.2rem 0;
         font-size: 2.2rem;
         letter-spacing: 1px;
         color: var(--accent);
     }
-
     nav ul {
         list-style: none;
         display: flex;
@@ -72,7 +64,6 @@
         padding: 0;
         margin: 0.5rem 0 0 0;
     }
-
     nav a {
         color: var(--text);
         text-decoration: none;
@@ -80,150 +71,64 @@
         transition: color 0.2s;
         cursor: pointer;
     }
-
     nav a:hover {
         color: var(--accent);
     }
-
     main {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         min-height: 80vh;
         z-index: 1;
         position: relative;
     }
-
     .container {
         width: 100%;
-        max-width: 900px;
-        margin-left: 6vw;
-        margin-right: auto;
-        padding: 2.5rem 2rem 2rem 2rem;
+        max-width: 98vw;
+        margin-left: 1vw;
+        margin-right: 1vw;
+        padding: 2vw 2vw 2vw 2vw;
         box-sizing: border-box;
     }
-
     .card {
         background: var(--card-bg);
         border-radius: 18px;
         box-shadow: 0 2px 12px rgba(0,0,0,0.13);
-        padding: 1.7rem 1.7rem 1.2rem 1.7rem;
-        margin-bottom: 2.2rem;
+        padding: 2vw 2vw 1.5vw 2vw;
+        margin-bottom: 2vw;
         border: 1.5px solid var(--border);
         width: 100%;
-        max-width: 700px;
+        max-width: 100%;
         transition: box-shadow var(--transition), transform var(--transition), opacity var(--transition);
         opacity: 1;
+        box-sizing: border-box;
     }
-
     .card h2 {
         color: var(--accent);
         margin-top: 0;
     }
-
     .method h3 {
         margin-bottom: 0.5rem;
         color: var(--accent);
     }
-
     .method ul {
         margin-top: 0;
         margin-bottom: 1.2rem;
     }
-
-    /* iOS Version Selection */
-    .ios-version-select {
-        margin-bottom: 2.5rem;
-        width: 100%;
-        max-width: 700px;
-        background: var(--card-bg);
-        border-radius: 18px;
-        border: 1.5px solid var(--border);
-        box-shadow: 0 2px 12px rgba(0,0,0,0.13);
-        padding: 1.7rem 1.7rem 1.2rem 1.7rem;
-        transition: box-shadow var(--transition), transform var(--transition), opacity var(--transition);
-        opacity: 1;
-        position: relative;
-        z-index: 2;
-    }
-
-    .ios-version-options {
-        display: flex;
-        gap: 1.2rem;
-        flex-wrap: wrap;
-        margin-bottom: 1.2rem;
-    }
-
-    .ios-version-btn {
-        background: #232323;
-        color: var(--text);
-        border: 1.5px solid var(--border);
-        border-radius: 10px;
-        padding: 0.8rem 2.1rem;
-        font-size: 1.13rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: background var(--transition), color var(--transition), border-color var(--transition), box-shadow var(--transition);
-        outline: none;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-    }
-
-    .ios-version-btn.active, .ios-version-btn:focus {
-        background: var(--accent);
-        color: #232323;
-        border-color: var(--accent);
-        box-shadow: 0 2px 8px rgba(231,227,212,0.10);
-    }
-
-    .ios-methods-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 1.2rem;
-        background: #232323;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.10);
-        animation: fadeIn 0.5s;
-    }
-
-    .ios-methods-table th, .ios-methods-table td {
-        padding: 0.8rem 1.2rem;
-        border-bottom: 1px solid var(--border);
-        text-align: left;
-        color: var(--text);
-    }
-
-    .ios-methods-table th {
-        background: #1e1e1e;
-        color: var(--accent);
-    }
-
-    .ios-methods-table tr:last-child td {
-        border-bottom: none;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px);}
-        to { opacity: 1; transform: translateY(0);}
-    }
-
     .jump-section {
         scroll-margin-top: 90px;
         transition: opacity var(--transition), transform var(--transition);
     }
-
     .jump-section.hide {
         opacity: 0;
         pointer-events: none;
         transform: translateY(40px);
     }
-
     .jump-section.show {
         opacity: 1;
         pointer-events: auto;
         transform: translateY(0);
     }
-
     footer {
         background: #181818;
         color: var(--muted);
@@ -234,7 +139,6 @@
         z-index: 2;
         position: relative;
     }
-
     details {
         margin-bottom: 1rem;
         background: #222;
@@ -242,41 +146,41 @@
         padding: 0.7rem 1rem;
         border: 1px solid var(--border);
     }
-
     details summary {
         cursor: pointer;
         font-weight: 500;
         color: var(--accent);
     }
-
     @media (max-width: 900px) {
-        .container, .card, .ios-version-select {
-            max-width: 98vw;
+        .container, .card {
+            max-width: 99vw;
+            margin-left: 0.5vw;
+            margin-right: 0.5vw;
+            padding-left: 1vw;
+            padding-right: 1vw;
         }
         .main-box-outline {
-            left: 1vw; right: 1vw; top: 1vw; bottom: 1vw;
+            left: 0.5vw; right: 0.5vw; top: 0.5vw; bottom: 0.5vw;
         }
     }
     @media (max-width: 600px) {
         .container {
             padding: 0.7rem;
             margin-left: 0.5vw;
+            margin-right: 0.5vw;
         }
         header h1 {
             font-size: 1.3rem;
         }
-        .card, .ios-version-select {
+        .card {
             padding: 1rem 0.7rem 0.7rem 0.7rem;
         }
         nav ul {
             gap: 0.7rem;
             font-size: 0.95rem;
         }
-        .ios-version-options {
-            gap: 0.5rem;
-        }
         .main-box-outline {
-            left: 0.5vw; right: 0.5vw; top: 0.5vw; bottom: 0.5vw;
+            left: 0.2vw; right: 0.2vw; top: 0.2vw; bottom: 0.2vw;
             border-radius: 10px;
         }
     }
@@ -291,7 +195,11 @@
                 <ul>
                     <li><a href="#intro" class="jump-link">Introduction</a></li>
                     <li><a href="#preparation" class="jump-link">Preparation</a></li>
-                    <li><a href="#methods" class="jump-link">Sideloading Methods</a></li>
+                    <li><a href="#ios18" class="jump-link">iOS 18</a></li>
+                    <li><a href="#ios17" class="jump-link">iOS 17</a></li>
+                    <li><a href="#ios16" class="jump-link">iOS 16</a></li>
+                    <li><a href="#ios15" class="jump-link">iOS 15</a></li>
+                    <li><a href="#ios14" class="jump-link">iOS 14</a></li>
                     <li><a href="#troubleshooting" class="jump-link">Troubleshooting</a></li>
                     <li><a href="#faq" class="jump-link">FAQ</a></li>
                 </ul>
@@ -299,19 +207,6 @@
         </div>
     </header>
     <main class="container">
-        <!-- iOS Version Selection -->
-        <section class="ios-version-select">
-            <h2 style="color: var(--accent);">Select your iOS Version</h2>
-            <div class="ios-version-options">
-                <button class="ios-version-btn" data-version="18">iOS 18</button>
-                <button class="ios-version-btn" data-version="17">iOS 17</button>
-                <button class="ios-version-btn" data-version="16">iOS 16</button>
-                <button class="ios-version-btn" data-version="15">iOS 15</button>
-                <button class="ios-version-btn" data-version="14">iOS 14</button>
-            </div>
-            <div id="ios-methods-table-container"></div>
-        </section>
-
         <section id="intro" class="card jump-section show">
             <h2>What is Sideloading?</h2>
             <p>
@@ -325,46 +220,310 @@
         <section id="preparation" class="card jump-section show">
             <h2>Preparation</h2>
             <ol>
-                <li>Ensure your device is running a supported iOS version.</li>
-                <li>Have a computer (Windows, macOS, or Linux) ready.</li>
-                <li>Download the necessary tools (see below).</li>
-                <li>Backup your device using iCloud or iTunes/Finder.</li>
+                <li>Check your iOS version in <b>Settings &gt; General &gt; About</b>.</li>
+                <li>Have a computer (Windows, macOS, or Linux) ready for most methods (unless using TrollStore or some eSigner apps).</li>
+                <li>Backup your device using iCloud or iTunes/Finder before proceeding.</li>
+                <li>Download the necessary tools for your iOS version and method (see below).</li>
             </ol>
         </section>
 
-        <section id="methods" class="card jump-section show">
-            <h2>Sideloading Methods</h2>
+        <!-- iOS 18 Section -->
+        <section id="ios18" class="card jump-section show">
+            <h2>iOS 18 Sideloading & Jailbreak Methods</h2>
+            <p><b>Last updated: June 2024</b></p>
+            <ul>
+                <li><b>Jailbreak:</b> <span style="color: var(--accent);">No jailbreak is available for iOS 18 as of June 2024.</span></li>
+                <li><b>TrollStore:</b> <span style="color: var(--accent);">Not available on iOS 18.</span></li>
+            </ul>
             <div class="method">
-                <h3>1. Using AltStore</h3>
-                <ul>
-                    <li>Download <a href="https://altstore.io/" target="_blank" style="color: var(--accent);">AltStore</a> on your computer.</li>
-                    <li>Install AltServer and follow the on-screen instructions.</li>
-                    <li>Connect your iOS device via USB and install AltStore.</li>
-                    <li>On your device, open AltStore and sign in with your Apple ID.</li>
-                    <li>Download or import the .ipa file you wish to sideload.</li>
-                    <li>Install the app via AltStore.</li>
-                </ul>
+                <h3>AltStore (Recommended for Sideloading)</h3>
+                <ol>
+                    <li>
+                        <b>Download AltServer:</b>
+                        <ul>
+                            <li><a href="https://cdn.altstore.io/file/altstore/altinstaller.zip" target="_blank" style="color: var(--accent);">Windows</a></li>
+                            <li><a href="https://cdn.altstore.io/file/altstore/altserver.zip" target="_blank" style="color: var(--accent);">macOS</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>Windows Users:</b> Install the <b>iTunes Web version</b> and <b>iCloud Web version</b> (not Microsoft Store versions):
+                        <ul>
+                            <li>iTunes Web (x64): <a href="https://www.apple.com/itunes/download/win64" target="_blank" style="color: var(--accent);">Download</a></li>
+                            <li>iTunes Web (x32): <a href="https://www.apple.com/itunes/download/win32" target="_blank" style="color: var(--accent);">Download</a></li>
+                            <li>iCloud Web: <a href="https://updates.cdn-apple.com/2020/windows/001-39935-20200911-1A70AA56-F448-11EA-8CC0-99D41950005E/iCloudSetup.exe" target="_blank" style="color: var(--accent);">Download</a></li>
+                        </ul>
+                    </li>
+                    <li>Install AltServer on your computer and follow the on-screen instructions.</li>
+                    <li>Connect your iOS device via USB and open AltServer.</li>
+                    <li>Click the AltServer icon in your system tray (Windows) or menu bar (macOS), select your device, and choose <b>Install AltStore</b>.</li>
+                    <li>Enter your Apple ID credentials when prompted (use a secondary Apple ID for safety).</li>
+                    <li>On your iOS device, open AltStore and sign in with the same Apple ID.</li>
+                    <li>To sideload an app:
+                        <ul>
+                            <li>Download the <code>.ipa</code> file you want to install (e.g., from <a href="https://iosninja.io/ipa-library" target="_blank" style="color: var(--accent);">iOS Ninja</a>).</li>
+                            <li>In AltStore, tap the <b>+</b> icon, select the <code>.ipa</code> file, and follow prompts to install.</li>
+                        </ul>
+                    </li>
+                    <li>Apps installed with a free Apple ID expire after 7 days. Open AltStore and refresh them before expiry.</li>
+                </ol>
+                <p style="color: var(--muted); font-size: 0.97em;">For more help, see the official <a href="https://altstore.io/" target="_blank" style="color: var(--accent);">AltStore website</a> or <a href="https://discord.gg/altstore" target="_blank" style="color: var(--accent);">AltStore Discord</a>.</p>
             </div>
             <div class="method">
-                <h3>2. Using Sideloadly</h3>
-                <ul>
-                    <li>Download <a href="https://sideloadly.io/" target="_blank" style="color: var(--accent);">Sideloadly</a> for your OS.</li>
-                    <li>Open Sideloadly and connect your device.</li>
-                    <li>Drag and drop the .ipa file into Sideloadly.</li>
+                <h3>SideStore (Wireless Sideloading after Setup)</h3>
+                <ol>
+                    <li>First, install AltStore as above (SideStore requires AltServer for initial install).</li>
+                    <li>Download the latest SideStore IPA: <a href="https://github.com/sidestore/sidestore/releases/latest/download/sidestore.ipa" target="_blank" style="color: var(--accent);">sidestore.ipa</a></li>
+                    <li>On your computer, open AltServer, hold <b>Shift</b> (Windows) or <b>Option</b> (macOS), click the AltServer icon, and select <b>Sideload .ipa</b>. Choose the SideStore IPA.</li>
+                    <li>After installation, on your iOS device, go to <b>Settings &gt; General &gt; VPN & Device Management</b> and trust your Apple ID developer profile.</li>
+                    <li>Enable <b>Developer Mode</b> on your device: <b>Settings &gt; Privacy & Security &gt; Developer Mode</b>.</li>
+                    <li>Install <b>StosVPN</b> from the App Store: <a href="https://apps.apple.com/us/app/stosvpn/id6744003051" target="_blank" style="color: var(--accent);">Download StosVPN</a>. Enable the VPN when using SideStore.</li>
+                    <li>Open SideStore, sign in with your Apple ID, and follow the in-app instructions to finish setup.</li>
+                    <li>To sideload apps, use the <b>+</b> icon in SideStore and select your <code>.ipa</code> file.</li>
+                </ol>
+                <p style="color: var(--muted); font-size: 0.97em;">For detailed pairing file instructions (required for wireless refresh), see the <a href="https://github.com/SideStore/SideStore/wiki/Pairing-File-Guide" target="_blank" style="color: var(--accent);">SideStore Wiki</a>.<br>
+                Need help? Join the <a href="https://discord.gg/RgpFBX3Q3k" target="_blank" style="color: var(--accent);">SideStore Discord</a>.</p>
+            </div>
+            <div class="method">
+                <h3>Sideloadly</h3>
+                <ol>
+                    <li>Download Sideloadly for your OS:
+                        <ul>
+                            <li><a href="https://sideloadly.io/SideloadlySetup64.exe" target="_blank" style="color: var(--accent);">Windows x64</a></li>
+                            <li><a href="https://sideloadly.io/SideloadlySetup32.exe" target="_blank" style="color: var(--accent);">Windows x32</a></li>
+                            <li><a href="https://sideloadly.io/SideloadlySetup.dmg" target="_blank" style="color: var(--accent);">macOS</a></li>
+                        </ul>
+                    </li>
+                    <li>Install the <b>iTunes Web</b> and <b>iCloud Web</b> versions (Windows only, see AltStore section above for links).</li>
+                    <li>Open Sideloadly, connect your device, and drag your <code>.ipa</code> file into the app.</li>
                     <li>Enter your Apple ID credentials when prompted.</li>
-                    <li>Click "Start" and wait for the process to complete.</li>
-                    <li>Trust the developer profile in Settings &gt; General &gt; Device Management.</li>
-                </ul>
+                    <li>Click <b>Start</b> and wait for the process to finish.</li>
+                    <li>On your device, go to <b>Settings &gt; General &gt; VPN & Device Management</b> and trust your Apple ID profile.</li>
+                </ol>
+                <p style="color: var(--muted); font-size: 0.97em;">See <a href="https://sideloadly.io/" target="_blank" style="color: var(--accent);">Sideloadly website</a> for troubleshooting and guides.</p>
             </div>
             <div class="method">
-                <h3>3. Using Xcode (macOS only)</h3>
-                <ul>
-                    <li>Download the app's source code or .ipa file.</li>
-                    <li>Open Xcode and create a new project or open the source code.</li>
+                <h3>eSigner Apps (Esign, Scarlet, Bullfrog Assistant, etc)</h3>
+                <ol>
+                    <li>
+                        <b>How eSigner Apps Work:</b> These apps (like <a href="https://esign.pro/" target="_blank" style="color: var(--accent);">Esign</a>, <a href="https://scarlet.app/" target="_blank" style="color: var(--accent);">Scarlet</a>, <a href="https://bullfrogassistant.com/" target="_blank" style="color: var(--accent);">Bullfrog Assistant</a>) let you install <code>.ipa</code> files directly on your device. They do <b>not</b> use your Apple ID for signing. Instead, they use enterprise or developer certificates, often from companies or resellers.
+                    </li>
+                    <li>
+                        <b>Certificate Revokes:</b> Free certificates are revoked by Apple frequently, causing apps to stop opening. Some eSigner apps offer "paid" or "private" certificates that last longer and may come with a revoke warranty or replacement.
+                    </li>
+                    <li>
+                        <b>DNS Tricks:</b> Some users use DNS services (like <a href="https://larsenwork.com/ios-ocsp/" target="_blank" style="color: var(--accent);">Larsenwork's iOS OCSP</a> or <a href="https://nextdns.io/" target="_blank" style="color: var(--accent);">NextDNS</a> with OCSP blocking) to prevent iOS from checking if a certificate is revoked. This can keep apps working after a revoke, but is not 100% reliable and may have security/privacy tradeoffs.
+                    </li>
+                    <li>
+                        <b>How to Use:</b>
+                        <ol>
+                            <li>Install the eSigner app (usually via an existing certificate, AltStore/SideStore, or TestFlight invite).</li>
+                            <li>Open the app and import your <code>.ipa</code> file (from Files, Safari, or direct download).</li>
+                            <li>Tap to sign and install. The app will use its certificate to sign and install the app.</li>
+                            <li>After installation, go to <b>Settings &gt; General &gt; VPN & Device Management</b> and trust the certificate profile.</li>
+                        </ol>
+                    </li>
+                    <li>
+                        <b>Risks:</b> Never pay for "signing services" from random sellers. Only use trusted sources. Apps may stop working at any time if the certificate is revoked.
+                    </li>
+                </ol>
+            </div>
+            <div class="method">
+                <h3>Xcode (macOS only)</h3>
+                <ol>
+                    <li>Download the app's source code (e.g., from GitHub) or <code>.ipa</code> file.</li>
+                    <li>Open Xcode, create a new project or open the source code.</li>
                     <li>Connect your device and select it as the build target.</li>
                     <li>Sign the app with your Apple ID (free or paid developer account).</li>
                     <li>Build and run the app on your device.</li>
-                </ul>
+                </ol>
+                <p style="color: var(--muted); font-size: 0.97em;">See <a href="https://developer.apple.com/xcode/" target="_blank" style="color: var(--accent);">Apple's Xcode page</a> for more info.</p>
+            </div>
+        </section>
+
+        <!-- iOS 17 Section -->
+        <section id="ios17" class="card jump-section show">
+            <h2>iOS 17 Sideloading & Jailbreak Methods</h2>
+            <p><b>Last updated: June 2024</b></p>
+            <ul>
+                <li><b>Jailbreak:</b> <span style="color: var(--accent);">No jailbreak is available for iOS 17 as of June 2024.</span></li>
+                <li><b>TrollStore:</b> <span style="color: var(--accent);">Only available on iOS 17.0 (not 17.0.1+).</span></li>
+            </ul>
+            <div class="method">
+                <h3>AltStore</h3>
+                <p>Follow the same steps as for iOS 18 above. AltStore works on iOS 17.</p>
+            </div>
+            <div class="method">
+                <h3>SideStore</h3>
+                <p>Follow the same steps as for iOS 18 above. SideStore works on iOS 17.</p>
+            </div>
+            <div class="method">
+                <h3>Sideloadly</h3>
+                <p>Follow the same steps as for iOS 18 above. Sideloadly works on iOS 17.</p>
+            </div>
+            <div class="method">
+                <h3>eSigner Apps</h3>
+                <p>See the eSigner Apps section above. These work on iOS 17, but certificate revokes are common.</p>
+            </div>
+            <div class="method">
+                <h3>TrollStore (iOS 17.0 only)</h3>
+                <ol>
+                    <li>Check your exact iOS version in <b>Settings &gt; General &gt; About</b>. TrollStore only works on 17.0 (not 17.0.1+).</li>
+                    <li>Visit <a href="https://trollstore.app/" target="_blank" style="color: var(--accent);">TrollStore</a> for the latest instructions and supported devices.</li>
+                    <li>Download the appropriate TrollStore installer for your device (e.g., <a href="https://github.com/opa334/TrollInstallerX/releases" target="_blank" style="color: var(--accent);">TrollInstallerX</a> for A12+ devices).</li>
+                    <li>Follow the step-by-step guide on the TrollStore website to install and activate TrollStore.</li>
+                    <li>Once installed, open TrollStore and import your <code>.ipa</code> files for permanent installation.</li>
+                </ol>
+                <p style="color: var(--muted); font-size: 0.97em;">TrollStore is not available on iOS 17.0.1 or later.</p>
+            </div>
+            <div class="method">
+                <h3>Xcode (macOS only)</h3>
+                <p>Follow the same steps as for iOS 18 above. Xcode sideloading works on iOS 17.</p>
+            </div>
+        </section>
+
+        <!-- iOS 16 Section -->
+        <section id="ios16" class="card jump-section show">
+            <h2>iOS 16 Sideloading & Jailbreak Methods</h2>
+            <p><b>Last updated: June 2024</b></p>
+            <ul>
+                <li><b>Jailbreak:</b> <span style="color: var(--accent);">Limited jailbreaks available for some devices/versions (see below).</span></li>
+                <li><b>TrollStore:</b> <span style="color: var(--accent);">Supported up to iOS 16.6.1.</span></li>
+            </ul>
+            <div class="method">
+                <h3>AltStore</h3>
+                <p>Follow the same steps as for iOS 18 above. AltStore works on iOS 16.</p>
+            </div>
+            <div class="method">
+                <h3>SideStore</h3>
+                <p>Follow the same steps as for iOS 18 above. SideStore works on iOS 16.</p>
+            </div>
+            <div class="method">
+                <h3>Sideloadly</h3>
+                <p>Follow the same steps as for iOS 18 above. Sideloadly works on iOS 16.</p>
+            </div>
+            <div class="method">
+                <h3>eSigner Apps</h3>
+                <p>See the eSigner Apps section above. These work on iOS 16, but certificate revokes are common.</p>
+            </div>
+            <div class="method">
+                <h3>TrollStore (iOS 16.0–16.6.1)</h3>
+                <ol>
+                    <li>Check your iOS version in <b>Settings &gt; General &gt; About</b>. TrollStore works up to 16.6.1.</li>
+                    <li>Visit <a href="https://trollstore.app/" target="_blank" style="color: var(--accent);">TrollStore</a> for the latest instructions and supported devices.</li>
+                    <li>Download the appropriate installer (e.g., <a href="https://github.com/opa334/TrollInstallerX/releases" target="_blank" style="color: var(--accent);">TrollInstallerX</a> for A12+ devices).</li>
+                    <li>Follow the step-by-step guide on the TrollStore website to install and activate TrollStore.</li>
+                    <li>Once installed, open TrollStore and import your <code>.ipa</code> files for permanent installation.</li>
+                </ol>
+            </div>
+            <div class="method">
+                <h3>Jailbreaking (iOS 16)</h3>
+                <ol>
+                    <li>Jailbreaks for iOS 16 are limited and device-specific. Check <a href="https://theapplewiki.com/wiki/Jailbreak" target="_blank" style="color: var(--accent);">The Apple Wiki Jailbreak Status</a> for up-to-date info.</li>
+                    <li>As of June 2024, <b>palera1n</b> supports A8–A11 devices (iPhone X and below) on iOS 16.x. See <a href="https://palera.in/" target="_blank" style="color: var(--accent);">palera1n website</a> for instructions.</li>
+                    <li>For newer devices, no public jailbreak is available for iOS 16.x.</li>
+                </ol>
+            </div>
+            <div class="method">
+                <h3>Xcode (macOS only)</h3>
+                <p>Follow the same steps as for iOS 18 above. Xcode sideloading works on iOS 16.</p>
+            </div>
+        </section>
+
+        <!-- iOS 15 Section -->
+        <section id="ios15" class="card jump-section show">
+            <h2>iOS 15 Sideloading & Jailbreak Methods</h2>
+            <p><b>Last updated: June 2024</b></p>
+            <ul>
+                <li><b>Jailbreak:</b> <span style="color: var(--accent);">Available for many devices (see below).</span></li>
+                <li><b>TrollStore:</b> <span style="color: var(--accent);">Fully supported on iOS 15.x.</span></li>
+            </ul>
+            <div class="method">
+                <h3>AltStore</h3>
+                <p>Follow the same steps as for iOS 18 above. AltStore works on iOS 15.</p>
+            </div>
+            <div class="method">
+                <h3>SideStore</h3>
+                <p>Follow the same steps as for iOS 18 above. SideStore works on iOS 15.</p>
+            </div>
+            <div class="method">
+                <h3>Sideloadly</h3>
+                <p>Follow the same steps as for iOS 18 above. Sideloadly works on iOS 15.</p>
+            </div>
+            <div class="method">
+                <h3>eSigner Apps</h3>
+                <p>See the eSigner Apps section above. These work on iOS 15, but certificate revokes are common.</p>
+            </div>
+            <div class="method">
+                <h3>TrollStore (iOS 15.x)</h3>
+                <ol>
+                    <li>Check your iOS version in <b>Settings &gt; General &gt; About</b>. TrollStore works on all iOS 15.x versions.</li>
+                    <li>Visit <a href="https://trollstore.app/" target="_blank" style="color: var(--accent);">TrollStore</a> for the latest instructions and supported devices.</li>
+                    <li>Download the appropriate installer (e.g., <a href="https://github.com/opa334/TrollInstallerX/releases" target="_blank" style="color: var(--accent);">TrollInstallerX</a> for A12+ devices).</li>
+                    <li>Follow the step-by-step guide on the TrollStore website to install and activate TrollStore.</li>
+                    <li>Once installed, open TrollStore and import your <code>.ipa</code> files for permanent installation.</li>
+                </ol>
+            </div>
+            <div class="method">
+                <h3>Jailbreaking (iOS 15)</h3>
+                <ol>
+                    <li>Check <a href="https://theapplewiki.com/wiki/Jailbreak" target="_blank" style="color: var(--accent);">The Apple Wiki Jailbreak Status</a> for your device and iOS version.</li>
+                    <li><b>palera1n</b> supports A8–A11 devices (iPhone X and below) on iOS 15.x. See <a href="https://palera.in/" target="_blank" style="color: var(--accent);">palera1n website</a> for instructions.</li>
+                    <li><b>Fugu15 Max</b> supports some A12+ devices on iOS 15.0–15.4.1. See <a href="https://github.com/opa334/Fugu15_Max" target="_blank" style="color: var(--accent);">Fugu15 Max GitHub</a> for details and instructions.</li>
+                    <li>Other jailbreaks may be available for specific devices/versions. Always check the latest status and guides.</li>
+                </ol>
+            </div>
+            <div class="method">
+                <h3>Xcode (macOS only)</h3>
+                <p>Follow the same steps as for iOS 18 above. Xcode sideloading works on iOS 15.</p>
+            </div>
+        </section>
+
+        <!-- iOS 14 Section -->
+        <section id="ios14" class="card jump-section show">
+            <h2>iOS 14 Sideloading & Jailbreak Methods</h2>
+            <p><b>Last updated: June 2024</b></p>
+            <ul>
+                <li><b>Jailbreak:</b> <span style="color: var(--accent);">Available for most devices (see below).</span></li>
+                <li><b>TrollStore:</b> <span style="color: var(--accent);">Fully supported on iOS 14.x.</span></li>
+            </ul>
+            <div class="method">
+                <h3>AltStore</h3>
+                <p>Follow the same steps as for iOS 18 above. AltStore works on iOS 14.</p>
+            </div>
+            <div class="method">
+                <h3>SideStore</h3>
+                <p>Follow the same steps as for iOS 18 above. SideStore works on iOS 14.</p>
+            </div>
+            <div class="method">
+                <h3>Sideloadly</h3>
+                <p>Follow the same steps as for iOS 18 above. Sideloadly works on iOS 14.</p>
+            </div>
+            <div class="method">
+                <h3>eSigner Apps</h3>
+                <p>See the eSigner Apps section above. These work on iOS 14, but certificate revokes are common.</p>
+            </div>
+            <div class="method">
+                <h3>TrollStore (iOS 14.x)</h3>
+                <ol>
+                    <li>Check your iOS version in <b>Settings &gt; General &gt; About</b>. TrollStore works on all iOS 14.x versions.</li>
+                    <li>Visit <a href="https://trollstore.app/" target="_blank" style="color: var(--accent);">TrollStore</a> for the latest instructions and supported devices.</li>
+                    <li>Download the appropriate installer (e.g., <a href="https://github.com/opa334/TrollInstallerX/releases" target="_blank" style="color: var(--accent);">TrollInstallerX</a> for A12+ devices).</li>
+                    <li>Follow the step-by-step guide on the TrollStore website to install and activate TrollStore.</li>
+                    <li>Once installed, open TrollStore and import your <code>.ipa</code> files for permanent installation.</li>
+                </ol>
+            </div>
+            <div class="method">
+                <h3>Jailbreaking (iOS 14)</h3>
+                <ol>
+                    <li>Check <a href="https://theapplewiki.com/wiki/Jailbreak" target="_blank" style="color: var(--accent);">The Apple Wiki Jailbreak Status</a> for your device and iOS version.</li>
+                    <li><b>unc0ver</b> and <b>checkra1n</b> support many devices on iOS 14.x. See <a href="https://unc0ver.dev/" target="_blank" style="color: var(--accent);">unc0ver</a> and <a href="https://checkra.in/" target="_blank" style="color: var(--accent);">checkra1n</a> for instructions.</li>
+                    <li><b>palera1n</b> supports A8–A11 devices (iPhone X and below) on iOS 14.x. See <a href="https://palera.in/" target="_blank" style="color: var(--accent);">palera1n website</a> for instructions.</li>
+                    <li>Always check the latest status and guides for your device.</li>
+                </ol>
+            </div>
+            <div class="method">
+                <h3>Xcode (macOS only)</h3>
+                <p>Follow the same steps as for iOS 18 above. Xcode sideloading works on iOS 14.</p>
             </div>
         </section>
 
@@ -375,6 +534,8 @@
                 <li><strong>App expires after 7 days:</strong> Free Apple IDs require re-signing apps every 7 days. Paid developer accounts last 1 year.</li>
                 <li><strong>Installation failed:</strong> Try restarting your device and computer, and ensure all software is up to date.</li>
                 <li><strong>Apple ID issues:</strong> Use a secondary Apple ID for sideloading to avoid account lockouts.</li>
+                <li><strong>Certificate revoked:</strong> If using an eSigner app, the app may stop working if Apple revokes the certificate. You can try DNS tricks (see eSigner section) to bypass revokes, but this is not always reliable.</li>
+                <li><strong>TrollStore not working:</strong> Make sure your iOS version is supported (see <a href="https://trollstore.app/" target="_blank" style="color: var(--accent);">TrollStore</a>).</li>
             </ul>
         </section>
 
@@ -382,15 +543,31 @@
             <h2>Frequently Asked Questions</h2>
             <details>
                 <summary>Is sideloading safe?</summary>
-                <p>Sideloading is generally safe if you trust the source of the app. Only sideload apps from reputable sources.</p>
+                <p>Sideloading is generally safe if you trust the source of the app. Only sideload apps from reputable sources. Avoid pirated or cracked apps.</p>
             </details>
             <details>
                 <summary>Can I sideload apps without a computer?</summary>
-                <p>Some online services claim to offer this, but they are often unreliable or unsafe. Using a computer is recommended.</p>
+                <p>Yes, with methods like SideStore, eSigner apps (Esign, Scarlet, Bullfrog Assistant), and TrollStore (if supported). However, initial setup may require a computer.</p>
             </details>
             <details>
                 <summary>Will sideloading void my warranty?</summary>
-                <p>Sideloading itself does not void your warranty, but misuse or installing malicious apps can cause issues.</p>
+                <p>Sideloading itself does not void your warranty, but misuse or installing malicious apps can cause issues. Jailbreaking may void your warranty.</p>
+            </details>
+            <details>
+                <summary>What is the difference between AltStore and SideStore?</summary>
+                <p>AltStore requires a computer to refresh apps, while SideStore allows wireless sideloading after initial setup.</p>
+            </details>
+            <details>
+                <summary>What is an eSigner app?</summary>
+                <p>eSigner apps (like Esign, Scarlet, Bullfrog Assistant) let you sign and install .ipa files directly on your device using enterprise or developer certificates, not your Apple ID. These certificates can be revoked by Apple at any time, causing apps to stop working. Some DNS tricks can help bypass revokes, but are not always reliable.</p>
+            </details>
+            <details>
+                <summary>What is TrollStore?</summary>
+                <p>TrollStore is a permanent signing solution for certain iOS versions, allowing you to install apps without re-signing every 7 days. Not available on iOS 18 or most iOS 17.x.</p>
+            </details>
+            <details>
+                <summary>Can I jailbreak iOS 18 or 17?</summary>
+                <p>No jailbreak is available for iOS 18 or 17 as of now.</p>
             </details>
         </section>
     </main>
@@ -400,64 +577,10 @@
         </div>
     </footer>
     <script>
-    // iOS version methods for each major version
-    const iosMethodsData = {
-        "18": [
-            { method: "AltStore", available: "Planned (Check for updates after iOS 18 release)" },
-            { method: "Sideloadly", available: "Planned (Check for updates after iOS 18 release)" },
-            { method: "Xcode (macOS only)", available: "Expected" }
-        ],
-        "17": [
-            { method: "AltStore", available: "Yes" },
-            { method: "Sideloadly", available: "Yes" },
-            { method: "Xcode (macOS only)", available: "Yes" }
-        ],
-        "16": [
-            { method: "AltStore", available: "Yes" },
-            { method: "Sideloadly", available: "Yes" },
-            { method: "Xcode (macOS only)", available: "Yes" }
-        ],
-        "15": [
-            { method: "AltStore", available: "Yes" },
-            { method: "Sideloadly", available: "Yes" },
-            { method: "Xcode (macOS only)", available: "Yes" }
-        ],
-        "14": [
-            { method: "AltStore", available: "Yes" },
-            { method: "Sideloadly", available: "Yes" },
-            { method: "Xcode (macOS only)", available: "Yes" }
-        ]
-    };
+    // No more dynamic table, each iOS version has its own section now.
 
-    function renderMethodsTable(version) {
-        const data = iosMethodsData[version];
-        if (!data) return '';
-        let html = `<table class="ios-methods-table"><thead><tr><th>Method</th><th>Available?</th></tr></thead><tbody>`;
-        for (const row of data) {
-            html += `<tr><td>${row.method}</td><td>${row.available}</td></tr>`;
-        }
-        html += `</tbody></table>`;
-        return html;
-    }
-
-    // Handle iOS version selection
+    // Smooth jump transitions for nav links
     document.addEventListener('DOMContentLoaded', function() {
-        const btns = document.querySelectorAll('.ios-version-btn');
-        const tableContainer = document.getElementById('ios-methods-table-container');
-        let activeBtn = null;
-
-        btns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                btns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                tableContainer.innerHTML = renderMethodsTable(btn.dataset.version);
-            });
-        });
-
-        // Select the first by default
-        btns[0].click();
-
-        // Smooth jump transitions for nav links
         document.querySelectorAll('.jump-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
