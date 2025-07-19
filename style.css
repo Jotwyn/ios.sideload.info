@@ -21,10 +21,17 @@ body {
     min-height: 100vh;
     margin: 0;
     box-sizing: border-box;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+}
+/* --- Main Box Outline: Make it surround content, not fixed --- */
+.page-wrapper {
+    position: relative;
+    min-height: 100vh;
 }
 .main-box-outline {
-    position: fixed;
-    top: 1vw; left: 1vw; right: 1vw; bottom: 1vw;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
     border: 3px solid var(--box-outline);
     box-sizing: border-box;
     z-index: 0;
@@ -76,6 +83,38 @@ main {
     z-index: 1;
     position: relative;
 }
+/* --- Center Get Started Button --- */
+main.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center children horizontally */
+    min-height: 80vh;
+    z-index: 1;
+    position: relative;
+}
+
+/* Ensure .get-started-btn is not stretched */
+.get-started-btn {
+    align-self: center;
+}
+
+/* --- Page Transition Animations --- */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(.4,0,.2,1);
+}
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.4s cubic-bezier(.4,0,.2,1);
+}
+
+/* --- Fix Box Cut-off Bug --- */
+@media (max-width: 900px) {
+    body {
+        padding-top: 1vw;
+        padding-bottom: 1vw;
+    }
+}
 .container {
     width: 100%;
     max-width: 98vw;
@@ -84,12 +123,14 @@ main {
     padding: 2vw 2vw 2vw 2vw;
     box-sizing: border-box;
 }
+/* --- Card: Always show corners --- */
 .card {
+    margin-top: 2vw;
+    margin-bottom: 2vw;
     background: var(--card-bg);
     border-radius: 18px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.13);
     padding: 2vw 2vw 1.5vw 2vw;
-    margin-bottom: 2vw;
     border: 1.5px solid var(--border);
     width: 100%;
     max-width: 100%;
@@ -234,6 +275,21 @@ details summary {
     background: #fffbe6;
     color: #181818;
     transform: translateY(-2px) scale(1.03);
+}
+/* --- Slide Left Page Transition --- */
+.slide-in-left {
+    animation: slideInLeft 0.5s cubic-bezier(.4,0,.2,1);
+}
+.slide-out-left {
+    animation: slideOutLeft 0.5s cubic-bezier(.4,0,.2,1);
+}
+@keyframes slideInLeft {
+    from { transform: translateX(100vw); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOutLeft {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(-100vw); opacity: 0; }
 }
 @media (max-width: 900px) {
     .container, .card {

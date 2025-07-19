@@ -6,52 +6,55 @@
     <title>iOS Sideloading Guide</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="main-box-outline"></div>
-    <header>
-        <div class="container">
-            <h1>iOS Sideloading Guide</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="ios18.html">iOS 18</a></li>
-                    <li><a href="ios17.html">iOS 17</a></li>
-                    <li><a href="ios16.html">iOS 16</a></li>
-                    <li><a href="ios15.html">iOS 15</a></li>
-                    <li><a href="ios14.html">iOS 14</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <main class="container">
-        <section class="card">
-            <h2>What is Sideloading?</h2>
-            <p>
-                Sideloading is the process of installing apps on your iOS device from sources outside the official App Store. This allows you to use apps not available on the App Store, beta versions, or custom apps.
-            </p>
-            <p>
-                <strong>Disclaimer:</strong> Sideloading may void your warranty or violate Apple's terms of service. Proceed at your own risk.
-            </p>
-        </section>
-        <button class="get-started-btn" id="getStartedBtn">Get Started</button>
-    </main>
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 iOS Sideloading Guide. Not affiliated with Apple Inc.</p>
-        </div>
-    </footer>
+<body class="slide-in-left">
+    <div class="page-wrapper">
+        <div class="main-box-outline"></div>
+        <header>
+            <div class="container">
+                <h1>iOS Sideloading Guide</h1>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="/ios18/">iOS 18</a></li>
+                        <li><a href="/ios17/">iOS 17</a></li>
+                        <li><a href="/ios16/">iOS 16</a></li>
+                        <li><a href="/ios15/">iOS 15</a></li>
+                        <li><a href="/ios14/">iOS 14</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main class="container">
+            <section class="card">
+                <h2>What is Sideloading?</h2>
+                <p>
+                    Sideloading is the process of installing apps on your iOS device from sources outside the official App Store. This allows you to use apps not available on the App Store, beta versions, or custom apps.
+                </p>
+                <p>
+                    <strong>Disclaimer:</strong> Sideloading may void your warranty or violate Apple's terms of service. Proceed at your own risk.
+                </p>
+            </section>
+            <button class="get-started-btn" id="getStartedBtn">Get Started</button>
+        </main>
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 iOS Sideloading Guide. Not affiliated with Apple Inc.</p>
+            </div>
+        </footer>
+    </div>
     <div class="modal" id="iosModal">
         <div class="modal-content">
             <button class="close-modal" id="closeModalBtn" aria-label="Close">&times;</button>
             <h2>Select Your iOS Version</h2>
-            <button class="ios-version-btn" onclick="window.location.href='ios18.html'">iOS 18</button>
-            <button class="ios-version-btn" onclick="window.location.href='ios17.html'">iOS 17</button>
-            <button class="ios-version-btn" onclick="window.location.href='ios16.html'">iOS 16</button>
-            <button class="ios-version-btn" onclick="window.location.href='ios15.html'">iOS 15</button>
-            <button class="ios-version-btn" onclick="window.location.href='ios14.html'">iOS 14</button>
+            <button class="ios-version-btn" onclick="window.location.href='/ios18/'">iOS 18</button>
+            <button class="ios-version-btn" onclick="window.location.href='/ios17/'">iOS 17</button>
+            <button class="ios-version-btn" onclick="window.location.href='/ios16/'">iOS 16</button>
+            <button class="ios-version-btn" onclick="window.location.href='/ios15/'">iOS 15</button>
+            <button class="ios-version-btn" onclick="window.location.href='/ios14/'">iOS 14</button>
         </div>
     </div>
     <script>
+    // Modal logic
     document.getElementById('getStartedBtn').addEventListener('click', function() {
         document.getElementById('iosModal').classList.add('active');
     });
@@ -63,6 +66,36 @@
         if (event.target === modal) {
             modal.classList.remove('active');
         }
+    });
+
+    // --- Page Slide Transition Animation ---
+    function slideToPage(href) {
+        document.body.classList.remove('slide-in-left');
+        document.body.classList.add('slide-out-left');
+        setTimeout(function() {
+            window.location.href = href;
+        }, 500); // match CSS animation duration
+    }
+    // Nav links
+    document.querySelectorAll('nav a').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            if (link.href && !link.href.endsWith(window.location.pathname)) {
+                e.preventDefault();
+                slideToPage(link.getAttribute('href'));
+            }
+        });
+    });
+    // Modal iOS version buttons
+    document.querySelectorAll('.ios-version-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            slideToPage(btn.getAttribute('onclick').split("='")[1].split("'")[0]);
+        });
+    });
+    // Slide-in on load
+    window.addEventListener('pageshow', function() {
+        document.body.classList.remove('slide-out-left');
+        document.body.classList.add('slide-in-left');
     });
     </script>
 </body>
