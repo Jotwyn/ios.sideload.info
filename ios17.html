@@ -12,6 +12,7 @@ h<!DOCTYPE html>
         <header>
             <div class="container">
                 <h1>iOS Sideloading Guide</h1>
+                <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle dark/light mode">🌙</button>
                 <nav>
                     <ul>
                         <li><a href="https://ios.sideload.info">Home</a></li>
@@ -95,5 +96,49 @@ h<!DOCTYPE html>
         document.body.classList.add('slide-in-left');
     });
     </script>
+    <script>
+// --- Dark/Light Mode Toggle ---
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+function setTheme(mode, skipIcon) {
+    if (mode === 'light') {
+        document.documentElement.classList.add('light-mode');
+        document.documentElement.classList.remove('dark-mode');
+        if (!skipIcon) themeToggleBtn.textContent = '☀️';
+    } else {
+        document.documentElement.classList.add('dark-mode');
+        document.documentElement.classList.remove('light-mode');
+        if (!skipIcon) themeToggleBtn.textContent = '🌙';
+    }
+    localStorage.setItem('theme', mode);
+}
+function toggleTheme() {
+    const current = document.documentElement.classList.contains('light-mode') ? 'light' : 'dark';
+    const next = current === 'light' ? 'dark' : 'light';
+    // Animate icon
+    themeToggleBtn.classList.remove('sunrise', 'sunset');
+    void themeToggleBtn.offsetWidth; // force reflow
+    themeToggleBtn.classList.add(next === 'light' ? 'sunrise' : 'sunset');
+    // Change theme but delay icon switch until halfway through animation
+    setTheme(next, true);
+    setTimeout(() => {
+        themeToggleBtn.textContent = next === 'light' ? '☀️' : '🌙';
+    }, 350);
+    setTimeout(() => {
+        themeToggleBtn.classList.remove('sunrise', 'sunset');
+    }, 700);
+}
+themeToggleBtn.addEventListener('click', toggleTheme);
+// On load, set theme from localStorage or system preference
+(function() {
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+        setTheme(saved);
+    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+        setTheme('light');
+    } else {
+        setTheme('dark');
+    }
+})();
+</script>
 </body>
 </html> 

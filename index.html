@@ -125,15 +125,15 @@
 
     // --- Dark/Light Mode Toggle ---
     const themeToggleBtn = document.getElementById('themeToggleBtn');
-    function setTheme(mode) {
+    function setTheme(mode, skipIcon) {
         if (mode === 'light') {
             document.documentElement.classList.add('light-mode');
             document.documentElement.classList.remove('dark-mode');
-            themeToggleBtn.textContent = '☀️';
+            if (!skipIcon) themeToggleBtn.textContent = '☀️';
         } else {
             document.documentElement.classList.add('dark-mode');
             document.documentElement.classList.remove('light-mode');
-            themeToggleBtn.textContent = '🌙';
+            if (!skipIcon) themeToggleBtn.textContent = '🌙';
         }
         localStorage.setItem('theme', mode);
     }
@@ -144,7 +144,11 @@
         themeToggleBtn.classList.remove('sunrise', 'sunset');
         void themeToggleBtn.offsetWidth; // force reflow
         themeToggleBtn.classList.add(next === 'light' ? 'sunrise' : 'sunset');
-        setTheme(next);
+        // Change theme but delay icon switch until halfway through animation
+        setTheme(next, true);
+        setTimeout(() => {
+            themeToggleBtn.textContent = next === 'light' ? '☀️' : '🌙';
+        }, 350);
         setTimeout(() => {
             themeToggleBtn.classList.remove('sunrise', 'sunset');
         }, 700);
