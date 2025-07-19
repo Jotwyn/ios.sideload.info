@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOS 17 Sideloading Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="slide-in-left">
+    <div class="page-wrapper">
+        <div class="main-box-outline"></div>
+        <header>
+            <div class="container">
+                <h1>iOS Sideloading Guide</h1>
+                <nav>
+                    <ul>
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="/ios18/">iOS 18</a></li>
+                        <li><a href="/ios17/">iOS 17</a></li>
+                        <li><a href="/ios16/">iOS 16</a></li>
+                        <li><a href="/ios15/">iOS 15</a></li>
+                        <li><a href="/ios14/">iOS 14</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main class="container">
+            <section class="card">
+                <h2>iOS 17 Sideloading & Jailbreak Methods</h2>
+                <p><b>Last updated: June 2024</b></p>
+                <ul>
+                    <li><b>Jailbreak:</b> <span style="color: var(--accent);">No jailbreak is available for iOS 17 as of June 2024.</span></li>
+                    <li><b>TrollStore:</b> <span style="color: var(--accent);">Only available on iOS 17.0 (not 17.0.1+).</span></li>
+                </ul>
+                <div class="method">
+                    <h3>AltStore</h3>
+                    <p>Follow the same steps as for iOS 18 above. AltStore works on iOS 17.</p>
+                </div>
+                <div class="method">
+                    <h3>SideStore</h3>
+                    <p>Follow the same steps as for iOS 18 above. SideStore works on iOS 17.</p>
+                </div>
+                <div class="method">
+                    <h3>Sideloadly</h3>
+                    <p>Follow the same steps as for iOS 18 above. Sideloadly works on iOS 17.</p>
+                </div>
+                <div class="method">
+                    <h3>eSigner Apps</h3>
+                    <p>See the eSigner Apps section above. These work on iOS 17, but certificate revokes are common.</p>
+                </div>
+                <div class="method">
+                    <h3>TrollStore (iOS 17.0 only)</h3>
+                    <ol>
+                        <li>Check your exact iOS version in <b>Settings &gt; General &gt; About</b>. TrollStore only works on 17.0 (not 17.0.1+).</li>
+                        <li>Visit <a href="https://trollstore.app/" target="_blank" style="color: var(--accent);">TrollStore</a> for the latest instructions and supported devices.</li>
+                        <li>Download the appropriate TrollStore installer for your device (e.g., <a href="https://github.com/opa334/TrollInstallerX/releases" target="_blank" style="color: var(--accent);">TrollInstallerX</a> for A12+ devices).</li>
+                        <li>Follow the step-by-step guide on the TrollStore website to install and activate TrollStore.</li>
+                        <li>Once installed, open TrollStore and import your <code>.ipa</code> files for permanent installation.</li>
+                    </ol>
+                    <p style="color: var(--muted); font-size: 0.97em;">TrollStore is not available on iOS 17.0.1 or later.</p>
+                </div>
+                <div class="method">
+                    <h3>Xcode (macOS only)</h3>
+                    <p>Follow the same steps as for iOS 18 above. Xcode sideloading works on iOS 17.</p>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 iOS Sideloading Guide. Not affiliated with Apple Inc.</p>
+            </div>
+        </footer>
+    </div>
+    <script>
+    // --- Page Slide Transition Animation ---
+    function slideToPage(href) {
+        document.body.classList.remove('slide-in-left');
+        document.body.classList.add('slide-out-left');
+        setTimeout(function() {
+            window.location.href = href;
+        }, 500);
+    }
+    // Nav links
+    document.querySelectorAll('nav a').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            if (link.href && !link.href.endsWith(window.location.pathname)) {
+                e.preventDefault();
+                slideToPage(link.getAttribute('href'));
+            }
+        });
+    });
+    // Slide-in on load
+    window.addEventListener('pageshow', function() {
+        document.body.classList.remove('slide-out-left');
+        document.body.classList.add('slide-in-left');
+    });
+    </script>
+</body>
+</html> 
