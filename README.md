@@ -29,6 +29,7 @@ Jailed = j
 Signers range from highest ios version supported to lowest ios version
 
 j01.html Start - 
+
 Sidestore - iOS 14+
 
 AltStore - iOS 14+
@@ -55,6 +56,7 @@ Requires a fee to use service
 
 
 p01.html - Start
+
 Kravasign - £7 to £14
 
 Signulous - $15 - $20
@@ -66,6 +68,7 @@ DXSign - $5
 # Jailbroken Sideloading
 
 jb01.html - Start
+
 Appsync Unified - iOS 5+
 
 TrollStore Lite - iOS 14+
