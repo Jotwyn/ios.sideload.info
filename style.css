@@ -25,6 +25,55 @@
     color: #ffd700;
 }
 
+/* --- Smooth Theme Transition (Sunrise/Sunset) --- */
+html, body, .main-box-outline, .card, .container, header, footer {
+    transition: background 0.7s cubic-bezier(.4,0,.2,1), color 0.7s cubic-bezier(.4,0,.2,1), border-color 0.7s cubic-bezier(.4,0,.2,1);
+}
+:root {
+    transition: background 0.7s cubic-bezier(.4,0,.2,1), color 0.7s cubic-bezier(.4,0,.2,1);
+}
+
+/* --- Restore Rounded Corners to Outermost Box --- */
+.main-box-outline {
+    border-radius: 24px;
+}
+
+/* --- Theme Toggle Button Animation --- */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1.7rem;
+    margin-left: auto;
+    margin-right: 0.5rem;
+    color: var(--accent);
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s, transform 0.7s cubic-bezier(.4,0,.2,1);
+    position: absolute;
+    top: 1.2rem;
+    right: 2.2rem;
+    z-index: 10;
+    outline: none;
+    will-change: transform;
+}
+.theme-toggle-btn.sunrise {
+    animation: sunrise 0.7s cubic-bezier(.4,0,.2,1);
+}
+.theme-toggle-btn.sunset {
+    animation: sunset 0.7s cubic-bezier(.4,0,.2,1);
+}
+@keyframes sunrise {
+    0% { transform: translateY(0) scale(1) rotate(-20deg); opacity: 1; }
+    40% { transform: translateY(40px) scale(0.7) rotate(-10deg); opacity: 0.5; }
+    60% { transform: translateY(-40px) scale(0.7) rotate(10deg); opacity: 0.5; }
+    100% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+}
+@keyframes sunset {
+    0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+    40% { transform: translateY(-40px) scale(0.7) rotate(10deg); opacity: 0.5; }
+    60% { transform: translateY(40px) scale(0.7) rotate(-10deg); opacity: 0.5; }
+    100% { transform: translateY(0) scale(1) rotate(-20deg); opacity: 1; }
+}
+
 /* --- Light/Dark Mode Root Variables --- */
 :root {
     --main-bg: #1a1a1a;

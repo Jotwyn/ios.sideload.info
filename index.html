@@ -139,7 +139,15 @@
     }
     function toggleTheme() {
         const current = document.documentElement.classList.contains('light-mode') ? 'light' : 'dark';
-        setTheme(current === 'light' ? 'dark' : 'light');
+        const next = current === 'light' ? 'dark' : 'light';
+        // Animate icon
+        themeToggleBtn.classList.remove('sunrise', 'sunset');
+        void themeToggleBtn.offsetWidth; // force reflow
+        themeToggleBtn.classList.add(next === 'light' ? 'sunrise' : 'sunset');
+        setTheme(next);
+        setTimeout(() => {
+            themeToggleBtn.classList.remove('sunrise', 'sunset');
+        }, 700);
     }
     themeToggleBtn.addEventListener('click', toggleTheme);
     // On load, set theme from localStorage or system preference
