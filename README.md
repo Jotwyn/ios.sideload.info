@@ -1,5 +1,7 @@
 # Website Documentation
 
+**Contributors please follow this guide.**
+
 Each folder contains html files for each guide in their respective category.
 
 Each html starts with the following format:
