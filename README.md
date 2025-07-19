@@ -8,6 +8,8 @@ a01.html
 
 "a" = change to the FIRST letter of the parsnt folder
 
+"01" = change to the amount of HTML files in that current folder.
+
 **Example:**
 
 *u0.html* = U = utillties*
