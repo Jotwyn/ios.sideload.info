@@ -83,6 +83,8 @@ html, body, .main-box-outline, .card, .container, header, footer {
     --muted: #b0b0b0;
     --border: #444;
     --box-outline: #353535;
+    --header-bg: #181818;
+    --button-text: #181818;
     --transition: 0.4s cubic-bezier(.4,0,.2,1);
 }
 .light-mode {
@@ -93,6 +95,8 @@ html, body, .main-box-outline, .card, .container, header, footer {
     --muted: #888;
     --border: #d0d0d0;
     --box-outline: #e7e3d4;
+    --header-bg: #f5f5e6;
+    --button-text: #fff;
 }
 .dark-mode {
     --main-bg: #1a1a1a;
@@ -102,6 +106,8 @@ html, body, .main-box-outline, .card, .container, header, footer {
     --muted: #b0b0b0;
     --border: #444;
     --box-outline: #353535;
+    --header-bg: #181818;
+    --button-text: #181818;
 }
 
 html, body {
@@ -135,7 +141,7 @@ body {
     transition: border-color var(--transition);
 }
 header {
-    background: #181818;
+    background: var(--header-bg);
     border-bottom: 1px solid var(--border);
     padding: 0.5rem 0;
     z-index: 2;
@@ -260,7 +266,7 @@ main.container {
     transform: translateY(0);
 }
 footer {
-    background: #181818;
+    background: var(--header-bg);
     color: var(--muted);
     text-align: center;
     padding: 1rem 0;
@@ -323,7 +329,7 @@ details summary {
 }
 .ios-version-btn {
     background: var(--accent);
-    color: #181818;
+    color: var(--button-text);
     border: none;
     border-radius: 10px;
     padding: 0.8rem 1.5rem;
@@ -335,8 +341,8 @@ details summary {
     box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
 .ios-version-btn:hover {
-    background: #fffbe6;
-    color: #181818;
+    background: var(--accent);
+    color: var(--button-text);
 }
 .close-modal {
     position: absolute;
@@ -355,7 +361,7 @@ details summary {
 .get-started-btn {
     display: inline-block;
     background: var(--accent);
-    color: #181818;
+    color: var(--button-text);
     border: none;
     border-radius: 12px;
     padding: 1.1rem 2.2rem;
@@ -367,8 +373,8 @@ details summary {
     transition: background var(--transition), color var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 .get-started-btn:hover {
-    background: #fffbe6;
-    color: #181818;
+    background: var(--accent);
+    color: var(--button-text);
     transform: translateY(-2px) scale(1.03);
 }
 /* --- Slide Left Page Transition --- */
