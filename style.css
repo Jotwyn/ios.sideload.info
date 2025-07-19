@@ -25,12 +25,63 @@
     color: #ffd700;
 }
 
-/* --- Smooth Theme Transition (Sunrise/Sunset) --- */
+/* --- Slower, Smoother, Crossfade Theme Transition (3s) --- */
 html, body, .main-box-outline, .card, .container, header, footer {
-    transition: background 0.7s cubic-bezier(.4,0,.2,1), color 0.7s cubic-bezier(.4,0,.2,1), border-color 0.7s cubic-bezier(.4,0,.2,1);
+    transition: background 3s cubic-bezier(.4,0,.2,1), color 3s cubic-bezier(.4,0,.2,1), border-color 3s cubic-bezier(.4,0,.2,1);
 }
 :root {
-    transition: background 0.7s cubic-bezier(.4,0,.2,1), color 0.7s cubic-bezier(.4,0,.2,1);
+    transition: background 3s cubic-bezier(.4,0,.2,1), color 3s cubic-bezier(.4,0,.2,1);
+}
+.theme-toggle-btn {
+    position: absolute;
+    top: 1.2rem;
+    right: 2.2rem;
+    z-index: 10;
+    background: none;
+    border: none;
+    font-size: 1.7rem;
+    margin-left: auto;
+    margin-right: 0.5rem;
+    color: var(--accent);
+    cursor: pointer;
+    outline: none;
+    will-change: opacity, transform;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5em;
+    height: 2.5em;
+}
+.theme-toggle-btn span {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 1.7rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 2.5s cubic-bezier(.4,0,.2,1);
+}
+.theme-toggle-sun {
+    color: #ffd700;
+}
+.theme-toggle-moon {
+    color: #e7e3d4;
+}
+.theme-toggle-btn .fade-in {
+    opacity: 1;
+    z-index: 2;
+}
+.theme-toggle-btn .fade-out {
+    opacity: 0;
+    z-index: 1;
+}
+/* Remove old sunrise/sunset keyframes and classes */
+.theme-toggle-btn.sunrise, .theme-toggle-btn.sunset {
+    animation: none !important;
 }
 
 /* --- Restore Rounded Corners to Outermost Box --- */
@@ -47,7 +98,7 @@ html, body, .main-box-outline, .card, .container, header, footer {
     margin-right: 0.5rem;
     color: var(--accent);
     cursor: pointer;
-    transition: color 0.2s, background 0.2s, transform 0.7s cubic-bezier(.4,0,.2,1);
+    transition: color 0.2s, background 0.2s, transform 1.5s cubic-bezier(.4,0,.2,1);
     position: absolute;
     top: 1.2rem;
     right: 2.2rem;
@@ -56,22 +107,24 @@ html, body, .main-box-outline, .card, .container, header, footer {
     will-change: transform;
 }
 .theme-toggle-btn.sunrise {
-    animation: sunrise 0.7s cubic-bezier(.4,0,.2,1);
+    animation: sunrise 1.5s cubic-bezier(.4,0,.2,1);
 }
 .theme-toggle-btn.sunset {
-    animation: sunset 0.7s cubic-bezier(.4,0,.2,1);
+    animation: sunset 1.5s cubic-bezier(.4,0,.2,1);
 }
 @keyframes sunrise {
-    0% { transform: translateY(0) scale(1) rotate(-20deg); opacity: 1; }
-    40% { transform: translateY(40px) scale(0.7) rotate(-10deg); opacity: 0.5; }
-    60% { transform: translateY(-40px) scale(0.7) rotate(10deg); opacity: 0.5; }
+    0% { transform: translateY(0) scale(1) rotate(-10deg); opacity: 1; }
+    30% { transform: translateY(60px) scale(0.8) rotate(-5deg); opacity: 0.7; }
+    50% { transform: translateY(-60px) scale(0.8) rotate(5deg); opacity: 0.7; }
+    80% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
     100% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
 }
 @keyframes sunset {
     0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
-    40% { transform: translateY(-40px) scale(0.7) rotate(10deg); opacity: 0.5; }
-    60% { transform: translateY(40px) scale(0.7) rotate(-10deg); opacity: 0.5; }
-    100% { transform: translateY(0) scale(1) rotate(-20deg); opacity: 1; }
+    30% { transform: translateY(-60px) scale(0.8) rotate(5deg); opacity: 0.7; }
+    50% { transform: translateY(60px) scale(0.8) rotate(-5deg); opacity: 0.7; }
+    80% { transform: translateY(0) scale(1) rotate(-10deg); opacity: 1; }
+    100% { transform: translateY(0) scale(1) rotate(-10deg); opacity: 1; }
 }
 
 /* --- Light/Dark Mode Root Variables --- */
@@ -86,6 +139,9 @@ html, body, .main-box-outline, .card, .container, header, footer {
     --header-bg: #181818;
     --button-text: #181818;
     --transition: 0.4s cubic-bezier(.4,0,.2,1);
+    --warning-bg: #ffefc0;
+    --warning-text: #7a4a00;
+    --warning-border: #e7e3d4;
 }
 .light-mode {
     --main-bg: #f5f5e6;
@@ -97,6 +153,9 @@ html, body, .main-box-outline, .card, .container, header, footer {
     --box-outline: #e7e3d4;
     --header-bg: #f5f5e6;
     --button-text: #fff;
+    --warning-bg: #fff7d6;
+    --warning-text: #7a4a00;
+    --warning-border: #e7e3d4;
 }
 .dark-mode {
     --main-bg: #1a1a1a;
@@ -108,6 +167,9 @@ html, body, .main-box-outline, .card, .container, header, footer {
     --box-outline: #353535;
     --header-bg: #181818;
     --button-text: #181818;
+    --warning-bg: #3a2e13;
+    --warning-text: #ffe6a0;
+    --warning-border: #7a4a00;
 }
 
 html, body {
@@ -235,7 +297,7 @@ main.container {
     border: 1.5px solid var(--border);
     width: 100%;
     max-width: 100%;
-    transition: box-shadow var(--transition), transform var(--transition), opacity var(--transition);
+    transition: box-shadow var(--transition), transform var(--transition), opacity var(--transition), background 3s cubic-bezier(.4,0,.2,1), border-color 3s cubic-bezier(.4,0,.2,1);
     opacity: 1;
     box-sizing: border-box;
 }
@@ -405,30 +467,63 @@ details summary {
     }
 }
 @media (max-width: 600px) {
-    .container {
-        padding: 0.7rem;
-        margin-left: 0.5vw;
-        margin-right: 0.5vw;
+    header .container {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-left: 0;
+    }
+    .header-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 0.5rem;
+        justify-content: flex-start;
     }
     header h1 {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
+        margin: 0.5rem 0.5rem 0.2rem 0;
+        text-align: left;
     }
-    .card {
-        padding: 1rem 0.7rem 0.7rem 0.7rem;
+    .theme-toggle-btn {
+        position: static;
+        margin: 0 0.5rem 0 0;
+        width: 2em;
+        height: 2em;
+        font-size: 1.2rem;
+        top: auto;
+        right: auto;
+    }
+    .theme-toggle-btn span {
+        font-size: 1.2rem;
+    }
+    nav {
+        width: 100%;
+        margin-bottom: 0.2rem;
     }
     nav ul {
+        flex-wrap: wrap;
         gap: 0.7rem;
         font-size: 0.95rem;
+        margin-top: 0.2rem;
+        margin-bottom: 0;
+        justify-content: flex-start;
+        text-align: left;
+        width: 100%;
     }
-    .main-box-outline {
-        left: 0.2vw; right: 0.2vw; top: 0.2vw; bottom: 0.2vw;
-        border-radius: 10px;
-    }
-    .modal-content {
-        padding: 1.1rem 0.7rem;
-    }
-    .get-started-btn {
-        padding: 0.8rem 1.2rem;
-        font-size: 1.05rem;
-    }
+} 
+
+/* --- Intro Warning Box --- */
+.intro-warning {
+    background: var(--warning-bg);
+    color: var(--warning-text);
+    border: 2px solid var(--warning-border);
+    border-radius: 12px;
+    padding: 1.2em 1.5em;
+    font-size: 1.25em;
+    font-weight: bold;
+    margin-bottom: 2em;
+    text-align: center;
+    transition: background 3s cubic-bezier(.4,0,.2,1), color 3s cubic-bezier(.4,0,.2,1), border-color 3s cubic-bezier(.4,0,.2,1);
 } 

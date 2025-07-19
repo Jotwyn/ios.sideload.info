@@ -11,8 +11,13 @@
         <div class="main-box-outline"></div>
         <header>
             <div class="container">
-                <h1>iOS Sideloading Guide</h1>
-                <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle dark/light mode">🌙</button>
+                <div class="header-row">
+                    <h1>iOS Sideloading Guide</h1>
+                    <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle dark/light mode">
+                        <span class="theme-toggle-sun fade-in">☀️</span>
+                        <span class="theme-toggle-moon fade-out">🌙</span>
+                    </button>
+                </div>
                 <nav>
                     <ul>
                         <li><a href="https://ios.sideload.info">Home</a></li>
@@ -105,35 +110,32 @@
     });
     </script>
     <script>
-// --- Dark/Light Mode Toggle ---
+// --- Dark/Light Mode Toggle with Crossfade ---
 const themeToggleBtn = document.getElementById('themeToggleBtn');
-function setTheme(mode, skipIcon) {
+const sunIcon = themeToggleBtn.querySelector('.theme-toggle-sun');
+const moonIcon = themeToggleBtn.querySelector('.theme-toggle-moon');
+function setTheme(mode) {
     if (mode === 'light') {
         document.documentElement.classList.add('light-mode');
         document.documentElement.classList.remove('dark-mode');
-        if (!skipIcon) themeToggleBtn.textContent = '☀️';
+        sunIcon.classList.add('fade-in');
+        sunIcon.classList.remove('fade-out');
+        moonIcon.classList.add('fade-out');
+        moonIcon.classList.remove('fade-in');
     } else {
         document.documentElement.classList.add('dark-mode');
         document.documentElement.classList.remove('light-mode');
-        if (!skipIcon) themeToggleBtn.textContent = '🌙';
+        sunIcon.classList.add('fade-out');
+        sunIcon.classList.remove('fade-in');
+        moonIcon.classList.add('fade-in');
+        moonIcon.classList.remove('fade-out');
     }
     localStorage.setItem('theme', mode);
 }
 function toggleTheme() {
     const current = document.documentElement.classList.contains('light-mode') ? 'light' : 'dark';
     const next = current === 'light' ? 'dark' : 'light';
-    // Animate icon
-    themeToggleBtn.classList.remove('sunrise', 'sunset');
-    void themeToggleBtn.offsetWidth; // force reflow
-    themeToggleBtn.classList.add(next === 'light' ? 'sunrise' : 'sunset');
-    // Change theme but delay icon switch until halfway through animation
-    setTheme(next, true);
-    setTimeout(() => {
-        themeToggleBtn.textContent = next === 'light' ? '☀️' : '🌙';
-    }, 350);
-    setTimeout(() => {
-        themeToggleBtn.classList.remove('sunrise', 'sunset');
-    }, 700);
+    setTheme(next);
 }
 themeToggleBtn.addEventListener('click', toggleTheme);
 // On load, set theme from localStorage or system preference
