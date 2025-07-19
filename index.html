@@ -4,25 +4,299 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iOS Sideloading Guide</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+    :root {
+        --main-bg: rgba(26,26,26,1);
+        --card-bg: rgba(36,36,36,1);
+        --accent: #1e90ff;
+        --text: #f1f1f1;
+        --muted: #b0b0b0;
+        --border: #333;
+        --transition: 0.4s cubic-bezier(.4,0,.2,1);
+    }
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: var(--main-bg);
+        color: var(--text);
+        font-family: 'SF Pro Display', 'Segoe UI', Arial, sans-serif;
+        min-height: 100vh;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    /* Fullscreen outline box */
+    .fullscreen-box {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        border: 3px solid var(--accent);
+        box-sizing: border-box;
+        z-index: 0;
+        pointer-events: none;
+        border-radius: 0;
+        transition: border-color var(--transition);
+    }
+
+    header {
+        background: #181818;
+        border-bottom: 1px solid var(--border);
+        padding: 0.5rem 0;
+        z-index: 2;
+        position: relative;
+    }
+
+    header .container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 5vw;
+    }
+
+    header h1 {
+        margin: 0.5rem 0 0.2rem 0;
+        font-size: 2.2rem;
+        letter-spacing: 1px;
+        color: var(--accent);
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+        padding: 0;
+        margin: 0.5rem 0 0 0;
+    }
+
+    nav a {
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+        cursor: pointer;
+    }
+
+    nav a:hover {
+        color: var(--accent);
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        min-height: 80vh;
+        z-index: 1;
+        position: relative;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 800px;
+        margin-left: 5vw;
+        margin-right: auto;
+        padding: 2.5rem 2rem 2rem 2rem;
+        box-sizing: border-box;
+    }
+
+    .card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        padding: 1.5rem 1.5rem 1rem 1.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid var(--border);
+        width: 100%;
+        max-width: 600px;
+        transition: box-shadow var(--transition), transform var(--transition), opacity var(--transition);
+        opacity: 1;
+    }
+
+    .card h2 {
+        color: var(--accent);
+        margin-top: 0;
+    }
+
+    .method h3 {
+        margin-bottom: 0.5rem;
+        color: #7ecfff;
+    }
+
+    .method ul {
+        margin-top: 0;
+        margin-bottom: 1.2rem;
+    }
+
+    .ios-version-select {
+        margin-bottom: 2rem;
+        width: 100%;
+        max-width: 600px;
+        background: var(--card-bg);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        padding: 1.5rem 1.5rem 1rem 1.5rem;
+        transition: box-shadow var(--transition), transform var(--transition), opacity var(--transition);
+        opacity: 1;
+        position: relative;
+        z-index: 2;
+    }
+
+    .ios-version-options {
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.2rem;
+    }
+
+    .ios-version-btn {
+        background: #23272e;
+        color: var(--accent);
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        padding: 0.7rem 1.5rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background var(--transition), color var(--transition), border-color var(--transition);
+        outline: none;
+    }
+
+    .ios-version-btn.active, .ios-version-btn:focus {
+        background: var(--accent);
+        color: #fff;
+        border-color: #fff;
+    }
+
+    .ios-version-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+        background: #222;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+        animation: fadeIn 0.5s;
+    }
+
+    .ios-version-table th, .ios-version-table td {
+        padding: 0.7rem 1.2rem;
+        border-bottom: 1px solid var(--border);
+        text-align: left;
+        color: var(--text);
+    }
+
+    .ios-version-table th {
+        background: #1e1e1e;
+        color: var(--accent);
+    }
+
+    .ios-version-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px);}
+        to { opacity: 1; transform: translateY(0);}
+    }
+
+    .jump-section {
+        scroll-margin-top: 90px;
+        transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .jump-section.hide {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(40px);
+    }
+
+    .jump-section.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    footer {
+        background: #181818;
+        color: var(--muted);
+        text-align: center;
+        padding: 1rem 0;
+        border-top: 1px solid var(--border);
+        font-size: 0.95rem;
+        z-index: 2;
+        position: relative;
+    }
+
+    details {
+        margin-bottom: 1rem;
+        background: #222;
+        border-radius: 8px;
+        padding: 0.7rem 1rem;
+        border: 1px solid var(--border);
+    }
+
+    details summary {
+        cursor: pointer;
+        font-weight: 500;
+        color: var(--accent);
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            padding: 0.7rem;
+            margin-left: 0.5vw;
+        }
+        header h1 {
+            font-size: 1.3rem;
+        }
+        .card, .ios-version-select {
+            padding: 1rem 0.7rem 0.7rem 0.7rem;
+        }
+        nav ul {
+            gap: 0.7rem;
+            font-size: 0.95rem;
+        }
+        .ios-version-options {
+            gap: 0.5rem;
+        }
+    }
+    </style>
 </head>
 <body>
+    <div class="fullscreen-box"></div>
     <header>
         <div class="container">
             <h1>iOS Sideloading Guide</h1>
             <nav>
                 <ul>
-                    <li><a href="#intro">Introduction</a></li>
-                    <li><a href="#preparation">Preparation</a></li>
-                    <li><a href="#methods">Sideloading Methods</a></li>
-                    <li><a href="#troubleshooting">Troubleshooting</a></li>
-                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#intro" class="jump-link">Introduction</a></li>
+                    <li><a href="#preparation" class="jump-link">Preparation</a></li>
+                    <li><a href="#methods" class="jump-link">Sideloading Methods</a></li>
+                    <li><a href="#troubleshooting" class="jump-link">Troubleshooting</a></li>
+                    <li><a href="#faq" class="jump-link">FAQ</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     <main class="container">
-        <section id="intro" class="card">
+        <!-- iOS Version Selection -->
+        <section class="ios-version-select">
+            <h2>Select your iOS Version</h2>
+            <div class="ios-version-options">
+                <button class="ios-version-btn" data-version="17">iOS 17</button>
+                <button class="ios-version-btn" data-version="16">iOS 16</button>
+                <button class="ios-version-btn" data-version="15">iOS 15</button>
+                <button class="ios-version-btn" data-version="14">iOS 14</button>
+                <button class="ios-version-btn" data-version="13">iOS 13</button>
+            </div>
+            <div id="ios-version-table-container"></div>
+        </section>
+
+        <section id="intro" class="card jump-section show">
             <h2>What is Sideloading?</h2>
             <p>
                 Sideloading is the process of installing apps on your iOS device from sources outside the official App Store. This allows you to use apps not available on the App Store, beta versions, or custom apps.
@@ -32,7 +306,7 @@
             </p>
         </section>
 
-        <section id="preparation" class="card">
+        <section id="preparation" class="card jump-section show">
             <h2>Preparation</h2>
             <ol>
                 <li>Ensure your device is running a supported iOS version.</li>
@@ -42,7 +316,7 @@
             </ol>
         </section>
 
-        <section id="methods" class="card">
+        <section id="methods" class="card jump-section show">
             <h2>Sideloading Methods</h2>
             <div class="method">
                 <h3>1. Using AltStore</h3>
@@ -78,7 +352,7 @@
             </div>
         </section>
 
-        <section id="troubleshooting" class="card">
+        <section id="troubleshooting" class="card jump-section show">
             <h2>Troubleshooting</h2>
             <ul>
                 <li><strong>App won't open:</strong> Make sure you have trusted the developer profile in Settings &gt; General &gt; Device Management.</li>
@@ -88,7 +362,7 @@
             </ul>
         </section>
 
-        <section id="faq" class="card">
+        <section id="faq" class="card jump-section show">
             <h2>Frequently Asked Questions</h2>
             <details>
                 <summary>Is sideloading safe?</summary>
@@ -106,135 +380,127 @@
     </main>
     <footer>
         <div class="container">
-            <p>&copy; 2025 iOS Sideloading Guide. Not affiliated with Apple Inc.</p>
+            <p>&copy; 2024 iOS Sideloading Guide. Not affiliated with Apple Inc.</p>
         </div>
     </footer>
+    <script>
+    // iOS version ranges for each major version
+    const iosVersionData = {
+        "17": [
+            { range: "17.0", release: "Sep 2023" },
+            { range: "17.0.1", release: "Sep 2023" },
+            { range: "17.0.2", release: "Sep 2023" },
+            { range: "17.1", release: "Oct 2023" },
+            { range: "17.1.1", release: "Nov 2023" },
+            { range: "17.2", release: "Dec 2023" },
+            { range: "17.2.1", release: "Dec 2023" },
+            { range: "17.3", release: "Jan 2024" },
+            { range: "17.3.1", release: "Feb 2024" },
+            { range: "17.4", release: "Mar 2024" },
+            { range: "17.4.1", release: "Mar 2024" },
+            { range: "17.5", release: "May 2024" },
+            { range: "17.5.1", release: "May 2024" }
+        ],
+        "16": [
+            { range: "16.0 - 16.0.3", release: "Sep-Oct 2022" },
+            { range: "16.1 - 16.1.2", release: "Oct-Nov 2022" },
+            { range: "16.2", release: "Dec 2022" },
+            { range: "16.3 - 16.3.1", release: "Jan-Feb 2023" },
+            { range: "16.4 - 16.4.1", release: "Mar-Apr 2023" },
+            { range: "16.5 - 16.5.2", release: "May-Jul 2023" },
+            { range: "16.6 - 16.6.1", release: "Jul-Aug 2023" }
+        ],
+        "15": [
+            { range: "15.0 - 15.0.2", release: "Sep-Oct 2021" },
+            { range: "15.1 - 15.1.1", release: "Oct-Nov 2021" },
+            { range: "15.2 - 15.2.1", release: "Dec 2021" },
+            { range: "15.3 - 15.3.1", release: "Jan-Feb 2022" },
+            { range: "15.4 - 15.4.1", release: "Mar-Apr 2022" },
+            { range: "15.5", release: "May 2022" },
+            { range: "15.6 - 15.7.9", release: "Jul 2022 - Sep 2023" }
+        ],
+        "14": [
+            { range: "14.0 - 14.0.1", release: "Sep 2020" },
+            { range: "14.1", release: "Oct 2020" },
+            { range: "14.2 - 14.2.1", release: "Nov 2020" },
+            { range: "14.3", release: "Dec 2020" },
+            { range: "14.4 - 14.4.2", release: "Jan-Mar 2021" },
+            { range: "14.5 - 14.5.1", release: "Apr-May 2021" },
+            { range: "14.6", release: "May 2021" },
+            { range: "14.7 - 14.8.1", release: "Jul-Oct 2021" }
+        ],
+        "13": [
+            { range: "13.0 - 13.1.3", release: "Sep-Oct 2019" },
+            { range: "13.2 - 13.2.3", release: "Oct-Nov 2019" },
+            { range: "13.3 - 13.3.1", release: "Dec 2019 - Jan 2020" },
+            { range: "13.4 - 13.4.1", release: "Mar 2020" },
+            { range: "13.5 - 13.5.1", release: "May 2020" },
+            { range: "13.6 - 13.7", release: "Jul-Sep 2020" }
+        ]
+    };
+
+    function renderVersionTable(version) {
+        const data = iosVersionData[version];
+        if (!data) return '';
+        let html = `<table class="ios-version-table"><thead><tr><th>iOS Version(s)</th><th>Release Date(s)</th></tr></thead><tbody>`;
+        for (const row of data) {
+            html += `<tr><td>${row.range}</td><td>${row.release}</td></tr>`;
+        }
+        html += `</tbody></table>`;
+        return html;
+    }
+
+    // Handle iOS version selection
+    document.addEventListener('DOMContentLoaded', function() {
+        const btns = document.querySelectorAll('.ios-version-btn');
+        const tableContainer = document.getElementById('ios-version-table-container');
+        let activeBtn = null;
+
+        btns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                tableContainer.innerHTML = renderVersionTable(btn.dataset.version);
+            });
+        });
+
+        // Optionally, select the first by default
+        btns[0].click();
+
+        // Smooth jump transitions for nav links
+        document.querySelectorAll('.jump-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').replace('#','');
+                const target = document.getElementById(targetId);
+                if (!target) return;
+
+                // Animate all jump-sections out except target
+                document.querySelectorAll('.jump-section').forEach(sec => {
+                    if (sec === target) {
+                        sec.classList.remove('hide');
+                        sec.classList.add('show');
+                    } else {
+                        sec.classList.remove('show');
+                        sec.classList.add('hide');
+                    }
+                });
+
+                // Scroll to the section smoothly
+                setTimeout(() => {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+
+                // After animation, show all again (for accessibility)
+                setTimeout(() => {
+                    document.querySelectorAll('.jump-section').forEach(sec => {
+                        sec.classList.remove('hide');
+                        sec.classList.add('show');
+                    });
+                }, 800);
+            });
+        });
+    });
+    </script>
 </body>
 </html>
-
-<!-- styles.css -->
-<style>
-:root {
-    --main-bg: rgba(26,26,26,1);
-    --card-bg: rgba(36,36,36,1);
-    --accent: #1e90ff;
-    --text: #f1f1f1;
-    --muted: #b0b0b0;
-    --border: #333;
-}
-
-body {
-    background: var(--main-bg);
-    color: var(--text);
-    font-family: 'SF Pro Display', 'Segoe UI', Arial, sans-serif;
-    margin: 0;
-    min-height: 100vh;
-}
-
-header {
-    background: #181818;
-    border-bottom: 1px solid var(--border);
-    padding: 0.5rem 0;
-}
-
-header .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-header h1 {
-    margin: 0.5rem 0 0.2rem 0;
-    font-size: 2.2rem;
-    letter-spacing: 1px;
-    color: var(--accent);
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-    padding: 0;
-    margin: 0.5rem 0 0 0;
-}
-
-nav a {
-    color: var(--text);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
-}
-
-nav a:hover {
-    color: var(--accent);
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 1.5rem;
-}
-
-.card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    padding: 1.5rem 1.5rem 1rem 1.5rem;
-    margin-bottom: 2rem;
-    border: 1px solid var(--border);
-}
-
-.card h2 {
-    color: var(--accent);
-    margin-top: 0;
-}
-
-.method h3 {
-    margin-bottom: 0.5rem;
-    color: #7ecfff;
-}
-
-.method ul {
-    margin-top: 0;
-    margin-bottom: 1.2rem;
-}
-
-footer {
-    background: #181818;
-    color: var(--muted);
-    text-align: center;
-    padding: 1rem 0;
-    border-top: 1px solid var(--border);
-    font-size: 0.95rem;
-}
-
-details {
-    margin-bottom: 1rem;
-    background: #222;
-    border-radius: 8px;
-    padding: 0.7rem 1rem;
-    border: 1px solid var(--border);
-}
-
-details summary {
-    cursor: pointer;
-    font-weight: 500;
-    color: var(--accent);
-}
-
-@media (max-width: 600px) {
-    .container {
-        padding: 0.7rem;
-    }
-    header h1 {
-        font-size: 1.3rem;
-    }
-    .card {
-        padding: 1rem 0.7rem 0.7rem 0.7rem;
-    }
-    nav ul {
-        gap: 0.7rem;
-        font-size: 0.95rem;
-    }
-}
-</style>
