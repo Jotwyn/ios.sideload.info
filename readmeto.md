@@ -15,8 +15,8 @@ Starting iOS/iPadOS 16+, all users are required to enable developer mode to inst
 
 To launch the app, do the following steps:
 
-Open Settings.
-Go to General.
-Scroll to VPN & Device Management.
-Open it and you will find a developer application.
-Click on it. Once opened,
+1. Open Settings.
+2. Go to General.
+3. Scroll to VPN & Device Management.
+4. Open it and you will find a developer application.
+5. Click on it. Once opened, click "Verify App".
