@@ -12,6 +12,7 @@
         <header>
             <div class="container">
                 <h1>iOS Sideloading Guide</h1>
+                <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle dark/light mode">🌙</button>
                 <nav>
                     <ul>
                         <li><a href="https://ios.sideload.info">Home</a></li>
@@ -25,6 +26,7 @@
             </div>
         </header>
         <main class="container">
+            <button class="get-started-btn left-align" id="getStartedBtn">Get Started</button>
             <section class="card">
                 <div style="background: #ffefc0; color: #7a4a00; border-radius: 12px; padding: 1.2em 1.5em; font-size: 1.25em; font-weight: bold; margin-bottom: 2em; border: 2px solid #e7e3d4; text-align: center;">
                     ⚠️ Thoroughly read all of the introductory pages (including this one!) before proceeding.
@@ -58,11 +60,10 @@
                     <li><strong>Warranty:</strong> Sideloading alone does <u>not</u> void your warranty. However, using exploits or jailbreaking to enable sideloading may affect your warranty status.</li>
                 </ul>
             </section>
-            <button class="get-started-btn" id="getStartedBtn">Get Started</button>
         </main>
         <footer>
             <div class="container">
-                <p>&copy; 2025 iOS Sideloading Guide. Not affiliated with Apple Inc.</p>
+                <p>&copy; 2024 iOS Sideloading Guide. Not affiliated with Apple Inc.</p>
             </div>
         </footer>
     </div>
@@ -121,6 +122,37 @@
         document.body.classList.remove('slide-out-left');
         document.body.classList.add('slide-in-left');
     });
+
+    // --- Dark/Light Mode Toggle ---
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    function setTheme(mode) {
+        if (mode === 'light') {
+            document.documentElement.classList.add('light-mode');
+            document.documentElement.classList.remove('dark-mode');
+            themeToggleBtn.textContent = '☀️';
+        } else {
+            document.documentElement.classList.add('dark-mode');
+            document.documentElement.classList.remove('light-mode');
+            themeToggleBtn.textContent = '🌙';
+        }
+        localStorage.setItem('theme', mode);
+    }
+    function toggleTheme() {
+        const current = document.documentElement.classList.contains('light-mode') ? 'light' : 'dark';
+        setTheme(current === 'light' ? 'dark' : 'light');
+    }
+    themeToggleBtn.addEventListener('click', toggleTheme);
+    // On load, set theme from localStorage or system preference
+    (function() {
+        const saved = localStorage.getItem('theme');
+        if (saved) {
+            setTheme(saved);
+        } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            setTheme('light');
+        } else {
+            setTheme('dark');
+        }
+    })();
     </script>
 </body>
 </html> 

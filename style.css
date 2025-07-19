@@ -1,4 +1,31 @@
 /* iOS Sideloading Guide - Shared Styles */
+/* --- Get Started Button Left Align --- */
+.get-started-btn.left-align {
+    display: inline-block;
+    margin: 1.5rem 0 2rem 0;
+    align-self: flex-start;
+}
+
+/* --- Theme Toggle Button --- */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1.7rem;
+    margin-left: auto;
+    margin-right: 0.5rem;
+    color: var(--accent);
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+    position: absolute;
+    top: 1.2rem;
+    right: 2.2rem;
+    z-index: 10;
+}
+.theme-toggle-btn:hover {
+    color: #ffd700;
+}
+
+/* --- Light/Dark Mode Root Variables --- */
 :root {
     --main-bg: #1a1a1a;
     --card-bg: #232323;
@@ -9,14 +36,33 @@
     --box-outline: #353535;
     --transition: 0.4s cubic-bezier(.4,0,.2,1);
 }
+.light-mode {
+    --main-bg: #f5f5e6;
+    --card-bg: #fff;
+    --accent: #1a1a1a;
+    --text: #232323;
+    --muted: #888;
+    --border: #d0d0d0;
+    --box-outline: #e7e3d4;
+}
+.dark-mode {
+    --main-bg: #1a1a1a;
+    --card-bg: #232323;
+    --accent: #e7e3d4;
+    --text: #f5f5e6;
+    --muted: #b0b0b0;
+    --border: #444;
+    --box-outline: #353535;
+}
+
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-}
-body {
     background: var(--main-bg);
     color: var(--text);
+}
+body {
     font-family: 'SF Pro Display', 'Segoe UI', Arial, sans-serif;
     min-height: 100vh;
     margin: 0;
