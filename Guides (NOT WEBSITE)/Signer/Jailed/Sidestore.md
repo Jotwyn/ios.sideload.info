@@ -40,9 +40,20 @@ Starting iOS/iPadOS 16+, all users are required to enable developer mode to inst
 4. A GUI should popup. Click "generate". Your device may ask to trust this computer again. If so, confirm.
 5. After the pairing file has been installed, go to the SideStore section of the GUI and click "Install". If done successfully, it should say "success" in green.
 
+# Verifying SideStore
+
+To launch the app, do the following steps:
+
+1. Open Settings.
+2. Go to General.
+3. Scroll to VPN & Device Management.
+4. Open it and you will find a developer application.
+5. Click on it. Once opened, click "Verify App".
+
 # Refreshing Apps
 
 1. Download StosVPN from the App Store if not already.
 2. Enable it. When enabled, SideStore will attempt to refresh your apps in the background.
+
 
    
