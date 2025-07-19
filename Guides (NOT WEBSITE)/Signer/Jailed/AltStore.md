@@ -37,6 +37,6 @@ To launch the app, do the following steps:
 2. Go to General.
 3. Scroll to VPN & Device Management.
 4. Open it and you will find a developer application.
-5. Click on it. Once opened, 
+5. Click on it. Once opened, click "Verify App".
 
 
