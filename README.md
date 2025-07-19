@@ -1,6 +1,7 @@
 # Website Documentation
 
 **Contributors please follow this guide.**
+**See other important gudies, such as [common phrases.](https://github.com/Jotwyn/jotwyn.github.io/blob/main/readmeto.md)**
 
 Each folder contains html files for each guide in their respective category.
 
