@@ -41,20 +41,33 @@
       background-color: white;
       border: 1px solid #ccc;
       border-radius: 5px;
-      flex-direction: column;
       padding: 0.5rem;
       z-index: 999;
+      min-width: 180px;
     }
 
-    .menu a {
+    .menu a, .submenu-toggle {
       padding: 0.5rem 1rem;
       color: #007acc;
       text-decoration: none;
       display: block;
+      cursor: pointer;
     }
 
-    .menu a:hover {
+    .menu a:hover,
+    .submenu-toggle:hover {
       background-color: #f0f0f0;
+    }
+
+    .submenu {
+      display: none;
+      margin-left: 0.5rem;
+      margin-top: 0.2rem;
+      border-left: 2px solid #007acc;
+    }
+
+    .submenu a {
+      padding-left: 1.5rem;
     }
 
     .banner {
@@ -123,6 +136,11 @@
       const menu = document.getElementById("menu");
       menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
     }
+
+    function toggleSubmenu() {
+      const submenu = document.getElementById("submenu");
+      submenu.style.display = (submenu.style.display === "block") ? "none" : "block";
+    }
   </script>
 </head>
 <body>
@@ -131,6 +149,13 @@
     <div class="hamburger" onclick="toggleMenu()">☰</div>
     <nav class="menu" id="menu">
       <a href="getstarted.html">Get Started</a>
+      <div class="submenu-toggle" onclick="toggleSubmenu()">Guides ▼</div>
+      <div class="submenu" id="submenu">
+        <a href="allsigners.html">Signers</a>
+        <a href="allutilities.html">Utilities</a>
+        <a href="faq.html">FAQ</a>
+        <a href="errors.html">Errors</a>
+      </div>
       <a href="mailto:contact@sideload.info">Contact</a>
       <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
     </nav>
