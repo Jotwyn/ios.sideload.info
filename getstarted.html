@@ -80,27 +80,36 @@
       margin: auto;
     }
 
-    .version-list {
+    .version-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
       background-color: #f9f9f9;
       padding: 1.5rem;
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
 
-    .version-list h2 {
-      margin-bottom: 1rem;
+    .version-button {
+      background-color: #87cefa;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      border-radius: 12px;
       font-weight: 600;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
 
-    .version-list ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .version-list li {
-      margin-bottom: 0.6rem;
-      font-size: 0.95rem;
+    .version-button:hover {
+      background-color: #62b8e6;
     }
 
     footer {
@@ -127,6 +136,19 @@
       font-size: 0.8rem;
       color: #666;
     }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .version-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 400px) {
+      .version-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -146,33 +168,32 @@
   </header>
 
   <main>
-    <div class="version-list">
-      <h2>iOS Versions Supported for Sideloading</h2>
-      <ul>
-        <li>iOS 4</li>
-        <li>iOS 5</li>
-        <li>iOS 6</li>
-        <li>iOS 7</li>
-        <li>iOS 8</li>
-        <li>iOS 9</li>
-        <li>iOS 10</li>
-        <li>iOS 11</li>
-        <li>iOS 12</li>
-        <li>iOS 13</li>
-        <li>iOS 14</li>
-        <li>iOS 15</li>
-        <li>iOS 16</li>
-        <li>iOS 17</li>
-        <li>iOS 18</li>
-        <li>iOS 19</li>
-        <li>iOS 20</li>
-        <li>iOS 21</li>
-        <li>iOS 22</li>
-        <li>iOS 23</li>
-        <li>iOS 24</li>
-        <li>iOS 25</li>
-        <li>iOS 26</li>
-      </ul>
+    <h2 style="max-width:900px; margin: 1rem auto 1rem auto; font-weight:600; color:#007acc;">Select your iOS version:</h2>
+    <div class="version-grid">
+      <!-- Generate iOS buttons 4 to 26 -->
+      <a class="version-button" href="ios4.html">iOS 4</a>
+      <a class="version-button" href="ios5.html">iOS 5</a>
+      <a class="version-button" href="ios6.html">iOS 6</a>
+      <a class="version-button" href="ios7.html">iOS 7</a>
+      <a class="version-button" href="ios8.html">iOS 8</a>
+      <a class="version-button" href="ios9.html">iOS 9</a>
+      <a class="version-button" href="ios10.html">iOS 10</a>
+      <a class="version-button" href="ios11.html">iOS 11</a>
+      <a class="version-button" href="ios12.html">iOS 12</a>
+      <a class="version-button" href="ios13.html">iOS 13</a>
+      <a class="version-button" href="ios14.html">iOS 14</a>
+      <a class="version-button" href="ios15.html">iOS 15</a>
+      <a class="version-button" href="ios16.html">iOS 16</a>
+      <a class="version-button" href="ios17.html">iOS 17</a>
+      <a class="version-button" href="ios18.html">iOS 18</a>
+      <a class="version-button" href="ios19.html">iOS 19</a>
+      <a class="version-button" href="ios20.html">iOS 20</a>
+      <a class="version-button" href="ios21.html">iOS 21</a>
+      <a class="version-button" href="ios22.html">iOS 22</a>
+      <a class="version-button" href="ios23.html">iOS 23</a>
+      <a class="version-button" href="ios24.html">iOS 24</a>
+      <a class="version-button" href="ios25.html">iOS 25</a>
+      <a class="version-button" href="ios26.html">iOS 26</a>
     </div>
   </main>
 
