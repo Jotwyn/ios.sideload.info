@@ -1,172 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iOS Sideloading Guide</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sideload Info</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #222;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 1.5em;
+      background: #0d47a1;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .hamburger {
+      font-size: 1.5em;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 1.5em;
+      background: white;
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 1001;
+    }
+
+    .menu a {
+      padding: 1em;
+      color: #0d47a1;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid #eee;
+    }
+
+    .banner {
+      background: url('your-banner.jpg') center/cover no-repeat;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .banner button {
+      padding: 0.9em 2em;
+      font-size: 1.1em;
+      font-weight: 600;
+      color: white;
+      background: #0d47a1;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .banner button:hover {
+      background: #08307a;
+    }
+
+    .faq {
+      padding: 3em 1.5em;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .faq h2 {
+      margin-top: 2em;
+      color: #0d47a1;
+    }
+
+    footer {
+      background: #f4f4f4;
+      color: #333;
+      text-align: center;
+      padding: 2em 1em 1em;
+      font-size: 0.95em;
+      margin-top: 3em;
+    }
+
+    footer a {
+      color: #0d47a1;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
-<body class="slide-in-left">
-    <div class="page-wrapper">
-        <div class="main-box-outline"></div>
-        <header>
-            <div class="container">
-                <div class="header-row">
-                    <h1>iOS Sideloading Guide</h1>
-                    <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle dark/light mode">
-                        <span class="theme-toggle-sun fade-in">☀️</span>
-                        <span class="theme-toggle-moon fade-out">🌙</span>
-                    </button>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="https://ios.sideload.info">Home</a></li>
-                        <li><a href="/ios18.html">iOS 18</a></li>
-                        <li><a href="/ios17.html">iOS 17</a></li>
-                        <li><a href="/ios16.html">iOS 16</a></li>
-                        <li><a href="/ios15.html">iOS 15</a></li>
-                        <li><a href="/ios14.html">iOS 14</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <main class="container">
-            <button class="get-started-btn left-align" id="getStartedBtn">Get Started</button>
-            <section class="card">
-                <div class="intro-warning">
-                    ⚠️ Thoroughly read all of the introductory pages (including this one!) before proceeding.
-                </div>
-                <h2>What is Sideloading?</h2>
-                <p>
-                    Sideloading is the process of installing apps on your iOS device from sources outside the official App Store. This allows you to use apps that are not available on the App Store, including betas, open-source projects, emulators, and custom or legacy apps.
-                </p>
-                <h2>Is Sideloading Legal?</h2>
-                <p>
-                    Sideloading is legal in most countries, including the United States and EU, as long as you are not using it to install pirated or malicious software. However, some apps or services may have their own terms of use, and Apple may restrict certain sideloading methods in future iOS updates.
-                </p>
-                <h2>What is an IPA file?</h2>
-                <p>
-                    An <strong>IPA</strong> file (<em>iOS App Store Package</em>) is the file format used to package and distribute iOS apps. It is similar to an APK file on Android. You will need IPA files to sideload apps onto your device.
-                </p>
-                <h2>What can I do once I can sideload?</h2>
-                <ul>
-                    <li>Install apps not available on the App Store (emulators, open-source tools, legacy apps, etc.)</li>
-                    <li>Test beta versions of apps or your own development projects</li>
-                    <li>Use alternative app stores or app managers</li>
-                    <li>Access features or customizations not allowed by Apple</li>
-                </ul>
-                <h2>What should I know before starting?</h2>
-                <ul>
-                    <li><strong>Backup your device:</strong> It is strongly recommended to backup your device to iCloud, iTunes, or Finder (on macOS Catalina or newer) in case of data loss.</li>
-                    <li><strong>Keep your device charged:</strong> Make sure your device is plugged in or has sufficient battery to avoid unexpected shutdowns during sideloading.</li>
-                    <li><strong>Data loss is rare:</strong> Sideloading apps does not erase your data, but issues can occur if you use untrusted tools or apps.</li>
-                    <li><strong>Security:</strong> Only sideload apps from trusted sources. Sideloaded apps are not reviewed by Apple and could contain malware or security risks.</li>
-                    <li><strong>App revokes and limitations:</strong> Apps installed with a free Apple ID may expire after 7 days and need to be re-signed. Some sideloading methods may stop working after iOS updates.</li>
-                    <li><strong>Warranty:</strong> Sideloading alone does <u>not</u> void your warranty. However, using exploits or jailbreaking to enable sideloading may affect your warranty status.</li>
-                </ul>
-            </section>
-        </main>
-        <footer>
-            <div class="container">
-                <p>&copy; 2024 iOS Sideloading Guide. Not affiliated with Apple Inc.</p>
-            </div>
-        </footer>
-    </div>
-    <div class="modal" id="iosModal">
-        <div class="modal-content">
-            <button class="close-modal" id="closeModalBtn" aria-label="Close">&times;</button>
-            <h2>Select Your iOS Version</h2>
-            <button class="ios-version-btn" onclick="window.location.href='/ios18.html'">iOS 18</button>
-            <button class="ios-version-btn" onclick="window.location.href='/ios17.html'">iOS 17</button>
-            <button class="ios-version-btn" onclick="window.location.href='/ios16.html'">iOS 16</button>
-            <button class="ios-version-btn" onclick="window.location.href='/ios15.html'">iOS 15</button>
-            <button class="ios-version-btn" onclick="window.location.href='/ios14.html'">iOS 14</button>
-        </div>
-    </div>
-    <script>
-    // Modal logic
-    document.getElementById('getStartedBtn').addEventListener('click', function() {
-        document.getElementById('iosModal').classList.add('active');
-    });
-    document.getElementById('closeModalBtn').addEventListener('click', function() {
-        document.getElementById('iosModal').classList.remove('active');
-    });
-    window.addEventListener('click', function(event) {
-        const modal = document.getElementById('iosModal');
-        if (event.target === modal) {
-            modal.classList.remove('active');
-        }
-    });
+<body>
 
-    // --- Page Slide Transition Animation ---
-    function slideToPage(href) {
-        document.body.classList.remove('slide-in-left');
-        document.body.classList.add('slide-out-left');
-        setTimeout(function() {
-            window.location.href = href;
-        }, 500); // match CSS animation duration
-    }
-    // Nav links
-    document.querySelectorAll('nav a').forEach(function(link) {
-        link.addEventListener('click', function(e) {
-            if (link.href && !link.href.endsWith(window.location.pathname)) {
-                e.preventDefault();
-                slideToPage(link.getAttribute('href'));
-            }
-        });
-    });
-    // Modal iOS version buttons
-    document.querySelectorAll('.ios-version-btn').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            slideToPage(btn.getAttribute('onclick').split("='")[1].split("'")[0]);
-        });
-    });
-    // Slide-in on load
-    window.addEventListener('pageshow', function() {
-        document.body.classList.remove('slide-out-left');
-        document.body.classList.add('slide-in-left');
-    });
+<header>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <nav class="menu" id="menu">
+    <a href="getstarted.html">Get Started</a>
+  </nav>
+</header>
 
-    // --- Dark/Light Mode Toggle with Crossfade ---
-    const themeToggleBtn = document.getElementById('themeToggleBtn');
-    const sunIcon = themeToggleBtn.querySelector('.theme-toggle-sun');
-    const moonIcon = themeToggleBtn.querySelector('.theme-toggle-moon');
-    function setTheme(mode) {
-        if (mode === 'light') {
-            document.documentElement.classList.add('light-mode');
-            document.documentElement.classList.remove('dark-mode');
-            sunIcon.classList.add('fade-in');
-            sunIcon.classList.remove('fade-out');
-            moonIcon.classList.add('fade-out');
-            moonIcon.classList.remove('fade-in');
-        } else {
-            document.documentElement.classList.add('dark-mode');
-            document.documentElement.classList.remove('light-mode');
-            sunIcon.classList.add('fade-out');
-            sunIcon.classList.remove('fade-in');
-            moonIcon.classList.add('fade-in');
-            moonIcon.classList.remove('fade-out');
-        }
-        localStorage.setItem('theme', mode);
-    }
-    function toggleTheme() {
-        const current = document.documentElement.classList.contains('light-mode') ? 'light' : 'dark';
-        const next = current === 'light' ? 'dark' : 'light';
-        setTheme(next);
-    }
-    themeToggleBtn.addEventListener('click', toggleTheme);
-    // On load, set theme from localStorage or system preference
-    (function() {
-        const saved = localStorage.getItem('theme');
-        if (saved) {
-            setTheme(saved);
-        } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-            setTheme('light');
-        } else {
-            setTheme('dark');
-        }
-    })();
-    </script>
+<div class="banner">
+  <a href="getstarted.html"><button>Get Started</button></a>
+</div>
+
+<div class="faq">
+  <h2>What is sideloading?</h2>
+  <p>By default, Apple doesn’t allow installing applications outside of the App Store. Compared to other operating systems such as Android or Windows, they natively allow installing apps outside of the App Store. Apple doesn’t as it risks the privacy of their users, and also doesn’t want users accidentally installing apps outside of the App Store.</p>
+
+  <h2>Is sideloading dangerous?</h2>
+  <p>Sideloading itself isn’t necessarily dangerous as no viruses have been seen “in the wild”. However, it is important to know that spyware frameworks have been exploited previously, such as Pegasus or SeaShell.</p>
+  <p>As long as you are careful of the applications you install, there is almost no risk of installing a virus.</p>
+
+  <h2>Is sideloading illegal?</h2>
+  <p>It all comes down to what you sideload. Installing pirated apps or apps with infinite currency, etc, are considered illegal. But the chances of you getting arrested are extremely low, and if you were reported, you would only be fined.</p>
+  <p>Mass distribution of pirated applications is illegal and you probably will be arrested if caught.</p>
+</div>
+
+<footer>
+  <div>sideload.info</div>
+  <div>
+    <a href="#">Contact</a>
+    <a href="#">Discord</a>
+    <a href="getstarted.html">Get Started</a>
+  </div>
+  <div style="margin-top: 1em;">2025 - sideload.info - All rights reserved</div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("menu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  }
+</script>
+
 </body>
-</html> 
+</html>
