@@ -2,154 +2,166 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sideload Info</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>sideload.info - Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #ffffff;
-      color: #222;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: white;
+      color: #111;
+      line-height: 1.6;
     }
 
     header {
+      background: #e0f4ff;
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1em 1.5em;
-      background: #0d47a1;
-      color: white;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      position: relative;
     }
 
     .hamburger {
-      font-size: 1.5em;
+      font-size: 1.5rem;
       cursor: pointer;
-      user-select: none;
     }
 
     .menu {
       display: none;
-      flex-direction: column;
       position: absolute;
       top: 60px;
-      right: 1.5em;
-      background: white;
-      border: 1px solid #ddd;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      z-index: 1001;
+      right: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      flex-direction: column;
+      padding: 0.5rem;
+      z-index: 999;
     }
 
     .menu a {
-      padding: 1em;
-      color: #0d47a1;
+      padding: 0.5rem 1rem;
+      color: #007acc;
       text-decoration: none;
-      font-weight: 600;
-      border-bottom: 1px solid #eee;
+      display: block;
+    }
+
+    .menu a:hover {
+      background-color: #f0f0f0;
     }
 
     .banner {
-      background: url('your-banner.jpg') center/cover no-repeat;
+      position: relative;
+      width: 100%;
       height: 300px;
+      background: url('banner.jpeg') center center / cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .banner button {
-      padding: 0.9em 2em;
-      font-size: 1.1em;
-      font-weight: 600;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      background-color: #87cefa;
       color: white;
-      background: #0d47a1;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      font-weight: 600;
+      transition: 0.3s;
     }
 
     .banner button:hover {
-      background: #08307a;
+      background-color: #62b8e6;
     }
 
-    .faq {
-      padding: 3em 1.5em;
-      max-width: 900px;
-      margin: auto;
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    .faq h2 {
-      margin-top: 2em;
-      color: #0d47a1;
+    h2 {
+      margin-top: 1.5rem;
+      color: #007acc;
     }
 
     footer {
-      background: #f4f4f4;
-      color: #333;
+      background-color: #f9f9f9;
+      padding: 1rem;
       text-align: center;
-      padding: 2em 1em 1em;
-      font-size: 0.95em;
-      margin-top: 3em;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+      border-top: 1px solid #ddd;
     }
 
     footer a {
-      color: #0d47a1;
-      margin: 0 12px;
+      margin: 0 10px;
+      color: #007acc;
       text-decoration: none;
-      font-weight: 500;
     }
 
     footer a:hover {
       text-decoration: underline;
     }
+
+    .copy {
+      margin-top: 0.5rem;
+      color: #555;
+    }
   </style>
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+    }
+  </script>
 </head>
 <body>
 
-<header>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <nav class="menu" id="menu">
-    <a href="getstarted.html">Get Started</a>
-  </nav>
-</header>
+  <header>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <nav class="menu" id="menu">
+      <a href="getstarted.html">Get Started</a>
+      <a href="mailto:contact@sideload.info">Contact</a>
+      <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
+    </nav>
+  </header>
 
-<div class="banner">
-  <a href="getstarted.html"><button>Get Started</button></a>
-</div>
+  <section class="banner">
+    <button onclick="window.location.href='getstarted.html'">Get Started</button>
+  </section>
 
-<div class="faq">
-  <h2>What is sideloading?</h2>
-  <p>By default, Apple doesn’t allow installing applications outside of the App Store. Compared to other operating systems such as Android or Windows, they natively allow installing apps outside of the App Store. Apple doesn’t as it risks the privacy of their users, and also doesn’t want users accidentally installing apps outside of the App Store.</p>
+  <main>
+    <h2>What is sideloading?</h2>
+    <p>By default, Apple doesn’t allow installing applications outside of the App Store. Compared to other operating systems such as Android or Windows, they natively allow installing apps outside of the App Store. Apple doesn’t as it risks the privacy of their users, and also doesn’t want users accidentally installing apps outside of the App Store.</p>
 
-  <h2>Is sideloading dangerous?</h2>
-  <p>Sideloading itself isn’t necessarily dangerous as no viruses have been seen “in the wild”. However, it is important to know that spyware frameworks have been exploited previously, such as Pegasus or SeaShell.</p>
-  <p>As long as you are careful of the applications you install, there is almost no risk of installing a virus.</p>
+    <h2>Is sideloading dangerous?</h2>
+    <p>Sideloading itself isn’t necessarily dangerous as no viruses have been seen “in the wild”. However, it is important to know that spyware frameworks have been exploited previously, such as Pegasus or SeaShell.</p>
+    <p>As long as you are careful of the applications you install, there is almost no risk of installing a virus.</p>
 
-  <h2>Is sideloading illegal?</h2>
-  <p>It all comes down to what you sideload. Installing pirated apps or apps with infinite currency, etc, are considered illegal. But the chances of you getting arrested are extremely low, and if you were reported, you would only be fined.</p>
-  <p>Mass distribution of pirated applications is illegal and you probably will be arrested if caught.</p>
-</div>
+    <h2>Is sideloading illegal?</h2>
+    <p>It all comes down to what you sideload. Installing pirated apps or apps with infinite currency, etc, are considered illegal. But the chances of you getting arrested are extremely low, and if you were reported, you would only be fined.</p>
+    <p>Mass distribution of pirated applications is illegal and you probably will be arrested if caught.</p>
+  </main>
 
-<footer>
-  <div>sideload.info</div>
-  <div>
-    <a href="#">Contact</a>
-    <a href="#">Discord</a>
-    <a href="getstarted.html">Get Started</a>
-  </div>
-  <div style="margin-top: 1em;">2025 - sideload.info - All rights reserved</div>
-</footer>
-
-<script>
-  function toggleMenu() {
-    const menu = document.getElementById("menu");
-    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-  }
-</script>
+  <footer>
+    <div>sideload.info</div>
+    <div>
+      <a href="mailto:contact@sideload.info">Contact</a>
+      <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
+      <a href="getstarted.html">Get Started</a>
+    </div>
+    <div class="copy">2025 - sideload.info - All rights reserved</div>
+  </footer>
 
 </body>
 </html>
