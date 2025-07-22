@@ -1,154 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iOS 15 Sideloading Guide</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>iOS 15 - sideload.info</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #111;
+      line-height: 1.6;
+      animation: fadeIn 0.8s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    header {
+      background: #e0f4ff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .hamburger {
+      font-size: 1.8rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      min-width: 180px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      animation: fadeIn 0.3s ease;
+      z-index: 100;
+    }
+
+    .menu a, .menu button {
+      padding: 0.75rem 1.2rem;
+      color: #007acc;
+      text-decoration: none;
+      transition: background 0.2s;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+    }
+
+    .menu a:hover, .menu button:hover {
+      background-color: #f0f8ff;
+    }
+
+    .submenu {
+      display: none;
+      flex-direction: column;
+      border-top: 1px solid #ccc;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 0.75rem;
+      text-align: center;
+    }
+
+    table th {
+      background-color: #f0f8ff;
+      font-weight: 600;
+    }
+
+    table td a {
+      color: #007acc;
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 3rem;
+      background: #e0f4ff;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    footer a {
+      color: #007acc;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    footer .copyright {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: #666;
+    }
+  </style>
 </head>
-<body class="slide-in-left">
-    <div class="page-wrapper">
-        <div class="main-box-outline"></div>
-        <header>
-            <div class="container">
-                <div class="header-row">
-                    <h1>iOS Sideloading Guide</h1>
-                    <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle dark/light mode">
-                        <span class="theme-toggle-sun fade-in">☀️</span>
-                        <span class="theme-toggle-moon fade-out">🌙</span>
-                    </button>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="https://ios.sideload.info">Home</a></li>
-                        <li><a href="/ios18.html">iOS 18</a></li>
-                        <li><a href="/ios17.html">iOS 17</a></li>
-                        <li><a href="/ios16.html">iOS 16</a></li>
-                        <li><a href="/ios15.html">iOS 15</a></li>
-                        <li><a href="/ios14.html">iOS 14</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <main class="container">
-            <section class="card">
-                <h2>iOS 15 Sideloading & Jailbreak Methods</h2>
-                <p><b>Last updated: June 2024</b></p>
-                <ul>
-                    <li><b>Jailbreak:</b> <span style="color: var(--accent);">Available for many devices (see below).</span></li>
-                    <li><b>TrollStore:</b> <span style="color: var(--accent);">Fully supported on iOS 15.x.</span></li>
-                </ul>
-                <div class="method">
-                    <h3>AltStore</h3>
-                    <p>Follow the same steps as for iOS 18 above. AltStore works on iOS 15.</p>
-                </div>
-                <div class="method">
-                    <h3>SideStore</h3>
-                    <p>Follow the same steps as for iOS 18 above. SideStore works on iOS 15.</p>
-                </div>
-                <div class="method">
-                    <h3>Sideloadly</h3>
-                    <p>Follow the same steps as for iOS 18 above. Sideloadly works on iOS 15.</p>
-                </div>
-                <div class="method">
-                    <h3>eSigner Apps</h3>
-                    <p>See the eSigner Apps section above. These work on iOS 15, but certificate revokes are common.</p>
-                </div>
-                <div class="method">
-                    <h3>TrollStore (iOS 15.x)</h3>
-                    <ol>
-                        <li>Check your iOS version in <b>Settings &gt; General &gt; About</b>. TrollStore works on all iOS 15.x versions.</li>
-                        <li>Visit <a href="https://trollstore.app/" target="_blank" style="color: var(--accent);">TrollStore</a> for the latest instructions and supported devices.</li>
-                        <li>Download the appropriate installer (e.g., <a href="https://github.com/opa334/TrollInstallerX/releases" target="_blank" style="color: var(--accent);">TrollInstallerX</a> for A12+ devices).</li>
-                        <li>Follow the step-by-step guide on the TrollStore website to install and activate TrollStore.</li>
-                        <li>Once installed, open TrollStore and import your <code>.ipa</code> files for permanent installation.</li>
-                    </ol>
-                </div>
-                <div class="method">
-                    <h3>Jailbreaking (iOS 15)</h3>
-                    <ol>
-                        <li>Check <a href="https://theapplewiki.com/wiki/Jailbreak" target="_blank" style="color: var(--accent);">The Apple Wiki Jailbreak Status</a> for your device and iOS version.</li>
-                        <li><b>palera1n</b> supports A8–A11 devices (iPhone X and below) on iOS 15.x. See <a href="https://palera.in/" target="_blank" style="color: var(--accent);">palera1n website</a> for instructions.</li>
-                        <li><b>Fugu15 Max</b> supports some A12+ devices on iOS 15.0–15.4.1. See <a href="https://github.com/opa334/Fugu15_Max" target="_blank" style="color: var(--accent);">Fugu15 Max GitHub</a> for details and instructions.</li>
-                        <li>Other jailbreaks may be available for specific devices/versions. Always check the latest status and guides.</li>
-                    </ol>
-                </div>
-                <div class="method">
-                    <h3>Xcode (macOS only)</h3>
-                    <p>Follow the same steps as for iOS 18 above. Xcode sideloading works on iOS 15.</p>
-                </div>
-            </section>
-        </main>
-        <footer>
-            <div class="container">
-                <p>&copy; 2024 iOS Sideloading Guide. Not affiliated with Apple Inc.</p>
-            </div>
-        </footer>
+<body>
+
+<header>
+  <div class="logo"><strong>sideload.info</strong></div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="menu" id="dropdownMenu">
+    <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
+    <div class="submenu" id="subMenu">
+      <a href="allsigners.html">Signers</a>
+      <a href="allutilities.html">Utilities</a>
+      <a href="faq.html">FAQ</a>
+      <a href="errors.html">Errors</a>
     </div>
-    <script>
-    // --- Page Slide Transition Animation ---
-    function slideToPage(href) {
-        document.body.classList.remove('slide-in-left');
-        document.body.classList.add('slide-out-left');
-        setTimeout(function() {
-            window.location.href = href;
-        }, 500);
+    <a href="getstarted.html">Get Started</a>
+  </div>
+</header>
+
+<main>
+  <h1>iOS 15</h1>
+  <p>Below shows a table of compatible signers with your chosen operating system version.</p>
+  <p>Find your specific iOS version and click on the blue URL on the table to access the signer guide.</p>
+
+  <h2>Version Table</h2>
+  <table>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>ARM64 (A8)</th>
+      <th>ARM64</th>
+      <th>ARM64e</th>
+    </tr>
+    <tr>
+      <td>iOS 15.0</td>
+      <td>iOS 15.5 beta 4</td>
+      <td><a href="not-supported.html">TrollHelperOTA</a></td>
+      <td><a href="not-supported.html">TrollHelperOTA</a></td>
+      <td><a href="not-supported.html">TrollHelperOTA</a></td>
+    </tr>
+    <tr>
+      <td>iOS 15.5</td>
+      <td>iOS 15.5</td>
+      <td><a href="trollinstallermdc.html">TrollInstallerMDC</a></td>
+      <td><a href="trollinstallerx.html">TrollInstallerX</a></td>
+      <td><a href="trollhelperota.html">TrollHelperOTA</a></td>
+    </tr>
+    <tr>
+      <td>iOS 15.6 beta 1</td>
+      <td>iOS 15.6.1 beta 3</td>
+      <td><a href="trollhelperota.html">TrollHelperOTA</a></td>
+      <td><a href="trollhelperota.html">TrollHelperOTA</a></td>
+      <td><a href="trollhelperota.html">TrollHelperOTA</a></td>
+    <tr>
+      <td>iOS 15.6 beta 4</td>
+      <td>iOS 15.6.1</td>
+      <td><a href="trollinstallermdc.html">TrollInstallerMDC</a></td>
+      <td><a href="trollinstallerx.html">TrollInstallerX</a></td>
+      <td><a href="trollinstallerx.html">TrollHelperOTA</a></td>
+    <tr>
+      <td>iOS 15.7</td>
+      <td>iOS 15.7.1</td>
+      <td><a href="trollinstallermdc.html">TrollInstallerMDC</a></td>
+      <td><a href="trollinstallerx.html">TrollInstallerX</a></td>
+      <td><a href="trollinstallerx.html">TrollInstallerX</a></td>
+    <tr>
+      <td>iOS 15.7.2</td>
+      <td>iOS 15.8.4</td>
+      <td><a href="trollmisaka.html">TrollInstallerMDC</a></td>
+      <td><a href="trollinstallerx.html">TrollInstallerX</a></td>
+      <td><a href="trollinstallerx.html">TrollInstallerX</a></td>
+    </tr>
+    </tr>
+    </tr>
+    </tr>
+  </table>
+
+  <h2>Finding your iOS version</h2>
+  <ol>
+    <li>Open the “Settings” application</li>
+    <li>In the app, find “General”, then “About”, “Software Version”. Beside it should be your iOS version.</li>
+  </ol>
+    <h2>ARM64 or ARM64e</h2>
+  <ol>
+    <p>ARM64 devices A11 and below which are: iPhone X or iPad 7th gen or iPad Air 2nd gen and iPad Pro 2nd gen and below. ARM64e devices are A12 and M1 and above that.</li>
+  </ol>
+</main>
+
+<footer>
+  <div>
+    <a href="mailto:youremail@example.com">Contact</a>
+    <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
+    <a href="getstarted.html">Get Started</a>
+  </div>
+  <div class="copyright">
+    © 2025 - sideload.info - All rights reserved
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  }
+
+  function toggleSubMenu() {
+    const sub = document.getElementById("subMenu");
+    sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function(event) {
+    const menu = document.getElementById("dropdownMenu");
+    const hamburger = document.querySelector(".hamburger");
+    if (!menu.contains(event.target) && event.target !== hamburger) {
+      menu.style.display = "none";
+      document.getElementById("subMenu").style.display = "none";
     }
-    // Nav links
-    document.querySelectorAll('nav a').forEach(function(link) {
-        link.addEventListener('click', function(e) {
-            if (link.href && !link.href.endsWith(window.location.pathname)) {
-                e.preventDefault();
-                slideToPage(link.getAttribute('href'));
-            }
-        });
-    });
-    // Slide-in on load
-    window.addEventListener('pageshow', function() {
-        document.body.classList.remove('slide-out-left');
-        document.body.classList.add('slide-in-left');
-    });
-    </script>
-    <script>
-// --- Dark/Light Mode Toggle with Crossfade ---
-const themeToggleBtn = document.getElementById('themeToggleBtn');
-const sunIcon = themeToggleBtn.querySelector('.theme-toggle-sun');
-const moonIcon = themeToggleBtn.querySelector('.theme-toggle-moon');
-function setTheme(mode) {
-    if (mode === 'light') {
-        document.documentElement.classList.add('light-mode');
-        document.documentElement.classList.remove('dark-mode');
-        sunIcon.classList.add('fade-in');
-        sunIcon.classList.remove('fade-out');
-        moonIcon.classList.add('fade-out');
-        moonIcon.classList.remove('fade-in');
-    } else {
-        document.documentElement.classList.add('dark-mode');
-        document.documentElement.classList.remove('light-mode');
-        sunIcon.classList.add('fade-out');
-        sunIcon.classList.remove('fade-in');
-        moonIcon.classList.add('fade-in');
-        moonIcon.classList.remove('fade-out');
-    }
-    localStorage.setItem('theme', mode);
-}
-function toggleTheme() {
-    const current = document.documentElement.classList.contains('light-mode') ? 'light' : 'dark';
-    const next = current === 'light' ? 'dark' : 'light';
-    setTheme(next);
-}
-themeToggleBtn.addEventListener('click', toggleTheme);
-// On load, set theme from localStorage or system preference
-(function() {
-    const saved = localStorage.getItem('theme');
-    if (saved) {
-        setTheme(saved);
-    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-        setTheme('light');
-    } else {
-        setTheme('dark');
-    }
-})();
+  });
 </script>
+
 </body>
-</html> 
+</html>
