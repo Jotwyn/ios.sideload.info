@@ -26,32 +26,19 @@
     }
 
     header {
-      width: 100vw;
       background: #e0f4ff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      position: relative;
-    }
-
-    .header-container {
-      max-width: 900px;
-      margin: 0 auto;
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-
-    .logo {
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: #111;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .hamburger {
       font-size: 1.8rem;
       cursor: pointer;
       user-select: none;
-      color: #007acc;
     }
 
     .menu {
@@ -87,59 +74,61 @@
       border-top: 1px solid #ccc;
     }
 
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      background: url('banner.jpeg') center center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .banner button {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      background-color: #87cefa;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+
+    .banner button:hover {
+      background-color: #62b8e6;
+    }
+
     main {
       padding: 2rem;
       max-width: 900px;
       margin: auto;
     }
 
-    h1 {
-      margin-bottom: 1rem;
-      font-weight: 700;
-      font-size: 2rem;
-      color: #007acc;
-    }
-
-    p {
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
-      color: #222;
-    }
-
-    h2 {
+    .faq-section {
       margin-top: 2rem;
+      background-color: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .faq-section h2 {
       margin-bottom: 1rem;
       font-weight: 600;
-      font-size: 1.5rem;
-      color: #007acc;
+      font-size: 1.3rem;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 2rem;
+    .faq-section p, .faq-section ul {
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
     }
 
-    th, td {
-      border: 1px solid #ccc;
-      padding: 0.75rem 1rem;
-      text-align: center;
-      font-size: 1rem;
-      color: #111;
-    }
-
-    th {
-      background-color: #e0f4ff;
-      font-weight: 600;
-    }
-
-    td a {
-      color: #007acc;
-      text-decoration: none;
-    }
-
-    td a:hover {
-      text-decoration: underline;
+    .faq-section ul {
+      padding-left: 1.2rem;
+      list-style-type: disc;
     }
 
     footer {
@@ -170,82 +159,85 @@
 </head>
 <body>
   <header>
-    <div class="header-container">
-      <div class="logo"><strong>sideload.info</strong></div>
-      <div class="hamburger" onclick="toggleMenu()">☰</div>
-      <div class="menu" id="dropdownMenu">
-        <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
-        <div class="submenu" id="subMenu">
-          <a href="allsigners.html">Signers</a>
-          <a href="allutilities.html">Utilities</a>
-          <a href="faq.html">FAQ</a>
-          <a href="errors.html">Errors</a>
-        </div>
-        <a href="getstarted.html">Get Started</a>
+    <div class="logo"><strong>sideload.info</strong></div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <div class="menu" id="dropdownMenu">
+      <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
+      <div class="submenu" id="subMenu">
+        <a href="allsigners.html">Signers</a>
+        <a href="allutilities.html">Utilities</a>
+        <a href="faq.html">FAQ</a>
+        <a href="errors.html">Errors</a>
       </div>
+      <a href="getstarted.html">Get Started</a>
     </div>
   </header>
 
+  <section class="banner">
+    <a href="getstarted.html"><button>Get Started</button></a>
+  </section>
+
   <main>
-    <h1>SideStore</h1>
+    <div class="faq-section">
+      <h2>SideStore</h2>
+      <p>SideStore is an application sideloader on iOS 14+ that uses Apple Developer Accounts for signing apps. SideStore is based off AltServer, however uses its custom application, "SideStore", which allows users to resign apps without a computer.</p>
 
-    <p>SideStore is an application sideloader on iOS 14+ that uses Apple Developer Accounts for signing apps. SideStore is based off AltServer, however uses its custom application, "SideStore", which allows users to resign apps without a computer.</p>
+      <h2>Prerequisites</h2>
+      <ul>
+        <li>A computer running Windows 10 or MacOS 10.14 or above</li>
+        <li>iPad or iPhone running iOS 14 or above</li>
+        <li>Latest version of <a href="#" target="_blank" rel="noopener noreferrer">AltServer</a></li>
+        <li>Latest version of <a href="#" target="_blank" rel="noopener noreferrer">iTunes (not from the Microsoft store)</a></li>
+        <li>Latest version of <a href="#" target="_blank" rel="noopener noreferrer">SideStore</a></li>
+        <li>Latest version of <a href="#" target="_blank" rel="noopener noreferrer">iCloud (not from the Microsoft store)</a></li>
+        <li>Latest version of <a href="#" target="_blank" rel="noopener noreferrer">idevicepair</a></li>
+        <li>StosVPN from the App Store</li>
+        <li>A working Apple ID</li>
+      </ul>
 
-    <h2>Prerequisites</h2>
-    <ul>
-      <li>A computer running Windows 10 or MacOS 10.14 or above</li>
-      <li>iPad or iPhone running iOS 14 or above</li>
-      <li><a href="#" target="_blank">Latest version of AltServer</a></li>
-      <li><a href="#" target="_blank">Latest version of iTunes (not from the Microsoft store)</a></li>
-      <li><a href="#" target="_blank">Latest version of SideStore</a></li>
-      <li><a href="#" target="_blank">Latest version of iCloud (not from the Microsoft store)</a></li>
-      <li><a href="#" target="_blank">Latest version of idevicepair</a></li>
-      <li>StosVPN from the App Store</li>
-      <li>A working Apple ID</li>
-    </ul>
+      <h2>Enabling Developer Mode</h2>
+      <p>Starting iOS/iPadOS 16+, all users are required to enable developer mode to install developer apps.</p>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Scroll down to Privacy &amp; Security.</li>
+        <li>On Privacy &amp; Security, scroll down to Developer Mode. Click enable.</li>
+        <li>Your device may restart. Once enabled, proceed with the next steps.</li>
+      </ol>
 
-    <h2>Enabling Developer Mode</h2>
-    <p>Starting iOS/iPadOS 16+, all users are required to enable developer mode to install developer apps.</p>
-    <ol>
-      <li>Open Settings.</li>
-      <li>Scroll down to Privacy &amp; Security.</li>
-      <li>On Privacy &amp; Security, scroll down to Developer Mode. Click enable.</li>
-      <li>Your device may restart. Once enabled, proceed with the next steps.</li>
-    </ol>
+      <h2>Running AltServer</h2>
+      <ol>
+        <li>If not done already, run setup.exe and run the AltServer installer.</li>
+        <li>Once complete, an app called "AltServer" should appear. Find "AltServer", and run as administrator.</li>
+        <li>Once ran as administrator, while holding shift, click on the tray at the bottom right of your screen and select the AltServer icon and "Sideload .ipa".</li>
+        <li>Select "Sidestore.ipa".</li>
+        <li>Type in your Apple ID. Your login details will only be sent to Apple for verification and are not tracked by AltServer.</li>
+        <li>Once done, SideStore should appear on your home screen.</li>
+      </ol>
 
-    <h2>Running AltServer</h2>
-    <ol>
-      <li>If not done already, run setup.exe and run the AltServer installer.</li>
-      <li>Once complete, an app called "AltServer" should appear. Find "AltServer", and run as administrator.</li>
-      <li>Once ran as administrator, while holding shift, click on the tray at the bottom right of your screen and select the AltServer icon and "Sideload .ipa".</li>
-      <li>Select "Sidestore.ipa".</li>
-      <li>Type in your Apple ID. Your login details will only be sent to Apple for verification and are not tracked by AltServer.</li>
-      <li>Once done, SideStore should appear on your home screen.</li>
-    </ol>
+      <h2>Generating idevicepair</h2>
+      <ol>
+        <li>Ensure your device is trusted by your computer, on your home screen and a password is setup.</li>
+        <li>Connect your device to your computer.</li>
+        <li>Run idevicepair. If asked for administrator, say Yes.</li>
+        <li>A GUI should popup. Click "generate". Your device may ask to trust this computer again. If so, confirm.</li>
+        <li>After the pairing file has been installed, go to the SideStore section of the GUI and click "Install". If done successfully, it should say "success" in green.</li>
+      </ol>
 
-    <h2>Generating idevicepair</h2>
-    <ol>
-      <li>Ensure your device is trusted by your computer, on your home screen and a password is setup.</li>
-      <li>Connect your device to your computer.</li>
-      <li>Run idevicepair. If asked for administrator, say Yes.</li>
-      <li>A GUI should popup. Click "generate". Your device may ask to trust this computer again. If so, confirm.</li>
-      <li>After the pairing file has been installed, go to the SideStore section of the GUI and click "Install". If done successfully, it should say "success" in green.</li>
-    </ol>
+      <h2>Verifying SideStore</h2>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Go to General.</li>
+        <li>Scroll to VPN &amp; Device Management.</li>
+        <li>Open it and you will find a developer application.</li>
+        <li>Click on it. Once opened, click "Verify App".</li>
+      </ol>
 
-    <h2>Verifying SideStore</h2>
-    <ol>
-      <li>Open Settings.</li>
-      <li>Go to General.</li>
-      <li>Scroll to VPN &amp; Device Management.</li>
-      <li>Open it and you will find a developer application.</li>
-      <li>Click on it. Once opened, click "Verify App".</li>
-    </ol>
-
-    <h2>Refreshing Apps</h2>
-    <ol>
-      <li>Download StosVPN from the App Store if not already.</li>
-      <li>Enable it. When enabled, SideStore will attempt to refresh your apps in the background.</li>
-    </ol>
+      <h2>Refreshing Apps</h2>
+      <ol>
+        <li>Download StosVPN from the App Store if not already.</li>
+        <li>Enable it. When enabled, SideStore will attempt to refresh your apps in the background.</li>
+      </ol>
+    </div>
   </main>
 
   <footer>
@@ -270,6 +262,7 @@
       sub.style.display = sub.style.display === "flex" ? "none" : "flex";
     }
 
+    // Auto-close dropdown on outside click
     document.addEventListener("click", function(event) {
       const menu = document.getElementById("dropdownMenu");
       const hamburger = document.querySelector(".hamburger");
@@ -281,5 +274,6 @@
   </script>
 </body>
 </html>
+
 
 
