@@ -18,6 +18,10 @@
       color: #111;
       line-height: 1.6;
       animation: fadeIn 1s ease-in;
+      padding: 2rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     @keyframes fadeIn {
@@ -33,6 +37,13 @@
       align-items: center;
       position: relative;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #007acc;
     }
 
     .hamburger {
@@ -62,6 +73,7 @@
       color: #007acc;
       text-decoration: none;
       transition: background 0.2s;
+      display: block;
     }
 
     .menu a:hover {
@@ -74,12 +86,37 @@
       border-top: 1px solid #ccc;
     }
 
-    main {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-      white-space: pre-wrap;
+    a.prereq-link {
+      color: #007acc;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    h1 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #007acc;
+    }
+
+    p {
+      margin-bottom: 1rem;
       font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    ul {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    ol {
+      margin-bottom: 1rem;
+      padding-left: 1.8rem;
       font-size: 1rem;
       line-height: 1.5;
     }
@@ -108,18 +145,11 @@
       font-size: 0.8rem;
       color: #666;
     }
-
-    /* Link style for prerequisites */
-    a.prereq-link {
-      color: #007acc;
-      text-decoration: underline;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo"><strong>sideload.info</strong></div>
+    <div class="logo">sideload.info</div>
     <div class="hamburger" onclick="toggleMenu()">☰</div>
     <div class="menu" id="dropdownMenu">
       <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
@@ -134,62 +164,65 @@
   </header>
 
   <main>
-# SideStore
+    <h1>SideStore</h1>
+    <p>SideStore is an application sideloader on iOS 14+ that uses Apple Developer Accounts for signing apps. SideStore is based off AltServer, however uses its custom application, "SideStore", which allows users to resign apps without a computer.</p>
 
-SideStore is an application sideloader on iOS 14+ that uses Apple Developer Accounts for signing apps. SideStore is based off AltServer, however uses its custom application, "SideStore", which allows users to resign apps without a computer.
+    <h1>Prerequisites</h1>
+    <ul>
+      <li>A computer running Windows 10 or MacOS 10.14 or above</li>
+      <li>iPad or iPhone running iOS 14 or above</li>
+      <li><a href="#" class="prereq-link">Latest version of AltServer</a></li>
+      <li><a href="#" class="prereq-link">Latest version of iTunes (not from the Microsoft store)</a></li>
+      <li><a href="#" class="prereq-link">Latest version of SideStore</a></li>
+      <li><a href="#" class="prereq-link">Latest version of iCloud (not from the Microsoft store)</a></li>
+      <li><a href="#" class="prereq-link">Latest version of idevicepair</a></li>
+      <li>StosVPN from the App Store</li>
+      <li>A working Apple ID</li>
+    </ul>
 
-# Prerequisites
+    <h1>Enabling Developer Mode</h1>
+    <p>Starting iOS/iPadOS 16+, all users are required to enable developer mode to install developer apps.</p>
+    <ol>
+      <li>Open Settings.</li>
+      <li>Scroll down to Privacy &amp; Security.</li>
+      <li>On Privacy &amp; Security, scroll down to Developer Mode. Click enable.</li>
+      <li>Your device may restart. Once enabled, proceed with the next steps.</li>
+    </ol>
 
-- A computer running Windows 10 or MacOS 10.14 or above
-- iPad or iPhone running iOS 14 or above
-- <a href="#" class="prereq-link">Latest version of AltServer</a>
-- <a href="#" class="prereq-link">Latest version of iTunes (not from the Microsoft store)</a>
-- <a href="#" class="prereq-link">Latest version of SideStore</a>
-- <a href="#" class="prereq-link">Latest version of iCloud (not from the Microsoft store)</a>
-- <a href="#" class="prereq-link">Latest version of idevicepair</a>
-- StosVPN from the App Store
-- A working Apple ID
+    <h1>Running AltServer</h1>
+    <ol>
+      <li>If not done already, run setup.exe and run the AltServer installer.</li>
+      <li>Once complete, an app called "AltServer" should appear. Find "AltServer", and run as administrator.</li>
+      <li>Once ran as administrator, while holding shift, click on the tray at the bottom right of your screen and select the AltServer icon and "Sideload .ipa".</li>
+      <li>Select "Sidestore.ipa".</li>
+      <li>Type in your Apple ID. Your login details will only be sent to Apple for verification and are not tracked by AltServer.</li>
+      <li>Once done, SideStore should appear on your home screen.</li>
+    </ol>
 
-# Enabling Developer Mode
+    <h1>Generating idevicepair</h1>
+    <ol>
+      <li>Ensure your device is trusted by your computer, on your home screen and a password is setup.</li>
+      <li>Connect your device to your computer.</li>
+      <li>Run idevicepair. If asked for administrator, say Yes.</li>
+      <li>A GUI should popup. Click "generate". Your device may ask to trust this computer again. If so, confirm.</li>
+      <li>After the pairing file has been installed, go to the SideStore section of the GUI and click "Install". If done successfully, it should say "success" in green.</li>
+    </ol>
 
-Starting iOS/iPadOS 16+, all users are required to enable developer mode to install developer apps.
+    <h1>Verifying SideStore</h1>
+    <p>To launch the app, do the following steps:</p>
+    <ol>
+      <li>Open Settings.</li>
+      <li>Go to General.</li>
+      <li>Scroll to VPN &amp; Device Management.</li>
+      <li>Open it and you will find a developer application.</li>
+      <li>Click on it. Once opened, click "Verify App".</li>
+    </ol>
 
-1. Open Settings.
-2. Scroll down to Privacy & Security.
-3. On Privacy & Security, scroll down to Developer Mode. Click enable.
-4. Your device may restart. Once enabled, proceed with the next steps. 
-
-# Running AltServer
-
-1. If not done already, run setup.exe and run the AltServer installer.
-2. Once complete, an app called "AltServer" should appear. Find "AltServer", and run as administrator.
-3. Once ran as administrator, while holding shift, click on the tray at the bottom right of your screen and select the AltServer icon and "Sideload .ipa".
-4. Select "Sidestore.ipa".
-5. Type in your Apple ID. Your login details will only be sent to Apple for verification and are not tracked by AltServer.
-6. Once done, SideStore should appear on your home screen.
-
-# Generating idevicepair
-
-1. Ensure your device is trusted by your computer, on your home screen and a password is setup.
-2. Connect your device to your computer.
-3. Run idevicepair. If asked for administrator, say Yes.
-4. A GUI should popup. Click "generate". Your device may ask to trust this computer again. If so, confirm.
-5. After the pairing file has been installed, go to the SideStore section of the GUI and click "Install". If done successfully, it should say "success" in green.
-
-# Verifying SideStore
-
-To launch the app, do the following steps:
-
-1. Open Settings.
-2. Go to General.
-3. Scroll to VPN & Device Management.
-4. Open it and you will find a developer application.
-5. Click on it. Once opened, click "Verify App".
-
-# Refreshing Apps
-
-1. Download StosVPN from the App Store if not already.
-2. Enable it. When enabled, SideStore will attempt to refresh your apps in the background.
+    <h1>Refreshing Apps</h1>
+    <ol>
+      <li>Download StosVPN from the App Store if not already.</li>
+      <li>Enable it. When enabled, SideStore will attempt to refresh your apps in the background.</li>
+    </ol>
   </main>
 
   <footer>
