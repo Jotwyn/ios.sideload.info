@@ -94,7 +94,10 @@
       font-size: 1.3rem;
     }
 
-    .faq-section p, .faq-section ul {
+    /* Consistent font size for all p, ul, ol inside faq-section */
+    .faq-section p,
+    .faq-section ul,
+    .faq-section ol {
       margin-bottom: 1.2rem;
       font-size: 0.95rem;
     }
@@ -102,6 +105,11 @@
     .faq-section ul {
       padding-left: 1.2rem;
       list-style-type: disc;
+    }
+
+    .faq-section ol {
+      padding-left: 1.5rem;
+      list-style-type: decimal;
     }
 
     footer {
@@ -243,4 +251,3 @@
   </script>
 </body>
 </html>
-
