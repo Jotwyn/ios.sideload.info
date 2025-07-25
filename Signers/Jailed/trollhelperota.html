@@ -227,22 +227,46 @@
   .copy-button:hover svg {
     fill: #000;
   }
+
+  .copy-tooltip {
+    position: absolute;
+    top: -1.5em;
+    right: 0.75rem;
+    background: #333;
+    color: white;
+    padding: 2px 6px;
+    font-size: 12px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .copy-box.copied .copy-tooltip {
+    opacity: 1;
+  }
 </style>
 
-<div class="copy-box">
+<div class="copy-box" id="copyBox">
   <span class="copy-text" id="copyTarget">itms-services://?action=download-manifest&url=https://jailbreaks.app/cdn/plists/TrollHelper.plist</span>
   <button class="copy-button" onclick="copyToClipboard()" title="Copy">
     <svg viewBox="0 0 24 24">
       <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v16h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 18H8V7h11v16z"/>
     </svg>
   </button>
+  <span class="copy-tooltip">Copied!</span>
 </div>
 
 <script>
   function copyToClipboard() {
     const text = document.getElementById("copyTarget").innerText;
+    const box = document.getElementById("copyBox");
+
     navigator.clipboard.writeText(text).then(() => {
-      console.log("Copied!");
+      box.classList.add("copied");
+      setTimeout(() => {
+        box.classList.remove("copied");
+      }, 3000); // 3 seconds
     });
   }
 </script>
