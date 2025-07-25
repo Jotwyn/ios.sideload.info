@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SideStore Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: white;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .container {
+      padding: 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      color: #fff;
+    }
+
+    a {
+      color: #76baff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .alert {
+      border-radius: 10px;
+      padding: 15px 20px;
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+    }
+
+    .alert::before {
+      margin-right: 12px;
+      font-size: 1.5em;
+    }
+
+    .caution {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+
+    .caution::before {
+      content: "⚠️";
+    }
+
+    .danger {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    .danger::before {
+      content: "🚫";
+    }
+
+    .green {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .green::before {
+      content: "";
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1e1e1e;
+      color: #ccc;
+    }
+
+    .hamburger {
+      display: block;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      right: 20px;
+      top: 60px;
+      background-color: #222;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .nav-links a {
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      background-color: #444;
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      var nav = document.getElementById('nav-links');
+      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+    }
+  </script>
+</head>
+<body>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div id="nav-links" class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="getstarted.html">Get Started</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="container">
+    <h1>SideStore</h1>
+    <p>SideStore is an application sideloader on iOS 14+ that uses Apple Developer Accounts for signing apps. SideStore is based off AltServer, however uses its custom application, "SideStore", which allows users to resign apps without a computer.</p>
+
+    <h2>Prerequisites</h2>
+    <ul>
+      <li>A computer running Windows 10 or MacOS 10.14 or above</li>
+      <li>iPad or iPhone running iOS 14 or above</li>
+      <li><a href="https://sideload.info/downloads/altserver">Latest version of AltServer</a></li>
+      <li><a href="https://sideload.info/downloads/itunes">Latest version of iTunes (not from the Microsoft store)</a></li>
+      <li><a href="https://sideload.info/downloads/sidestore">Latest version of SideStore</a></li>
+      <li><a href="https://sideload.info/downloads/icloud">Latest version of iCloud (not from the Microsoft store)</a></li>
+      <li><a href="https://sideload.info/downloads/idevicepair">Latest version of idevicepair</a></li>
+      <li>StosVPN from the App Store</li>
+      <li>A working Apple ID</li>
+    </ul>
+
+    <h2>Enabling Developer Mode</h2>
+    <ol>
+      <li>Open Settings.</li>
+      <li>Scroll down to Privacy & Security.</li>
+      <li>On Privacy & Security, scroll down to Developer Mode. Click enable.</li>
+      <li>Your device may restart. Once enabled, proceed with the next steps.</li>
+    </ol>
+
+    <h2>Running AltServer</h2>
+    <ol>
+      <li>If not done already, run setup.exe and run the AltServer installer.</li>
+      <li>Once complete, an app called "AltServer" should appear. Find "AltServer", and run as administrator.</li>
+      <li>Once ran as administrator, while holding shift, click on the tray at the bottom right of your screen and select the AltServer icon and "Sideload .ipa".</li>
+      <li>Select "Sidestore.ipa".</li>
+      <li>Type in your Apple ID. Your login details will only be sent to Apple for verification and are not tracked by AltServer.</li>
+      <li>Once done, SideStore should appear on your home screen.</li>
+    </ol>
+
+    <h2>Generating idevicepair</h2>
+    <ol>
+      <li>Ensure your device is trusted by your computer, on your home screen and a password is setup.</li>
+      <li>Connect your device to your computer.</li>
+      <li>Run idevicepair. If asked for administrator, say Yes.</li>
+      <li>A GUI should popup. Click "generate". Your device may ask to trust this computer again. If so, confirm.</li>
+      <li>After the pairing file has been installed, go to the SideStore section of the GUI and click "Install". If done successfully, it should say "success" in green.</li>
+    </ol>
+
+    <h2>Verifying SideStore</h2>
+    <ol>
+      <li>Open Settings.</li>
+      <li>Go to General.</li>
+      <li>Scroll to VPN & Device Management.</li>
+      <li>Open it and you will find a developer application.</li>
+      <li>Click on it. Once opened, click "Verify App".</li>
+    </ol>
+
+    <h2>Refreshing Apps</h2>
+    <ol>
+      <li>Download StosVPN from the App Store if not already.</li>
+      <li>Enable it. When enabled, SideStore will attempt to refresh your apps in the background.</li>
+    </ol>
+
+    <div class="alert caution">!caution (text)</div>
+    <div class="alert danger">!danger (text)</div>
+    <div class="alert green">!green (text)</div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 sideload.info | Contact | Discord | Get Started</p>
+  </footer>
+</body>
+</html>
