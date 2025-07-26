@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>sideload.info - Alternative Methods</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alternative Methods - sideload.info</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -17,7 +17,7 @@
       background-color: #ffffff;
       color: #111;
       line-height: 1.6;
-      animation: fadeIn 1s ease-in;
+      animation: fadeIn 0.8s ease-in;
     }
 
     @keyframes fadeIn {
@@ -57,14 +57,20 @@
       z-index: 100;
     }
 
-    .menu a {
+    .menu a, .menu button {
       padding: 0.75rem 1.2rem;
       color: #007acc;
       text-decoration: none;
       transition: background 0.2s;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
     }
 
-    .menu a:hover {
+    .menu a:hover, .menu button:hover {
       background-color: #f0f8ff;
     }
 
@@ -80,36 +86,44 @@
       margin: auto;
     }
 
-    .faq-section {
-      margin-top: 2rem;
-      background-color: #f9f9f9;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .faq-section h2 {
+    h1 {
       margin-bottom: 1rem;
+      font-size: 2rem;
       font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    h2 {
       font-size: 1.3rem;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
     }
 
-    /* Consistent font size for all p, ul, ol inside faq-section */
-    .faq-section p,
-    .faq-section ul,
-    .faq-section ol {
-      margin-bottom: 1.2rem;
-      font-size: 0.95rem;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
     }
 
-    .faq-section ul {
-      padding-left: 1.2rem;
-      list-style-type: disc;
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 0.75rem;
+      text-align: center;
     }
 
-    .faq-section ol {
-      padding-left: 1.5rem;
-      list-style-type: decimal;
+    table th {
+      background-color: #f0f8ff;
+      font-weight: 600;
+    }
+
+    table td a {
+      color: #007acc;
+      text-decoration: underline;
     }
 
     footer {
@@ -139,88 +153,80 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo"><strong>ios.sideload.info</strong></div>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <div class="menu" id="dropdownMenu">
-      <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
-      <div class="submenu" id="subMenu">
-        <a href="allsigners.html">Signers</a>
-        <a href="allutilities.html">Utilities</a>
-        <a href="faq.html">FAQ</a>
-        <a href="errors.html">Errors</a>
-      </div>
-      <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
-    </div>
-  </header>
 
-  <main>
-    <div class="faq-section">
-      <h2>Alternative Methods</h2>
-      <p>In certain cases where you do not have a computer, there are some alternative signers that do not use a computer.</p>
-
-      <h2>(Certificate) Enterprise Signers</h2>
-      <table>
-        <tr>
-          <th>From</th>
-          <th>To</th>
-          <th>All devices</th>
-        </tr>
-        <tr>
-          <td>iOS 11</td>
-          <td>-</td>
-          <td><a href="signers/jailed/esign.html">ESign</a></td>
-        </tr>
-        <tr>
-          <td>iOS 14</td>
-          <td>-</td>
-          <td><a href="signers/jailed/scarlet.html">Scarlet</a></td>
-        </tr>
-        <tr>
-          <td>iOS 14</td>
-          <td>-</td>
-          <td><a href="signers/jailed/flekstore.html">FlekSt0re</a></td>
-        </tr>
-        <tr>
-          <td>iOS 11</td>
-          <td>-</td>
-          <td><a href="signers/jailed/esign.html">Feather</a></td>
-        </tr>
-      </table>
+<header>
+  <div class="logo"><strong>ios.sideload.info</strong></div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="menu" id="dropdownMenu">
+    <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
+    <div class="submenu" id="subMenu">
+      <a href="allsigners.html">Signers</a>
+      <a href="allutilities.html">Utilities</a>
+      <a href="faq.html">FAQ</a>
+      <a href="errors.html">Errors</a>
     </div>
-  </main>
+    <a href="getstarted.html">Get Started</a>
+  </div>
+</header>
 
-  <footer>
-    <div>
-      <a href="mailto:youremail@example.com">Contact</a>
-      <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
-      <a href="getstarted.html">Get Started</a>
-    </div>
-    <div class="copyright">
-      © 2025 - sideload.info - All rights reserved
-    </div>
-  </footer>
+<main>
+  <h1>Alternative Methods</h1>
+  <p>Below shows a table of compatible signers with your chosen operating system version.</p>
 
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("dropdownMenu");
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  <h2>Version Table</h2>
+  <table>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>All devices</th>
+    </tr>
+    <tr>
+      <td>iOS 11</td>
+      <td>~</td>
+      <td><a href="signers/jailed/esign.html">ESign</a></td>
+    </tr>
+    </tr>
+  </table>
+
+  <h2>Finding your iOS version</h2>
+  <ol>
+    <li>Open the “Settings” application</li>
+    <li>In the app, find “General”, then “About”, “Software Version”. Beside it should be your iOS version.</li>
+  </ol>
+</main>
+
+<footer>
+  <div>
+    <a href="mailto:youremail@example.com">Contact</a>
+    <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
+    <a href="getstarted.html">Get Started</a>
+  </div>
+  <div class="copyright">
+    © 2025 - sideload.info - All rights reserved
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  }
+
+  function toggleSubMenu() {
+    const sub = document.getElementById("subMenu");
+    sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function(event) {
+    const menu = document.getElementById("dropdownMenu");
+    const hamburger = document.querySelector(".hamburger");
+    if (!menu.contains(event.target) && event.target !== hamburger) {
+      menu.style.display = "none";
+      document.getElementById("subMenu").style.display = "none";
     }
+  });
+</script>
 
-    function toggleSubMenu() {
-      const sub = document.getElementById("subMenu");
-      sub.style.display = sub.style.display === "flex" ? "none" : "flex";
-    }
-
-    // Auto-close dropdown on outside click
-    document.addEventListener("click", function(event) {
-      const menu = document.getElementById("dropdownMenu");
-      const hamburger = document.querySelector(".hamburger");
-      if (!menu.contains(event.target) && event.target !== hamburger) {
-        menu.style.display = "none";
-        document.getElementById("subMenu").style.display = "none";
-      }
-    });
-  </script>
 </body>
 </html>
