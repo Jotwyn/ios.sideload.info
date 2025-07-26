@@ -233,6 +233,165 @@
   </ol>
 </main>
 
+  <div class="device-lookup-container">
+  <input type="text" class="device-search" placeholder="Search your device (e.g., iPhone 11)">
+  <div class="device-results"></div>
+  <div class="device-output"></div>
+</div>
+
+<!-- Device Lookup Module -->
+<style>
+  .device-lookup-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    font-family: Poppins, sans-serif;
+  }
+
+  .device-search {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+
+  .device-results {
+    border: 1px solid #aaa;
+    background-color: #f4f4f4;
+    border-radius: 6px;
+    padding: 1rem;
+    color: #333;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .device-item {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .device-item:last-child {
+    border-bottom: none;
+  }
+
+  .device-item:hover {
+    background-color: #e0e0e0;
+  }
+
+  .device-output {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #444;
+  }
+</style>
+
+<script>
+  const devices = [
+    // iPhones
+    { name: "iPhone 6", chip: "A8", arch: "arm64" },
+    { name: "iPhone 6 Plus", chip: "A8", arch: "arm64" },
+    { name: "iPhone 6s", chip: "A9", arch: "arm64" },
+    { name: "iPhone 6s Plus", chip: "A9", arch: "arm64" },
+    { name: "iPhone SE (1st gen)", chip: "A9", arch: "arm64" },
+    { name: "iPhone 7", chip: "A10 Fusion", arch: "arm64" },
+    { name: "iPhone 7 Plus", chip: "A10 Fusion", arch: "arm64" },
+    { name: "iPhone 8", chip: "A11 Bionic", arch: "arm64" },
+    { name: "iPhone 8 Plus", chip: "A11 Bionic", arch: "arm64" },
+    { name: "iPhone X", chip: "A11 Bionic", arch: "arm64" },
+    { name: "iPhone XR", chip: "A12 Bionic", arch: "arm64e" },
+    { name: "iPhone XS", chip: "A12 Bionic", arch: "arm64e" },
+    { name: "iPhone XS Max", chip: "A12 Bionic", arch: "arm64e" },
+    { name: "iPhone 11", chip: "A13 Bionic", arch: "arm64e" },
+    { name: "iPhone 11 Pro", chip: "A13 Bionic", arch: "arm64e" },
+    { name: "iPhone 11 Pro Max", chip: "A13 Bionic", arch: "arm64e" },
+    { name: "iPhone SE (2nd gen)", chip: "A13 Bionic", arch: "arm64e" },
+    { name: "iPhone 12 mini", chip: "A14 Bionic", arch: "arm64e" },
+    { name: "iPhone 12", chip: "A14 Bionic", arch: "arm64e" },
+    { name: "iPhone 12 Pro", chip: "A14 Bionic", arch: "arm64e" },
+    { name: "iPhone 12 Pro Max", chip: "A14 Bionic", arch: "arm64e" },
+    { name: "iPhone 13 mini", chip: "A15 Bionic", arch: "arm64e" },
+    { name: "iPhone 13", chip: "A15 Bionic", arch: "arm64e" },
+    { name: "iPhone 13 Pro", chip: "A15 Bionic", arch: "arm64e" },
+    { name: "iPhone 13 Pro Max", chip: "A15 Bionic", arch: "arm64e" },
+    { name: "iPhone SE (3rd gen)", chip: "A15 Bionic", arch: "arm64e" },
+    { name: "iPhone 14", chip: "A15 Bionic (enhanced)", arch: "arm64e" },
+    { name: "iPhone 14 Plus", chip: "A15 Bionic (enhanced)", arch: "arm64e" },
+    { name: "iPhone 14 Pro", chip: "A16 Bionic", arch: "arm64e" },
+    { name: "iPhone 14 Pro Max", chip: "A16 Bionic", arch: "arm64e" },
+    { name: "iPhone 15", chip: "A16 Bionic", arch: "arm64e" },
+    { name: "iPhone 15 Plus", chip: "A16 Bionic", arch: "arm64e" },
+    { name: "iPhone 15 Pro", chip: "A17 Pro", arch: "arm64e" },
+    { name: "iPhone 15 Pro Max", chip: "A17 Pro", arch: "arm64e" },
+    { name: "iPhone 16", chip: "A17 Pro", arch: "arm64e" },
+    { name: "iPhone 16 Plus", chip: "A17 Pro", arch: "arm64e" },
+    { name: "iPhone 16 Pro", chip: "A18 Pro", arch: "arm64e" },
+    { name: "iPhone 16 Pro Max", chip: "A18 Pro", arch: "arm64e" },
+    { name: "iPhone 17", chip: "A18 Pro", arch: "arm64e" },
+    { name: "iPhone 17 Plus", chip: "A18 Pro", arch: "arm64e" },
+    { name: "iPhone 17 Pro", chip: "A19 Pro", arch: "arm64e" },
+    { name: "iPhone 17 Pro Max", chip: "A19 Pro", arch: "arm64e" },
+
+    // iPads
+    { name: "iPad (1st gen)", chip: "A4", arch: "armv7" },
+    { name: "iPad 2", chip: "A5", arch: "armv7" },
+    { name: "iPad (3rd gen)", chip: "A5X", arch: "armv7s" },
+    { name: "iPad (4th gen)", chip: "A6X", arch: "armv7s" },
+    { name: "iPad Air", chip: "A7", arch: "arm64" },
+    { name: "iPad Air 2", chip: "A8X", arch: "arm64" },
+    { name: "iPad Air (3rd gen)", chip: "A12 Bionic", arch: "arm64e" },
+    { name: "iPad Air (4th gen)", chip: "A14 Bionic", arch: "arm64e" },
+    { name: "iPad Air (5th gen)", chip: "M1", arch: "arm64e" },
+    { name: "iPad Mini", chip: "A5", arch: "armv7" },
+    { name: "iPad Mini 2", chip: "A7", arch: "arm64" },
+    { name: "iPad Mini 3", chip: "A7", arch: "arm64" },
+    { name: "iPad Mini 4", chip: "A8", arch: "arm64" },
+    { name: "iPad Mini (5th gen)", chip: "A12 Bionic", arch: "arm64e" },
+    { name: "iPad Mini (6th gen)", chip: "A15 Bionic", arch: "arm64e" },
+    { name: "iPad Pro (9.7-inch)", chip: "A9X", arch: "arm64" },
+    { name: "iPad Pro (12.9-inch 1st gen)", chip: "A9X", arch: "arm64" },
+    { name: "iPad Pro (10.5-inch)", chip: "A10X Fusion", arch: "arm64" },
+    { name: "iPad Pro (12.9-inch 2nd gen)", chip: "A10X Fusion", arch: "arm64" },
+    { name: "iPad Pro (11-inch 1st gen)", chip: "A12X Bionic", arch: "arm64e" },
+    { name: "iPad Pro (12.9-inch 3rd gen)", chip: "A12X Bionic", arch: "arm64e" },
+    { name: "iPad Pro (11-inch 2nd gen)", chip: "A12Z Bionic", arch: "arm64e" },
+    { name: "iPad Pro (12.9-inch 4th gen)", chip: "A12Z Bionic", arch: "arm64e" },
+    { name: "iPad Pro (11-inch 3rd gen)", chip: "M1", arch: "arm64e" },
+    { name: "iPad Pro (12.9-inch 5th gen)", chip: "M1", arch: "arm64e" },
+    { name: "iPad Pro (11-inch 4th gen)", chip: "M2", arch: "arm64e" },
+    { name: "iPad Pro (12.9-inch 6th gen)", chip: "M2", arch: "arm64e" }
+  ];
+
+  const searchInput = document.querySelector('.device-search');
+  const resultsDiv = document.querySelector('.device-results');
+  const outputDiv = document.querySelector('.device-output');
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+    resultsDiv.innerHTML = '';
+    outputDiv.innerHTML = '';
+
+    if (!query) return;
+
+    const matches = devices.filter(d => d.name.toLowerCase().includes(query));
+    if (matches.length === 0) {
+      resultsDiv.innerHTML = "<div class='device-item'>No matches found.</div>";
+    } else {
+      matches.forEach(device => {
+        const item = document.createElement('div');
+        item.className = 'device-item';
+        item.textContent = device.name;
+        item.addEventListener('click', () => {
+          outputDiv.innerHTML = `${device.name} → Chip: <strong>${device.chip}</strong>, Architecture: <strong>${device.arch}</strong>`;
+          resultsDiv.innerHTML = '';
+          searchInput.value = device.name;
+        });
+        resultsDiv.appendChild(item);
+      });
+    }
+  });
+</script>
 <footer>
   <div>
     <a href="mailto:youremail@example.com">Contact</a>
