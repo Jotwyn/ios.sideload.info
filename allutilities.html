@@ -1,1 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>sideload.info - Utillties</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
+    body {
+      background-color: #ffffff;
+      color: #111;
+      line-height: 1.6;
+      animation: fadeIn 0.8s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    header {
+      background: #e0f4ff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .hamburger {
+      font-size: 1.8rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      min-width: 180px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      animation: fadeIn 0.3s ease;
+      z-index: 100;
+    }
+
+    .menu a, .menu button {
+      padding: 0.75rem 1.2rem;
+      color: #007acc;
+      text-decoration: none;
+      transition: background 0.2s;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+    }
+
+    .menu a:hover, .menu button:hover {
+      background-color: #f0f8ff;
+    }
+
+    .submenu {
+      display: none;
+      flex-direction: column;
+      border-top: 1px solid #ccc;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 0.75rem;
+      text-align: center;
+    }
+
+    table th {
+      background-color: #f0f8ff;
+      font-weight: 600;
+    }
+
+    table td a {
+      color: #007acc;
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 3rem;
+      background: #e0f4ff;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    footer a {
+      color: #007acc;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    footer .copyright {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><strong>ios.sideload.info</strong></div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="menu" id="dropdownMenu">
+    <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
+    <div class="submenu" id="subMenu">
+      <a href="allsigners.html">Signers</a>
+      <a href="allutilities.html">Utilities</a>
+      <a href="faq.html">FAQ</a>
+      <a href="errors.html">Errors</a>
+    </div>
+    <a href="getstarted.html">Get Started</a>
+  </div>
+</header>
+
+<main>
+  <h1>Utillties</h1>
+  <p>These tools are helpful or may improve your experience of sideloading. You may want to install one of these!</p>
+
+
+  <style>
+  .caution-box {
+    border: 2px solid #f9a825;
+    background-color: #fff8e1;
+    color: #8a6d1d;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    max-width: 600px;
+    margin: 1rem 0;
+  }
+</style>
+
+      <div class="caution-box">
+  Some methods requires a computer running Windows/MacOS in order to install. If a computer is not nearby, please <a href="alternatives.html">seek alternative methods</a>.
+</div>
+
+  <h2>Version Table</h2>
+  <table>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>All devices</th>
+      <th>Information</th>
+    </tr>
+    <tr>
+      <td>iOS 15</td>
+      <td>iOS 16.1.2</td>
+      <td><a href="utillties/cowabunga.html">Cowabunga</a></td>
+      <td>Removes any blacklist from enterprise certificates, disable three app limit, and many more features.</td>
+    </tr>
+    <tr>
+      <td>iOS 17.0</td>
+      <td>iOS 18.0.1</td>
+      <td><a href="utillties/blacklistbegone.html">BlacklistBeGone</a></td>
+      <td>Removes any blacklist from enterprise certificates. Requires you to disable Find My.</td>
+    </tr>
+    <tr>
+      <td>iOS 16.0</td>
+      <td>iOS 18.0 RC / 18.1 beta 4</td>
+      <td><a href="utillties/sparsebox.html">SparseBox</a></td>
+      <td>Removes the three app limit on free developer accounts. Requires you to disable Find My. Does not include version 17.7.1.</td>
+    </tr>
+    <tr>
+      <td>iOS 15</td>
+      <td>~</td>
+      <td><a href="utillties/livecontainer.html">LiveContainer</a></td>
+      <td>An app launcher. Very useful for free developer certificate users, as it can launch instances of an application without restrictions applying. This is not an emulator or a hypervior.</td>
+    </tr>
+    </tr>
+    </tr>
+    <tr>
+    </tr>
+    </tr>
+    </tr>
+  </table>
+
+  <h2>Finding your iOS version</h2>
+  <ol>
+    <li>Open the “Settings” application</li>
+    <li>In the app, find “General”, then “About”, “Software Version”. Beside it should be your iOS version.</li>
+  </ol>
+    <h2>ARM64 or ARM64e</h2>
+  <ol>
+    <p>Use the device finder below to check your device architecture.</p>
+</main>
+
+<footer>
+  <div>
+    <a href="mailto:youremail@example.com">Contact</a>
+    <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
+    <a href="getstarted.html">Get Started</a>
+  </div>
+  <div class="copyright">
+    © 2025 - sideload.info - All rights reserved
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  }
+
+  function toggleSubMenu() {
+    const sub = document.getElementById("subMenu");
+    sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function(event) {
+    const menu = document.getElementById("dropdownMenu");
+    const hamburger = document.querySelector(".hamburger");
+    if (!menu.contains(event.target) && event.target !== hamburger) {
+      menu.style.display = "none";
+      document.getElementById("subMenu").style.display = "none";
+    }
+  });
+</script>
+
+</body>
+</html>
