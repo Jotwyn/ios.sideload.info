@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sideload.info - AltStore Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #111;
+      line-height: 1.6;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    header {
+      background: #e0f4ff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .hamburger {
+      font-size: 1.8rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      min-width: 180px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      animation: fadeIn 0.3s ease;
+      z-index: 100;
+    }
+
+    .menu a {
+      padding: 0.75rem 1.2rem;
+      color: #007acc;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .menu a:hover {
+      background-color: #f0f8ff;
+    }
+
+    .submenu {
+      display: none;
+      flex-direction: column;
+      border-top: 1px solid #ccc;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .faq-section {
+      margin-top: 2rem;
+      background-color: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .faq-section h2 {
+      margin-bottom: 1rem;
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+
+    /* Consistent font size for all p, ul, ol inside faq-section */
+    .faq-section p,
+    .faq-section ul,
+    .faq-section ol {
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .faq-section ul {
+      padding-left: 1.2rem;
+      list-style-type: disc;
+    }
+
+    .faq-section ol {
+      padding-left: 1.5rem;
+      list-style-type: decimal;
+    }
+
+    footer {
+      margin-top: 3rem;
+      background: #e0f4ff;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    footer a {
+      color: #007acc;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    footer .copyright {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><strong>ios.sideload.info</strong></div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <div class="menu" id="dropdownMenu">
+      <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
+      <div class="submenu" id="subMenu">
+        <a href="allsigners.html">Signers</a>
+        <a href="allutilities.html">Utilities</a>
+        <a href="faq.html">FAQ</a>
+        <a href="errors.html">Errors</a>
+      </div>
+      <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="faq-section">
+      <h2>AltStore</h2>
+      <p>AltStore is an application sideloader on iOS 14+ that uses Apple Developer Accounts for signing apps. SideStore is based off AltServer, however uses its custom application, "SideStore", which allows users to resign apps without a computer.</p>
+
+
+      <h2>Prerequisites</h2>
+      <ul>
+        <li>A computer running Windows 10 or MacOS 10.14 or above</li>
+        <li>iPad or iPhone running iOS 14 or above</li>
+        <li>Latest version of <a href="https://cdn.altstore.io/file/altstore/altinstaller.zip" target="_blank" rel="noopener noreferrer">AltServer</a></li>
+        <p>- If you are on MacOS 10.14 or 10.15, you must use this version of <a href="https://f000.backblazeb2.com/file/altstore/altserver/1_6_2.zip">AltServer</a></p>
+        <li>Latest version of <a href="https://www.apple.com/itunes/download/win64/" target="_blank" rel="noopener noreferrer">iTunes (not from the Microsoft store)</a></li>
+        <li>Latest version of <a href="https://updates.cdn-apple.com/2020/windows/001-39935-20200911-1A70AA56-F448-11EA-8CC0-99D41950005E/iCloudSetup.exe" target="_blank" rel="noopener noreferrer">iCloud (not from the Microsoft store)</a></li>
+        <li>A working Apple ID</li>
+      </ul>
+
+      <h2>Enabling Developer Mode</h2>
+      <p>Starting iOS/iPadOS 16+, all users are required to enable developer mode to install developer apps.</p>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Scroll down to Privacy &amp; Security.</li>
+        <li>On Privacy &amp; Security, scroll down to Developer Mode. Click enable.</li>
+        <li>Your device may restart. Once enabled, proceed with the next steps.</li>
+      </ol>
+
+      <h2>Running AltServer</h2>
+      <ol>
+        <li>If not done already, run setup.exe and run the AltServer installer.</li>
+        <li>Once complete, an app called "AltServer" should appear. Find "AltServer", and run as administrator.</li>
+        <li>In the bottom rigt corner, click the tray and select the AltServer icon.</li>
+        <li>Select "Install AltStore".</li>
+        <li>Type in your Apple ID. Your login details will only be sent to Apple for verification and are not tracked by AltServer.</li>
+        <li>Once done, AltStore should appear on your home screen.</li>
+      </ol>
+
+      <h2>Enabling Wifi-sync</h2>
+      <ol>
+        <li>Open iTunes on your computer.</li>
+        <li>With your device connected via USB, click "Enable Wifi-Sync".</li>
+      </ol>
+
+      <h2>Verifying Application</h2>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Go to General.</li>
+        <li>Scroll to VPN &amp; Device Management.</li>
+        <li>Open it and you will find a developer application.</li>
+        <li>Click on it. Once opened, click "Verify App".</li>
+      </ol>
+      
+      </ol>
+    </div>
+  </main>
+
+  <footer>
+    <div>
+      <a href="mailto:youremail@example.com">Contact</a>
+      <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
+      <a href="getstarted.html">Get Started</a>
+    </div>
+    <div class="copyright">
+      © 2025 - sideload.info - All rights reserved
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    function toggleSubMenu() {
+      const sub = document.getElementById("subMenu");
+      sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+    }
+
+    // Auto-close dropdown on outside click
+    document.addEventListener("click", function(event) {
+      const menu = document.getElementById("dropdownMenu");
+      const hamburger = document.querySelector(".hamburger");
+      if (!menu.contains(event.target) && event.target !== hamburger) {
+        menu.style.display = "none";
+        document.getElementById("subMenu").style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
