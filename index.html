@@ -5,29 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sideload.info - Home</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-   <style>
-
-     .get-started-container {
-  text-align: center;
-  margin-top: 2rem;
-}
-
-.get-started-button {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: #007acc;
-  color: white;
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.get-started-button:hover {
-  background-color: #005fa3;
-}
-
+  <style>
     * {
       margin: 0;
       padding: 0;
@@ -88,9 +66,7 @@
       border: none;
       text-align: left;
       cursor: pointer;
-      font-family: 'Poppins', sans-serif;
       font-size: 1rem;
-      position: relative;
       white-space: nowrap;
     }
 
@@ -104,7 +80,6 @@
       border-top: 1px solid #ccc;
     }
 
-    /* New submenu to the left of "More.." */
     .more-submenu {
       display: none;
       position: absolute;
@@ -123,17 +98,37 @@
       padding: 0.75rem 1.2rem;
       color: #007acc;
       text-decoration: none;
-      background: none;
-      border: none;
-      text-align: left;
-      cursor: pointer;
-      font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
-      white-space: nowrap;
     }
 
     .more-submenu a:hover {
       background-color: #f0f8ff;
+    }
+
+    .banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .get-started-container {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .get-started-button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: #007acc;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .get-started-button:hover {
+      background-color: #005fa3;
     }
 
     main {
@@ -206,37 +201,46 @@
       font-size: 0.8rem;
       color: #666;
     }
+
+    .grey {
+      border: 2px solid #9e9e9e;
+      background-color: #f5f5f5;
+      color: #424242;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      max-width: 600px;
+      margin: 1rem 0;
+    }
   </style>
   <script>
-  function toggleMenu() {
-    const menu = document.getElementById("dropdownMenu");
-    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-  }
-
-  function toggleSubMenu() {
-    const sub = document.getElementById("subMenu");
-    sub.style.display = sub.style.display === "flex" ? "none" : "flex";
-  }
-
-  function toggleMoreSubMenu(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const moreMenu = document.getElementById("moreSubMenu");
-    moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
-  }
-
-  // Close dropdowns when clicking outside
-  document.addEventListener("click", function(event) {
-    const menu = document.getElementById("dropdownMenu");
-    const hamburger = document.querySelector(".hamburger");
-    if (!menu.contains(event.target) && event.target !== hamburger) {
-      menu.style.display = "none";
-      document.getElementById("subMenu").style.display = "none";
-      document.getElementById("moreSubMenu").style.display = "none";
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
     }
-  });
-</script>
-  
+
+    function toggleSubMenu() {
+      const sub = document.getElementById("subMenu");
+      sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+    }
+
+    function toggleMoreSubMenu(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      const moreMenu = document.getElementById("moreSubMenu");
+      moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
+    }
+
+    document.addEventListener("click", function(event) {
+      const menu = document.getElementById("dropdownMenu");
+      const hamburger = document.querySelector(".hamburger");
+      if (!menu.contains(event.target) && event.target !== hamburger) {
+        menu.style.display = "none";
+        document.getElementById("subMenu").style.display = "none";
+        document.getElementById("moreSubMenu").style.display = "none";
+      }
+    });
+  </script>
 </head>
 <body>
 
@@ -264,98 +268,48 @@
   </div>
 </header>
 
-  <section class="banner">
-    <a href="getstarted.html"><button>Get Started</button></a>
-  </section>
+<!-- ✅ Banner Image -->
+<section class="banner">
+  <img src="banner.jpeg" alt="Site banner">
+</section>
 
-  <main>
-    <div class="faq-section">
-
-      <style>
-  .grey {
-    border: 2px solid #9e9e9e;
-    background-color: #f5f5f5;
-    color: #424242;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    max-width: 600px;
-    margin: 1rem 0;
-  }
-</style>
-
-  <div class="grey">
-    Sideloading is not jailbreaking. You do not need to jailbreak to sideload. However, some sideloaders are built for jailbroken devices. To jailbreak, visit <a href="https://ios.cfw.guide">ios.cfw.guide</a>.
+<!-- ✅ Get Started Button -->
+<div class="get-started-container">
+  <a href="getstarted.html" class="get-started-button">Get Started</a>
 </div>
-      
-      <h2>What is sideloading?</h2>
-      <p>
-        By default, Apple doesn’t allow installing applications outside of the App Store.
-        Compared to other operating systems such as Android or Windows, they natively allow
-        installing apps outside of the App Store. Apple doesn’t, as it risks the privacy of
-        their users and could cause users to install unsafe apps.
-      </p>
 
-      <h2>Is sideloading dangerous?</h2>
-      <p>
-        Sideloading itself isn’t necessarily dangerous as no viruses have been seen “in the wild”.
-        However, spyware frameworks have been exploited previously, such as Pegasus or SeaShell.
-        As long as you’re careful with what you install, there's almost no risk. Plus, both of these
-        exploitation frameworks are only on versions 16 & 17.0 and below.
-      </p>
-
-      <h2>Is sideloading illegal?</h2>
-      <p>
-        It depends on what you sideload. Pirated or modified apps (e.g. infinite currency) are illegal.
-        While arrests are rare, mass distribution of pirated content can lead to legal consequences.
-      </p>
-
-      <h2>Disclaimer</h2>
-      <p>
-        Our web developers nor contributors have stated or agreed that we personally own or created any signer, application, utillty
-        or service. The team who created this website only made this website as a guide for other users. We do not claim to own anything,
-        and we give full credits to the original developers who created this tool.
-
-
-      </p>
-      <p>
-        Additionally, most signers require a computer with Windows or MacOS (Linux is semi-supported). If you do not own a PC, you are very
-        limited to certain signers. If you can use a computer, please use one.
-      </p>
+<main>
+  <div class="faq-section">
+    <div class="grey">
+      Sideloading is not jailbreaking. You do not need to jailbreak to sideload. However, some sideloaders are built for jailbroken devices. To jailbreak, visit <a href="https://ios.cfw.guide">ios.cfw.guide</a>.
     </div>
-  </main>
 
-  <footer>
-    <div>
-      <a href="mailto:youremail@example.com">Contact</a>
-      <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
-      <a href="getstarted.html">Get Started</a>
-    </div>
-    <div class="copyright">
-      © 2025 - sideload.info - All rights reserved
-    </div>
-  </footer>
+    <h2>What is sideloading?</h2>
+    <p>By default, Apple doesn’t allow installing applications outside of the App Store...</p>
 
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("dropdownMenu");
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    }
+    <h2>Is sideloading dangerous?</h2>
+    <p>Sideloading itself isn’t necessarily dangerous...</p>
 
-    function toggleSubMenu() {
-      const sub = document.getElementById("subMenu");
-      sub.style.display = sub.style.display === "flex" ? "none" : "flex";
-    }
+    <h2>Is sideloading illegal?</h2>
+    <p>It depends on what you sideload...</p>
 
-    // Auto-close dropdown on outside click
-    document.addEventListener("click", function(event) {
-      const menu = document.getElementById("dropdownMenu");
-      const hamburger = document.querySelector(".hamburger");
-      if (!menu.contains(event.target) && event.target !== hamburger) {
-        menu.style.display = "none";
-        document.getElementById("subMenu").style.display = "none";
-      }
-    });
-  </script>
+    <h2>Disclaimer</h2>
+    <p>Our web developers nor contributors have stated or agreed that we personally own or created any signer, application, utillty or service...</p>
+
+    <p>Additionally, most signers require a computer with Windows or MacOS (Linux is semi-supported)...</p>
+  </div>
+</main>
+
+<footer>
+  <div>
+    <a href="mailto:youremail@example.com">Contact</a>
+    <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
+    <a href="getstarted.html">Get Started</a>
+  </div>
+  <div class="copyright">
+    © 2025 - sideload.info - All rights reserved
+  </div>
+</footer>
+
 </body>
 </html>
