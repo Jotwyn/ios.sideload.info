@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>iOS 14 - sideload.info</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
+ <style>
     * {
       margin: 0;
       padding: 0;
@@ -50,7 +50,7 @@
       background-color: white;
       border: 1px solid #ccc;
       border-radius: 10px;
-      overflow: hidden;
+      overflow: visible;
       min-width: 180px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       animation: fadeIn 0.3s ease;
@@ -68,6 +68,8 @@
       cursor: pointer;
       font-family: 'Poppins', sans-serif;
       font-size: 1rem;
+      position: relative;
+      white-space: nowrap;
     }
 
     .menu a:hover, .menu button:hover {
@@ -78,6 +80,38 @@
       display: none;
       flex-direction: column;
       border-top: 1px solid #ccc;
+    }
+
+    /* New submenu to the left of "More.." */
+    .more-submenu {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 100%;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      min-width: 180px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      flex-direction: column;
+      z-index: 110;
+    }
+
+    .more-submenu a {
+      padding: 0.75rem 1.2rem;
+      color: #007acc;
+      text-decoration: none;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+
+    .more-submenu a:hover {
+      background-color: #f0f8ff;
     }
 
     main {
@@ -151,6 +185,36 @@
       color: #666;
     }
   </style>
+  <script>
+  function toggleMenu() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  }
+
+  function toggleSubMenu() {
+    const sub = document.getElementById("subMenu");
+    sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+  }
+
+  function toggleMoreSubMenu(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const moreMenu = document.getElementById("moreSubMenu");
+    moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
+  }
+
+  // Close dropdowns when clicking outside
+  document.addEventListener("click", function(event) {
+    const menu = document.getElementById("dropdownMenu");
+    const hamburger = document.querySelector(".hamburger");
+    if (!menu.contains(event.target) && event.target !== hamburger) {
+      menu.style.display = "none";
+      document.getElementById("subMenu").style.display = "none";
+      document.getElementById("moreSubMenu").style.display = "none";
+    }
+  });
+</script>
+  
 </head>
 <body>
 
@@ -160,12 +224,19 @@
   <div class="menu" id="dropdownMenu">
     <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
     <div class="submenu" id="subMenu">
-        <a href="http://ios.sideload.info/signers.html">Signers</a>
-        <a href="http://ios.sideload.info/allutillties.html">Utilities</a>
-        <a href="http://ios.sideload.info/faq.html">FAQ</a>
-        <a href="http://ios.sideload.info/errors.html">Errors</a>
-        <a href="http://ios.sideload.info/siteinfo.html">Site Info</a>
-        <a href="http://ios.sideload.info/more.html">More..</a>
+      <a href="http://ios.sideload.info/signers.html">Signers</a>
+      <a href="http://ios.sideload.info/allutillties.html">Utilities</a>
+      <a href="http://ios.sideload.info/faq.html">FAQ</a>
+      <a href="http://ios.sideload.info/errors.html">Errors</a>
+      <a href="http://ios.sideload.info/siteinfo.html">Site Info</a>
+      <div style="position: relative;">
+        <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
+        <div class="more-submenu" id="moreSubMenu">
+          <a href="http://ios.sideload.info/enabling-jit.html">Enabling JIT</a>
+          <a href="http://ios.sideload.info/decrypting-apps.html">Decrypting Apps</a>
+          <a href="http://ios.sideload.info/injecting-tweaks.html">Injecting Tweaks</a>
+        </div>
+      </div>
     </div>
     <a href="getstarted.html">Get Started</a>
   </div>
