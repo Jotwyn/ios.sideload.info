@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sideload.info - SideStore Guide</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-<style>
+  <style>
     * {
       margin: 0;
       padding: 0;
@@ -185,6 +185,35 @@
       color: #666;
     }
   </style>
+  <script>
+  function toggleMenu() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  }
+
+  function toggleSubMenu() {
+    const sub = document.getElementById("subMenu");
+    sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+  }
+
+  function toggleMoreSubMenu(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const moreMenu = document.getElementById("moreSubMenu");
+    moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
+  }
+
+  // Close dropdowns when clicking outside
+  document.addEventListener("click", function(event) {
+    const menu = document.getElementById("dropdownMenu");
+    const hamburger = document.querySelector(".hamburger");
+    if (!menu.contains(event.target) && event.target !== hamburger) {
+      menu.style.display = "none";
+      document.getElementById("subMenu").style.display = "none";
+      document.getElementById("moreSubMenu").style.display = "none";
+    }
+  });
+</script>
 </head>
 <body>
 
