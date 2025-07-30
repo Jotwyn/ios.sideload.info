@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sideload.info - Site Information</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
+ <style>
     * {
       margin: 0;
       padding: 0;
@@ -17,7 +17,7 @@
       background-color: #ffffff;
       color: #111;
       line-height: 1.6;
-      animation: fadeIn 1s ease-in;
+      animation: fadeIn 0.8s ease-in;
     }
 
     @keyframes fadeIn {
@@ -50,21 +50,29 @@
       background-color: white;
       border: 1px solid #ccc;
       border-radius: 10px;
-      overflow: hidden;
+      overflow: visible;
       min-width: 180px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       animation: fadeIn 0.3s ease;
       z-index: 100;
     }
 
-    .menu a {
+    .menu a, .menu button {
       padding: 0.75rem 1.2rem;
       color: #007acc;
       text-decoration: none;
       transition: background 0.2s;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      position: relative;
+      white-space: nowrap;
     }
 
-    .menu a:hover {
+    .menu a:hover, .menu button:hover {
       background-color: #f0f8ff;
     }
 
@@ -74,42 +82,82 @@
       border-top: 1px solid #ccc;
     }
 
+    /* New submenu to the left of "More.." */
+    .more-submenu {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 100%;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      min-width: 180px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      flex-direction: column;
+      z-index: 110;
+    }
+
+    .more-submenu a {
+      padding: 0.75rem 1.2rem;
+      color: #007acc;
+      text-decoration: none;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+
+    .more-submenu a:hover {
+      background-color: #f0f8ff;
+    }
+
     main {
       padding: 2rem;
       max-width: 900px;
       margin: auto;
     }
 
-    .faq-section {
-      margin-top: 2rem;
-      background-color: #f9f9f9;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .faq-section h2 {
+    h1 {
       margin-bottom: 1rem;
+      font-size: 2rem;
       font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    h2 {
       font-size: 1.3rem;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
     }
 
-    /* Consistent font size for all p, ul, ol inside faq-section */
-    .faq-section p,
-    .faq-section ul,
-    .faq-section ol {
-      margin-bottom: 1.2rem;
-      font-size: 0.95rem;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
     }
 
-    .faq-section ul {
-      padding-left: 1.2rem;
-      list-style-type: disc;
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 0.75rem;
+      text-align: center;
     }
 
-    .faq-section ol {
-      padding-left: 1.5rem;
-      list-style-type: decimal;
+    table th {
+      background-color: #f0f8ff;
+      font-weight: 600;
+    }
+
+    table td a {
+      color: #007acc;
+      text-decoration: underline;
     }
 
     footer {
@@ -137,24 +185,62 @@
       color: #666;
     }
   </style>
+  <script>
+  function toggleMenu() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  }
+
+  function toggleSubMenu() {
+    const sub = document.getElementById("subMenu");
+    sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+  }
+
+  function toggleMoreSubMenu(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const moreMenu = document.getElementById("moreSubMenu");
+    moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
+  }
+
+  // Close dropdowns when clicking outside
+  document.addEventListener("click", function(event) {
+    const menu = document.getElementById("dropdownMenu");
+    const hamburger = document.querySelector(".hamburger");
+    if (!menu.contains(event.target) && event.target !== hamburger) {
+      menu.style.display = "none";
+      document.getElementById("subMenu").style.display = "none";
+      document.getElementById("moreSubMenu").style.display = "none";
+    }
+  });
+</script>
+  
 </head>
 <body>
-  <header>
-    <div class="logo"><strong>ios.sideload.info</strong></div>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <div class="menu" id="dropdownMenu">
-      <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
-      <div class="submenu" id="subMenu">
-        <a href="http://ios.sideload.info/signers.html">Signers</a>
-        <a href="http://ios.sideload.info/allutillties.html">Utilities</a>
-        <a href="http://ios.sideload.info/faq.html">FAQ</a>
-        <a href="http://ios.sideload.info/errors.html">Errors</a>
-        <a href="http://ios.sideload.info/siteinfo.html">Site Info</a>
-        <a href="http://ios.sideload.info/more.html">More..</a>
+
+<header>
+  <div class="logo"><strong>ios.sideload.info</strong></div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="menu" id="dropdownMenu">
+    <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
+    <div class="submenu" id="subMenu">
+      <a href="http://ios.sideload.info/signers.html">Signers</a>
+      <a href="http://ios.sideload.info/allutillties.html">Utilities</a>
+      <a href="http://ios.sideload.info/faq.html">FAQ</a>
+      <a href="http://ios.sideload.info/errors.html">Errors</a>
+      <a href="http://ios.sideload.info/siteinfo.html">Site Info</a>
+      <div style="position: relative;">
+        <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
+        <div class="more-submenu" id="moreSubMenu">
+          <a href="http://ios.sideload.info/enabling-jit.html">Enabling JIT</a>
+          <a href="http://ios.sideload.info/decrypting-apps.html">Decrypting Apps</a>
+          <a href="http://ios.sideload.info/injecting-tweaks.html">Injecting Tweaks</a>
+        </div>
       </div>
-      <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
     </div>
-  </header>
+    <a href="getstarted.html">Get Started</a>
+  </div>
+</header>
 
   <main>
     <div class="faq-section">
