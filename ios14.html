@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>iOS 14 - sideload.info</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
- <style>
+  <style>
     * {
       margin: 0;
       padding: 0;
@@ -120,10 +120,17 @@
       margin: auto;
     }
 
-    h1 {
+    .title-filter-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
       margin-bottom: 1rem;
+    }
+
+    h1 {
       font-size: 2rem;
       font-weight: 600;
+      margin: 0;
     }
 
     p {
@@ -184,37 +191,101 @@
       font-size: 0.8rem;
       color: #666;
     }
+
+    /* FILTER DROPDOWN STYLES */
+    #filterBtn {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border: 1.5px solid #007acc;
+      background: white;
+      color: #007acc;
+      border-radius: 6px;
+      font-weight: 600;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    #filterDropdown {
+      display: none;
+      position: absolute;
+      top: 110%;
+      left: 0;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      min-width: 180px;
+      z-index: 200;
+    }
+
+    .filterOption {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0.75rem 1.2rem;
+      background: none;
+      border: none;
+      color: #007acc;
+      cursor: pointer;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    .filterOption:hover {
+      background-color: #f0f8ff;
+    }
+
+    .filterOption.active {
+      border: 2px solid #007acc;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+
+    .filterOption span {
+      user-select: none;
+    }
+
+    .caution-box {
+      border: 2px solid #f9a825;
+      background-color: #fff8e1;
+      color: #8a6d1d;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      max-width: 600px;
+      margin: 1rem 0;
+    }
   </style>
   <script>
-  function toggleMenu() {
-    const menu = document.getElementById("dropdownMenu");
-    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-  }
-
-  function toggleSubMenu() {
-    const sub = document.getElementById("subMenu");
-    sub.style.display = sub.style.display === "flex" ? "none" : "flex";
-  }
-
-  function toggleMoreSubMenu(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const moreMenu = document.getElementById("moreSubMenu");
-    moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
-  }
-
-  // Close dropdowns when clicking outside
-  document.addEventListener("click", function(event) {
-    const menu = document.getElementById("dropdownMenu");
-    const hamburger = document.querySelector(".hamburger");
-    if (!menu.contains(event.target) && event.target !== hamburger) {
-      menu.style.display = "none";
-      document.getElementById("subMenu").style.display = "none";
-      document.getElementById("moreSubMenu").style.display = "none";
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
     }
-  });
-</script>
-  
+
+    function toggleSubMenu() {
+      const sub = document.getElementById("subMenu");
+      sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+    }
+
+    function toggleMoreSubMenu(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      const moreMenu = document.getElementById("moreSubMenu");
+      moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
+    }
+
+    // Close dropdowns when clicking outside
+    document.addEventListener("click", function(event) {
+      const menu = document.getElementById("dropdownMenu");
+      const hamburger = document.querySelector(".hamburger");
+      if (!menu.contains(event.target) && event.target !== hamburger) {
+        menu.style.display = "none";
+        document.getElementById("subMenu").style.display = "none";
+        document.getElementById("moreSubMenu").style.display = "none";
+      }
+    });
+  </script>
 </head>
 <body>
 
@@ -243,29 +314,30 @@
 </header>
 
 <main>
-  <h1>iOS 14</h1>
+  <div class="title-filter-container">
+    <h1>iOS 14</h1>
+    <div style="position: relative;">
+      <button id="filterBtn">Filter ▾</button>
+      <div id="filterDropdown">
+        <button class="filterOption active" data-filter="recommended">
+          Recommended <span>✔</span>
+        </button>
+        <button class="filterOption" data-filter="nocomputer">
+          No Computer
+        </button>
+        <button class="filterOption" data-filter="jailbroken">
+          Jailbroken
+        </button>
+      </div>
+    </div>
+  </div>
+
   <p>Below shows a table of compatible signers with your chosen operating system version.</p>
   <p>Find your specific iOS version and click on the blue URL on the table to access the signer guide.</p>
 
-  <style>
-  .caution-box {
-    border: 2px solid #f9a825;
-    background-color: #fff8e1;
-    color: #8a6d1d;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    max-width: 600px;
-    margin: 1rem 0;
-  }
-</style>
-
-      <div class="caution-box">
-  Some methods requires a computer running Windows/MacOS in order to install. If a computer is not nearby, please <a href="alternatives.html">seek alternative methods</a>.
-</div>
-
-  <h2>Version Table</h2>
-  <table>
+  <!-- TABLES -->
+  <table id="recommendedTable">
+    <caption><strong>Recommended</strong></caption>
     <tr>
       <th>From</th>
       <th>To</th>
@@ -291,19 +363,101 @@
     </tr>
     </tr>
     </tr>
+    </tr>
+    </tr>
   </table>
+
+  <table id="noComputerTable" style="display:none; margin-top: 1rem;">
+    <caption><strong>No Computer</strong></caption>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>All devices</th>
+    </tr>
+    <tr>
+      <td>iOS 14.0 beta 1</td>
+      <td>iOS 14.8.1</td>
+      <td><a href="signers/jailed/esign.html">ESign</a></td>
+    </tr> 
+    <tr>
+      <td>iOS 14.0 beta 1</td>
+      <td>iOS 14.8.1</td>
+      <td><a href="signers/jailed/scarlet.html">Scarlet</a></td>
+    </tr>
+  </table>
+
+  <table id="jailbrokenTable" style="display:none; margin-top: 1rem;">
+    <caption><strong>Jailbroken</strong></caption>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>All devices</th>
+    </tr>
+    <tr>
+      <td>iOS 14 beta 1</td>
+      <td>iOS 14.8.1</td>
+      <td><a href="signers/jailbreak/appsync-unified.html">Appsync Unified</a></td>
+    </tr>
+    <tr>
+      <td>iOS 14 beta 1</td>
+      <td>iOS 14.8.1</td>
+      <td><a href="signers/jailbreak/trollstore-lite.html">TrollStore Lite</a></td>
+    </tr>
+  </table>
+
 
   <h2>Finding your iOS version</h2>
   <ol>
     <li>Open the “Settings” application</li>
     <li>In the app, find “General”, then “About”, “Software Version”. Beside it should be your iOS version.</li>
   </ol>
-    <h2>ARM64 or ARM64e</h2>
-  <ol>
-    <p>Use the device finder below to check your device architecture.</p>
 </main>
+<style>
+  .device-lookup-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    font-family: Poppins, sans-serif;
+  }
 
-  <div class="device-lookup-container">
+  .device-search {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+
+  .device-results {
+    border: 1px solid #aaa;
+    background-color: #f4f4f4;
+    border-radius: 6px;
+    padding: 1rem;
+    color: #333;
+  }
+
+  .device-item {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .device-item:last-child {
+    border-bottom: none;
+  }
+
+  .device-item:hover {
+    background-color: #e0e0e0;
+  }
+
+  .device-output {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #444;
+  }
+</style>
+
+<div class="device-lookup-container">
   <input type="text" class="device-search" placeholder="Search your device (e.g., iPhone 11)">
   <div class="device-results"></div>
   <div class="device-output"></div>
@@ -470,9 +624,9 @@
 </script>
 <footer>
   <div>
-    <a href="mailto:youremail@example.com">Contact</a>
-    <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
-    <a href="getstarted.html">Get Started</a>
+    <a href="https://ios.sideload.info/siteinfo.html">Contact</a>
+    <a href="https://discord.gg/bRYhdA7t" target="_blank">Discord</a>
+    <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
   </div>
   <div class="copyright">
     © 2025 - sideload.info - All rights reserved
@@ -480,6 +634,7 @@
 </footer>
 
 <script>
+  // Hamburger menu toggles
   function toggleMenu() {
     const menu = document.getElementById("dropdownMenu");
     menu.style.display = menu.style.display === "flex" ? "none" : "flex";
@@ -490,13 +645,76 @@
     sub.style.display = sub.style.display === "flex" ? "none" : "flex";
   }
 
-  // Close dropdown when clicking outside
+  function toggleMoreSubMenu(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const moreMenu = document.getElementById("moreSubMenu");
+    moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
+  }
+
+  // Close dropdowns when clicking outside (hamburger menus)
   document.addEventListener("click", function(event) {
     const menu = document.getElementById("dropdownMenu");
     const hamburger = document.querySelector(".hamburger");
     if (!menu.contains(event.target) && event.target !== hamburger) {
       menu.style.display = "none";
       document.getElementById("subMenu").style.display = "none";
+      document.getElementById("moreSubMenu").style.display = "none";
+    }
+  });
+
+  // FILTER dropdown logic
+  const filterBtn = document.getElementById('filterBtn');
+  const filterDropdown = document.getElementById('filterDropdown');
+  const filterOptions = document.querySelectorAll('.filterOption');
+
+  const tables = {
+    recommended: document.getElementById('recommendedTable'),
+    nocomputer: document.getElementById('noComputerTable'),
+    jailbroken: document.getElementById('jailbrokenTable')
+  };
+
+  filterBtn.addEventListener('click', () => {
+    filterDropdown.style.display = filterDropdown.style.display === 'block' ? 'none' : 'block';
+  });
+
+  filterOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      const selected = option.getAttribute('data-filter');
+
+      // Show only selected table
+      for (const key in tables) {
+        tables[key].style.display = (key === selected) ? 'table' : 'none';
+      }
+
+      // Update active styling
+      filterOptions.forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.border = 'none';
+        btn.querySelector('span')?.remove();
+        btn.style.fontWeight = '600';
+      });
+
+      // Mark selected button active with blue outline and checkmark
+      option.classList.add('active');
+      option.style.border = '2px solid #007acc';
+      option.style.borderRadius = '6px';
+      option.style.fontWeight = '700';
+      if (!option.querySelector('span')) {
+        const check = document.createElement('span');
+        check.textContent = '✔';
+        option.appendChild(check);
+      }
+
+      // Hide dropdown after selection
+      filterDropdown.style.display = 'none';
+    });
+  });
+
+  // Close filter dropdown if clicking outside
+  document.addEventListener('click', e => {
+    if (!filterDropdown.contains(e.target) && e.target !== filterBtn) {
+      filterDropdown.style.display = 'none';
     }
   });
 </script>
