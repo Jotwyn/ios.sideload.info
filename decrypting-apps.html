@@ -246,20 +246,53 @@
       <h2>Decrypting Apps</h2>
       <p>This guide shows to decrypt applications with existing tools.</p>
 
+                  <style>
+        .danger-box {
+          border: 2px solid #d93025;
+          background-color: #fce8e6;
+          color: #a12a2a;
+          padding: 1rem 1.5rem;
+          border-radius: 8px;
+          font-weight: 600;
+          max-width: 600px;
+          margin: 1rem 0;
+        }
+      </style>
+
+      <div class="danger-box">
+        Decrypting apps require TrollStore (or any sideloader that bypasses coretrust) or in a jailbroken state. If you do not have either of these, you cannot decrypt applications.
+      </div>
+
+            <div class="danger-box">
+        Decrypting paid apps & distributing them is considered piracy & is illegal.
+
       <h2>TrollDecrypt</h2>
       <ul>
-        <p>TrollDecrypt allows you to decrypt existing applications. Not all applications are supported.</p>
-        <p>With a free developer certificate, there are some rules you must follow. You are only allowed to install up to 3 apps at a time. Additionally, all installed apps must be refreshed every 7 days. Sideloaders, such as SideStore, have surpassed this restriction by refreshing in the background without a USB connection or computer.</p>
-        <p>Developer accounts are different on the other hand. Developer certificates surpass all those restrictions. Users can install unlimited applications, refresh every 365 days, but you have to pay $99 USD yearly. Services, such as Kravasign, mass distribute these developer certificates for an extremely cheap price. This is because one paid developer account can distribute 100 certificates.</p>
-      </ul>
+        <p>TrollDecrypt allows you to decrypt existing applications using TrollStore. Not all applications are supported.</p>
+        <li>Download the <a href="https://github.com/donato-fiore/TrollDecrypt/releases/download/v1.1/TrollDecrypt.tipa">latest version of TrollDecrypt.</a> Ensure you have TrollStore installed.</li>
+        <li>Install the .tipa file via TrollStore.</li>
+        <li>Once installed, open the TrollDecrypt application.</li>
+        <li>With TrollDecrypt opened, select the application you would like to decrypt. Alternatively, you can type in the PID (process id) of the app you want to decrypt at the bottom.</li>
+        <li>Once selected, tap "Yes", then wait. Time will vary on the app size.</li>
+        <li>Once finished decryption, the app may freeze. If it does, close the app from the app switcher and re-open.</li>
+        <li>At the top left of your screen, tap the folder icon. Your decrypted .ipa should be their.</li>
+      </u>
 
-          <h2>Enterprise Certificates</h2>
+      <h2>AppIndex</h2>
       <ul>
-        <p>Enterprise certificates are certificates created for companies. They typically have a lot of work phones to install third party apps provided by their own company. Enterprise certificates are generated from an Apple Enterprise Developer Program account, which can generate an unlimited amount of certificates.</p>
-        <p>Users often take advantage of the benefit that enterprise certificates have absolutely no restriction on sideloading (other than entitlement permission). Therefore, users leak enterprise certificates to the public and anybody can get access to these certificates.</p>
-        <p>You might be wondering if Apple catches onto this. They do. Infact, Apple has to revoke certificates because they were being overused and abused by users. In some cases, users can be blacklisted by certificates. Blacklists can be semi-prevented by installing a DNS which blocks Apple's domains from reaching your device, but Apple often uses new domains to overcome this. On some iOS versions, it is possible to remove blacklists.</p>
-        <p>Because of Apple detecting lots of traffic from new incoming users, they have easy access to revoke the certificate. This is why enterprise signing nowadays is extremely unreliable. Blacklists are also highly unpredictable and require a device restore in order to remove it.</p>
-      </ul>
+        <p>AppIndex allows you to decrypt existing applications.</p>
+              <div class="danger-box">
+       You MUST jailbreak in order to use this tool. This tool only officialy supports iOS 13 - 16.3, but could support higher/lower versions.
+              </div>
+        <li>Download the <a href="https://github.com/donato-fiore/TrollDecrypt/releases/download/v1.1/TrollDecrypt.tipa">latest version of TrollDecrypt.</a> Ensure you have TrollStore installed.</li>
+        <li>Install the .tipa file via TrollStore.</li>
+        <li>Once installed, open the TrollDecrypt application.</li>
+        <li>With TrollDecrypt opened, select the application you would like to decrypt. Alternatively, you can type in the PID (process id) of the app you want to decrypt at the bottom.</li>
+        <li>Once selected, tap "Yes", then wait. Time will vary on the app size.</li>
+        <li>Once finished decryption, the app may freeze. If it does, close the app from the app switcher and re-open.</li>
+        <li>At the top left of your screen, tap the folder icon. Your decrypted .ipa should be their.</li>
+      </u>
+
 
       </ol>
     </div>
@@ -267,9 +300,9 @@
 
   <footer>
     <div>
-      <a href="mailto:youremail@example.com">Contact</a>
-      <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
-      <a href="getstarted.html">Get Started</a>
+    <a href="https://ios.sideload.info/siteinfo.html">Contact</a>
+    <a href="https://discord.gg/bRYhdA7t" target="_blank">Discord</a>
+    <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
     </div>
     <div class="copyright">
       © 2025 - sideload.info - All rights reserved
