@@ -185,6 +185,22 @@
       color: #666;
     }
   </style>
+
+  <style>
+  .code-banner {
+    display: inline-block;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-family: SFMono-Regular, Consolas, Menlo, monospace;
+    font-size: 0.92rem;
+    line-height: 1.4;
+    white-space: nowrap;
+    color: #2a2a2a;
+  }
+</style>
+  
   <script>
   function toggleMenu() {
     const menu = document.getElementById("dropdownMenu");
@@ -284,13 +300,24 @@
               <div class="danger-box">
        You MUST jailbreak in order to use this tool. This tool only officialy supports iOS 13 - 16.3, but could support higher/lower versions.
               </div>
-        <li>Download the <a href="https://github.com/donato-fiore/TrollDecrypt/releases/download/v1.1/TrollDecrypt.tipa">latest version of TrollDecrypt.</a> Ensure you have TrollStore installed.</li>
-        <li>Install the .tipa file via TrollStore.</li>
-        <li>Once installed, open the TrollDecrypt application.</li>
-        <li>With TrollDecrypt opened, select the application you would like to decrypt. Alternatively, you can type in the PID (process id) of the app you want to decrypt at the bottom.</li>
-        <li>Once selected, tap "Yes", then wait. Time will vary on the app size.</li>
-        <li>Once finished decryption, the app may freeze. If it does, close the app from the app switcher and re-open.</li>
-        <li>At the top left of your screen, tap the folder icon. Your decrypted .ipa should be their.</li>
+        <li>Ensure you have the <div class="code-banner">
+  https://chariz.com
+</div> repo added in your package manager (Sileo, Zebra, Cydia, etc)</li>
+        <li>Once added, search up <div class="code-banner">
+  AppIndex
+</div> in your package manager.</li>
+        <li>Once the package has been found, tap on it and click <div class="code-banner">
+  Install
+</div>.</li>
+        <li>Once installed, find the <div class="code-banner">
+  AppIndex
+</div> application on your home screen and open it.</li>
+        <li>Find the application you want to decrypt.</li>
+        <li>Once you have selected the application, tap the 3 dots surrounded by a circle.</li>
+        <li>Tap <div class="code-banner">
+  Export .ipa
+</div></li>
+        <p>&bull; Depending on the app size, it may take a while. Once its finished, you will now have options to do whatever you want with the .ipa file.</li>
       </u>
 
 
