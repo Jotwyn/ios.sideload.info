@@ -291,6 +291,19 @@
 
 <header>
   <div class="logo"><strong>ios.sideload.info</strong></div>
+
+  <!-- New Search Container -->
+  <div style="flex:1 1 auto; max-width: 400px; margin-left: 1rem; position: relative;">
+    <input
+      type="search"
+      id="siteSearch"
+      placeholder="Search files (e.g., ios6.html)"
+      style="width: 100%; padding: 0.4rem 0.75rem; border-radius: 6px; border: 1.5px solid #007acc; font-family: 'Poppins', sans-serif; font-size: 1rem;"
+      autocomplete="off"
+    />
+    <div id="searchResults" style="position: absolute; background: white; border: 1px solid #ccc; border-radius: 6px; width: 100%; max-height: 200px; overflow-y: auto; display: none; z-index: 150;"></div>
+  </div>
+
   <div class="hamburger" onclick="toggleMenu()">☰</div>
   <div class="menu" id="dropdownMenu">
     <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
@@ -312,6 +325,53 @@
     <a href="getstarted.html">Get Started</a>
   </div>
 </header>
+
+<script>
+  // Mapping of searchable files: filename → { title, description, url }
+  const searchableFiles = [
+    { filename: "ios4.html", title: "iOS 4", description: "Legacy iOS 4 version", url: "ios4.html" },
+    { filename: "ios5.html", title: "iOS 5", description: "Older iOS 5 release", url: "ios5.html" },
+    { filename: "ios6.html", title: "iOS 6", description: "iOS 6 details and guides", url: "ios6.html" },
+    { filename: "ios7.html", title: "iOS 7", description: "Modern iOS 7 resources", url: "ios7.html" },
+    { filename: "signers.html", title: "Signers", description: "All signing tools overview", url: "signers.html" },
+    { filename: "faq.html", title: "FAQ", description: "Frequently asked questions", url: "faq.html" },
+    // Add all relevant files here
+  ];
+
+  const searchInput = document.getElementById('siteSearch');
+  const resultsDiv = document.getElementById('searchResults');
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.trim().toLowerCase();
+    if (!query) {
+      resultsDiv.style.display = 'none';
+      resultsDiv.innerHTML = '';
+      return;
+    }
+
+    const matches = searchableFiles.filter(file => file.filename.includes(query) || file.title.toLowerCase().includes(query));
+    if (matches.length === 0) {
+      resultsDiv.innerHTML = "<div style='padding: 0.5rem 1rem; color: #666;'>No results found</div>";
+      resultsDiv.style.display = 'block';
+      return;
+    }
+
+    resultsDiv.innerHTML = matches.map(file => `
+      <a href="${file.url}" style="display: block; padding: 0.5rem 1rem; text-decoration: none; color: #007acc; border-bottom: 1px solid #eee;">
+        <strong>${file.title}</strong><br/>
+        <small style="color: #666;">${file.description}</small>
+      </a>
+    `).join('');
+    resultsDiv.style.display = 'block';
+  });
+
+  // Hide results if clicking outside
+  document.addEventListener('click', (e) => {
+    if (!resultsDiv.contains(e.target) && e.target !== searchInput) {
+      resultsDiv.style.display = 'none';
+    }
+  });
+</script>
 
 <main>
   <div class="title-filter-container">
