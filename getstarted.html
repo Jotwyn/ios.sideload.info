@@ -267,6 +267,34 @@
   </div>
 </header>
 
+<div id="iosVersionMessage" style="margin: 1rem 0; font-family: 'Poppins', sans-serif; color: #007acc;"></div>
+
+<script>
+function getiOSVersion() {
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+  if (/iP(hone|od|ad)/.test(ua)) {
+    const match = ua.match(/OS (\d+)_(\d+)_?(\d+)?/);
+    if (match) {
+      const major = parseInt(match[1], 10);
+      const minor = parseInt(match[2], 10);
+      const patch = parseInt(match[3] || 0, 10);
+      return { major, minor, patch };
+    }
+  }
+  return null;
+}
+
+const iosVersion = getiOSVersion();
+const msgDiv = document.getElementById('iosVersionMessage');
+
+if (iosVersion) {
+  const versionString = `${iosVersion.major}.${iosVersion.minor}.${iosVersion.patch}`;
+  msgDiv.textContent = `Your iOS version is ${versionString}, if it helps :)`;
+} else {
+  msgDiv.textContent = '';
+}
+</script>
+
   <main>
     <h2 style="max-width:900px; margin: 1rem auto 1rem auto; font-weight:600; color:#007acc;">Select your iOS version:</h2>
     <div class="version-grid">
