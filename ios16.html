@@ -374,7 +374,14 @@
       return;
     }
 
-    const matches = searchableFiles.filter(file => file.filename.includes(query) || file.title.toLowerCase().includes(query));
+    const matches = searchableFiles.filter(file => {
+  const filenameNormalized = file.filename.toLowerCase().replace(/^https?:\/\//, "");
+  return (
+    filenameNormalized.includes(query) ||
+    file.title.toLowerCase().includes(query) ||
+    file.description.toLowerCase().includes(query)
+  );
+});
     if (matches.length === 0) {
       resultsDiv.innerHTML = "<div style='padding: 0.5rem 1rem; color: #666;'>No results found</div>";
       resultsDiv.style.display = 'block';
