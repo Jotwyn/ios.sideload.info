@@ -14,6 +14,12 @@
   max-width: 600px;
   margin: 2rem auto;
   text-align: center;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.version-grid.fade-out {
+  opacity: 0;
 }
 
 .version-button {
@@ -267,14 +273,18 @@ const osVersions = {
 
 function renderButtons(os) {
   const grid = document.getElementById("versionGrid");
-  grid.innerHTML = "";
-  osVersions[os].forEach(v => {
-    const a = document.createElement("a");
-    a.className = "version-button";
-    a.href = v.link;
-    a.textContent = v.name;
-    grid.appendChild(a);
-  });
+  grid.classList.add("fade-out");
+  setTimeout(() => {
+    grid.innerHTML = "";
+    osVersions[os].forEach(v => {
+      const a = document.createElement("a");
+      a.className = "version-button";
+      a.href = v.link;
+      a.textContent = v.name;
+      grid.appendChild(a);
+    });
+    grid.classList.remove("fade-out");
+  }, 200);
 }
 
 // Initial render for iOS
@@ -283,6 +293,35 @@ renderButtons("iOS");
 // Filter change
 document.getElementById("osFilter").addEventListener("change", function() {
   renderButtons(this.value);
+});
+
+// Menu toggle functions
+function toggleMenu() {
+  const menu = document.getElementById("dropdownMenu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+
+function toggleSubMenu() {
+  const sub = document.getElementById("subMenu");
+  sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+}
+
+function toggleMoreSubMenu(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  const moreMenu = document.getElementById("moreSubMenu");
+  moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
+}
+
+// Close dropdowns when clicking outside
+document.addEventListener("click", function(event) {
+  const menu = document.getElementById("dropdownMenu");
+  const hamburger = document.querySelector(".hamburger");
+  if (!menu.contains(event.target) && event.target !== hamburger) {
+    menu.style.display = "none";
+    document.getElementById("subMenu").style.display = "none";
+    document.getElementById("moreSubMenu").style.display = "none";
+  }
 });
 </script>
 
