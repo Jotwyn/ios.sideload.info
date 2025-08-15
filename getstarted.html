@@ -107,7 +107,6 @@
       border-top: 1px solid #ccc;
     }
 
-    /* New submenu to the left of "More.." */
     .more-submenu {
       display: none;
       position: absolute;
@@ -145,44 +144,26 @@
       margin: auto;
     }
 
-    h1 {
-      margin-bottom: 1rem;
-      font-size: 2rem;
-      font-weight: 600;
-    }
-
-    p {
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-
     h2 {
       font-size: 1.3rem;
       margin-top: 2rem;
       margin-bottom: 0.5rem;
       font-weight: 600;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-
-    table th, table td {
-      border: 1px solid #ccc;
-      padding: 0.75rem;
       text-align: center;
-    }
-
-    table th {
-      background-color: #f0f8ff;
-      font-weight: 600;
-    }
-
-    table td a {
       color: #007acc;
-      text-decoration: underline;
+    }
+
+    select {
+      display: block;
+      margin: 1rem auto 2rem auto;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background-color: #f0f8ff;
+      color: #007acc;
+      font-weight: 600;
+      cursor: pointer;
     }
 
     footer {
@@ -210,36 +191,6 @@
       color: #666;
     }
   </style>
-  <script>
-  function toggleMenu() {
-    const menu = document.getElementById("dropdownMenu");
-    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-  }
-
-  function toggleSubMenu() {
-    const sub = document.getElementById("subMenu");
-    sub.style.display = sub.style.display === "flex" ? "none" : "flex";
-  }
-
-  function toggleMoreSubMenu(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const moreMenu = document.getElementById("moreSubMenu");
-    moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
-  }
-
-  // Close dropdowns when clicking outside
-  document.addEventListener("click", function(event) {
-    const menu = document.getElementById("dropdownMenu");
-    const hamburger = document.querySelector(".hamburger");
-    if (!menu.contains(event.target) && event.target !== hamburger) {
-      menu.style.display = "none";
-      document.getElementById("subMenu").style.display = "none";
-      document.getElementById("moreSubMenu").style.display = "none";
-    }
-  });
-</script>
-  
 </head>
 <body>
 
@@ -267,83 +218,83 @@
   </div>
 </header>
 
-  <main>
-    <h2 style="max-width:900px; margin: 1rem auto 1rem auto; font-weight:600; color:#007acc;">Select your iOS version:</h2>
-    <div class="version-grid">
-      <a class="version-button" href="ios7.html">iOS 7</a>
-      <a class="version-button" href="ios8.html">iOS 8</a>
-      <a class="version-button" href="ios9.html">iOS 9</a>
-      <a class="version-button" href="ios10.html">iOS 10</a>
-      <a class="version-button" href="ios11.html">iOS 11</a>
-      <a class="version-button" href="ios12.html">iOS 12</a>
-      <a class="version-button" href="ios13.html">iOS 13</a>
-      <a class="version-button" href="ios14.html">iOS 14</a>
-      <a class="version-button" href="ios15.html">iOS 15</a>
-      <a class="version-button" href="ios16.html">iOS 16</a>
-      <a class="version-button" href="ios17.html">iOS 17</a>
-      <a class="version-button" href="ios18.html">iOS 18</a>
-      <a class="version-button" href="ios26.html">iOS 26</a>
-    </div>
-  </main>
-  
-  <style>
-  #iOSVersionMessage {
-    text-align: center;
-    margin: 1rem 0;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1rem;
-    color: #007acc;
-    font-weight: bold;
-  }
-</style>
+<main>
+  <h2>Select your OS:</h2>
+  <select id="osFilter">
+    <option value="iOS" selected>iOS</option>
+    <option value="tvOS">tvOS</option>
+    <option value="watchOS">watchOS</option>
+    <option value="visionOS">visionOS</option>
+  </select>
 
-<div id="iOSVersionMessage"></div>
+  <div class="version-grid" id="versionGrid">
+    <!-- Buttons will populate here dynamically -->
+  </div>
+</main>
 
 <script>
-  (function() {
-    const ua = navigator.userAgent;
-    const iOSMatch = ua.match(/OS (\d+)_?(\d+)?_?(\d+)?/);
-    if (/iP(hone|od|ad)/.test(ua) && iOSMatch) {
-      const major = iOSMatch[1];
-      const minor = iOSMatch[2] || '0';
-      const patch = iOSMatch[3] || '0';
-      const version = `${major}.${minor}.${patch}`;
-      document.getElementById('iOSVersionMessage').textContent = `Your iOS version is ${version}, if it helps :)`;
-    }
-  })();
+const osVersions = {
+  iOS: [
+    { name: "iOS 7", link: "ios7.html" },
+    { name: "iOS 8", link: "ios8.html" },
+    { name: "iOS 9", link: "ios9.html" },
+    { name: "iOS 10", link: "ios10.html" },
+    { name: "iOS 11", link: "ios11.html" },
+    { name: "iOS 12", link: "ios12.html" },
+    { name: "iOS 13", link: "ios13.html" },
+    { name: "iOS 14", link: "ios14.html" },
+    { name: "iOS 15", link: "ios15.html" },
+    { name: "iOS 16", link: "ios16.html" },
+    { name: "iOS 17", link: "ios17.html" },
+    { name: "iOS 18", link: "ios18.html" },
+    { name: "iOS 26", link: "ios26.html" },
+  ],
+  tvOS: [
+    { name: "tvOS 9", link: "tvos9.html" },
+    { name: "tvOS 10", link: "tvos10.html" },
+    { name: "tvOS 11", link: "tvos11.html" },
+  ],
+  watchOS: [
+    { name: "watchOS 1", link: "watchos1.html" },
+    { name: "watchOS 2", link: "watchos2.html" },
+    { name: "watchOS 3", link: "watchos3.html" },
+  ],
+  visionOS: [
+    { name: "visionOS 1", link: "visionos1.html" },
+    { name: "visionOS 2", link: "visionos2.html" },
+  ]
+};
+
+function renderButtons(os) {
+  const grid = document.getElementById("versionGrid");
+  grid.innerHTML = "";
+  osVersions[os].forEach(v => {
+    const a = document.createElement("a");
+    a.className = "version-button";
+    a.href = v.link;
+    a.textContent = v.name;
+    grid.appendChild(a);
+  });
+}
+
+// Initial render for iOS
+renderButtons("iOS");
+
+// Filter change
+document.getElementById("osFilter").addEventListener("change", function() {
+  renderButtons(this.value);
+});
 </script>
 
-      
-  <footer>
-    <div>
-      <a href="mailto:youremail@example.com">Contact</a>
-      <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
-      <a href="getstarted.html">Get Started</a>
-    </div>
-    <div class="copyright">
-      © 2025 - sideload.info - All rights reserved
-    </div>
-  </footer>
-
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("dropdownMenu");
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    }
-
-    function toggleSubMenu() {
-      const sub = document.getElementById("subMenu");
-      sub.style.display = sub.style.display === "flex" ? "none" : "flex";
-    }
-
-    document.addEventListener("click", function(event) {
-      const menu = document.getElementById("dropdownMenu");
-      const hamburger = document.querySelector(".hamburger");
-      if (!menu.contains(event.target) && event.target !== hamburger) {
-        menu.style.display = "none";
-        document.getElementById("subMenu").style.display = "none";
-      }
-    });
-  </script>
+<footer>
+  <div>
+    <a href="mailto:youremail@example.com">Contact</a>
+    <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
+    <a href="getstarted.html">Get Started</a>
+  </div>
+  <div class="copyright">
+    © 2025 - sideload.info - All rights reserved
+  </div>
+</footer>
 </body>
 </html>
