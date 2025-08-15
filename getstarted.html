@@ -325,6 +325,33 @@ document.addEventListener("click", function(event) {
 });
 </script>
 
+  <style>
+#iOSVersionMessage {
+  text-align: center;
+  margin: 1rem 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  color: #007acc;
+  font-weight: bold;
+}
+</style>
+
+<div id="iOSVersionMessage"></div>
+
+<script>
+  (function() {
+    const ua = navigator.userAgent;
+    const iOSMatch = ua.match(/OS (\d+)_?(\d+)?_?(\d+)?/);
+    if (/iP(hone|od|ad)/.test(ua) && iOSMatch) {
+      const major = iOSMatch[1];
+      const minor = iOSMatch[2] || '0';
+      const patch = iOSMatch[3] || '0';
+      const version = `${major}.${minor}.${patch}`;
+      document.getElementById('iOSVersionMessage').textContent = `Your iOS version is ${version}, if it helps :)`;
+    }
+  })();
+</script>
+
 <footer>
   <div>
     <a href="mailto:youremail@example.com">Contact</a>
