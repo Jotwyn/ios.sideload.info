@@ -252,7 +252,6 @@
     <a href="http://ios.sideload.info/getstarted">Get Started</a>
   </div>
 </header>
-<!-- PLATFORM SELECTOR (buttons centered) -->
 <!-- PLATFORM SELECTOR -->
 <div id="platform-switch">
   <button data-target="windows">Windows</button>
@@ -261,8 +260,9 @@
 </div>
 
 <!-- YOUR GUIDES -->
-<div id="windows" class="platform-guide">
-  <!-- Your full Windows HTML here (unchanged) -->
+<div class="platform-container">
+  <div id="windows" class="platform-guide">
+    <!-- Your Windows HTML here -->
     <div class="faq-section">
       <h2>SideStore</h2>
       <p>SideStore is an application sideloader on iOS 14+ that uses Apple Developer Accounts for signing apps. SideStore is based off AltServer, however uses its custom application, "SideStore", which allows users to resign apps without a computer.</p>
@@ -348,22 +348,23 @@
         <li>Enable it. When enabled, SideStore will attempt to refresh your apps in the background.</li>
       </ol>
     </div>
-</div>
+  </div>
 
-<div id="macos" class="platform-guide" hidden>
-  <!-- Your full MacOS HTML here (unchanged) -->
-  <h2>MacOS Guide</h2>
-  <p>Steps for MacOS…</p>
-</div>
+  <div id="macos" class="platform-guide" hidden>
+    <!-- Your MacOS HTML here -->
+    <h2>MacOS Guide</h2>
+    <p>Steps for MacOS…</p>
+  </div>
 
-<div id="linux" class="platform-guide" hidden>
-  <!-- Your full Linux HTML here (unchanged) -->
-  <h2>Linux Guide</h2>
-  <p>Steps for Linux…</p>
+  <div id="linux" class="platform-guide" hidden>
+    <!-- Your Linux HTML here -->
+    <h2>Linux Guide</h2>
+    <p>Steps for Linux…</p>
+  </div>
 </div>
 
 <style>
-  /* Only touch the buttons, never the guides */
+  /* Selector styling only */
   #platform-switch {
     margin: 20px 0;
     text-align: center;
@@ -372,6 +373,12 @@
     margin: 0 5px;
     padding: 8px 14px;
     cursor: pointer;
+  }
+
+  /* Let guides act as normal block HTML */
+  .platform-container {
+    width: 100%;
+    margin: 0 auto;
   }
   .platform-guide[hidden] {
     display: none;
