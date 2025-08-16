@@ -252,7 +252,14 @@
     <a href="http://ios.sideload.info/getstarted">Get Started</a>
   </div>
 </header>
-  <main>
+<div class="platform-selector">
+  <button class="platform-button active" data-platform="Windows">Windows</button>
+  <button class="platform-button" data-platform="MacOS">MacOS</button>
+  <button class="platform-button" data-platform="Linux">Linux</button>
+</div>
+
+<div id="platformContent">
+  <div class="platform-guide" id="Windows">
     <div class="faq-section">
       <h2>SideStore</h2>
       <p>SideStore is an application sideloader on iOS 14+ that uses Apple Developer Accounts for signing apps. SideStore is based off AltServer, however uses its custom application, "SideStore", which allows users to resign apps without a computer.</p>
@@ -338,7 +345,80 @@
         <li>Enable it. When enabled, SideStore will attempt to refresh your apps in the background.</li>
       </ol>
     </div>
-  </main>
+  </div>
+  <div class="platform-guide" id="MacOS" style="display:none;">
+    <h3>MacOS Guide</h3>
+    <p>Instructions for Mac users here.</p>
+  </div>
+  <div class="platform-guide" id="Linux" style="display:none;">
+    <h3>Linux Guide</h3>
+    <p>Linux setup instructions here.</p>
+  </div>
+</div>
+
+<style>
+  .platform-selector {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .platform-button {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .platform-button:hover {
+    background: #e0e0e0;
+  }
+
+  .platform-button.active {
+    background: #444;
+    color: #fff;
+    border-color: #444;
+  }
+
+  #platformContent {
+    margin-top: 20px;
+    text-align: center;
+    font-family: Poppins, sans-serif;
+  }
+
+  .platform-guide {
+    display: none;
+  }
+
+  .platform-guide.active {
+    display: block;
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll('.platform-button');
+  const guides = document.querySelectorAll('.platform-guide');
+
+  function showGuide(platform) {
+    guides.forEach(g => g.style.display = "none");
+    document.getElementById(platform).style.display = "block";
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      showGuide(btn.dataset.platform);
+    });
+  });
+
+  // Default = Windows
+  showGuide("Windows");
+</script>
 
   <footer>
     <div>
