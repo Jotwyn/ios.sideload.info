@@ -253,15 +253,16 @@
   </div>
 </header>
 <!-- PLATFORM SELECTOR (buttons centered) -->
-<div class="platform-switch" data-default="Windows">
-  <button type="button" class="is-active" data-target="Windows" aria-pressed="true">Windows</button>
-  <button type="button" data-target="MacOS" aria-pressed="false">MacOS</button>
-  <button type="button" data-target="Linux" aria-pressed="false">Linux</button>
+<!-- PLATFORM SELECTOR -->
+<div id="platform-switch">
+  <button data-target="windows">Windows</button>
+  <button data-target="macos">MacOS</button>
+  <button data-target="linux">Linux</button>
 </div>
 
-<!-- PLATFORM PANES (paste your full, normal guide HTML inside each) -->
-<div id="Windows" class="platform-pane">
-  <!-- Paste your REAL Windows guide HTML here (unchanged). -->
+<!-- YOUR GUIDES -->
+<div id="windows" class="platform-guide">
+  <!-- Your full Windows HTML here (unchanged) -->
     <div class="faq-section">
       <h2>SideStore</h2>
       <p>SideStore is an application sideloader on iOS 14+ that uses Apple Developer Accounts for signing apps. SideStore is based off AltServer, however uses its custom application, "SideStore", which allows users to resign apps without a computer.</p>
@@ -349,74 +350,44 @@
     </div>
 </div>
 
-<div id="MacOS" class="platform-pane" hidden>
-  <!-- Paste your REAL MacOS guide HTML here (unchanged). -->
-  <h3>MacOS Guide</h3>
-  <p>Instructions for Mac users here.</p>
+<div id="macos" class="platform-guide" hidden>
+  <!-- Your full MacOS HTML here (unchanged) -->
+  <h2>MacOS Guide</h2>
+  <p>Steps for MacOS…</p>
 </div>
 
-<div id="Linux" class="platform-pane" hidden>
-  <!-- Paste your REAL Linux guide HTML here (unchanged). -->
-  <h3>Linux Guide</h3>
-  <p>Linux setup instructions here.</p>
+<div id="linux" class="platform-guide" hidden>
+  <!-- Your full Linux HTML here (unchanged) -->
+  <h2>Linux Guide</h2>
+  <p>Steps for Linux…</p>
 </div>
 
 <style>
-  /* Only styles the selector buttons; DOES NOT style your guide content */
-  .platform-switch {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0 16px 0;
+  /* Only touch the buttons, never the guides */
+  #platform-switch {
+    margin: 20px 0;
+    text-align: center;
   }
-  .platform-switch button {
-    padding: 10px 18px;
-    border: 1px solid #ccc;
-    background: #f8f8f8;
-    font-size: 14px;
+  #platform-switch button {
+    margin: 0 5px;
+    padding: 8px 14px;
     cursor: pointer;
-    transition: background .15s ease, color .15s ease, border-color .15s ease;
   }
-  .platform-switch button:hover { background: #eaeaea; }
-  .platform-switch button.is-active {
-    background: #444; color: #fff; border-color: #444;
+  .platform-guide[hidden] {
+    display: none;
   }
-
-  /* Only rule affecting panes: hide when [hidden] */
-  .platform-pane[hidden] { display: none !important; }
 </style>
 
 <script>
-  (function() {
-    const switcher = document.querySelector('.platform-switch');
-    const buttons  = switcher.querySelectorAll('button[data-target]');
-    const panes    = document.querySelectorAll('.platform-pane');
-
-    function activate(id) {
-      // toggle button state
-      buttons.forEach(b => {
-        const on = b.dataset.target === id;
-        b.classList.toggle('is-active', on);
-        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  document.querySelectorAll('#platform-switch button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.target;
+      document.querySelectorAll('.platform-guide').forEach(div => {
+        div.hidden = (div.id !== id);
       });
-      // show/hide panes using the native "hidden" attribute (no style changes)
-      panes.forEach(p => { p.hidden = (p.id !== id); });
-    }
-
-    // Click handling
-    switcher.addEventListener('click', (e) => {
-      const btn = e.target.closest('button[data-target]');
-      if (!btn) return;
-      activate(btn.dataset.target);
     });
-
-    // Default: Windows (or use hash if present)
-    const hash = location.hash && document.getElementById(location.hash.slice(1)) ? location.hash.slice(1) : null;
-    const def  = hash || switcher.dataset.default || 'Windows';
-    activate(def);
-  })();
+  });
 </script>
-
   <footer>
     <div>
     <a href="https://ios.sideload.info/siteinfo.html">Contact</a>
