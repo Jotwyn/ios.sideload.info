@@ -282,6 +282,45 @@
 
       <div class="caution-box">
   This guide may not be perfect. We recommend visting <a href="https://docs.sidestore.io">docs.sidestore.io</a> & following their SideStore guide.
+<!-- PLATFORM SELECTOR (buttons centered) -->
+<div class="platform-switch" data-default="Windows">
+  <button type="button" class="is-active" data-target="Windows" aria-pressed="true">Windows</button>
+  <button type="button" data-target="MacOS" aria-pressed="false">MacOS</button>
+  <button type="button" data-target="Linux" aria-pressed="false">Linux</button>
+</div>
+
+<!-- PLATFORM PANES (paste your full, normal guide HTML inside each) -->
+<div id="Windows" class="platform-pane">
+  <!-- Paste your REAL Windows guide HTML here (unchanged). -->
+  <main>
+    <div class="faq-section">
+      <h2>SideStore</h2>
+      <p>SideStore is an application sideloader on iOS 14+ that uses Apple Developer Accounts for signing apps. SideStore is based off AltServer, however uses its custom application, "SideStore", which allows users to resign apps without a computer.</p>
+      <p>A standard Apple ID is only limited to 3 apps at a time, and must refresh apps every 7 days. However, you can pay $99 yearly for an Apple Developer Account to have unlimited apps and refresh every 365 days.</p>
+      <style>
+  .caution-box {
+    border: 2px solid #f9a825;
+    background-color: #fff8e1;
+    color: #8a6d1d;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    max-width: 600px;
+    margin: 1rem 0;
+  }
+</style>
+
+      <div class="caution-box">
+  SideStore is still in beta and some users have encountered issues. If you have any issues during installation, please seek assistance in our FAQ, or use <a href="altstore.html">AltStore</a> or <a href="sideloadly.html">Sideloadly.</a>
+</div>
+
+
+      <div class="caution-box">
+  If you are running Linux, please use <a href="sideloader.html">Sideloader</a> to install SideStore.</a>
+</div>
+
+      <div class="caution-box">
+  This guide may not be perfect. We recommend visting <a href="https://docs.sidestore.io">docs.sidestore.io</a> & following their SideStore guide.
 </div>
       <h2>Prerequisites</h2>
       <ul>
@@ -339,6 +378,75 @@
         <li>Enable it. When enabled, SideStore will attempt to refresh your apps in the background.</li>
       </ol>
     </div>
+  </main>
+
+<div id="MacOS" class="platform-pane" hidden>
+  <!-- Paste your REAL MacOS guide HTML here (unchanged). -->
+  <h3>MacOS Guide</h3>
+  <p>Instructions for Mac users here.</p>
+</div>
+
+<div id="Linux" class="platform-pane" hidden>
+  <!-- Paste your REAL Linux guide HTML here (unchanged). -->
+  <h3>Linux Guide</h3>
+  <p>Linux setup instructions here.</p>
+</div>
+
+<style>
+  /* Only styles the selector buttons; DOES NOT style your guide content */
+  .platform-switch {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0 16px 0;
+  }
+  .platform-switch button {
+    padding: 10px 18px;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .platform-switch button:hover { background: #eaeaea; }
+  .platform-switch button.is-active {
+    background: #444; color: #fff; border-color: #444;
+  }
+
+  /* Only rule affecting panes: hide when [hidden] */
+  .platform-pane[hidden] { display: none !important; }
+</style>
+
+<script>
+  (function() {
+    const switcher = document.querySelector('.platform-switch');
+    const buttons  = switcher.querySelectorAll('button[data-target]');
+    const panes    = document.querySelectorAll('.platform-pane');
+
+    function activate(id) {
+      // toggle button state
+      buttons.forEach(b => {
+        const on = b.dataset.target === id;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      // show/hide panes using the native "hidden" attribute (no style changes)
+      panes.forEach(p => { p.hidden = (p.id !== id); });
+    }
+
+    // Click handling
+    switcher.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-target]');
+      if (!btn) return;
+      activate(btn.dataset.target);
+    });
+
+    // Default: Windows (or use hash if present)
+    const hash = location.hash && document.getElementById(location.hash.slice(1)) ? location.hash.slice(1) : null;
+    const def  = hash || switcher.dataset.default || 'Windows';
+    activate(def);
+  })();
+</script>
 
 </main>
   <footer>
