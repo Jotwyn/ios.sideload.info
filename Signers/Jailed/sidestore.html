@@ -252,17 +252,6 @@
     <a href="http://ios.sideload.info/getstarted">Get Started</a>
   </div>
 </header>
-<!-- PLATFORM SELECTOR -->
-<div id="platform-switch">
-  <button data-target="windows">Windows</button>
-  <button data-target="macos">MacOS</button>
-  <button data-target="linux">Linux</button>
-</div>
-
-<!-- YOUR GUIDES -->
-<div class="platform-container">
-  <div id="windows" class="platform-guide">
-    <!-- Your Windows HTML here -->
     <div class="faq-section">
       <h2>SideStore</h2>
       <p>SideStore is an application sideloader on iOS 14+ that uses Apple Developer Accounts for signing apps. SideStore is based off AltServer, however uses its custom application, "SideStore", which allows users to resign apps without a computer.</p>
@@ -279,6 +268,9 @@
     margin: 1rem 0;
   }
 </style>
+      <main>
+        
+
 
       <div class="caution-box">
   SideStore is still in beta and some users have encountered issues. If you have any issues during installation, please seek assistance in our FAQ, or use <a href="altstore.html">AltStore</a> or <a href="sideloadly.html">Sideloadly.</a>
@@ -348,53 +340,8 @@
         <li>Enable it. When enabled, SideStore will attempt to refresh your apps in the background.</li>
       </ol>
     </div>
-  </div>
 
-  <div id="macos" class="platform-guide" hidden>
-    <!-- Your MacOS HTML here -->
-    <h2>MacOS Guide</h2>
-    <p>Steps for MacOS…</p>
-  </div>
-
-  <div id="linux" class="platform-guide" hidden>
-    <!-- Your Linux HTML here -->
-    <h2>Linux Guide</h2>
-    <p>Steps for Linux…</p>
-  </div>
-</div>
-
-<style>
-  /* Selector styling only */
-  #platform-switch {
-    margin: 20px 0;
-    text-align: center;
-  }
-  #platform-switch button {
-    margin: 0 5px;
-    padding: 8px 14px;
-    cursor: pointer;
-  }
-
-  /* Let guides act as normal block HTML */
-  .platform-container {
-    width: 100%;
-    margin: 0 auto;
-  }
-  .platform-guide[hidden] {
-    display: none;
-  }
-</style>
-
-<script>
-  document.querySelectorAll('#platform-switch button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.dataset.target;
-      document.querySelectorAll('.platform-guide').forEach(div => {
-        div.hidden = (div.id !== id);
-      });
-    });
-  });
-</script>
+</main>
   <footer>
     <div>
     <a href="https://ios.sideload.info/siteinfo.html">Contact</a>
