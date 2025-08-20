@@ -37,166 +37,8 @@
   background-color: #005fa3;
 }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      background-color: #ffffff;
-      color: #111;
-      line-height: 1.6;
-      animation: fadeIn 0.8s ease-in;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    header {
-      background: #e0f4ff;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .hamburger {
-      font-size: 1.8rem;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .menu {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      overflow: visible;
-      min-width: 180px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      animation: fadeIn 0.3s ease;
-      z-index: 100;
-    }
-
-    .menu a, .menu button {
-      padding: 0.75rem 1.2rem;
-      color: #007acc;
-      text-decoration: none;
-      transition: background 0.2s;
-      background: none;
-      border: none;
-      text-align: left;
-      cursor: pointer;
-      font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
-      position: relative;
-      white-space: nowrap;
-    }
-
-    .menu a:hover, .menu button:hover {
-      background-color: #f0f8ff;
-    }
-
-    .submenu {
-      display: none;
-      flex-direction: column;
-      border-top: 1px solid #ccc;
-    }
-
-    .more-submenu {
-      display: none;
-      position: absolute;
-      top: 0;
-      right: 100%;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      min-width: 180px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      flex-direction: column;
-      z-index: 110;
-    }
-
-    .more-submenu a {
-      padding: 0.75rem 1.2rem;
-      color: #007acc;
-      text-decoration: none;
-      background: none;
-      border: none;
-      text-align: left;
-      cursor: pointer;
-      font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
-      white-space: nowrap;
-    }
-
-    .more-submenu a:hover {
-      background-color: #f0f8ff;
-    }
-
-    main {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    h2 {
-      font-size: 1.3rem;
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      text-align: center;
-      color: #007acc;
-    }
-
-    select {
-      display: block;
-      margin: 1rem auto 2rem auto;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      background-color: #f0f8ff;
-      color: #007acc;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    footer {
-      margin-top: 3rem;
-      background: #e0f4ff;
-      padding: 1rem 2rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #333;
-    }
-
-    footer a {
-      color: #007acc;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    footer .copyright {
-      margin-top: 0.5rem;
-      font-size: 0.8rem;
-      color: #666;
-    }
-  </style>
+<link rel="stylesheet" href="Themes/hamburger.css">
+<script src="Scripts/idk.js"></script>
 </head>
 <body>
 
@@ -256,14 +98,20 @@ const osVersions = {
     { name: "iOS 26", link: "ios26.html" },
   ],
   tvOS: [
-    { name: "tvOS 9", link: "tvos9.html" },
-    { name: "tvOS 10", link: "tvos10.html" },
-    { name: "tvOS 11", link: "tvos11.html" },
+    { name: "tvOS 9", link: "tvos/tvos9.html" },
+    { name: "tvOS 10", link: "tvos/tvos10.html" },
+    { name: "tvOS 11", link: "tvos/tvos11.html" },
+    { name: "tvOS 12", link: "tvos/tvos12.html" },
+    { name: "tvOS 13", link: "tvos/tvos13.html" },
+    { name: "tvOS 14", link: "tvos/tvos14.html" },
+    { name: "tvOS 15", link: "tvos/tvos15.html" },
+    { name: "tvOS 16", link: "tvos/tvos16.html" },
+    { name: "tvOS 17", link: "tvos/tvos17.html" },
+    { name: "tvOS 18", link: "tvos/tbos18.html" },
+    { name: "tvOS 26", link: "tvos/tvos26.html" },
   ],
   watchOS: [
-    { name: "watchOS 1", link: "watchos1.html" },
-    { name: "watchOS 2", link: "watchos2.html" },
-    { name: "watchOS 3", link: "watchos3.html" },
+    { name: "tvOS 11", link: "tvos/tvos11.html" },
   ],
   visionOS: [
     { name: "visionOS 1", link: "visionos1.html" },
