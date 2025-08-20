@@ -6,35 +6,7 @@
   <title>sideload.info - 404</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="Themes/hamburger.css">
-  <script>
-  function toggleMenu() {
-    const menu = document.getElementById("dropdownMenu");
-    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-  }
-
-  function toggleSubMenu() {
-    const sub = document.getElementById("subMenu");
-    sub.style.display = sub.style.display === "flex" ? "none" : "flex";
-  }
-
-  function toggleMoreSubMenu(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const moreMenu = document.getElementById("moreSubMenu");
-    moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
-  }
-
-  // Close dropdowns when clicking outside
-  document.addEventListener("click", function(event) {
-    const menu = document.getElementById("dropdownMenu");
-    const hamburger = document.querySelector(".hamburger");
-    if (!menu.contains(event.target) && event.target !== hamburger) {
-      menu.style.display = "none";
-      document.getElementById("subMenu").style.display = "none";
-      document.getElementById("moreSubMenu").style.display = "none";
-    }
-  });
-</script>
+<link rel="stylesheet" href="Scripts/idk.js">
 </head>
 <body>
 
