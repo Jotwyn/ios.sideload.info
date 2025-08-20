@@ -570,53 +570,102 @@
   <div class="device-output"></div>
 </div>
 
-<!-- Device Lookup Module -->
-<style>
-  .device-lookup-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    font-family: Poppins, sans-serif;
+<footer>
+  <div>
+    <a href="https://ios.sideload.info/siteinfo.html">Contact</a>
+    <a href="https://discord.gg/bRYhdA7t" target="_blank">Discord</a>
+    <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
+  </div>
+  <div class="copyright">
+    © 2025 - sideload.info - All rights reserved
+  </div>
+</footer>
+
+<script>
+  // Hamburger menu toggles
+  function toggleMenu() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
   }
 
-  .device-search {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    margin-bottom: 1rem;
+  function toggleSubMenu() {
+    const sub = document.getElementById("subMenu");
+    sub.style.display = sub.style.display === "flex" ? "none" : "flex";
   }
 
-  .device-results {
-    border: 1px solid #aaa;
-    background-color: #f4f4f4;
-    border-radius: 6px;
-    padding: 1rem;
-    color: #333;
-    max-height: 300px;
-    overflow-y: auto;
+  function toggleMoreSubMenu(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const moreMenu = document.getElementById("moreSubMenu");
+    moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
   }
 
-  .device-item {
-    cursor: pointer;
-    padding: 0.5rem;
-    border-bottom: 1px solid #ddd;
-  }
+  // Close dropdowns when clicking outside (hamburger menus)
+  document.addEventListener("click", function(event) {
+    const menu = document.getElementById("dropdownMenu");
+    const hamburger = document.querySelector(".hamburger");
+    if (!menu.contains(event.target) && event.target !== hamburger) {
+      menu.style.display = "none";
+      document.getElementById("subMenu").style.display = "none";
+      document.getElementById("moreSubMenu").style.display = "none";
+    }
+  });
 
-  .device-item:last-child {
-    border-bottom: none;
-  }
+  // FILTER dropdown logic
+  const filterBtn = document.getElementById('filterBtn');
+  const filterDropdown = document.getElementById('filterDropdown');
+  const filterOptions = document.querySelectorAll('.filterOption');
 
-  .device-item:hover {
-    background-color: #e0e0e0;
-  }
+  const tables = {
+    recommended: document.getElementById('recommendedTable'),
+    nocomputer: document.getElementById('noComputerTable'),
+    jailbroken: document.getElementById('jailbrokenTable')
+  };
 
-  .device-output {
-    margin-top: 1rem;
-    font-weight: 600;
-    color: #444;
-  }
-</style>
+  filterBtn.addEventListener('click', () => {
+    filterDropdown.style.display = filterDropdown.style.display === 'block' ? 'none' : 'block';
+  });
+
+  filterOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      const selected = option.getAttribute('data-filter');
+
+      // Show only selected table
+      for (const key in tables) {
+        tables[key].style.display = (key === selected) ? 'table' : 'none';
+      }
+
+      // Update active styling
+      filterOptions.forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.border = 'none';
+        btn.querySelector('span')?.remove();
+        btn.style.fontWeight = '600';
+      });
+
+      // Mark selected button active with blue outline and checkmark
+      option.classList.add('active');
+      option.style.border = '2px solid #007acc';
+      option.style.borderRadius = '6px';
+      option.style.fontWeight = '700';
+      if (!option.querySelector('span')) {
+        const check = document.createElement('span');
+        check.textContent = '✔';
+        option.appendChild(check);
+      }
+
+      // Hide dropdown after selection
+      filterDropdown.style.display = 'none';
+    });
+  });
+
+  // Close filter dropdown if clicking outside
+  document.addEventListener('click', e => {
+    if (!filterDropdown.contains(e.target) && e.target !== filterBtn) {
+      filterDropdown.style.display = 'none';
+    }
+  });
+</script>
 
 <script>
   const devices = [
@@ -726,102 +775,6 @@
         });
         resultsDiv.appendChild(item);
       });
-    }
-  });
-</script>
-<footer>
-  <div>
-    <a href="https://ios.sideload.info/siteinfo.html">Contact</a>
-    <a href="https://discord.gg/bRYhdA7t" target="_blank">Discord</a>
-    <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
-  </div>
-  <div class="copyright">
-    © 2025 - sideload.info - All rights reserved
-  </div>
-</footer>
-
-<script>
-  // Hamburger menu toggles
-  function toggleMenu() {
-    const menu = document.getElementById("dropdownMenu");
-    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-  }
-
-  function toggleSubMenu() {
-    const sub = document.getElementById("subMenu");
-    sub.style.display = sub.style.display === "flex" ? "none" : "flex";
-  }
-
-  function toggleMoreSubMenu(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const moreMenu = document.getElementById("moreSubMenu");
-    moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
-  }
-
-  // Close dropdowns when clicking outside (hamburger menus)
-  document.addEventListener("click", function(event) {
-    const menu = document.getElementById("dropdownMenu");
-    const hamburger = document.querySelector(".hamburger");
-    if (!menu.contains(event.target) && event.target !== hamburger) {
-      menu.style.display = "none";
-      document.getElementById("subMenu").style.display = "none";
-      document.getElementById("moreSubMenu").style.display = "none";
-    }
-  });
-
-  // FILTER dropdown logic
-  const filterBtn = document.getElementById('filterBtn');
-  const filterDropdown = document.getElementById('filterDropdown');
-  const filterOptions = document.querySelectorAll('.filterOption');
-
-  const tables = {
-    recommended: document.getElementById('recommendedTable'),
-    nocomputer: document.getElementById('noComputerTable'),
-    jailbroken: document.getElementById('jailbrokenTable')
-  };
-
-  filterBtn.addEventListener('click', () => {
-    filterDropdown.style.display = filterDropdown.style.display === 'block' ? 'none' : 'block';
-  });
-
-  filterOptions.forEach(option => {
-    option.addEventListener('click', () => {
-      const selected = option.getAttribute('data-filter');
-
-      // Show only selected table
-      for (const key in tables) {
-        tables[key].style.display = (key === selected) ? 'table' : 'none';
-      }
-
-      // Update active styling
-      filterOptions.forEach(btn => {
-        btn.classList.remove('active');
-        btn.style.border = 'none';
-        btn.querySelector('span')?.remove();
-        btn.style.fontWeight = '600';
-      });
-
-      // Mark selected button active with blue outline and checkmark
-      option.classList.add('active');
-      option.style.border = '2px solid #007acc';
-      option.style.borderRadius = '6px';
-      option.style.fontWeight = '700';
-      if (!option.querySelector('span')) {
-        const check = document.createElement('span');
-        check.textContent = '✔';
-        option.appendChild(check);
-      }
-
-      // Hide dropdown after selection
-      filterDropdown.style.display = 'none';
-    });
-  });
-
-  // Close filter dropdown if clicking outside
-  document.addEventListener('click', e => {
-    if (!filterDropdown.contains(e.target) && e.target !== filterBtn) {
-      filterDropdown.style.display = 'none';
     }
   });
 </script>
