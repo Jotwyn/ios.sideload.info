@@ -299,8 +299,8 @@
       
       <h2>Prerequisites</h2>
       <ul>
-        <li>A computer running Windows 10 or MacOS 10.14 or above</li>
-        <li>iPad or iPhone running iOS 14 or above</li>
+        <li>A computer running Windows 10 or above</li>
+        <li>iPad or iPhone running iOS 16 or above</li>
         <li>Latest version of <a href="https://cdn.altstore.io/file/altstore/altinstaller.zip" target="_blank" rel="noopener noreferrer">AltServer</a></li>
         <li>Latest version of <a href="https://www.apple.com/itunes/download/win64/" target="_blank" rel="noopener noreferrer">iTunes (not from the Microsoft store)</a></li>
         <li>Latest version of <a href="https://github.com/sidestore/sidestore/releases/latest/download/sidestore.ipa" target="_blank" rel="noopener noreferrer">SideStore</a></li>
@@ -357,8 +357,65 @@
 </div>
 
 <div id="MacOS" class="platform-pane" hidden>
-  <h3>MacOS Guide</h3>
-  <p>Instructions for Mac users here.</p>
+  
+  <main>
+  <h2>Prerequisites</h2>
+<ul>
+  <li>A Mac running MacOS 10.15 or later</li>
+  <li>iPad or iPhone running iOS 14 or above</li>
+  <li>Latest version of <a href="https://cdn.altstore.io/file/altstore/altserver.zip">AltServer</a></li>
+  <li>Latest version of <a href="https://github.com/sidestore/sidestore/releases/latest/download/sidestore.ipa">SideStore</a></li>
+  <li>Latest version of <a href="https://github.com/jkcoxson/idevice_pair/releases/latest/download/idevice_pair--macos-universal.dmg">idevicepair</a></li>
+</ul>
+
+<h2>Downloading AltServer</h2>
+<ol>
+  <li>Download the <a href="https://cdn.altstore.io/file/altstore/altserver.zip">AltServer</a> file.</li>
+  <li>Extract the file and drag AltServer.app into your Downloads folder.</li>
+  <li>Open the application. If it warns you, right click the app, then click launch.</li>
+  </ol>
+  
+  <h2>Installing SideStore</h2>
+  <ol>
+    <li>Plug your device into your computer.</li>
+    <li>If promoted, trust your computer on your iDevice.</li>
+    <li>Launch AltServer, and holding option, click on the AltServer icon in the menu bar and click "Sideload .ipa"</li>
+    <li>Select "SideStore.ipa"</li>
+    <li>Type in your Apple ID. Your login details will only be sent to Apple for verification and are not tracked by AltServer.</li>
+    <li>Once done, SideStore should appear on your home screen.</li>
+    </ol>
+    
+    <h2>Generating idevicepair</h2>
+    <ol>
+      <li>Connect your device to your computer.<li>
+      <li>Ensure your device is trusted by your computer, on your home screen and a password is setup.</li>
+      <li>Run idevicepair.</li>
+      <li>A GUI should popup. Click "generate". Your device may ask to trust this computer again. If so, confirm.</li>
+      <li>After the pairing file has been installed, go to the SideStore section of the GUI and click "Install". If done successfully, it should say "success" in green.</li>
+      </ol>
+      
+      <h2>Verifying SideStore</h2>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Go to General.</li>
+        <li>Scroll to VPN & Device Management.</li>
+        <li>Open it and you will find a developer application.</li>
+        <li>Click on it. Once opened, click "Verify App".</li>
+        </ol>
+        
+        <h2>Refreshing Apps</h2>
+        <ol>
+          <li>Download StosVPN from the App Store if not done already.</li>
+          <li>Enable it. When enabled, SideStore will attempt to refresh your apps in the background. You will also need it enabled when installing apps.</li>
+          </ol>
+          
+          <h2>Post-installation instructions</h2>
+          <ol>
+            <li>Open SideStore and sign it with the same Apple ID you used to install SideStore.</li>
+            <li>Go to the Apps tab and refresh SideStore by tapping on the green "X days" counter next to the SideStore app. You must complete this whenever you install SideStore using AltServer.</li>
+            
+            </ol>
+  </main>
 </div>
 
 <div id="Linux" class="platform-pane" hidden>
