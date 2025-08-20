@@ -258,27 +258,5 @@
       © 2025 - sideload.info - All rights reserved
     </div>
   </footer>
-
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("dropdownMenu");
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    }
-
-    function toggleSubMenu() {
-      const sub = document.getElementById("subMenu");
-      sub.style.display = sub.style.display === "flex" ? "none" : "flex";
-    }
-
-    // Auto-close dropdown on outside click
-    document.addEventListener("click", function(event) {
-      const menu = document.getElementById("dropdownMenu");
-      const hamburger = document.querySelector(".hamburger");
-      if (!menu.contains(event.target) && event.target !== hamburger) {
-        menu.style.display = "none";
-        document.getElementById("subMenu").style.display = "none";
-      }
-    });
-  </script>
 </body>
 </html>
