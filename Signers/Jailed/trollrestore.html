@@ -206,6 +206,33 @@
   .platform-pane[hidden] { display: none !important; }
 </style>
 
+    <script>
+  (function() {
+    const switcher = document.querySelector('.platform-switch');
+    const buttons  = switcher.querySelectorAll('button[data-target]');
+    const panes    = document.querySelectorAll('.platform-pane');
+
+    function activate(id) {
+      buttons.forEach(b => {
+        const on = b.dataset.target === id;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      panes.forEach(p => { p.hidden = (p.id !== id); });
+    }
+
+    switcher.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-target]');
+      if (!btn) return;
+      activate(btn.dataset.target);
+    });
+
+    const hash = location.hash && document.getElementById(location.hash.slice(1)) ? location.hash.slice(1) : null;
+    const def  = hash || switcher.dataset.default || 'Windows';
+    activate(def);
+  })();
+</script>
+
 
       <h2>Installing TrollRestore (Windows & MacOS)</h2>
       <ol>
