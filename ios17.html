@@ -676,64 +676,68 @@
     }
   });
 
-  // FILTER dropdown logic
-  const filterBtn = document.getElementById('filterBtn');
-  const filterDropdown = document.getElementById('filterDropdown');
-  const filterOptions = document.querySelectorAll('.filterOption');
+const filterBtn = document.getElementById('filterBtn');
+const filterDropdown = document.getElementById('filterDropdown');
+const filterOptions = document.querySelectorAll('.filterOption');
+const tableContainer = document.getElementById('tableContainer');
 
-  const tables = {
-    recommended: document.getElementById('recommendedTable'),
-    nocomputer: document.getElementById('noComputerTable'),
-    jailbroken: document.getElementById('jailbrokenTable')
-  };
+const tables = {
+  recommended: document.getElementById('recommendedTable'),
+  nocomputer: document.getElementById('noComputerTable'),
+  jailbroken: document.getElementById('jailbrokenTable')
+};
 
-  filterBtn.addEventListener('click', () => {
-    filterDropdown.style.display = filterDropdown.style.display === 'block' ? 'none' : 'block';
-  });
+// Initially show only the recommended table
+for (const key in tables) {
+  tables[key].style.display = key === 'recommended' ? 'table' : 'none';
+}
 
-  filterOptions.forEach(option => {
-    option.addEventListener('click', () => {
-      const selected = option.getAttribute('data-filter');
+filterBtn.addEventListener('click', () => {
+  filterDropdown.style.display = filterDropdown.style.display === 'block' ? 'none' : 'block';
+});
 
-      // Show only selected table
-      for (const key in tables) {
-        tables[key].style.display = (key === selected) ? 'table' : 'none';
-      }
+filterOptions.forEach(option => {
+  option.addEventListener('click', () => {
+    const selected = option.getAttribute('data-filter');
 
-      // Update active styling
-      filterOptions.forEach(btn => {
-        btn.classList.remove('active');
-        btn.style.border = 'none';
-        btn.querySelector('span')?.remove();
-        btn.style.fontWeight = '600';
-      });
+    // Clear container and append only selected table
+    while (tableContainer.firstChild) tableContainer.removeChild(tableContainer.firstChild);
+    tableContainer.appendChild(tables[selected]);
+    tables[selected].style.display = 'table';
 
-      // Mark selected button active with blue outline and checkmark
-      option.classList.add('active');
-      option.style.border = '2px solid #007acc';
-      option.style.borderRadius = '6px';
-      option.style.fontWeight = '700';
-      if (!option.querySelector('span')) {
-        const check = document.createElement('span');
-        check.textContent = '✔';
-        option.appendChild(check);
-      }
-
-      // Hide dropdown after selection
-      filterDropdown.style.display = 'none';
+    // Update active styling
+    filterOptions.forEach(btn => {
+      btn.classList.remove('active');
+      btn.style.border = 'none';
+      btn.querySelector('span')?.remove();
+      btn.style.fontWeight = '600';
     });
-  });
-
-  // Close filter dropdown if clicking outside
-  document.addEventListener('click', e => {
-    if (!filterDropdown.contains(e.target) && e.target !== filterBtn) {
-      filterDropdown.style.display = 'none';
+    option.classList.add('active');
+    option.style.border = '2px solid #007acc';
+    option.style.borderRadius = '6px';
+    option.style.fontWeight = '700';
+    if (!option.querySelector('span')) {
+      const check = document.createElement('span');
+      check.textContent = '✔';
+      option.appendChild(check);
     }
+
+    filterDropdown.style.display = 'none';
   });
+});
+
+// Close dropdown if clicking outside
+document.addEventListener('click', e => {
+  if (!filterDropdown.contains(e.target) && e.target !== filterBtn) {
+    filterDropdown.style.display = 'none';
+  }
+});
+
 </script>
 
 </body>
 </html>
+
 
 
 
