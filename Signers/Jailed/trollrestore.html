@@ -90,6 +90,120 @@
       <div class="danger-box">
         Make sure to disable Find My before proceeding with the installation.
       </div>
+
+      <div class="platform-switch-wrapper">
+  <h3 style="text-align:center; margin-bottom:8px;">Please select your OS. (Windows selected by default)</h3>
+  <div class="platform-switch" data-default="Windows">
+    <button type="button" class="is-active" data-target="Windows" aria-pressed="true">Windows</button>
+    <button type="button" data-target="MacOS" aria-pressed="false">MacOS</button>
+    <button type="button" data-target="Linux" aria-pressed="false">Linux</button>
+  </div>
+</div>
+
+<!-- PLATFORM PANES (paste your full, normal guide HTML inside each) -->
+<div id="Windows" class="platform-pane">
+  <main>
+   <h2>Prerequisites</h2>
+<ul>
+  <li>An iPad or iPhone running iOS 15.2 - 16.7 RC & 17.0</li>
+  <li>Latest version of <a href="https://github.com/JJTech0130/TrollRestore/releases">TrollRestore</a></li>
+  <li>Computer running Windows 10 or above</li>
+</ul>
+
+    <h2>Installing TrollRestore (Windows)</h2>
+      <ol>
+        <li>Plug your iOS device into your computer. Ensure your iDevice is trusted.</li>
+        <li>Open the File Explorer program.</li>
+        <li>Find TrollRestore, and double click it. The download should be most likely in your Downloads folder unless specified previously.</li>
+        <li>When asked for a system applicaction, type in any installed system application you want to override. Note that the app will no longer be usable until reset.</li>
+      </ol>
+  </main>
+</div>
+
+<div id="MacOS" class="platform-pane" hidden>
+  <main>
+
+  </main>
+</div>
+
+<div id="Linux" class="platform-pane" hidden>
+  <main>
+       <h2>Installing TrollRestore (Linux)</h2>
+      <ol>
+        <li>Open a terminal app on your computer.</li>
+        <li>Run <div class="code-banner">
+ cd path/to/TrollRestore
+</div></li>
+        <li>Run <div class="code-banner">
+ pip3 install -r requirements.txt
+        </div> and follow the on-screen instructions.</li>
+        <li>Plug your iOS device into your computer. Ensure your iDevice is trusted.</li>
+        <li>When asked for a system applicaction, type in any installed system application you want to override. Note that the app will no longer be usable until reset.</li>
+  </main>
+</div>
+
+    <main>
+            <h2>Installing TrollStore</h2>
+      <ol>
+        <li>Open the application you selected.</li>
+        <li>Tap <div class="code-banner">
+ Install TrollStore
+</div>.</li>
+        <p>&bull; If it gives an error, refresh the app and try again</p>
+
+      <h2>Installing Persistence Helper</h2>
+      <ol>
+        <li>Open <div class="code-banner">
+ TrollStore
+</div>.</li>
+        <li>Tap <div class="code-banner">
+  Settings
+</div>, then press <div class="code-banner">
+  Install Persistence Helper
+</div>.</li>
+        <li>Select the app you want to override. If you don't know, select <div class="code-banner">
+  Tips
+</div>.</li>
+      </ol>
+    </main>
+
+<style>
+  /* Buttons flush style */
+  .platform-switch {
+    display: flex;
+    justify-content: center;
+    gap: 0; /* buttons touch each other */
+    margin: 20px 0 16px 0;
+  }
+
+  .platform-switch button {
+    padding: 10px 18px;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+
+  /* Merge borders for touching buttons */
+  .platform-switch button:first-child {
+    border-radius: 4px 0 0 4px;
+  }
+  .platform-switch button:last-child {
+    border-radius: 0 4px 4px 0;
+  }
+  .platform-switch button + button {
+    border-left: none; /* remove double borders */
+  }
+
+  .platform-switch button:hover { background: #eaeaea; }
+  .platform-switch button.is-active {
+    background: #444; color: #fff; border-color: #444;
+  }
+
+  .platform-pane[hidden] { display: none !important; }
+</style>
+
       
       <h2>Prerequisites</h2>
 <ul>
@@ -119,30 +233,6 @@
         <li>When asked for a system applicaction, type in any installed system application you want to override. Note that the app will no longer be usable until reset.</li>
 
           
-      <h2>Installing TrollStore</h2>
-      <ol>
-        <li>Open the application you selected.</li>
-        <li>Tap <div class="code-banner">
- Install TrollStore
-</div>.</li>
-        <p>&bull; If it gives an error, refresh the app and try again</p>
-
-      <h2>Installing Persistence Helper</h2>
-      <ol>
-        <li>Open <div class="code-banner">
- TrollStore
-</div>.</li>
-        <li>Tap <div class="code-banner">
-  Settings
-</div>, then press <div class="code-banner">
-  Install Persistence Helper
-</div>.</li>
-        <li>Select the app you want to override. If you don't know, select <div class="code-banner">
-  Tips
-</div>.</li>
-      </ol>
-    </div>
-  </main>
 
   <footer>
     <div>
