@@ -12,26 +12,33 @@
 <body>
 
 <header>
-  <div class="logo"><strong>ios.sideload.info</strong></div>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <div class="menu" id="dropdownMenu">
-    <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
-    <div class="submenu" id="subMenu">
-      <a href="http://ios.sideload.info/signers.html">Signers</a>
-      <a href="http://ios.sideload.info/utillties.html">Utilities</a>
-      <a href="http://ios.sideload.info/faq.html">FAQ</a>
-      <a href="http://ios.sideload.info/errors.html">Errors</a>
-      <a href="http://ios.sideload.info/siteinfo.html">Site Info</a>
-      <div style="position: relative;">
-        <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
-        <div class="more-submenu" id="moreSubMenu">
-          <a href="http://ios.sideload.info/enabling-jit.html">Enabling JIT</a>
-          <a href="http://ios.sideload.info/decrypting-apps.html">Decrypting Apps</a>
-          <a href="http://ios.sideload.info/injecting-tweaks.html">Injecting Tweaks</a>
+  <div class="topbar">
+    <nav class="nav-menu">
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Site Information</a>
+        <div class="dropdown-content">
+          <a href="#">Credits</a>
+          <a href="#">Donation</a>
+          <a href="#">Information</a>
         </div>
       </div>
-    </div>
-    <a href="getstarted.html">Get Started</a>
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Resources</a>
+        <div class="dropdown-content">
+          <a href="#">Docs</a>
+          <a href="#">Guides</a>
+          <a href="#">Support</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Community</a>
+        <div class="dropdown-content">
+          <a href="#">Discord</a>
+          <a href="#">Forum</a>
+          <a href="#">Blog</a>
+        </div>
+      </div>
+    </nav>
   </div>
 </header>
 
