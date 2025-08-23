@@ -12,51 +12,87 @@
 <body>
 
 <header>
-  <div class="topbar">
-    <nav class="nav-menu">
-      <div class="dropdown">
-        <a href="#" class="dropbtn">Site Information</a>
-        <div class="dropdown-content">
-          <a href="#">Credits</a>
-          <a href="#">Donation</a>
-          <a href="#">Information</a>
+  <div class="logo"><strong>ios.sideload.info</strong></div>
+
+  <!-- Desktop Dropdowns -->
+  <nav class="desktop-nav">
+    <div class="dropdown">
+      <button class="dropbtn">Guides ▾</button>
+      <div class="dropdown-content">
+        <a href="signers.html">Signers</a>
+        <a href="utilities.html">Utilities</a>
+        <a href="faq.html">FAQ</a>
+        <a href="errors.html">Errors</a>
+        <div class="dropdown-submenu">
+          <a href="#">More.. ▸</a>
+          <div class="dropdown-submenu-content">
+            <a href="enabling-jit.html">Enabling JIT</a>
+            <a href="decrypting-apps.html">Decrypting Apps</a>
+            <a href="injecting-tweaks.html">Injecting Tweaks</a>
+          </div>
         </div>
       </div>
-      <div class="dropdown">
-        <a href="#" class="dropbtn">Resources</a>
-        <div class="dropdown-content">
-          <a href="#">Docs</a>
-          <a href="#">Guides</a>
-          <a href="#">Support</a>
-        </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">Site Information ▾</button>
+      <div class="dropdown-content">
+        <a href="siteinfo.html">Credits</a>
+        <a href="#">Donation</a>
+        <a href="#">Information</a>
       </div>
-      <div class="dropdown">
-        <a href="#" class="dropbtn">Community</a>
-        <div class="dropdown-content">
-          <a href="#">Discord</a>
-          <a href="#">Forum</a>
-          <a href="#">Blog</a>
-        </div>
+    </div>
+    <a href="getstarted.html" class="desktop-link">Get Started</a>
+  </nav>
+
+  <!-- Mobile Hamburger -->
+  <div class="hamburger" onclick="toggleMobileMenu()">☰</div>
+
+  <!-- Mobile Side Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <!-- Replicating Desktop Dropdown Structure -->
+    <div class="mobile-dropdown">
+      <a href="signers.html">Signers</a>
+      <a href="utilities.html">Utilities</a>
+      <a href="faq.html">FAQ</a>
+      <a href="errors.html">Errors</a>
+      <a href="#" onclick="toggleMobileSubMenu(event)">More.. ▸</a>
+      <div class="mobile-submenu">
+        <a href="enabling-jit.html">Enabling JIT</a>
+        <a href="decrypting-apps.html">Decrypting Apps</a>
+        <a href="injecting-tweaks.html">Injecting Tweaks</a>
       </div>
-    </nav>
+    </div>
+    <div class="mobile-dropdown">
+      <a href="siteinfo.html">Credits</a>
+      <a href="#">Donation</a>
+      <a href="#">Information</a>
+    </div>
+    <a href="getstarted.html">Get Started</a>
   </div>
 </header>
 
 <script>
-document.querySelectorAll('.dropbtn').forEach(btn => {
-  btn.addEventListener('click', e => {
-    // prevent page jump
-    e.preventDefault();
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('active');
+}
 
-    const dropdown = btn.parentElement;
-    const isActive = dropdown.classList.contains('active');
+// Toggle nested mobile submenu
+function toggleMobileSubMenu(event) {
+  event.preventDefault();
+  const submenu = event.target.nextElementSibling;
+  if(submenu) submenu.classList.toggle('active');
+}
 
-    // close all others
-    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
-
-    // toggle this one
-    if (!isActive) dropdown.classList.add('active');
-  });
+// Close menu when clicking outside
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('mobileMenu');
+  const hamburger = document.querySelector('.hamburger');
+  if (!menu.contains(e.target) && e.target !== hamburger) {
+    menu.classList.remove('active');
+    const submenus = document.querySelectorAll('.mobile-submenu');
+    submenus.forEach(sm => sm.classList.remove('active'));
+  }
 });
 </script>
 
