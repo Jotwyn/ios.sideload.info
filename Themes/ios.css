@@ -248,3 +248,103 @@
       max-width: 600px;
       margin: 1rem 0;
     }
+
+/* Top bar */
+.topbar {
+  background-color: #007acc; /* match theme */
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Navigation container */
+.nav-menu {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+}
+
+/* Dropdown button */
+.dropbtn {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.dropbtn:hover {
+  color: #d9f0ff;
+}
+
+/* Arrow ▼/▲ */
+.dropbtn::after {
+  content: " ▼";
+  font-size: 0.75em;
+  transition: transform 0.2s ease;
+}
+
+.dropdown.active .dropbtn::after {
+  content: " ▲";
+}
+
+/* Dropdown menu */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: white;
+  min-width: 180px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  overflow: hidden;
+  top: 110%;
+  left: 0;
+  z-index: 1000;
+  animation: fadeSlide 0.2s ease forwards;
+}
+
+/* Dropdown links */
+.dropdown-content a {
+  display: block;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.dropdown-content a:hover {
+  background: #f2f8ff;
+}
+
+/* Show dropdown (desktop hover OR mobile tap via .active) */
+.dropdown:hover .dropdown-content,
+.dropdown.active .dropdown-content {
+  display: block;
+}
+
+/* Smooth dropdown animation */
+@keyframes fadeSlide {
+  from {opacity: 0; transform: translateY(-5px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Mobile stack nav */
+@media (max-width: 768px) {
+  .nav-menu {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .dropdown-content {
+    position: relative;
+    top: 0;
+    box-shadow: none;
+  }
+}
