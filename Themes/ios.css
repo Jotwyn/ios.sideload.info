@@ -249,20 +249,19 @@
       margin: 1rem 0;
     }
 
-/* Top bar */
-.topbar {
-  background-color: #007acc; /* match theme */
-  padding: 0.75rem 1.5rem;
+/* Header & nav menu */
+header {
+  padding: 1rem 2rem;
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end; /* shift to right */
   align-items: center;
   font-family: 'Poppins', sans-serif;
 }
 
-/* Navigation container */
 .nav-menu {
   display: flex;
   gap: 1.5rem;
+  font-weight: 700; /* bold */
 }
 
 /* Dropdown container */
@@ -272,19 +271,18 @@
 
 /* Dropdown button */
 .dropbtn {
-  color: white;
+  color: #111; /* black text */
   text-decoration: none;
   font-size: 1rem;
-  font-weight: 500;
   cursor: pointer;
   transition: color 0.2s;
 }
 
 .dropbtn:hover {
-  color: #d9f0ff;
+  color: #555;
 }
 
-/* Arrow ▼/▲ */
+/* Arrow ▼ / ▲ */
 .dropbtn::after {
   content: " ▼";
   font-size: 0.75em;
@@ -299,7 +297,7 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  background: white;
+  background: #fff; /* white dropdown */
   min-width: 180px;
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
@@ -315,13 +313,13 @@
   display: block;
   padding: 0.6rem 1rem;
   font-size: 0.95rem;
-  color: #333;
+  color: #111;
   text-decoration: none;
   transition: background 0.2s;
 }
 
 .dropdown-content a:hover {
-  background: #f2f8ff;
+  background: #f0f0f0;
 }
 
 /* Show dropdown (desktop hover OR mobile tap via .active) */
@@ -330,13 +328,13 @@
   display: block;
 }
 
-/* Smooth dropdown animation */
+/* Dropdown animation */
 @keyframes fadeSlide {
   from {opacity: 0; transform: translateY(-5px);}
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* Mobile stack nav */
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .nav-menu {
     flex-direction: column;
