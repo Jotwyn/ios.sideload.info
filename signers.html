@@ -11,87 +11,56 @@
 </head>
 <body>
 
-<header>
-  <div class="logo"><strong>ios.sideload.info</strong></div>
+<!-- Mobile Hamburger -->
+<div class="hamburger" onclick="toggleMobileMenu()">☰</div>
 
-  <!-- Desktop Dropdowns -->
-  <nav class="desktop-nav">
-    <div class="dropdown">
-      <button class="dropbtn">Guides ▾</button>
-      <div class="dropdown-content">
-        <a href="signers.html">Signers</a>
-        <a href="utilities.html">Utilities</a>
-        <a href="faq.html">FAQ</a>
-        <a href="errors.html">Errors</a>
-        <div class="dropdown-submenu">
-          <a href="#">More.. ▸</a>
-          <div class="dropdown-submenu-content">
-            <a href="enabling-jit.html">Enabling JIT</a>
-            <a href="decrypting-apps.html">Decrypting Apps</a>
-            <a href="injecting-tweaks.html">Injecting Tweaks</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="dropbtn">Site Information ▾</button>
-      <div class="dropdown-content">
-        <a href="siteinfo.html">Credits</a>
-        <a href="#">Donation</a>
-        <a href="#">Information</a>
-      </div>
-    </div>
-    <a href="getstarted.html" class="desktop-link">Get Started</a>
-  </nav>
-
-  <!-- Mobile Hamburger -->
-  <div class="hamburger" onclick="toggleMobileMenu()">☰</div>
-
-  <!-- Mobile Side Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <!-- Replicating Desktop Dropdown Structure -->
-    <div class="mobile-dropdown">
-      <a href="signers.html">Signers</a>
-      <a href="utilities.html">Utilities</a>
-      <a href="faq.html">FAQ</a>
-      <a href="errors.html">Errors</a>
-      <a href="#" onclick="toggleMobileSubMenu(event)">More.. ▸</a>
-      <div class="mobile-submenu">
-        <a href="enabling-jit.html">Enabling JIT</a>
-        <a href="decrypting-apps.html">Decrypting Apps</a>
-        <a href="injecting-tweaks.html">Injecting Tweaks</a>
-      </div>
-    </div>
-    <div class="mobile-dropdown">
-      <a href="siteinfo.html">Credits</a>
+<!-- Mobile Menu Panel -->
+<nav class="mobile-menu" id="mobileMenu">
+  <div class="dropdown">
+    <a href="#" class="dropbtn" onclick="toggleMobileDropdown(event)">Site Information ▾</a>
+    <div class="dropdown-content">
+      <a href="#">Credits</a>
       <a href="#">Donation</a>
       <a href="#">Information</a>
     </div>
-    <a href="getstarted.html">Get Started</a>
   </div>
-</header>
+  <div class="dropdown">
+    <a href="#" class="dropbtn" onclick="toggleMobileDropdown(event)">Resources ▾</a>
+    <div class="dropdown-content">
+      <a href="#">Docs</a>
+      <a href="#">Guides</a>
+      <a href="#">Support</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <a href="#" class="dropbtn" onclick="toggleMobileDropdown(event)">Community ▾</a>
+    <div class="dropdown-content">
+      <a href="#">Discord</a>
+      <a href="#">Forum</a>
+      <a href="#">Blog</a>
+    </div>
+  </div>
+</nav>
+</head>
 
 <script>
 function toggleMobileMenu() {
-  const menu = document.getElementById('mobileMenu');
-  menu.classList.toggle('active');
+  document.getElementById('mobileMenu').classList.toggle('active');
 }
 
-// Toggle nested mobile submenu
-function toggleMobileSubMenu(event) {
+function toggleMobileDropdown(event) {
   event.preventDefault();
-  const submenu = event.target.nextElementSibling;
-  if(submenu) submenu.classList.toggle('active');
+  const content = event.target.nextElementSibling;
+  if(content) content.style.display = content.style.display === 'flex' ? 'none' : 'flex';
 }
 
-// Close menu when clicking outside
+// Close mobile menu if clicking outside
 document.addEventListener('click', function(e) {
   const menu = document.getElementById('mobileMenu');
   const hamburger = document.querySelector('.hamburger');
-  if (!menu.contains(e.target) && e.target !== hamburger) {
+  if(!menu.contains(e.target) && e.target !== hamburger) {
     menu.classList.remove('active');
-    const submenus = document.querySelectorAll('.mobile-submenu');
-    submenus.forEach(sm => sm.classList.remove('active'));
+    menu.querySelectorAll('.dropdown-content').forEach(dc => dc.style.display = 'none');
   }
 });
 </script>
