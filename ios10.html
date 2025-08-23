@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="Themes/ios.css">
 <script src="Scripts/idk.js"></script>
+  <script src="Scripts/search.js"></script>
 </head>
 <body>
 
@@ -34,6 +35,20 @@
   </div>
 </header>
 
+  <!-- SEARCH BOX (centered) -->
+<div style="display: flex; justify-content: center; margin-top: 50px;">
+  <div style="position: relative; max-width: 500px; width: 90%;">
+    <input
+      type="search"
+      id="siteSearch"
+      placeholder="Search documentation"
+      style="width: 100%; padding: 0.4rem 0.75rem; border-radius: 6px; border: 1.5px solid #007acc; font-family: 'Poppins', sans-serif; font-size: 1rem; box-sizing: border-box;"
+      autocomplete="off"
+    />
+    <div id="searchResults" style="display:none; position: absolute; top: 110%; left: 0; right: 0; background: white; border: 1px solid #ccc; border-radius: 6px; max-height: 200px; overflow-y: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); z-index: 1000;"></div>
+  </div>
+</div>
+  
 <main>
   <div class="title-filter-container">
     <h1>iOS 10</h1>
