@@ -11,61 +11,29 @@
 </head>
 <body>
 
-  <head>
-<!-- Mobile Hamburger -->
-<div class="hamburger" onclick="toggleMobileMenu()">☰</div>
-
-<!-- Mobile Menu Panel -->
-<nav class="mobile-menu" id="mobileMenu">
-  <div class="dropdown">
-    <a href="#" class="dropbtn" onclick="toggleMobileDropdown(event)">Site Information ▾</a>
-    <div class="dropdown-content">
-      <a href="#">Credits</a>
-      <a href="#">Donation</a>
-      <a href="#">Information</a>
+<header>
+  <div class="logo"><strong>ios.sideload.info</strong></div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="menu" id="dropdownMenu">
+    <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
+    <div class="submenu" id="subMenu">
+      <a href="http://ios.sideload.info/signers.html">Signers</a>
+      <a href="http://ios.sideload.info/utillties.html">Utilities</a>
+      <a href="http://ios.sideload.info/faq.html">FAQ</a>
+      <a href="http://ios.sideload.info/errors.html">Errors</a>
+      <a href="http://ios.sideload.info/siteinfo.html">Site Info</a>
+      <div style="position: relative;">
+        <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
+        <div class="more-submenu" id="moreSubMenu">
+          <a href="http://ios.sideload.info/enabling-jit.html">Enabling JIT</a>
+          <a href="http://ios.sideload.info/decrypting-apps.html">Decrypting Apps</a>
+          <a href="http://ios.sideload.info/injecting-tweaks.html">Injecting Tweaks</a>
+        </div>
+      </div>
     </div>
+    <a href="getstarted.html">Get Started</a>
   </div>
-  <div class="dropdown">
-    <a href="#" class="dropbtn" onclick="toggleMobileDropdown(event)">Resources ▾</a>
-    <div class="dropdown-content">
-      <a href="#">Docs</a>
-      <a href="#">Guides</a>
-      <a href="#">Support</a>
-    </div>
-  </div>
-  <div class="dropdown">
-    <a href="#" class="dropbtn" onclick="toggleMobileDropdown(event)">Community ▾</a>
-    <div class="dropdown-content">
-      <a href="#">Discord</a>
-      <a href="#">Forum</a>
-      <a href="#">Blog</a>
-    </div>
-  </div>
-</nav>
-</head>
-
-<script>
-function toggleMobileMenu() {
-  document.getElementById('mobileMenu').classList.toggle('active');
-}
-
-function toggleMobileDropdown(event) {
-  event.preventDefault();
-  const content = event.target.nextElementSibling;
-  if(content) content.style.display = content.style.display === 'flex' ? 'none' : 'flex';
-}
-
-// Close mobile menu if clicking outside
-document.addEventListener('click', function(e) {
-  const menu = document.getElementById('mobileMenu');
-  const hamburger = document.querySelector('.hamburger');
-  if(!menu.contains(e.target) && e.target !== hamburger) {
-    menu.classList.remove('active');
-    menu.querySelectorAll('.dropdown-content').forEach(dc => dc.style.display = 'none');
-  }
-});
-</script>
-
+</header>
 <main>
   <h1>All Signers</h1>
   <p>Below shows a table of every singe sideloader/application signer.</p>
