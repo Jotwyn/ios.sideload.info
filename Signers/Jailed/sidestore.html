@@ -37,7 +37,7 @@
   <main>
   <ol>
       <h2>SideStore</h2>
-      <p>SideStore is an application sideloader on iOS 14+ that uses Apple Developer Accounts for signing apps. SideStore is based off AltServer, however uses its custom application, "SideStore", which allows users to resign apps without a computer.</p>
+      <p>SideStore is an application sideloader on iOS 16+ that uses Apple Developer Accounts for signing apps. SideStore is based off AltServer, however uses its custom application, "SideStore", which allows users to resign apps without a computer.</p>
       <p>A standard Apple ID is only limited to 3 apps at a time, and must refresh apps every 7 days. However, you can pay $99 yearly for an Apple Developer Account to have unlimited apps and refresh every 365 days.</p>
   </ol>
       <style>
@@ -50,6 +50,67 @@
     font-weight: 600;
     max-width: 600px;
     margin: 1rem 0;
+  }
+</style>
+
+              <style>
+  .copy-box {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-family: monospace;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    margin: 1rem 0;
+    position: relative;
+  }
+
+  .copy-text {
+    overflow-x: auto;
+    white-space: nowrap;
+    flex: 1;
+    color: #333;
+  }
+
+  .copy-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding-left: 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  .copy-button svg {
+    width: 18px;
+    height: 18px;
+    fill: #666;
+    transition: fill 0.2s;
+  }
+
+  .copy-button:hover svg {
+    fill: #000;
+  }
+
+  .copy-tooltip {
+    position: absolute;
+    top: -1.5em;
+    right: 0.75rem;
+    background: #333;
+    color: white;
+    padding: 2px 6px;
+    font-size: 12px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .copy-box.copied .copy-tooltip {
+    opacity: 1;
   }
 </style>
 
@@ -144,7 +205,7 @@
   <h2>Prerequisites</h2>
 <ul>
   <li>A Mac running MacOS 10.15 or later</li>
-  <li>iPad or iPhone running iOS 14 or above</li>
+  <li>iPad or iPhone running iOS 16 or above</li>
   <li>Latest version of <a href="https://cdn.altstore.io/file/altstore/altserver.zip">AltServer</a></li>
   <li>Latest version of <a href="https://github.com/sidestore/sidestore/releases/latest/download/sidestore.ipa">SideStore</a></li>
   <li>Latest version of <a href="https://github.com/jkcoxson/idevice_pair/releases/latest/download/idevice_pair--macos-universal.dmg">idevicepair</a></li>
@@ -201,8 +262,51 @@
 </div>
 
 <div id="Linux" class="platform-pane" hidden>
-  <h3>Linux Guide</h3>
-  <p>Linux setup instructions here.</p>
+<main>
+
+  <h2>Prerequisites</h2>
+<ul>
+  <li>A computer running any Linux distro</li>
+  <li>iPad or iPhone running iOS 16 or above</li>
+  <li>Latest version of usbmuxd (run <code>sudo apt install install -y usbmuxd</code>)
+</ul>
+
+  <h2>Docker Setup</h2>
+  <ol>
+    <li>Install either Docker or Podman.</li>
+
+    <p>Docker Installation</p>
+<div class="copy-box" id="copyBox">
+  <span class="copy-text" id="docker run --rm -it -v ${PWD}/:/mnt/ -v /var/run/usbmuxd:/var/run/usbmuxd ghcr.io/sidestore/altcon</span>
+  <button class="copy-button" onclick="copyToClipboard()" title="Copy">
+    <svg viewBox="0 0 24 24">
+      <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v16h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 18H8V7h11v16z"/>
+    </svg>
+  </button>
+  <span class="copy-tooltip">Copied!</span>
+</div>
+
+    <p>Podman Installation</p>
+    <div class="copy-box" id="copyBox">
+  <span class="copy-text" id="podman run --rm -it -v ${PWD}/:/mnt/ -v /var/run/usbmuxd:/var/run/usbmuxd ghcr.io/sidestore/altcon</span>
+  <button class="copy-button" onclick="copyToClipboard()" title="Copy">
+    <svg viewBox="0 0 24 24">
+      <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v16h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 18H8V7h11v16z"/>
+    </svg>
+  </button>
+  <span class="copy-tooltip">Copied!</span>
+</div>
+    
+</ol>
+
+
+
+
+
+
+
+  
+</main>
 </div>
 
 <style>
