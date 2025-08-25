@@ -373,6 +373,20 @@
   })();
 </script>
 
+    <script>
+  function copyToClipboard() {
+    const text = document.getElementById("copyTarget").innerText;
+    const box = document.getElementById("copyBox");
+
+    navigator.clipboard.writeText(text).then(() => {
+      box.classList.add("copied");
+      setTimeout(() => {
+        box.classList.remove("copied");
+      }, 3000); // 3 seconds
+    });
+  }
+</script>
+
 </main>
   <footer>
     <div>
