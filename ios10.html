@@ -10,6 +10,26 @@
 </head>
 <body>
 
+  <script>
+function adjustSearchBox() {
+    const searchContainer = document.querySelector('#siteSearch').parentElement;
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth <= 768) { // mobile breakpoint
+        searchContainer.style.maxWidth = '95%';
+    } else { // desktop
+        searchContainer.style.maxWidth = '1250px';
+    }
+}
+
+// Run on page load
+adjustSearchBox();
+
+// Run on window resize
+window.addEventListener('resize', adjustSearchBox);
+</script>
+
+
 <header>
   <div class="logo"><strong>ios.sideload.info</strong></div>
 <div style="display: flex; justify-content: center; position: absolute; top: 12px; left: 50%; transform: translateX(-50%);">
