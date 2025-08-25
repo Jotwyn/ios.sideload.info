@@ -10,12 +10,15 @@
 </head>
 <body>
 
-<header>
-  <!-- Logo stays precisely aligned on the left -->
+<header style="position: relative;">
+  <!-- Logo left -->
   <div class="logo"><strong>ios.sideload.info</strong></div>
 
-  <!-- Search box absolutely positioned on the right -->
-  <div style="position: absolute; top: 12px; right: 20px; width: 175px; min-width: 150px;">
+  <!-- Hamburger right -->
+  <div class="hamburger" onclick="toggleMenu()" style="margin-left: auto;">☰</div>
+
+  <!-- Search box absolutely positioned so it doesn’t interfere with flex -->
+  <div style="position: absolute; top: 12px; right: 60px; width: 175px; min-width: 150px;">
     <input
       type="search"
       id="siteSearch"
@@ -25,9 +28,6 @@
     />
     <div id="searchResults" style="display:none; position: absolute; top: 110%; left: 0; right: 0; background: white; border: 1px solid #ccc; border-radius: 6px; max-height: 200px; overflow-y: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); z-index: 1000;"></div>
   </div>
-
-  <!-- Hamburger stays aligned with header -->
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
 </header>
 
   <header>
