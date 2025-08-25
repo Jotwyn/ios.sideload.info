@@ -7,7 +7,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../../Themes/hamburger.css">
 <script src="../../Scripts/idk.js"></script>
-  
+
+<style>
+  .code-banner {
+    display: inline-block;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-family: SFMono-Regular, Consolas, Menlo, monospace;
+    font-size: 0.92rem;
+    line-height: 1.4;
+    white-space: nowrap;
+    color: #2a2a2a;
+  }
+</style>
 </head>
 <body>
 
@@ -209,6 +223,8 @@
   <li>Latest version of <a href="https://cdn.altstore.io/file/altstore/altserver.zip">AltServer</a></li>
   <li>Latest version of <a href="https://github.com/sidestore/sidestore/releases/latest/download/sidestore.ipa">SideStore</a></li>
   <li>Latest version of <a href="https://github.com/jkcoxson/idevice_pair/releases/latest/download/idevice_pair--macos-universal.dmg">idevicepair</a></li>
+  <li>StosVPN from the App Store</li>
+  <li>A working Apple ID</li>
 </ul>
 
 <h2>Downloading AltServer</h2>
@@ -269,14 +285,56 @@
   <li>A computer running any Linux distro</li>
   <li>iPad or iPhone running iOS 16 or above</li>
   <li>Latest version of usbmuxd (run <code>sudo apt install install -y usbmuxd</code>)</li>
+  <li>Latest version of Docker or Podman</li>
+  <li>StosVPN from the App Store</li>
+  <li>A working Apple ID</li>
 </ul>
 
   <h2>Docker Setup</h2>
   <ol>
-    <li>Install either Docker or Podman.</li>
-    <li>Docker: <code>docker run --rm -it -v ${PWD}/:/mnt/ -v /var/run/usbmuxd:/var/run/usbmuxd ghcr.io/sidestore/altcon</code></li>
-    <li>Podman: <code>podman run --rm -it -v ${PWD}/:/mnt/ -v /var/run/usbmuxd:/var/run/usbmuxd ghcr.io/sidestore/altcon</code></li>
+    <li>Plug your device into your computer.</li>
+    <li>Run these commands depending on what you installed (Podman or Docker).</li>
+    <li>Docker: <div class="code-banner">
+  docker run --rm -it -v ${PWD}/:/mnt/ -v /var/run/usbmuxd:/var/run/usbmuxd ghcr.io/sidestore/altcon
+</div>.</li></li>
+    <li>Podman: <div class="code-banner">
+  podman run --rm -it -v ${PWD}/:/mnt/ -v /var/run/usbmuxd:/var/run/usbmuxd ghcr.io/sidestore/altcon
+</div>.</li></li>
+    <li>Altcon will pair with your device. When you receive another prompt, select "trust" and enter your passcode again.</li>
 </ol>
+
+        <h2>Enabling Developer Mode</h2>
+      <p>Starting iOS/iPadOS 16+, all users are required to enable developer mode to install developer apps.</p>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Scroll down to Privacy &amp; Security.</li>
+        <li>On Privacy &amp; Security, scroll down to Developer Mode. Click enable.</li>
+        <li>Your device may restart. Once enabled, proceed with the next steps.</li>
+      </ol>
+
+        <h2>Verifying Application</h2>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Go to General.</li>
+        <li>Scroll to VPN &amp; Device Management.</li>
+        <li>Open it and you will find a developer application.</li>
+        <li>Click on it. Once opened, click "Verify App".</li>
+      </ol>
+  
+       <h2>Installing idevicepair</h2>
+      <ol>
+        <li>Ensure usbmuxd is installed on your machine.</li>
+        <li>Download the idevicepair for <a href="https://github.com/jkcoxson/idevice_pair/releases/latest/download/idevice_pair--linux-x86_64.AppImage>x86_64</a> or <a href="https://github.com/jkcoxson/idevice_pair/releases/latest/download/idevice_pair--linux-aarch64.AppImage">AArch64</a> that matches your machines architecture.</li>
+      </ol>
+
+    <h2>Generating idevicepair</h2>
+    <ol>
+      <li>Connect your device to your computer.</li>
+      <li>Ensure your device is trusted by your computer, on your home screen and a password is setup.</li>
+      <li>Turn idevicepair into an executable & run.</li>
+      <li>A GUI should popup. Click "generate". Your device may ask to trust this computer again. If so, confirm.</li>
+      <li>After the pairing file has been installed, go to the SideStore section of the GUI and click "Install". If done successfully, it should say "success" in green.</li>
+      </ol>
 
 
 
