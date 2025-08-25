@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sideload.info - Khoindvn Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../Themes/hamburger.css">
+<script src="../../Scripts/idk.js"></script>
+  
+</head>
+<body>
+
+<header>
+  <div class="logo"><strong>ios.sideload.info</strong></div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="menu" id="dropdownMenu">
+    <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
+    <div class="submenu" id="subMenu">
+      <a href="http://ios.sideload.info/signers.html">Signers</a>
+      <a href="http://ios.sideload.info/utillties.html">Utilities</a>
+      <a href="http://ios.sideload.info/faq.html">FAQ</a>
+      <a href="http://ios.sideload.info/errors.html">Errors</a>
+      <a href="http://ios.sideload.info/siteinfo.html">Site Info</a>
+      <div style="position: relative;">
+        <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
+        <div class="more-submenu" id="moreSubMenu">
+          <a href="http://ios.sideload.info/enabling-jit.html">Enabling JIT</a>
+          <a href="http://ios.sideload.info/decrypting-apps.html">Decrypting Apps</a>
+          <a href="http://ios.sideload.info/injecting-tweaks.html">Injecting Tweaks</a>
+        </div>
+      </div>
+    </div>
+    <a href="http://ios.sideload.info/getstarted">Get Started</a>
+  </div>
+</header>
+
+  <main>
+    <div class="faq-section">
+      <h2>Khoindvn</h2>
+      <p>Khoindvn is a service/website that offers pre-signed applications with freshly, new leaked enterprise certificates.</p>
+      <p>This is a highly popular service for lots of users who do not have access to computers or PC's.</p>
+
+      <style>
+  .caution-box {
+    border: 2px solid #f9a825;
+    background-color: #fff8e1;
+    color: #8a6d1d;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    max-width: 600px;
+    margin: 1rem 0;
+  }
+</style>
+
+      <div class="caution-box">
+ Khoindvn, or any other enterprise certificate pre-signed application, is highly unreliable. Across this guide, you may counter across errors while installing. You can look at our FAQ, but Khoindvn or anyone cannot patch most of the errors you encounter.
+</div>
+
+      <div class="caution-box">
+ We recommend using this as a last resort, especialy if you do not have access to a computer, unable to purchase a certificate.
+
+      <h2>Prerequisites</h2>
+      <ul>
+        <li>iPad, iPhone or Apple TV running iOS 14 or above</li>
+      </ul>
+
+      <h2>Setting up DNS</h2>
+        <ol>
+          <li>Visit <a href="https://khoindvn.io.vn">https://khoindvn.io.vn</a></li>
+          <li>Slightly below at the home page, there should be two white boxes. Tap the button that says "Install DNS Profile".</li>
+          <p>&bull; Your DNS will be responsible for blocking Apple's domains from reaching your website. This way, revokes & blacklists are less likely to happen.</p>
+          <li>Open the Settings application and follow the on-screen instructions.</li>
+        </ol>
+        
+      <h2>Downloading Certificates</h2>
+        <ol>
+          <li>Visit <a href="https://khoindvn.io.vn">https://khoindvn.io.vn</a></li>
+          <li>Slightly below at the home page, there should be two white boxes. Tap the button that says "Download Certificate".</li>
+          <li>Put it in a memorable location. You will be required to use this later.</li>
+        </ol>
+
+        <h2>Installing KSign/ESign</h2>
+        <ol>
+          <li>Visit <a href="https://khoindvn.io.vn">https://khoindvn.io.vn</a></li>
+          <li>Scroll down to KSign Bypass Revoke.</li>
+          <p>&bull; We recommend using KSign as it is maintained & is designed as a 'cleaner' ESign UI. However, it is up for preference.</p>
+          <li>Tap on the first KSign you see.</li>
+          <li>You will be redircted to a different website. Tap "Install", and then tap "Install".</li>
+        </ol>
+
+      <div class="caution-box">
+From this point on, finding an app that launches may be difficult depending if a new certificate has been leaked.
+</div>
+
+      <div class="caution-box">
+If the first certificate does not work, keep going down the list until you find one that works.
+</div>
+
+        <h2>Knowing your errors</h2>
+        <ol>
+          <p>&bull; "The app integrity cannot be verified."</p>
+          <p>This means that the certificate is revoked. You cannot do anything to fix this error.</p>
+          <p>&bull; "An internet connection is required.."</p>
+          <p>This means that you are blacklisted only from that specific certificate. <a href="https://ios.sideload.info/utilities/sparsebox.html">If you are on iOS 17.0 - 18.0.1, you can remove the blacklist.</a> Removing it requires a computer.</p>
+          <p>&bull; Crashing after launching an app</p>
+          <p>Apps crashing can a result of a lot of things, but in this context, it is mainly due to a revoked certificate. You cannot do anything to fix this error.</p>
+          <p>Although it may not say it is revoked, sometimes app launch errors do not appear correctly.</p>
+
+          <h2>Knowing if the certificate is valid</h2>
+          <ol>
+            <p>&bull; If opening the app prompts an error message: "The developer is not trusted", you are good to proceed.</p>
+
+
+       <h2>Verifying Application</h2>
+       <ol>
+        <li>Open Settings.</li>
+        <li>Go to General.</li>
+        <li>Scroll to VPN &amp; Device Management.</li>
+        <li>Open it and you will find a developer application.</li>
+        <li>Click on it. Once opened, click "Verify App".</li>
+      </ol>
+
+       <h2>Importing your certificates</h2>
+       <ol>
+        <li>Open KSign.</li>
+        <li>If not there already, navigate to the Files section at the bottom of your screen.</li>
+        <li>At the top right of your screen, tap the + button.</li>
+        <li>Import the certificate zip file.</li>
+        <li>Once imported, the certificate should be in your Files section. Tap on it, and find "Extract". Click it.</li>
+        <li>A new folder will appear called "Certs-Khoindvn".</li>
+        <li>&bull; Navigate to Certs-Khoindvn>Certs-Khoindvn>KSignCert.</li>
+         <p>&bull; If using ESign, navigate to ESignCert instead of KSignCert.</p>
+        <li>Tap on any certificate, and click "Import Certificate".</li>
+         <p>&bull; It is highly recommended you select the certificate you used to initially install KSign.</p>
+         <li>Once the certificate is imported, you can now install apps.</li>
+      </ol>
+            
+       <h2>Installing Apps</h2>
+       <ol>
+        <li>In the KSign app, navigate to the Library section.</li>
+        <li>At the top right of your screen, tap the + to import your .ipa file.</li>
+         <li>Once imported, it should be visible in the App Library. Tap on the app, and tap Sign & Install.</li>
+         <li>Under Signing, select the certificate you imported.</li>
+         <li>Tap "Start Signing".</li>
+         <p>&bull; The process may take a while depending on your app size. Once finished, you will get a prompt. Tap "Install".</p>
+      </ol>
+      
+      </ol>
+    </div>
+  </main>
+
+  <footer>
+    <div>
+    <a href="https://ios.sideload.info/siteinfo.html">Contact</a>
+    <a href="https://discord.gg/bRYhdA7t" target="_blank">Discord</a>
+    <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
+    </div>
+    <div class="copyright">
+      © 2025 - sideload.info - All rights reserved
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    function toggleSubMenu() {
+      const sub = document.getElementById("subMenu");
+      sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+    }
+
+    // Auto-close dropdown on outside click
+    document.addEventListener("click", function(event) {
+      const menu = document.getElementById("dropdownMenu");
+      const hamburger = document.querySelector(".hamburger");
+      if (!menu.contains(event.target) && event.target !== hamburger) {
+        menu.style.display = "none";
+        document.getElementById("subMenu").style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
