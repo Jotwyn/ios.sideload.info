@@ -10,10 +10,12 @@
 </head>
 <body>
 
+  <div style="position: relative; width: 100%; height: 60px;"> <!-- header wrapper -->
+      <div class="logo" style="position: absolute; top: 12px; left: 20px;">
+    <strong>ios.sideload.info</strong>
+  </div>
 
 <header>
-<div style="position: relative; width: 100%; height: 60px;"> <!-- header wrapper -->
-  <!-- Search box on the right -->
   <div style="position: absolute; top: 12px; right: 20px; width: 175px; min-width: 150px;">
     <input
       type="search"
@@ -24,6 +26,7 @@
     />
     <div id="searchResults" style="display:none; position: absolute; top: 110%; left: 0; right: 0; background: white; border: 1px solid #ccc; border-radius: 6px; max-height: 200px; overflow-y: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); z-index: 1000;"></div>
   </div>
+
 </div>
 
 
@@ -31,7 +34,6 @@
   <div class="hamburger" onclick="toggleMenu()" style="position: absolute; top: 12px; right: 20px; cursor: pointer;">☰</div>
 
 <div class="header" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 20px;">
-  <div class="logo"><strong>ios.sideload.info</strong></div>
   <div class="menu" id="dropdownMenu">
     <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
     <div class="submenu" id="subMenu">
