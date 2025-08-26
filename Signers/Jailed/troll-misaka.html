@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ios.sideload.info - Misaka TrollStore Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../Themes/hamburger.css">
+<script src="../../Scripts/idk.js"></script>
+  
+</head>
+<body>
+
+<header>
+  <div class="logo"><strong>ios.sideload.info</strong></div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="menu" id="dropdownMenu">
+    <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
+    <div class="submenu" id="subMenu">
+      <a href="http://ios.sideload.info/signers.html">Signers</a>
+      <a href="http://ios.sideload.info/utillties.html">Utilities</a>
+      <a href="http://ios.sideload.info/faq.html">FAQ</a>
+      <a href="http://ios.sideload.info/errors.html">Errors</a>
+      <a href="http://ios.sideload.info/siteinfo.html">Site Info</a>
+      <div style="position: relative;">
+        <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
+        <div class="more-submenu" id="moreSubMenu">
+          <a href="http://ios.sideload.info/enabling-jit.html">Enabling JIT</a>
+          <a href="http://ios.sideload.info/decrypting-apps.html">Decrypting Apps</a>
+          <a href="http://ios.sideload.info/injecting-tweaks.html">Injecting Tweaks</a>
+        </div>
+      </div>
+    </div>
+    <a href="http://ios.sideload.info/getstarted">Get Started</a>
+  </div>
+</header>
+
+  <style>
+  .caution-box {
+    border: 2px solid #f9a825;
+    background-color: #fff8e1;
+    color: #8a6d1d;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    max-width: 600px;
+    margin: 1rem 0;
+  }
+</style>
+
+<style>
+  .code-banner {
+    display: inline-block;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-family: SFMono-Regular, Consolas, Menlo, monospace;
+    font-size: 0.92rem;
+    line-height: 1.4;
+    white-space: nowrap;
+    color: #2a2a2a;
+  }
+</style>
+
+  
+  <main>
+    <div class="faq-section">
+      <h2>Misaka (TrollStore)</h2>
+      <p>TrollStore Misaka (aka. TrollMisaka) is a type of installation vector that installs TrollStore on your device.</p>
+      <p>TrollStore is an app-permasigner that bypasses Apple's regular restrictions due to a coretrust (codesigning) exploit. Therefore, it allows unlimited apps, no revokes, JIT, arbitary entitlements, and much more.</p>
+                  <style>
+        .danger-box {
+          border: 2px solid #d93025;
+          background-color: #fce8e6;
+          color: #a12a2a;
+          padding: 1rem 1.5rem;
+          border-radius: 8px;
+          font-weight: 600;
+          max-width: 600px;
+          margin: 1rem 0;
+        }
+      </style>
+
+      <div class="danger-box">
+        TrollStore is not a jailbreak.
+      </div>
+      
+      <h2>Prerequisites</h2>
+<ul>
+  <li>An iPad or iPhone running tvOS 15 - 16.6</li>
+  <li>Latest version of <a href="https://sideloadly.io">Sideloadly</a></li>
+  <li>Latest version of <a href="https://www.apple.com/itunes/download/win64/" target="_blank" rel="noopener noreferrer">iTunes</a> (not from the Microsoft store)</li>
+  <li>Latest version of <a href="https://updates.cdn-apple.com/2020/windows/001-39935-20200911-1A70AA56-F448-11EA-8CC0-99D41950005E/iCloudSetup.exe" target="_blank" rel="noopener noreferrer">iCloud</a> (not from the Microsoft store)</li>
+    <li>&bull; If on MacOS, you do not need to install iTunes or iCloud.</li>
+  <li>Latest version of <a href="https://github.com/straight-tamago/misaka/releases/latest">Misaka</a></li>
+  <li>Computer running Windows 10+ or MacOS 10.12+</li>
+  <li>Tips app installed on your device</li>
+</ul>
+
+      <h2>Installing Misaka</h2>
+    <ol>
+         <li>Open the Sideloadly application. If iCloud or iTunes are not downloaded, do so now.</li>
+        <li>Plug your iOS device into your computer. Ensure your iDevice is trusted.</li>
+        <li>Drag and drop, or select the <div class="code-banner">
+  Misaka
+</div>
+ .ipa file.</li>
+        <li>Enter your Apple ID and password. Your credentials will only be sent to Apple for verification.</li>
+      </ol>
+
+      <h2>Verifying Application</h2>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Go to General.</li>
+        <li>Scroll to VPN &amp; Device Management.</li>
+        <li>Open it and you will find a developer application.</li>
+        <li>Click on it. Once opened, click "Verify App".</li>
+      </ol>
+      
+      <h2>Enabling Developer Mode</h2>
+      <p>Starting iOS/iPadOS 16+, all users are required to enable developer mode to install developer apps.</p>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Scroll down to Privacy & Security.</li>
+        <li>On Privacy & Security, scroll down to Developer Mode. Click enable.</li>
+        <li>Your device may restart. Once enabled, proceed with the next steps.</li>
+      </ol>
+      
+
+      <h2>Installing Misaka</h2>
+      <ol>
+        <li>Open the application.</li>
+        <li>Go to the "Packages [Emu/Var]" tab.</li>
+        <li>Tap on the bottom left button (known as "ToolBox") and tap  <div class="code-banner">
+  Install TrollStore
+</div>, then tap  <div class="code-banner">
+  Tips
+</div></li>
+      </ol>
+
+      <h2>Installing TrollStore</h2>
+      <ol>
+        <li>Open the Tips app.</li>
+        <li>Tap  <div class="code-banner">
+  Install TrollStore
+</div>
+</li>
+      </ol>
+    </div>
+  </main>
+
+  <footer>
+    <div>
+    <a href="https://ios.sideload.info/siteinfo.html">Contact</a>
+    <a href="https://discord.gg/bRYhdA7t" target="_blank">Discord</a>
+    <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
+    </div>
+    <div class="copyright">
+      © 2025 - sideload.info - All rights reserved
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    function toggleSubMenu() {
+      const sub = document.getElementById("subMenu");
+      sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+    }
+
+    document.addEventListener("click", function(event) {
+      const menu = document.getElementById("dropdownMenu");
+      const hamburger = document.querySelector(".hamburger");
+      if (!menu.contains(event.target) && event.target !== hamburger) {
+        menu.style.display = "none";
+        document.getElementById("subMenu").style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
