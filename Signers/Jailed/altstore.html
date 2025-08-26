@@ -35,19 +35,27 @@
   </div>
 </header>
 
+  <div class="platform-switch-wrapper">
+  <h3 style="text-align:center; margin-bottom:8px;">Please select your OS. (Windows selected by default)</h3>
+  <div class="platform-switch" data-default="Windows">
+    <button type="button" class="is-active" data-target="Windows" aria-pressed="true">Windows</button>
+    <button type="button" data-target="MacOS" aria-pressed="false">MacOS</button>
+  </div>
+</div>
+
+<!-- PLATFORM PANES (paste your full, normal guide HTML inside each) -->
+<div id="Windows" class="platform-pane">
   <main>
-    <div class="faq-section">
+      <div class="faq-section">
       <h2>AltStore</h2>
       <p>AltStore is an application sideloader on iOS 14+ that uses Apple Developer Accounts for signing apps. SideStore is based off AltServer, however uses its custom application, "SideStore", which allows users to resign apps without a computer.</p>
       <p>A standard Apple ID is only limited to 3 apps at a time, and must refresh apps every 7 days. However, you can pay $99 yearly for an Apple Developer Account to have unlimited apps and refresh every 365 days.</p>
 
       <h2>Prerequisites</h2>
       <ul>
-        <li>A computer running Windows 10 or MacOS 10.14 or above</li>
+        <li>Computer running Windows 10 or above</li>
         <li>iPad or iPhone running iOS 14 or above</li>
-        <li>Latest version of <a href="https://cdn.altstore.io/file/altstore/altinstaller.zip" target="_blank" rel="noopener noreferrer">AltServer</a></li>
-        <p>&bull; If you are on MacOS 10.14 or 10.15, you must use this version of <a href="https://f000.backblazeb2.com/file/altstore/altserver/1_6_2.zip">AltServer</a></p>
-        <p>&bull; If installing on an iPhone or iPad running iOS 13 or below, you must use an older version of Altserver.</p>
+        <li>Latest version of <a href="https://cdn.altstore.io/file/altstore/altinstaller.zip" target="_blank" rel="noopener noreferrer">AltServer</a></li>        <p>&bull; If installing on an iPhone or iPad running iOS 13 or below, you must use an older version of Altserver.</p>
         <li>Latest version of <a href="https://www.apple.com/itunes/download/win64/" target="_blank" rel="noopener noreferrer">iTunes (not from the Microsoft store)</a></li>
         <li>Latest version of <a href="https://updates.cdn-apple.com/2020/windows/001-39935-20200911-1A70AA56-F448-11EA-8CC0-99D41950005E/iCloudSetup.exe" target="_blank" rel="noopener noreferrer">iCloud (not from the Microsoft store)</a></li>
         <li>A working Apple ID</li>
@@ -65,6 +73,7 @@
       <h2>Running AltServer</h2>
       <ol>
         <li>If not done already, run setup.exe and run the AltServer installer.</li>
+        <li>Connect your device into your computer. Ensure it is unlocked and trusted by your computer.</li>
         <li>Once complete, an app called "AltServer" should appear. Find "AltServer", and run as administrator.</li>
         <li>In the bottom right corner, click the tray and select the AltServer icon.</li>
         <li>Select "Install AltStore".</li>
@@ -86,10 +95,53 @@
         <li>Open it and you will find a developer application.</li>
         <li>Click on it. Once opened, click "Verify App".</li>
       </ol>
-      
-      </ol>
-    </div>
   </main>
+</div>
+
+<div id="MacOS" class="platform-pane" hidden>
+  
+  <main>
+
+      <h2>Prerequisites</h2>
+      <ul>
+        <li>A computer running MacOS 10.14 or above</li>
+        <li>iPad or iPhone running iOS 14 or above</li>
+        <li>Latest version of <a href="https://cdn.altstore.io/file/altstore/altserver.zip" target="_blank" rel="noopener noreferrer">AltServer</a></li>
+        <p>&bull; If you are on MacOS 10.14 or 10.15, you must use this version of <a href="https://f000.backblazeb2.com/file/altstore/altserver/1_6_2.zip">AltServer</a></p>
+        <p>&bull; If installing on an iPhone or iPad running iOS 13 or below, you must use an older version of Altserver.</p>
+        <li>A working Apple ID</li>
+      </ul>
+
+      <h2>Enabling Developer Mode</h2>
+      <p>Starting iOS/iPadOS 16+, all users are required to enable developer mode to install developer apps.</p>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Scroll down to Privacy &amp; Security.</li>
+        <li>On Privacy &amp; Security, scroll down to Developer Mode. Click enable.</li>
+        <li>Your device may restart. Once enabled, proceed with the next steps.</li>
+      </ol>
+
+      <h2>Running AltServer</h2>
+      <ol>
+        <li>If not done already, copy AltServer.app into /Applications.</li>
+        <li>Launch AltServer, which will appear as an icon menu in the bar.</li>
+        <li>Connect your device into your computer. Ensure it is unlocked and trusted by your computer.</li>
+        <li>Click the AltServer icon in the Mac menu bar, go to “Install AltStore”, then choose your device.</li>
+        <li>Type in your Apple ID. Your login details will only be sent to Apple for verification and are not tracked by AltServer.</li>
+      </ol>
+
+      <h2>Verifying Application</h2>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Go to General.</li>
+        <li>Scroll to VPN &amp; Device Management.</li>
+        <li>Open it and you will find a developer application.</li>
+        <li>Click on it. Once opened, click "Verify App".</li>
+      </ol>
+
+    
+  </main>
+</div>
 
   <footer>
     <div>
