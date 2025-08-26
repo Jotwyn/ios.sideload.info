@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sideload.info - Sideloadly Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../Themes/hamburger.css">
+<script src="../../Scripts/idk.js"></script>
+  
+</head>
+<body>
+
+<header>
+  <div class="logo"><strong>ios.sideload.info</strong></div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="menu" id="dropdownMenu">
+    <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
+    <div class="submenu" id="subMenu">
+      <a href="http://ios.sideload.info/signers.html">Signers</a>
+      <a href="http://ios.sideload.info/utillties.html">Utilities</a>
+      <a href="http://ios.sideload.info/faq.html">FAQ</a>
+      <a href="http://ios.sideload.info/errors.html">Errors</a>
+      <a href="http://ios.sideload.info/siteinfo.html">Site Info</a>
+      <div style="position: relative;">
+        <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
+        <div class="more-submenu" id="moreSubMenu">
+          <a href="http://ios.sideload.info/enabling-jit.html">Enabling JIT</a>
+          <a href="http://ios.sideload.info/decrypting-apps.html">Decrypting Apps</a>
+          <a href="http://ios.sideload.info/injecting-tweaks.html">Injecting Tweaks</a>
+        </div>
+      </div>
+    </div>
+    <a href="http://ios.sideload.info/getstarted">Get Started</a>
+  </div>
+</header>
+
+  <main>
+    <div class="faq-section">
+      <h2>Sideloader</h2>
+      <p>Sideloadly is an app signer that uses your apple ID & other certificates to sign applications.</p>
+      <p>A standard Apple ID is only limited to 3 apps at a time, and must refresh apps every 7 days. However, you can pay $99 yearly for an Apple Developer Account to have unlimited apps and refresh every 365 days.</p>
+
+      <style>
+  .caution-box {
+    border: 2px solid #f9a825;
+    background-color: #fff8e1;
+    color: #8a6d1d;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    max-width: 600px;
+    margin: 1rem 0;
+  }
+</style>
+
+      <div class="caution-box">
+ On iOS 7, 8 & 9, you can sideload unlimited applications regardless of your Apple ID. Some devices that are vulernable to the <a href="https://ios.sideload.info/utillties/cowabunga.html">MacDirtyCow exploit can disable the 3 app limit (iOS 15 - 16.1.2).</a> and  <a href="https://ios.sideload.info/utillties/sparsebox.html">sparserestore exploit (iOS 17 - 18.0 RC/18.1 beta 4).</a>
+</div>
+
+      <h2>Prerequisites</h2>
+      <ul>
+        <li>A computer any Linux</li>
+        <li>iPad, iPhone or Apple TV running iOS 7 or above</li>
+        <li>Latest version of <a href="https://github.com/Dadoum/Sideloader/releases" target="_blank" rel="noopener noreferrer">Sideloader.</a></li>
+        <li>A working Apple ID or certificate</li>
+      </ul>
+
+      <h2>Enabling Developer Mode</h2>
+      <p>Starting iOS/iPadOS 16+, all users are required to enable developer mode to install developer apps.</p>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Scroll down to Privacy &amp; Security.</li>
+        <li>On Privacy &amp; Security, scroll down to Developer Mode. Click enable.</li>
+        <li>Your device may restart. Once enabled, proceed with the next steps.</li>
+      </ol>
+
+      <h2>Running Sideloader</h2>
+      <ol>
+        <li>Run Sideloader.</li>
+      </ol>
+
+      <h2>Verifying Application</h2>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Go to General.</li>
+        <li>Scroll to VPN &amp; Device Management.</li>
+        <li>Open it and you will find a developer application.</li>
+        <li>Click on it. Once opened, click "Verify App".</li>
+      </ol>
+      
+      </ol>
+    </div>
+  </main>
+
+  <footer>
+    <div>
+    <a href="https://ios.sideload.info/siteinfo.html">Contact</a>
+    <a href="https://discord.gg/bRYhdA7t" target="_blank">Discord</a>
+    <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
+    </div>
+    <div class="copyright">
+      © 2025 - sideload.info - All rights reserved
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    function toggleSubMenu() {
+      const sub = document.getElementById("subMenu");
+      sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+    }
+
+    // Auto-close dropdown on outside click
+    document.addEventListener("click", function(event) {
+      const menu = document.getElementById("dropdownMenu");
+      const hamburger = document.querySelector(".hamburger");
+      if (!menu.contains(event.target) && event.target !== hamburger) {
+        menu.style.display = "none";
+        document.getElementById("subMenu").style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
