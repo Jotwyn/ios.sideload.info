@@ -74,7 +74,7 @@
       border-top: 1px solid #ccc;
     }
 
-    /* New submenu to the left of "More.." */
+
     .more-submenu {
       display: none;
       position: absolute;
@@ -184,7 +184,7 @@
       color: #666;
     }
 
-    /* FILTER DROPDOWN STYLES */
+
     #filterBtn {
       padding: 0.5rem 1rem;
       cursor: pointer;
