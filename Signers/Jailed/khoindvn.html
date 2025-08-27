@@ -122,7 +122,20 @@ If the first certificate does not work, keep going down the list until you find 
         <li>Click on it. Once opened, click "Verify App".</li>
       </ol>
 
-       <h2>Importing your certificates</h2>
+    <div class="platform-switch-wrapper">
+  <h3 style="text-align:center; margin-bottom:8px;">Please select your OS. (Windows selected by default)</h3>
+  <div class="platform-switch" data-default="Windows">
+    <button type="button" class="is-active" data-target="Windows" aria-pressed="true">KSign</button>
+    <button type="button" data-target="MacOS" aria-pressed="false">ESign</button>
+  </div>
+</div>
+
+<!-- PLATFORM PANES (paste your full, normal guide HTML inside each) -->
+<div id="Windows" class="platform-pane">
+
+  <main>
+
+       <h2>Adding our certificates</h2>
        <ol>
         <li>Open KSign.</li>
         <li>If not there already, navigate to the Files section at the bottom of your screen.</li>
@@ -146,6 +159,170 @@ If the first certificate does not work, keep going down the list until you find 
          <li>Tap "Start Signing".</li>
          <p>&bull; The process may take a while depending on your app size. Once finished, you will get a prompt. Tap "Install".</p>
       </ol>
+    
+  </main>
+</div>
+
+<div id="MacOS" class="platform-pane" hidden>
+  
+  <main>
+
+        <h2>Adding our Certificate</h2>
+       <ol>
+        <p>&bull; We must add our certificate to ESign in order sign other applications.</p>
+        <li>Open ESign. Ensure you are the Files tab of the navigation.</li>
+        <li>At the top right corner, tap the hamburger icon.</li>
+        <li>Select Import.</li>
+        <li>Import all the certificate files.</li>
+        <li>Once the certificate is imported into your Files section, tap on each file (.p12 and .mobileprovision)</li>
+      </ol>
+       <h2>Signing your first app</h2>
+       <ol>
+        <p>&bull; Before proceeding, please find your .ipa file you want to install.</p>
+        <li>Open ESign. Ensure you are the Files tab of the navigation.</li>
+        <li>At the top right corner, tap the hamburger icon.</li>
+        <li>Select Import.</li>
+        <li>Import your .ipa file.</li>
+        <li>Once the .ipa file is in the Files section, tap on it and click "Import App Library".</li>
+        <li>At the bottom of your screen, navigate to the Apps section.</li>
+        <li>Ensure you are at the Unsigned tab. Tap on the ipa, tap Signature, then tap Signature again.</li>
+        <li>You should be prompted to install the app. Tap Install.</li>
+                                                                                                   
+        <ol>
+          
+        <h2>Online Signing Mode (iOS 17.6.1+)</h2>
+        <ol>
+            <p>&bull; This step is only optional for users running iOS 17.6 & lower.</p>
+          <li>Navigate to the Settings tab at the bottom of your ESign screen.</li>
+          <li>Tap "Wifi".</li>
+          <li>Copy the LAN HTTP address & paste into your browser.</li>
+          <li>Once pasted, you should now be able to sign apps in your browser.</li>
+        </ol>
+    
+        </ol>
+  </main>
+</div>
+<style>
+  /* Buttons flush style */
+  .platform-switch {
+    display: flex;
+    justify-content: center;
+    gap: 0; /* buttons touch each other */
+    margin: 20px 0 16px 0;
+  }
+
+  .platform-switch button {
+    padding: 10px 18px;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+
+  /* Merge borders for touching buttons */
+  .platform-switch button:first-child {
+    border-radius: 4px 0 0 4px;
+  }
+  .platform-switch button:last-child {
+    border-radius: 0 4px 4px 0;
+  }
+  .platform-switch button + button {
+    border-left: none; /* remove double borders */
+  }
+
+  .platform-switch button:hover { background: #eaeaea; }
+  .platform-switch button.is-active {
+    background: #444; color: #fff; border-color: #444;
+  }
+
+  .platform-pane[hidden] { display: none !important; }
+</style>
+
+<script>
+  (function() {
+    const switcher = document.querySelector('.platform-switch');
+    const buttons  = switcher.querySelectorAll('button[data-target]');
+    const panes    = document.querySelectorAll('.platform-pane');
+
+    function activate(id) {
+      buttons.forEach(b => {
+        const on = b.dataset.target === id;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      panes.forEach(p => { p.hidden = (p.id !== id); });
+    }
+
+    switcher.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-target]');
+      if (!btn) return;
+      activate(btn.dataset.target);
+    });
+
+    const hash = location.hash && document.getElementById(location.hash.slice(1)) ? location.hash.slice(1) : null;
+    const def  = hash || switcher.dataset.default || 'Windows';
+    activate(def);
+  })();
+</script>
+
+
+       <h2>Adding our certificates</h2>
+       <ol>
+        <li>Open KSign.</li>
+        <li>If not there already, navigate to the Files section at the bottom of your screen.</li>
+        <li>At the top right of your screen, tap the + button.</li>
+        <li>Import the certificate zip file.</li>
+        <li>Once imported, the certificate should be in your Files section. Tap on it, and find "Extract". Click it.</li>
+        <li>A new folder will appear called "Certs-Khoindvn".</li>
+        <li>&bull; Navigate to Certs-Khoindvn>Certs-Khoindvn>KSignCert.</li>
+         <p>&bull; If using ESign, navigate to ESignCert instead of KSignCert.</p>
+        <li>Tap on any certificate, and click "Import Certificate".</li>
+         <p>&bull; It is highly recommended you select the certificate you used to initially install KSign.</p>
+         <li>Once the certificate is imported, you can now install apps.</li>
+      </ol>
+            
+       <h2>Installing Apps</h2>
+       <ol>
+        <li>In the KSign app, navigate to the Library section.</li>
+        <li>At the top right of your screen, tap the + to import your .ipa file.</li>
+         <li>Once imported, it should be visible in the App Library. Tap on the app, and tap Sign & Install.</li>
+         <li>Under Signing, select the certificate you imported.</li>
+         <li>Tap "Start Signing".</li>
+         <p>&bull; The process may take a while depending on your app size. Once finished, you will get a prompt. Tap "Install".</p>
+      </ol>
+
+       <h2>Adding our Certificate</h2>
+       <ol>
+        <p>&bull; We must add our certificate to ESign in order sign other applications.</p>
+        <li>Open ESign. Ensure you are the Files tab of the navigation.</li>
+        <li>At the top right corner, tap the hamburger icon.</li>
+        <li>Select Import.</li>
+        <li>Import all the certificate files.</li>
+        <li>Once the certificate is imported into your Files section, tap on each file (.p12 and .mobileprovision)</li>
+      </ol>
+       <h2>Signing your first app</h2>
+       <ol>
+        <p>&bull; Before proceeding, please find your .ipa file you want to install.</p>
+        <li>Open ESign. Ensure you are the Files tab of the navigation.</li>
+        <li>At the top right corner, tap the hamburger icon.</li>
+        <li>Select Import.</li>
+        <li>Import your .ipa file.</li>
+        <li>Once the .ipa file is in the Files section, tap on it and click "Import App Library".</li>
+        <li>At the bottom of your screen, navigate to the Apps section.</li>
+        <li>Ensure you are at the Unsigned tab. Tap on the ipa, tap Signature, then tap Signature again.</li>
+        <li>You should be prompted to install the app. Tap Install.</li>
+                                                                                                   
+        <ol>
+          
+        <h2>Online Signing Mode (iOS 17.6.1+)</h2>
+        <ol>
+            <p>&bull; This step is only optional for users running iOS 17.6 & lower.</p>
+          <li>Navigate to the Settings tab at the bottom of your ESign screen.</li>
+          <li>Tap "Wifi".</li>
+          <li>Copy the LAN HTTP address & paste into your browser.</li>
+          <li>Once pasted, you should now be able to sign apps in your browser.</li>
+        </ol>
       
       </ol>
     </div>
