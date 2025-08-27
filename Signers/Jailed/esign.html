@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sideload.info - ESign Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../Themes/hamburger.css">
+<script src="../../Scripts/idk.js"></script>
+  
+</head>
+<body>
+
+<header>
+  <div class="logo"><strong>ios.sideload.info</strong></div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="menu" id="dropdownMenu">
+    <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
+    <div class="submenu" id="subMenu">
+      <a href="http://ios.sideload.info/signers.html">Signers</a>
+      <a href="http://ios.sideload.info/utillties.html">Utilities</a>
+      <a href="http://ios.sideload.info/faq.html">FAQ</a>
+      <a href="http://ios.sideload.info/errors.html">Errors</a>
+      <a href="http://ios.sideload.info/siteinfo.html">Site Info</a>
+      <div style="position: relative;">
+        <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
+        <div class="more-submenu" id="moreSubMenu">
+          <a href="http://ios.sideload.info/enabling-jit.html">Enabling JIT</a>
+          <a href="http://ios.sideload.info/decrypting-apps.html">Decrypting Apps</a>
+          <a href="http://ios.sideload.info/injecting-tweaks.html">Injecting Tweaks</a>
+        </div>
+      </div>
+    </div>
+    <a href="http://ios.sideload.info/getstarted">Get Started</a>
+  </div>
+</header>
+
+  <main>
+    <div class="faq-section">
+      <h2>ESign</h2>
+      <p>ESign is an application signer that allows you to use your own certificate</p>
+
+      <style>
+  .caution-box {
+    border: 2px solid #f9a825;
+    background-color: #fff8e1;
+    color: #8a6d1d;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    max-width: 600px;
+    margin: 1rem 0;
+  }
+</style>
+
+      <div class="caution-box">
+ Before proceeding, you must obtain a certificate that comes in 2 files (when decompressed); .p12 & .mobileprovision. To learn how to get a certificate, <a href="https://ios.sideload.info/certificates.html">visit this guide.</a>
+</div>
+
+        <div class="caution-box">
+ If you cannot sign ESign yourself with your own certificate, you can use <a href="khoindvn.html">Khoindvn</a>, a service that provides pre-signed applications.
+</div>
+
+            <div class="caution-box">
+ ESign's signing service will expire soon. It is recommended you switch signing services to <a href="feather.html">Feather</a> or the service you wish to use.
+</div>
+      <h2>Prerequisites</h2>
+      <ul>
+        <li>iPad or iPhone TV running iOS 11 or above</li>
+        <li>Latest version of <a href="https://github.com/khcrysalis/Feather/releases/tag/v2.3.0">ESign</a></li>
+        <li>Your certificate (.p12, .mobileprovision & password (if applicable)</li>
+      </ul>
+
+      <h2>Installing ESign</h2>
+      <ol>
+        <li>Open <a href="https://sign.kravasign.com">sign.kravasign.com</a></li>
+        <li>Insert the required files. (self explanatory)</li>
+        <li>Tap Upload & Sign</li>
+        <li>Tap Install IPA</li>
+        <li>Wait until the application is on your home screen.</li>
+      </ol>
+      
+            <h2>Verifying Application</h2>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Go to General.</li>
+        <li>Scroll to VPN &amp; Device Management.</li>
+        <li>Open it and you will find a developer application.</li>
+        <li>Click on it. Once opened, click "Verify App".</li>
+      </ol>
+      
+       <h2>Adding our Certificate</h2>
+       <ol>
+        <p>&bull; We must add our certificate to ESign in order sign other applications.</p>
+        <li>Open ESign. Ensure you are the Files tab of the navigation.</li>
+        <li>At the top right corner, tap the hamburger icon.</li>
+        <li>Select Import.</li>
+        <li>Import all the certificate files.</li>
+        <li>Once the certificate is imported into your Files section, tap on each file (.p12 and .mobileprovision)</li>
+      </ol>
+       <h2>Signing your first app</h2>
+       <ol>
+        <p>&bull; Before proceeding, please find your .ipa file you want to install.</p>
+        <li>Open ESign. Ensure you are the Files tab of the navigation.</li>
+        <li>At the top right corner, tap the hamburger icon.</li>
+        <li>Select Import.</li>
+        <li>Import your .ipa file.</li>
+        <li>Once the .ipa file is in the Files section, tap on it and click "Import App Library".</li>
+        <li>At the bottom of your screen, navigate to the Apps section.</li>
+        <li>Ensure you are at the Unsigned tab. Tap on the ipa, tap Signature, then tap Signature again.</li>
+        <li>You should be prompted to install the app. Tap Install.</li>
+                                                                                                   
+        <ol>
+          
+        <h2>Online Signing Mode (iOS 17.6.1+)</h2>
+        <ol>
+            <p>&bull; This step is only optional for users running iOS 17.6 & lower.</p>
+          <li>Navigate to the Settings tab at the bottom of your ESign screen.</li>
+          <li>Tap "Wifi".</li>
+          <li>Copy the LAN HTTP address & paste into your browser.</li>
+          <li>Once pasted, you should now be able to sign apps in your browser.</li>
+        </ol>
+      
+      </ol>
+    </div>
+  </main>
+
+  <footer>
+    <div>
+    <a href="https://ios.sideload.info/siteinfo.html">Contact</a>
+    <a href="https://discord.gg/bRYhdA7t" target="_blank">Discord</a>
+    <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
+    </div>
+    <div class="copyright">
+      © 2025 - sideload.info - All rights reserved
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    function toggleSubMenu() {
+      const sub = document.getElementById("subMenu");
+      sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+    }
+
+    // Auto-close dropdown on outside click
+    document.addEventListener("click", function(event) {
+      const menu = document.getElementById("dropdownMenu");
+      const hamburger = document.querySelector(".hamburger");
+      if (!menu.contains(event.target) && event.target !== hamburger) {
+        menu.style.display = "none";
+        document.getElementById("subMenu").style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
