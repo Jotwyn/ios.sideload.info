@@ -130,7 +130,6 @@ If the first certificate does not work, keep going down the list until you find 
   </div>
 </div>
 
-<!-- PLATFORM PANES (paste your full, normal guide HTML inside each) -->
 <div id="Windows" class="platform-pane">
 
   <main>
@@ -203,11 +202,10 @@ If the first certificate does not work, keep going down the list until you find 
   </main>
 </div>
 <style>
-  /* Buttons flush style */
   .platform-switch {
     display: flex;
     justify-content: center;
-    gap: 0; /* buttons touch each other */
+    gap: 0; 
     margin: 20px 0 16px 0;
   }
 
@@ -220,7 +218,6 @@ If the first certificate does not work, keep going down the list until you find 
     transition: background .15s ease, color .15s ease, border-color .15s ease;
   }
 
-  /* Merge borders for touching buttons */
   .platform-switch button:first-child {
     border-radius: 4px 0 0 4px;
   }
@@ -228,7 +225,7 @@ If the first certificate does not work, keep going down the list until you find 
     border-radius: 0 4px 4px 0;
   }
   .platform-switch button + button {
-    border-left: none; /* remove double borders */
+    border-left: none; 
   }
 
   .platform-switch button:hover { background: #eaeaea; }
@@ -290,7 +287,6 @@ If the first certificate does not work, keep going down the list until you find 
       sub.style.display = sub.style.display === "flex" ? "none" : "flex";
     }
 
-    // Auto-close dropdown on outside click
     document.addEventListener("click", function(event) {
       const menu = document.getElementById("dropdownMenu");
       const hamburger = document.querySelector(".hamburger");
