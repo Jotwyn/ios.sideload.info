@@ -58,7 +58,6 @@
   <p>Below shows a table of compatible signers with your chosen operating system version.</p>
   <p>Find your specific iOS version and click on the blue URL on the table to access the signer guide.</p>
 
-  <!-- TABLES -->
   <table id="recommendedTable">
     <caption><strong>Recommended</strong></caption>
      <tr>
@@ -220,7 +219,6 @@
 </footer>
 
 <script>
-  // Hamburger menu toggles
   function toggleMenu() {
     const menu = document.getElementById("dropdownMenu");
     menu.style.display = menu.style.display === "flex" ? "none" : "flex";
@@ -238,7 +236,6 @@
     moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
   }
 
-  // Close dropdowns when clicking outside (hamburger menus)
   document.addEventListener("click", function(event) {
     const menu = document.getElementById("dropdownMenu");
     const hamburger = document.querySelector(".hamburger");
@@ -249,7 +246,6 @@
     }
   });
 
-  // FILTER dropdown logic
   const filterBtn = document.getElementById('filterBtn');
   const filterDropdown = document.getElementById('filterDropdown');
   const filterOptions = document.querySelectorAll('.filterOption');
@@ -268,12 +264,10 @@
     option.addEventListener('click', () => {
       const selected = option.getAttribute('data-filter');
 
-      // Show only selected table
       for (const key in tables) {
         tables[key].style.display = (key === selected) ? 'table' : 'none';
       }
 
-      // Update active styling
       filterOptions.forEach(btn => {
         btn.classList.remove('active');
         btn.style.border = 'none';
@@ -281,7 +275,6 @@
         btn.style.fontWeight = '600';
       });
 
-      // Mark selected button active with blue outline and checkmark
       option.classList.add('active');
       option.style.border = '2px solid #007acc';
       option.style.borderRadius = '6px';
@@ -292,12 +285,10 @@
         option.appendChild(check);
       }
 
-      // Hide dropdown after selection
       filterDropdown.style.display = 'none';
     });
   });
 
-  // Close filter dropdown if clicking outside
   document.addEventListener('click', e => {
     if (!filterDropdown.contains(e.target) && e.target !== filterBtn) {
       filterDropdown.style.display = 'none';
@@ -307,7 +298,6 @@
 
 <script>
   const devices = [
-    // iPhones
     { name: "iPhone 6", chip: "A8", arch: "arm64" },
     { name: "iPhone 6 Plus", chip: "A8", arch: "arm64" },
     { name: "iPhone 6s", chip: "A9", arch: "arm64" },
@@ -351,7 +341,6 @@
     { name: "iPhone 17 Pro", chip: "A19 Pro", arch: "arm64e" },
     { name: "iPhone 17 Pro Max", chip: "A19 Pro", arch: "arm64e" },
 
-    // iPads
     { name: "iPad (1st gen)", chip: "A4", arch: "armv7" },
     { name: "iPad 2", chip: "A5", arch: "armv7" },
     { name: "iPad (3rd gen)", chip: "A5X", arch: "armv7s" },
