@@ -56,15 +56,7 @@
   <p>Below shows a table of compatible signers with your chosen operating system version.</p>
   <p>Find your specific iOS version and click on the blue URL on the table to access the signer guide.</p>
 
-    <div class="caution-box">
-    Some methods requires a computer running Windows/MacOS in order to install. If a computer is not nearby, please <a href="alternatives.html">seek alternative methods</a>.
-  </div>
 
-  <div class="caution-box">
-    You may want to consider <a href="jailbreak.html">jailbreaking</a> to sideload instead, as it will provide more benefits and is easier. If you cannot or do not want to jailbreak, keep reading below.
-  </div>
-
-  <!-- TABLES -->
   <table id="recommendedTable">
     <caption><strong>Recommended</strong></caption>
     <tr>
@@ -127,7 +119,6 @@
 </footer>
 
 <script>
-  // Hamburger menu toggles
   function toggleMenu() {
     const menu = document.getElementById("dropdownMenu");
     menu.style.display = menu.style.display === "flex" ? "none" : "flex";
@@ -145,7 +136,6 @@
     moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
   }
 
-  // Close dropdowns when clicking outside (hamburger menus)
   document.addEventListener("click", function(event) {
     const menu = document.getElementById("dropdownMenu");
     const hamburger = document.querySelector(".hamburger");
@@ -156,7 +146,6 @@
     }
   });
 
-  // FILTER dropdown logic
   const filterBtn = document.getElementById('filterBtn');
   const filterDropdown = document.getElementById('filterDropdown');
   const filterOptions = document.querySelectorAll('.filterOption');
@@ -175,12 +164,10 @@
     option.addEventListener('click', () => {
       const selected = option.getAttribute('data-filter');
 
-      // Show only selected table
       for (const key in tables) {
         tables[key].style.display = (key === selected) ? 'table' : 'none';
       }
 
-      // Update active styling
       filterOptions.forEach(btn => {
         btn.classList.remove('active');
         btn.style.border = 'none';
@@ -188,7 +175,6 @@
         btn.style.fontWeight = '600';
       });
 
-      // Mark selected button active with blue outline and checkmark
       option.classList.add('active');
       option.style.border = '2px solid #007acc';
       option.style.borderRadius = '6px';
@@ -199,12 +185,10 @@
         option.appendChild(check);
       }
 
-      // Hide dropdown after selection
       filterDropdown.style.display = 'none';
     });
   });
 
-  // Close filter dropdown if clicking outside
   document.addEventListener('click', e => {
     if (!filterDropdown.contains(e.target) && e.target !== filterBtn) {
       filterDropdown.style.display = 'none';
