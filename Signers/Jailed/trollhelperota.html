@@ -164,7 +164,7 @@
       box.classList.add("copied");
       setTimeout(() => {
         box.classList.remove("copied");
-      }, 3000); // 3 seconds
+      }, 3000); 
     });
   }
 </script>
@@ -209,7 +209,6 @@
       sub.style.display = sub.style.display === "flex" ? "none" : "flex";
     }
 
-    // Auto-close dropdown on outside click
     document.addEventListener("click", function(event) {
       const menu = document.getElementById("dropdownMenu");
       const hamburger = document.querySelector(".hamburger");
