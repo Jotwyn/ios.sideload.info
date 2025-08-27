@@ -15,7 +15,6 @@
       moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
     }
 
-    // Close dropdowns when clicking outside
     document.addEventListener("click", function(event) {
       const menu = document.getElementById("dropdownMenu");
       const hamburger = document.querySelector(".hamburger");
