@@ -229,7 +229,6 @@
   <div class="device-output"></div>
 </div>
 
-<!-- Device Lookup Module -->
 <style>
   .device-lookup-container {
     max-width: 600px;
@@ -279,7 +278,6 @@
 
 <script>
   const devices = [
-    // iPhones
     { name: "iPhone 6", chip: "A8", arch: "arm64" },
     { name: "iPhone 6 Plus", chip: "A8", arch: "arm64" },
     { name: "iPhone 6s", chip: "A9", arch: "arm64" },
@@ -323,7 +321,6 @@
     { name: "iPhone 17 Pro", chip: "A19 Pro", arch: "arm64e" },
     { name: "iPhone 17 Pro Max", chip: "A19 Pro", arch: "arm64e" },
 
-    // iPads
     { name: "iPad (1st gen)", chip: "A4", arch: "armv7" },
     { name: "iPad 2", chip: "A5", arch: "armv7" },
     { name: "iPad (3rd gen)", chip: "A5X", arch: "armv7s" },
@@ -410,7 +407,6 @@
     sub.style.display = sub.style.display === "flex" ? "none" : "flex";
   }
 
-  // Close dropdown when clicking outside
   document.addEventListener("click", function(event) {
     const menu = document.getElementById("dropdownMenu");
     const hamburger = document.querySelector(".hamburger");
