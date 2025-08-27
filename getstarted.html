@@ -241,7 +241,6 @@
   </select>
 
   <div class="version-grid" id="versionGrid">
-    <!-- Buttons will populate here dynamically -->
   </div>
 </main>
 
@@ -301,15 +300,12 @@ function renderButtons(os) {
   }, 200);
 }
 
-// Initial render for iOS
 renderButtons("iOS");
 
-// Filter change
 document.getElementById("osFilter").addEventListener("change", function() {
   renderButtons(this.value);
 });
 
-// Menu toggle functions
 function toggleMenu() {
   const menu = document.getElementById("dropdownMenu");
   menu.style.display = menu.style.display === "flex" ? "none" : "flex";
@@ -327,7 +323,6 @@ function toggleMoreSubMenu(event) {
   moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
 }
 
-// Close dropdowns when clicking outside
 document.addEventListener("click", function(event) {
   const menu = document.getElementById("dropdownMenu");
   const hamburger = document.querySelector(".hamburger");
