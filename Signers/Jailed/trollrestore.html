@@ -100,7 +100,6 @@
   </div>
 </div>
 
-<!-- PLATFORM PANES (paste your full, normal guide HTML inside each) -->
 <div id="Windows" class="platform-pane">
   <main>
    <h2>Prerequisites</h2>
@@ -190,11 +189,10 @@
     </div>
 
 <style>
-  /* Buttons flush style */
   .platform-switch {
     display: flex;
     justify-content: center;
-    gap: 0; /* buttons touch each other */
+    gap: 0; 
     margin: 20px 0 16px 0;
   }
 
@@ -207,7 +205,6 @@
     transition: background .15s ease, color .15s ease, border-color .15s ease;
   }
 
-  /* Merge borders for touching buttons */
   .platform-switch button:first-child {
     border-radius: 4px 0 0 4px;
   }
@@ -215,7 +212,7 @@
     border-radius: 0 4px 4px 0;
   }
   .platform-switch button + button {
-    border-left: none; /* remove double borders */
+    border-left: none; 
   }
 
   .platform-switch button:hover { background: #eaeaea; }
