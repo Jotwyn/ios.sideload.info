@@ -39,9 +39,9 @@ body.dark {
   --filter-btn-text: #66bfff;
   --filter-btn-border: #66bfff;
   --filter-hover-bg: #333;
-  --caution-bg: #332c00;
+  --caution-bg: #3a2f00;
   --caution-border: #f9a825;
-  --caution-text: #f9d966;
+  --caution-text: #fff3b0;
 }
 
 * {
