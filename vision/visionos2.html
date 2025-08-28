@@ -7,33 +7,50 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../../Themes/ios.css">
 <script src="../../Scripts/idk.js"></script>
+<script src="../../Scripts/darkness.js"></script>
+  
 </head>
 <body>
 
 <header>
   <div class="logo"><strong>ios.sideload.info</strong></div>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <div class="menu" id="dropdownMenu">
+
+  <div style="display: flex; align-items: center; gap: 10px; margin-left: auto;">
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    
+<button id="darkModeToggle" style="
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 18px;
+    position: relative;
+    top: 2px;
+">
+    🌙
+</button>
+  </div>
+
+      <div class="menu" id="dropdownMenu">
     <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
     <div class="submenu" id="subMenu">
-      <a href="http://ios.sideload.info/signers.html">Signers</a>
-      <a href="http://ios.sideload.info/utillties.html">Utilities</a>
-      <a href="http://ios.sideload.info/faq.html">FAQ</a>
-      <a href="http://ios.sideload.info/errors.html">Errors</a>
-      <a href="http://ios.sideload.info/siteinfo.html">Site Info</a>
+      <a href="https://ios.sideload.info/signers">Signers</a>
+      <a href="https://ios.sideload.info/utilities">Utilities</a>
+      <a href="https://ios.sideload.info/faq">FAQ</a>
+      <a href="https://ios.sideload.info/errors">Errors</a>
+      <a href="https://ios.sideload.info/siteinfo">Site Info</a>
       <div style="position: relative;">
         <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
         <div class="more-submenu" id="moreSubMenu">
-          <a href="http://ios.sideload.info/enabling-jit.html">Enabling JIT</a>
-          <a href="http://ios.sideload.info/decrypting-apps.html">Decrypting Apps</a>
-          <a href="http://ios.sideload.info/injecting-tweaks.html">Injecting Tweaks</a>
+          <a href="https://ios.sideload.info/enabling-jit">Enabling JIT</a>
+          <a href="https://ios.sideload.info/decrypting-apps">Decrypting Apps</a>
+          <a href="https://ios.sideload.info/injecting-tweaks">Injecting Tweaks</a>
         </div>
       </div>
     </div>
-    <a href="getstarted.html">Get Started</a>
+    <a href="https://ios.sideload.info/getstarted">Get Started</a>
   </div>
 </header>
-
 <main>
   <div class="title-filter-container">
     <h1>visionOS 2</h1>
