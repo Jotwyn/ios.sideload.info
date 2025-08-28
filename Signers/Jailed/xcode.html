@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sideload.info - XCode Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../Themes/hamburger.css">
+<script src="../../Scripts/idk.js"></script>
+  
+</head>
+<body>
+
+<header>
+  <div class="logo"><strong>ios.sideload.info</strong></div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="menu" id="dropdownMenu">
+    <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
+    <div class="submenu" id="subMenu">
+      <a href="http://ios.sideload.info/signers.html">Signers</a>
+      <a href="http://ios.sideload.info/utillties.html">Utilities</a>
+      <a href="http://ios.sideload.info/faq.html">FAQ</a>
+      <a href="http://ios.sideload.info/errors.html">Errors</a>
+      <a href="http://ios.sideload.info/siteinfo.html">Site Info</a>
+      <div style="position: relative;">
+        <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
+        <div class="more-submenu" id="moreSubMenu">
+          <a href="http://ios.sideload.info/enabling-jit.html">Enabling JIT</a>
+          <a href="http://ios.sideload.info/decrypting-apps.html">Decrypting Apps</a>
+          <a href="http://ios.sideload.info/injecting-tweaks.html">Injecting Tweaks</a>
+        </div>
+      </div>
+    </div>
+    <a href="http://ios.sideload.info/getstarted">Get Started</a>
+  </div>
+</header>
+
+  <main>
+    <div class="faq-section">
+      <h2>XCode</h2>
+      <p>XCode is an app on MacOS which can be used to develop apps, and more. One of the features that XCode has is sideloading apps with your Apple ID.</p>
+      
+      <style>
+  .caution-box {
+    border: 2px solid #f9a825;
+    background-color: #fff8e1;
+    color: #8a6d1d;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    max-width: 600px;
+    margin: 1rem 0;
+  }
+</style>
+
+      <div class="caution-box">
+ XCode should only be used to sideload if you are sideloading via tvOS, watchOS or visionOS. Otherwise, alternatives like <a href="sideloadly">Sideloadly</a> exist for iOS.
+</div>
+
+      <div class="caution-box">
+ This guide is currently a stub. Some information may be incorrect or inaccurate. Please visit <a href="https://ios.sideload.info/siteinfo">site information</a> to learn about contributing.
+</div>
+
+      <h2>Prerequisites</h2>
+      <ul>
+        <li>A computer running MacOS</li>
+        <li>Latest version of <a href="https://apps.apple.com/us/app/xcode/id497799835?mt=12" target="_blank" rel="noopener noreferrer">XCode</a></li>
+        <li>Latest version of <a href="https://github.com/libimobiledevice/ideviceinstaller">iDeviceInstaller</a>.
+        <li>A working Apple ID (registered as a developer)</li>
+      </ul>
+
+      <h2>Enabling Developer Mode</h2>
+      <p>Starting iOS/iPadOS 16+, all users are required to enable developer mode to install developer apps.</p>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Scroll down to Privacy &amp; Security.</li>
+        <li>On Privacy &amp; Security, scroll down to Developer Mode. Click enable.</li>
+        <li>Your device may restart. Once enabled, proceed with the next steps.</li>
+      </ol>
+
+      <h2>Opening XCode</h2>
+      <ol>
+        <li>Launch XCode.</li>
+        <li>Select "Create a new XCode project"</li>
+        <li>Select a template "Single View App" and tap "Next".</li>
+        <li>Fill in all the details and click "Next".</li>
+        <li>Save the project to a memorable location. You will need this later.</li>
+      </ol>
+
+      <h2>Connecting your iOS device</h2>
+      <ol>
+        <li>Connect your device to your computeer.</li>
+        <li>Select your device in the list of available devices in XCode.</li>
+      </ol>
+
+      <h2>Preparing Signature</h2>
+      <ol>
+        <li>Go over to the project settings by clicking on the project name in the XCode sidebar.</li>
+        <li>Under the "Signing & Capabilities" tab, select your Apple ID from the "Team" dropdown menu.</li>
+        <li>If not already, check "Automatic Manage Signing".</li>
+      </ol>
+
+      <h2>Launching Termjinal</h2>
+      <ol>
+        <li>Open the terminal.</li>
+        <li>Run "cd /" to where your .ipa file is.</li>
+        <li>Run `shell</li>
+        <li>Run ideviceinstaller -i YourAppName.ipa</li>
+      </ol>
+
+      <h2>Verifying Application</h2>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Go to General.</li>
+        <li>Scroll to VPN &amp; Device Management.</li>
+        <li>Open it and you will find a developer application.</li>
+        <li>Click on it. Once opened, click "Verify App".</li>
+      </ol>
+      
+      </ol>
+    </div>
+  </main>
+
+  <footer>
+    <div>
+    <a href="https://ios.sideload.info/siteinfo.html">Contact</a>
+    <a href="https://discord.gg/bRYhdA7t" target="_blank">Discord</a>
+    <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
+    </div>
+    <div class="copyright">
+      © 2025 - sideload.info - All rights reserved
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    function toggleSubMenu() {
+      const sub = document.getElementById("subMenu");
+      sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+    }
+
+    document.addEventListener("click", function(event) {
+      const menu = document.getElementById("dropdownMenu");
+      const hamburger = document.querySelector(".hamburger");
+      if (!menu.contains(event.target) && event.target !== hamburger) {
+        menu.style.display = "none";
+        document.getElementById("subMenu").style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
