@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="Themes/ios.css">
 <script src="Scripts/idk.js"></script>
+<script src="Scripts/darkness.js"></script>
 </head>
 <body>
 
@@ -16,10 +17,7 @@
 
   <div style="display: flex; align-items: center; gap: 10px; margin-left: auto;">
     <div class="hamburger" onclick="toggleMenu()">☰</div>
-
-    <!-- Dark mode toggle button -->
-<!-- Dark mode toggle button -->
-<!-- Dark mode toggle button -->
+    
 <button id="darkModeToggle" style="
     background: none;
     border: none;
@@ -54,81 +52,6 @@
   </div>
 </header>
 
-<!-- Include the dark mode JS at the end of body -->
-<script>
-  const darkBtn = document.getElementById("darkModeToggle");
-
-  // Load saved theme
-  if (localStorage.getItem("darkMode") === "enabled") {
-    document.body.classList.add("dark");
-    darkBtn.textContent = "☀️";
-  }
-
-  darkBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    if (document.body.classList.contains("dark")) {
-      localStorage.setItem("darkMode", "enabled");
-      darkBtn.textContent = "☀️"; // sun emoji
-    } else {
-      localStorage.setItem("darkMode", "disabled");
-      darkBtn.textContent = "🌙"; // moon emoji
-    }
-  });
-
-  // Existing menu functions
-  function toggleMenu() {
-    const menu = document.getElementById("dropdownMenu");
-    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-  }
-
-  function toggleSubMenu() {
-    const sub = document.getElementById("subMenu");
-    sub.style.display = sub.style.display === "flex" ? "none" : "flex";
-  }
-
-  function toggleMoreSubMenu(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const moreMenu = document.getElementById("moreSubMenu");
-    moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
-  }
-
-  document.addEventListener("click", function(event) {
-    const menu = document.getElementById("dropdownMenu");
-    const hamburger = document.querySelector(".hamburger");
-    if (!menu.contains(event.target) && event.target !== hamburger) {
-      menu.style.display = "none";
-      document.getElementById("subMenu").style.display = "none";
-      document.getElementById("moreSubMenu").style.display = "none";
-    }
-  });
-</script>
-
-  <script>
-  const darkBtn = document.getElementById("darkModeToggle");
-
-  // Detect system preference
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  // Load saved theme or system preference
-  const savedTheme = localStorage.getItem("darkMode");
-
-  if (savedTheme === "enabled" || (!savedTheme && prefersDark)) {
-    document.body.classList.add("dark");
-    darkBtn.textContent = "☀️"; // sun emoji
-  }
-
-  darkBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    if (document.body.classList.contains("dark")) {
-      localStorage.setItem("darkMode", "enabled");
-      darkBtn.textContent = "☀️"; // sun emoji
-    } else {
-      localStorage.setItem("darkMode", "disabled");
-      darkBtn.textContent = "🌙"; // moon emoji
-    }
-  });
-</script>
 
 <main>
   <div class="title-filter-container">
