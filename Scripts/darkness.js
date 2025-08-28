@@ -1,4 +1,8 @@
- const darkBtn = document.getElementById("darkModeToggle");
+document.addEventListener("DOMContentLoaded", () => {
+  const darkBtn = document.getElementById("darkModeToggle");
+});
+
+const darkBtn = document.getElementById("darkModeToggle");
 
   // Load saved theme
   if (localStorage.getItem("darkMode") === "enabled") {
