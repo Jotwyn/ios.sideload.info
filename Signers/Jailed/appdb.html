@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Guide: Installing Appdb">
+  <title>sideload.info - Appdb Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../Themes/hamburger.css">
+<script src="../../Scripts/idk.js"></script>
+<script src="../../Scripts/darkness.js"></script>
+  
+</head>
+<body>
+
+<header>
+  <div class="logo"><strong>ios.sideload.info</strong></div>
+
+  <div style="display: flex; align-items: center; gap: 10px; margin-left: auto;">
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    
+<button id="darkModeToggle" style="
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 18px;
+    position: relative;
+    top: 2px;
+">
+    🌙
+</button>
+  </div>
+
+   <div class="menu" id="dropdownMenu">
+    <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
+    <div class="submenu" id="subMenu">
+      <a href="https://ios.sideload.info/signers">Signers</a>
+      <a href="https://ios.sideload.info/utilities">Utilities</a>
+      <a href="https://ios.sideload.info/faq">FAQ</a>
+      <a href="https://ios.sideload.info/errors">Errors</a>
+      <a href="https://ios.sideload.info/siteinfo">Site Info</a>
+      <div style="position: relative;">
+        <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
+        <div class="more-submenu" id="moreSubMenu">
+          <a href="https://ios.sideload.info/enabling-jit">Enabling JIT</a>
+          <a href="https://ios.sideload.info/decrypting-apps">Decrypting Apps</a>
+          <a href="https://ios.sideload.info/injecting-tweaks">Injecting Tweaks</a>
+        </div>
+      </div>
+    </div>
+    <a href="https://ios.sideload.info/getstarted">Get Started</a>
+  </div>
+</header>
+  
+  <main>
+    <div class="faq-section">
+      <h2>ESign</h2>
+      <p>ESign is an application signer that allows you to use your own certificate</p>
+
+      <style>
+  .caution-box {
+    border: 2px solid #f9a825;
+    background-color: #fff8e1;
+    color: #8a6d1d;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    max-width: 600px;
+    margin: 1rem 0;
+  }
+</style>
+
+
+      
+      <h2>Prerequisites</h2>
+      <ul>
+        <li>iPad or iPhone TV</li>
+        <li>A working Apple ID (use a burner) - Only on iOS 17.6+</li>
+        <li>A working certificate</li>
+        <p>&bull; As of right now (August 28th), Appdb does not allow enterprise signing.</p>
+      </ul>
+
+          <div class="platform-switch-wrapper">
+  <h3 style="text-align:center; margin-bottom:8px;">Please select the OS you are using.</h3>
+  <div class="platform-switch" data-default="Windows">
+    <button type="button" class="is-active" data-target="Windows" aria-pressed="true">tvOS</button>
+    <button type="button" data-target="MacOS" aria-pressed="false">iPadOS/iPhoneOS</button>
+  </div>
+</div>
+
+<div id="Windows" class="platform-pane">
+
+  <main>
+
+    <h2>Installing Appdb</h2>
+    <ol>
+      <li>Visit <a href="https://appdb.to">appdb.to</a> on your device.</li>
+      <li>At the top of the page, tap "Install appdb"</li>
+      <li>Enter your email address.</li>
+      <p>&bull; Do not use an Apple registered email address (@me.com, @icloud.com, @mac.com).</p>
+      <li>Once linked, a configuration profile should be prompted to be installed. Tap Allow.</li>
+      <li>Open the Settings app. Navigate to General > VPN & Device Management. Tap "Install appdb".</li>
+      <li>At the top right, tap "Install". Type in your passcode. Then, tap "Install" again.</li>
+      <li>Read your screen & accept the TOS. Tap "Next" to accept on your top right. Finally, click "Install".</li>
+    </ol>
+
+    <h2>Connecting your Apple ID</h2>
+    <ol>
+      <li>A new bookmark should appear on your device. It should be named "appdb". Open it.</li>
+      <li>At the top of the page, tap "Selected Device". Find the option "Install apps with free Apple Developer account" and tap it.</li>
+      <li>Enter your credentials and follow the on-screen instructions.</li>
+      <li>Once complete, you should be connected using your Apple ID.</li>
+      <li>Now, you can install apps. At the top, you can select a handful of Appdb picked apps, or import your own .ipa file.</li>
+      <p>Import a custom .ipa by tapping "Selected Devices", then "My apps (ipa files)".</p>
+    </ol>
+    
+  </main>
+</div>
+
+<div id="MacOS" class="platform-pane" hidden>
+  
+  <main>
+
+    <h2>Linking your Apple TV</h2>
+    <ol>
+      <li>on</li>
+    </ol>
+ 
+  </main>
+</div>
+
+      
+      <h2>Installing Appdb</h2>
+      <ol>
+        <li>Open <a href="https://appdb.to">appdb.to</a></li>
+      </ol>
+    
+      
+       <h2>Adding our Certificate</h2>
+       <ol>
+        <p>&bull; We must add our certificate to ESign in order sign other applications.</p>
+        <li>Open ESign. Ensure you are the Files tab of the navigation.</li>
+        <li>At the top right corner, tap the hamburger icon.</li>
+        <li>Select Import.</li>
+        <li>Import all the certificate files.</li>
+        <li>Once the certificate is imported into your Files section, tap on each file (.p12 and .mobileprovision)</li>
+      </ol>
+       <h2>Signing your first app</h2>
+       <ol>
+        <p>&bull; Before proceeding, please find your .ipa file you want to install.</p>
+        <li>Open ESign. Ensure you are the Files tab of the navigation.</li>
+        <li>At the top right corner, tap the hamburger icon.</li>
+        <li>Select Import.</li>
+        <li>Import your .ipa file.</li>
+        <li>Once the .ipa file is in the Files section, tap on it and click "Import App Library".</li>
+        <li>At the bottom of your screen, navigate to the Apps section.</li>
+        <li>Ensure you are at the Unsigned tab. Tap on the ipa, tap Signature, then tap Signature again.</li>
+        <li>You should be prompted to install the app. Tap Install.</li>
+                                                                                                   
+        <ol>
+      
+      </ol>
+    </div>
+  </main>
+
+  <style>
+  .platform-switch {
+    display: flex;
+    justify-content: center;
+    gap: 0; 
+    margin: 20px 0 16px 0;
+  }
+
+  .platform-switch button {
+    padding: 10px 18px;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+
+  .platform-switch button:first-child {
+    border-radius: 4px 0 0 4px;
+  }
+  .platform-switch button:last-child {
+    border-radius: 0 4px 4px 0;
+  }
+  .platform-switch button + button {
+    border-left: none; 
+  }
+
+  .platform-switch button:hover { background: #eaeaea; }
+  .platform-switch button.is-active {
+    background: #444; color: #fff; border-color: #444;
+  }
+
+  .platform-pane[hidden] { display: none !important; }
+</style>
+
+<script>
+  (function() {
+    const switcher = document.querySelector('.platform-switch');
+    const buttons  = switcher.querySelectorAll('button[data-target]');
+    const panes    = document.querySelectorAll('.platform-pane');
+
+    function activate(id) {
+      buttons.forEach(b => {
+        const on = b.dataset.target === id;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      panes.forEach(p => { p.hidden = (p.id !== id); });
+    }
+
+    switcher.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-target]');
+      if (!btn) return;
+      activate(btn.dataset.target);
+    });
+
+    const hash = location.hash && document.getElementById(location.hash.slice(1)) ? location.hash.slice(1) : null;
+    const def  = hash || switcher.dataset.default || 'Windows';
+    activate(def);
+  })();
+</script>
+  <footer>
+    <div>
+    <a href="https://ios.sideload.info/siteinfo.html">Contact</a>
+    <a href="https://discord.gg/bRYhdA7t" target="_blank">Discord</a>
+    <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
+    </div>
+    <div class="copyright">
+      © 2025 - sideload.info - All rights reserved
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    function toggleSubMenu() {
+      const sub = document.getElementById("subMenu");
+      sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+    }
+
+    document.addEventListener("click", function(event) {
+      const menu = document.getElementById("dropdownMenu");
+      const hamburger = document.querySelector(".hamburger");
+      if (!menu.contains(event.target) && event.target !== hamburger) {
+        menu.style.display = "none";
+        document.getElementById("subMenu").style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
