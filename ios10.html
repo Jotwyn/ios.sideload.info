@@ -13,68 +13,85 @@
 
 <header>
   <div class="logo"><strong>ios.sideload.info</strong></div>
-  
-  <!-- Dark Mode Toggle Emoji -->
+
+  <!-- Dark mode toggle button -->
   <button id="darkModeToggle" style="margin-left: 20px; padding: 6px 10px; cursor: pointer; font-size: 18px;">
     🌙
   </button>
-  
+
   <div class="hamburger" onclick="toggleMenu()">☰</div>
+
   <div class="menu" id="dropdownMenu">
     <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
     <div class="submenu" id="subMenu">
-      <a href="http://ios.sideload.info/signers.html">Signers</a>
-      <a href="http://ios.sideload.info/utillties.html">Utilities</a>
-      <a href="http://ios.sideload.info/faq.html">FAQ</a>
-      <a href="http://ios.sideload.info/errors.html">Errors</a>
-      <a href="http://ios.sideload.info/siteinfo.html">Site Info</a>
+      <a href="signers.html">Signers</a>
+      <a href="utillties.html">Utilities</a>
+      <a href="faq.html">FAQ</a>
+      <a href="errors.html">Errors</a>
+      <a href="siteinfo.html">Site Info</a>
       <div style="position: relative;">
         <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
         <div class="more-submenu" id="moreSubMenu">
-          <a href="http://ios.sideload.info/enabling-jit.html">Enabling JIT</a>
-          <a href="http://ios.sideload.info/decrypting-apps.html">Decrypting Apps</a>
-          <a href="http://ios.sideload.info/injecting-tweaks.html">Injecting Tweaks</a>
+          <a href="enabling-jit.html">Enabling JIT</a>
+          <a href="decrypting-apps.html">Decrypting Apps</a>
+          <a href="injecting-tweaks.html">Injecting Tweaks</a>
         </div>
       </div>
     </div>
     <a href="getstarted.html">Get Started</a>
   </div>
-
-  <!-- Dark Mode Script -->
-  <script>
-    const darkBtn = document.getElementById("darkModeToggle");
-
-    // Load saved theme
-    if (localStorage.getItem("darkMode") === "enabled") {
-      document.body.classList.add("dark");
-      darkBtn.textContent = "☀️";
-    }
-
-    darkBtn.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-      if (document.body.classList.contains("dark")) {
-        localStorage.setItem("darkMode", "enabled");
-        darkBtn.textContent = "☀️"; // sun emoji
-      } else {
-        localStorage.setItem("darkMode", "disabled");
-        darkBtn.textContent = "🌙"; // moon emoji
-      }
-    });
-  </script>
-
-  <style>
-    /* Dark mode with invert filter */
-    body.dark {
-      filter: invert(1) hue-rotate(180deg);
-      transition: filter 0.3s;
-    }
-
-    body.dark img,
-    body.dark video {
-      filter: invert(1) hue-rotate(180deg); /* keep media normal */
-    }
-  </style>
 </header>
+
+<!-- Include the dark mode JS at the end of body -->
+<script>
+  const darkBtn = document.getElementById("darkModeToggle");
+
+  // Load saved theme
+  if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark");
+    darkBtn.textContent = "☀️";
+  }
+
+  darkBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    if (document.body.classList.contains("dark")) {
+      localStorage.setItem("darkMode", "enabled");
+      darkBtn.textContent = "☀️"; // sun emoji
+    } else {
+      localStorage.setItem("darkMode", "disabled");
+      darkBtn.textContent = "🌙"; // moon emoji
+    }
+  });
+
+  // Existing menu functions
+  function toggleMenu() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  }
+
+  function toggleSubMenu() {
+    const sub = document.getElementById("subMenu");
+    sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+  }
+
+  function toggleMoreSubMenu(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const moreMenu = document.getElementById("moreSubMenu");
+    moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
+  }
+
+  document.addEventListener("click", function(event) {
+    const menu = document.getElementById("dropdownMenu");
+    const hamburger = document.querySelector(".hamburger");
+    if (!menu.contains(event.target) && event.target !== hamburger) {
+      menu.style.display = "none";
+      document.getElementById("subMenu").style.display = "none";
+      document.getElementById("moreSubMenu").style.display = "none";
+    }
+  });
+</script>
+  
 
 <main>
   <div class="title-filter-container">
