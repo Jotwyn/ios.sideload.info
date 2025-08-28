@@ -9,30 +9,48 @@
 <link rel="stylesheet" href="../../Themes/hamburger.css">
 <script src="../../Scripts/idk.js"></script>
   
+<script src="../../Scripts/darkness.js"></script>
+  
 </head>
 <body>
 
 <header>
   <div class="logo"><strong>ios.sideload.info</strong></div>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+  <div style="display: flex; align-items: center; gap: 10px; margin-left: auto;">
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    
+<button id="darkModeToggle" style="
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 18px;
+    position: relative;
+    top: 2px;
+">
+    🌙
+</button>
+  </div>
+
   <div class="menu" id="dropdownMenu">
     <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
     <div class="submenu" id="subMenu">
-      <a href="http://ios.sideload.info/signers.html">Signers</a>
-      <a href="http://ios.sideload.info/utillties.html">Utilities</a>
-      <a href="http://ios.sideload.info/faq.html">FAQ</a>
-      <a href="http://ios.sideload.info/errors.html">Errors</a>
-      <a href="http://ios.sideload.info/siteinfo.html">Site Info</a>
+      <a href="signers.html">Signers</a>
+      <a href="utillties.html">Utilities</a>
+      <a href="faq.html">FAQ</a>
+      <a href="errors.html">Errors</a>
+      <a href="siteinfo.html">Site Info</a>
       <div style="position: relative;">
         <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
         <div class="more-submenu" id="moreSubMenu">
-          <a href="http://ios.sideload.info/enabling-jit.html">Enabling JIT</a>
-          <a href="http://ios.sideload.info/decrypting-apps.html">Decrypting Apps</a>
-          <a href="http://ios.sideload.info/injecting-tweaks.html">Injecting Tweaks</a>
+          <a href="enabling-jit.html">Enabling JIT</a>
+          <a href="decrypting-apps.html">Decrypting Apps</a>
+          <a href="injecting-tweaks.html">Injecting Tweaks</a>
         </div>
       </div>
     </div>
-    <a href="http://ios.sideload.info/getstarted">Get Started</a>
+    <a href="getstarted.html">Get Started</a>
   </div>
 </header>
 
