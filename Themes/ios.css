@@ -1,5 +1,4 @@
 :root {
-  /* Light mode colors (default) */
   --bg-color: #ffffff;
   --text-color: #111;
   --header-bg: #e0f4ff;
@@ -37,7 +36,7 @@ body.dark {
   --caution-text: #fff3b0;
 }
 
-/* Reset */
+
 * {
   margin: 0;
   padding: 0;
@@ -45,7 +44,7 @@ body.dark {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Body */
+
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -58,7 +57,7 @@ body {
   to { opacity: 1; }
 }
 
-/* Header */
+
 header {
   background: var(--header-bg);
   padding: 1rem 2rem;
@@ -75,7 +74,7 @@ header {
   user-select: none;
 }
 
-/* Menu */
+
 .menu {
   display: none;
   flex-direction: column;
@@ -111,7 +110,7 @@ header {
   background-color: var(--menu-hover-bg);
 }
 
-/* Submenus */
+
 .submenu {
   display: none;
   flex-direction: column;
@@ -149,7 +148,7 @@ header {
   background-color: var(--menu-hover-bg);
 }
 
-/* Main content */
+
 main {
   padding: 2rem;
   max-width: 900px;
@@ -181,7 +180,7 @@ h2 {
   font-weight: 600;
 }
 
-/* Tables */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -207,7 +206,7 @@ table td a {
   text-decoration: underline;
 }
 
-/* Footer */
+
 footer {
   margin-top: 3rem;
   background: var(--footer-bg);
@@ -233,7 +232,6 @@ footer .copyright {
   color: #666;
 }
 
-/* Filter Buttons */
 #filterBtn {
   padding: 0.5rem 1rem;
   cursor: pointer;
@@ -287,7 +285,6 @@ footer .copyright {
   user-select: none;
 }
 
-/* Caution Box */
 .caution-box {
   border: 2px solid var(--caution-border);
   background-color: var(--caution-bg);
@@ -297,4 +294,8 @@ footer .copyright {
   font-weight: 600;
   max-width: 600px;
   margin: 1rem 0;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
