@@ -13,6 +13,12 @@
 
 <header>
   <div class="logo"><strong>ios.sideload.info</strong></div>
+  
+  <!-- Dark Mode Toggle Emoji -->
+  <button id="darkModeToggle" style="margin-left: 20px; padding: 6px 10px; cursor: pointer; font-size: 18px;">
+    🌙
+  </button>
+  
   <div class="hamburger" onclick="toggleMenu()">☰</div>
   <div class="menu" id="dropdownMenu">
     <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
@@ -33,6 +39,41 @@
     </div>
     <a href="getstarted.html">Get Started</a>
   </div>
+
+  <!-- Dark Mode Script -->
+  <script>
+    const darkBtn = document.getElementById("darkModeToggle");
+
+    // Load saved theme
+    if (localStorage.getItem("darkMode") === "enabled") {
+      document.body.classList.add("dark");
+      darkBtn.textContent = "☀️";
+    }
+
+    darkBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      if (document.body.classList.contains("dark")) {
+        localStorage.setItem("darkMode", "enabled");
+        darkBtn.textContent = "☀️"; // sun emoji
+      } else {
+        localStorage.setItem("darkMode", "disabled");
+        darkBtn.textContent = "🌙"; // moon emoji
+      }
+    });
+  </script>
+
+  <style>
+    /* Dark mode with invert filter */
+    body.dark {
+      filter: invert(1) hue-rotate(180deg);
+      transition: filter 0.3s;
+    }
+
+    body.dark img,
+    body.dark video {
+      filter: invert(1) hue-rotate(180deg); /* keep media normal */
+    }
+  </style>
 </header>
 
 <main>
