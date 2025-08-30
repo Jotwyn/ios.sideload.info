@@ -5,10 +5,312 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sideload.info - 404</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="Themes/hamburger.css">
-<script src="Scripts/idk.js"></script>
-<link rel=".stylesheet" href="../../Themes/hamburger.css">
-<script src="../../Scripts/idk.js"></script>
+  <script src="Scripts/idk.js"></script>
+  <style>
+
+    :root {
+  --bg-color: #ffffff;
+  --text-color: #111;
+  --header-bg: #e0f4ff;
+  --menu-bg: #ffffff;
+  --menu-text: #007acc;
+  --menu-hover-bg: #f0f8ff;
+  --link-color: #007acc;
+  --table-bg: #ffffff;
+  --table-text: #111;
+  --table-border: #ccc;
+  --footer-bg: #e0f4ff;
+  --footer-text: #333;
+  --footer-link: #007acc;
+  --caution-bg: #fff8e1;
+  --caution-border: #f9a825;
+  --caution-text: #8a6d1d;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --header-bg: #1f1f1f;
+  --menu-bg: #1f1f1f;
+  --menu-text: #3399ff;
+  --menu-hover-bg: #2a2a2a;
+  --link-color: #3399ff;
+  --table-bg: #1f1f1f;
+  --table-text: #e0e0e0;
+  --table-border: #333;
+  --footer-bg: #1f1f1f;
+  --footer-text: #e0e0e0;
+  --footer-link: #3399ff;
+  --caution-bg: #3a2f00;
+  --caution-border: #f9a825;
+  --caution-text: #fff3b0;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+header {
+  background: var(--header-bg);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.hamburger {
+  font-size: 1.8rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+
+.menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: var(--menu-bg);
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: visible;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  animation: fadeIn 0.3s ease;
+  z-index: 100;
+}
+
+.menu a, .menu button {
+  padding: 0.75rem 1.2rem;
+  color: var(--menu-text);
+  text-decoration: none;
+  transition: background 0.2s;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  position: relative;
+  white-space: nowrap;
+}
+
+.menu a:hover, .menu button:hover {
+  background-color: var(--menu-hover-bg);
+}
+
+
+.submenu {
+  display: none;
+  flex-direction: column;
+  border-top: 1px solid #ccc;
+}
+
+.more-submenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 100%;
+  background: var(--menu-bg);
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  flex-direction: column;
+  z-index: 110;
+}
+
+.more-submenu a {
+  padding: 0.75rem 1.2rem;
+  color: var(--menu-text);
+  text-decoration: none;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.more-submenu a:hover {
+  background-color: var(--menu-hover-bg);
+}
+
+
+main {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+.title-filter-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: var(--table-bg);
+  color: var(--table-text);
+  border: 1px solid var(--table-border);
+}
+
+table th, table td {
+  border: 1px solid var(--table-border);
+  padding: 0.75rem;
+  text-align: center;
+}
+
+table th {
+  background-color: var(--menu-hover-bg);
+  font-weight: 600;
+}
+
+table td a {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+
+footer {
+  margin-top: 3rem;
+  background: var(--footer-bg);
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--footer-text);
+}
+
+footer a {
+  color: var(--footer-link);
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer .copyright {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+#filterBtn {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: 1.5px solid var(--link-color);
+  background: var(--bg-color);
+  color: var(--link-color);
+  border-radius: 6px;
+  font-weight: 600;
+  user-select: none;
+  white-space: nowrap;
+}
+
+#filterDropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background: var(--menu-bg);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  min-width: 180px;
+  z-index: 200;
+}
+
+.filterOption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.75rem 1.2rem;
+  background: none;
+  border: none;
+  color: var(--link-color);
+  cursor: pointer;
+  font-weight: 600;
+  user-select: none;
+}
+
+.filterOption:hover {
+  background-color: var(--menu-hover-bg);
+}
+
+.filterOption.active {
+  border: 2px solid var(--link-color);
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.filterOption span {
+  user-select: none;
+}
+
+.caution-box {
+  border: 2px solid var(--caution-border);
+  background-color: var(--caution-bg);
+  color: var(--caution-text);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  max-width: 600px;
+  margin: 1rem 0;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+    
+  </style>
 </head>
 <body>
 
