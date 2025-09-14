@@ -5,36 +5,421 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="iOS 10 - Find out how to sideload on iOS 10. View all compatiable signers">
   <title>iOS 10 - sideload.info</title>
+
+  <!-- Keep original Poppins link (unchanged) -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="Themes/ios.css">
-<script src="Scripts/idk.js"></script>
-<script src="Scripts/darkness.js"></script>
-  
+  <link rel="stylesheet" href="Themes/ios.css">
+  <script src="Scripts/idk.js"></script>
+  <script src="Scripts/darkness.js"></script>
+
+  <!-- New detailed styling added inline as requested (Inter font, themes, animations, modern UI) -->
+  <style>
+    /* Import Inter as requested — will be used site-wide */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+    /************************
+     *  Theme variables
+     ************************/
+    :root{
+      --bg: #ffffff;
+      --surface: #fbfdff;
+      --panel: #ffffff;
+      --muted: #6b7280;
+      --text: #0f172a;
+      --accent-1: #0ea5ff; /* blue */
+      --accent-2: #2563eb; /* deep blue */
+      --accent-grad: linear-gradient(135deg,var(--accent-2),var(--accent-1));
+      --glass: rgba(255,255,255,0.6);
+      --border: rgba(15,23,42,0.06);
+      --shadow-1: 0 6px 24px rgba(16,24,40,0.06);
+      --radius: 10px;
+      --mono: "SFMono-Regular", Consolas, "Menlo", monospace;
+    }
+
+    /* dark theme (recognize several toggles just in case darkness.js toggles different targets) */
+    [data-theme="dark"], .dark, body.dark {
+      --bg: #05060a;
+      --surface: #07070b;
+      --panel: #0b0b10;
+      --muted: #98a0b3;
+      --text: #f6f7fb;
+      --accent-1: #ff3cac; /* pink */
+      --accent-2: #2b86c5; /* blue */
+      --accent-grad: linear-gradient(135deg,#2b86c5,#784ba0,#ff3cac);
+      --glass: rgba(255,255,255,0.03);
+      --border: rgba(255,255,255,0.04);
+      --shadow-1: 0 10px 30px rgba(2,6,23,0.6);
+    }
+
+    /************************
+     *  Global reset + typography
+     ************************/
+    *{box-sizing: border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    html,body{height:100%}
+    body{
+      margin:0;
+      min-height:100%;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(14,165,255,0.04), transparent 6%),
+                  radial-gradient(900px 400px at 90% 80%, rgba(37,99,235,0.03), transparent 6%),
+                  var(--bg);
+      color:var(--text);
+      font-family: 'Inter', 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      line-height:1.5;
+      transition: background .35s ease, color .25s ease;
+      padding-bottom:64px; /* leave room for footer */
+    }
+
+    a{color:var(--accent-2); text-decoration: none}
+    a:hover{text-decoration: underline}
+
+    /************************
+     *  Header (fixed, fancy gradient)
+     ************************/
+    header{
+      position: fixed;
+      top:0;
+      left:0;
+      right:0;
+      height:68px;
+      display:flex;
+      align-items:center;
+      gap:16px;
+      padding:12px 22px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.35), rgba(255,255,255,0.08));
+      backdrop-filter: blur(8px) saturate(1.05);
+      border-bottom: 1px solid var(--border);
+      z-index:1200;
+    }
+
+    /* dark header tint in dark mode */
+    [data-theme="dark"] header, body.dark header {
+      background: linear-gradient(90deg, rgba(11,11,16,0.6), rgba(11,11,16,0.85));
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    header .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      font-size:1.05rem;
+      letter-spacing: -0.02em;
+      color:var(--text);
+      user-select:none;
+    }
+
+    /* make header title collapsible indicator styling */
+    header .logo .subtitle {
+      font-weight:500;
+      font-size:0.85rem;
+      color:var(--muted);
+      margin-left:6px;
+    }
+
+    /* Right controls */
+    header .controls {
+      margin-left:auto;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    /* Hamburger button */
+    .hamburger{
+      display:inline-grid;
+      place-items:center;
+      width:44px;
+      height:44px;
+      border-radius:10px;
+      cursor:pointer;
+      background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0.25));
+      color: var(--text);
+      font-size:20px;
+      border: 1px solid var(--border);
+      transition: transform .18s ease, box-shadow .18s ease, background .2s ease;
+      box-shadow: var(--shadow-1);
+    }
+    .hamburger:hover{ transform: translateY(-2px) scale(1.02) }
+    [data-theme="dark"] .hamburger{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      color:var(--text);
+    }
+
+    /* small icon button (dark mode toggle) */
+    #darkModeToggle{
+      width:44px;
+      height:44px;
+      border-radius:10px;
+      display:inline-grid;
+      place-items:center;
+      font-size:18px;
+      cursor:pointer;
+      border:1px solid var(--border);
+      background: transparent;
+      transition: transform .18s ease;
+    }
+    #darkModeToggle:hover{ transform: scale(1.05) }
+
+    /* Menu dropdown (styled but JS controls display) */
+    .menu{
+      position:absolute;
+      top:72px;
+      right:18px;
+      min-width:220px;
+      background:var(--panel);
+      border-radius:12px;
+      box-shadow: 0 14px 40px rgba(2,6,23,0.08);
+      border: 1px solid var(--border);
+      padding:10px;
+      display:none; /* toggled by existing JS */
+      flex-direction:column;
+      gap:6px;
+      z-index:1300;
+    }
+
+    .menu a{
+      display:block;
+      padding:10px 12px;
+      border-radius:8px;
+      color:var(--text);
+      font-weight:600;
+      transition: background .12s ease;
+    }
+    .menu a:hover{ background: rgba(0,0,0,0.04) }
+
+    .submenu{ padding-left:8px; display:none; }
+    .more-submenu{ position:absolute; top:0; right:100%; display:none; min-width: 200px; }
+
+    /************************
+     *  Main content area
+     ************************/
+    main{
+      max-width: 980px;
+      margin: 96px auto 40px;
+      padding: 24px;
+      background: transparent;
+    }
+
+    /* Title + Filter layout */
+    .title-filter-container{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content: space-between;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+
+    .title-filter-container h1{
+      font-size:1.8rem;
+      margin:0;
+      background: linear-gradient(90deg,var(--accent-2),var(--accent-1));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight:800;
+    }
+
+    /* Filter button & dropdown */
+    #filterBtn{
+      background:var(--panel);
+      border:1px solid var(--border);
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:700;
+      box-shadow: var(--shadow-1);
+    }
+
+    #filterBtn:hover{ transform: translateY(-1px) }
+
+    #filterDropdown{
+      position:absolute;
+      top:46px;
+      left:0;
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:8px;
+      padding:8px;
+      min-width:200px;
+      display:none; /* JS toggles */
+      box-shadow: 0 14px 40px rgba(2,6,23,0.08);
+      z-index:800;
+    }
+
+    .filterOption{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:8px 10px;
+      width:100%;
+      border-radius:6px;
+      background:transparent;
+      color:var(--text);
+      font-weight:600;
+      cursor:pointer;
+    }
+    .filterOption:hover{ background: rgba(0,0,0,0.04) }
+
+    .filterOption.active{
+      outline: 2px solid rgba(2,132,199,0.12);
+      background: linear-gradient(90deg, rgba(2,132,199,0.06), transparent);
+    }
+
+    /************************
+     *  Tables / content
+     ************************/
+    table{
+      width:100%;
+      border-collapse:collapse;
+      overflow:hidden;
+      border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+      border:1px solid var(--border);
+      box-shadow: 0 8px 30px rgba(2,6,23,0.04);
+      transition: transform .18s ease;
+    }
+    [data-theme="dark"] table{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    }
+    table caption{
+      text-align:left;
+      padding:12px 18px;
+      font-weight:800;
+      color:#fff;
+      background: var(--accent-grad);
+      letter-spacing: -0.01em;
+      font-size:1rem;
+    }
+    th, td{
+      padding:14px 16px;
+      border-bottom:1px solid var(--border);
+      color:var(--text);
+      font-weight:600;
+      text-align:left;
+      vertical-align:middle;
+    }
+    tr:last-child td{ border-bottom: none }
+    table a{ color: var(--accent-2); text-decoration: underline; font-weight:700 }
+
+    /* small screens table scroll */
+    @media (max-width:720px){
+      table{ display:block; overflow:auto; white-space:nowrap }
+    }
+
+    /* caution boxes */
+    .caution-box{
+      border-radius:10px;
+      padding:12px 16px;
+      border: 2px solid #f59e0b;
+      background: linear-gradient(180deg, #fff8e1, #fffaf0);
+      color:#8a6d1d;
+      font-weight:700;
+      margin:12px 0;
+      max-width: 900px;
+    }
+    [data-theme="dark"] .caution-box{
+      background: linear-gradient(180deg, rgba(255,152,36,0.06), rgba(255,152,36,0.02));
+      color:#ffd7a6;
+      border-color: rgba(255,152,36,0.35);
+    }
+
+    /* small helpers */
+    .muted{ color:var(--muted); font-weight:500 }
+    .center{ text-align:center }
+
+    /************************
+     *  Collapsible header styling
+     ************************/
+    /* h2 is clickable; a caret is shown on the right */
+    main h2{
+      display:block;
+      position:relative;
+      padding:10px 12px;
+      margin:20px 0 6px;
+      font-size:1.15rem;
+      font-weight:700;
+      cursor:pointer;
+      color:var(--text);
+      border-radius:8px;
+      transition: background .16s ease, transform .12s ease;
+    }
+    main h2:hover{ background: rgba(0,0,0,0.03) }
+    [data-theme="dark"] main h2:hover{ background: rgba(255,255,255,0.02) }
+
+    main h2::after{
+      content: "▾";
+      position:absolute;
+      right:10px;
+      top:50%;
+      transform:translateY(-50%);
+      transition: transform .28s ease;
+      opacity:.9;
+      font-size:0.9rem;
+    }
+    main h2.collapsed::after{ transform: rotate(-90deg) }
+
+    .collapsible-content{
+      overflow:hidden;
+      transition: max-height .35s cubic-bezier(.2,.9,.2,1), opacity .25s ease;
+      will-change: max-height;
+      opacity:1;
+    }
+    .collapsible-content.hidden{ opacity:0 }
+
+    /* footer modernized */
+    footer{
+      position: relative;
+      margin-top: 36px;
+      padding:20px 18px;
+      text-align:center;
+      border-top-left-radius:12px;
+      border-top-right-radius:12px;
+      background: linear-gradient(90deg, rgba(2,132,199,0.12), rgba(255,58,136,0.06));
+      color:var(--text);
+      border: 1px solid var(--border);
+      max-width:100%;
+    }
+    footer a{ font-weight:700; color:var(--text); opacity:.95 }
+    footer .copyright{ color:var(--muted); margin-top:8px; display:block }
+
+    /************************
+     * Utility & responsive
+     ************************/
+    .row{ display:flex; gap:12px; align-items:center }
+    .stack{ display:flex; flex-direction:column; gap:8px }
+    @media (max-width:720px){
+      .title-filter-container{ flex-direction:column; align-items:stretch }
+      .title-filter-container h1{ font-size:1.4rem }
+    }
+
+    /* subtle entrance animations for content */
+    main > * { animation: contentFade .45s ease both }
+    @keyframes contentFade { from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none} }
+
+    /* focus outlines for accessibility */
+    :focus{ outline: 3px solid rgba(37,99,235,0.12); outline-offset:3px }
+  </style>
 </head>
 <body>
 
 <header>
-  <div class="logo"><strong>ios.sideload.info</strong></div>
-
-  <div style="display: flex; align-items: center; gap: 10px; margin-left: auto;">
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-    
-<button id="darkModeToggle" style="
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    font-size: 18px;
-    position: relative;
-    top: 2px;
-">
-    🌙
-</button>
+  <div class="logo" id="siteTitle">
+    <strong>ios.sideload.info</strong>
+    <span class="subtitle" id="siteSubtitle">Sideload guides & signers</span>
   </div>
 
-  <div class="menu" id="dropdownMenu">
+  <div class="controls" style="margin-left:auto;">
+    <div class="hamburger" onclick="toggleMenu()" aria-label="Open menu" role="button" tabindex="0">☰</div>
+
+    <button id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode" style="background:none;border:none;padding:0;cursor:pointer;font-size:18px;position:relative;top:2px;">
+      🌙
+    </button>
+  </div>
+
+  <div class="menu" id="dropdownMenu" aria-hidden="true">
     <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
-    <div class="submenu" id="subMenu">
+    <div class="submenu" id="subMenu" aria-hidden="true">
       <a href="signers.html">Signers</a>
       <a href="utilities.html">Utilities</a>
       <a href="faq.html">FAQ</a>
@@ -42,7 +427,7 @@
       <a href="siteinfo.html">Site Info</a>
       <div style="position: relative;">
         <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
-        <div class="more-submenu" id="moreSubMenu">
+        <div class="more-submenu" id="moreSubMenu" aria-hidden="true">
           <a href="enabling-jit.html">Enabling JIT</a>
           <a href="decrypting-apps.html">Decrypting Apps</a>
           <a href="injecting-tweaks.html">Injecting Tweaks</a>
@@ -58,7 +443,7 @@
     <h1>iOS 10</h1>
     <div style="position: relative;">
       <button id="filterBtn">Filter ▾</button>
-      <div id="filterDropdown">
+      <div id="filterDropdown" aria-hidden="true">
         <button class="filterOption active" data-filter="recommended">
           Recommended <span>✔</span>
         </button>
@@ -127,8 +512,8 @@
 
 <footer>
   <div>
-    <a href="https://ios.sideload.info/siteinfo.html">Contact</a>
-    <a href="https://discord.gg/bRYhdA7t" target="_blank">Discord</a>
+    <a href="https://ios.sideload.info/siteinfo.html">Contact</a> ·
+    <a href="https://discord.gg/bRYhdA7t" target="_blank">Discord</a> ·
     <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
   </div>
   <div class="copyright">
@@ -137,6 +522,7 @@
 </footer>
 
 <script>
+  /* --- keep your original JS behavior intact --- */
   function toggleMenu() {
     const menu = document.getElementById("dropdownMenu");
     menu.style.display = menu.style.display === "flex" ? "none" : "flex";
@@ -212,6 +598,87 @@
       filterDropdown.style.display = 'none';
     }
   });
+</script>
+
+<!-- Collapsible headers script (non-invasive) -->
+<script>
+  (function() {
+    // Wait for DOM content to exist
+    document.addEventListener('DOMContentLoaded', () => {
+      const main = document.querySelector('main');
+      if (!main) return;
+
+      // Find all H2 headings within main
+      const headings = Array.from(main.querySelectorAll('h2'));
+
+      // If no headings, nothing to do
+      if (headings.length === 0) return;
+
+      // For each heading, wrap its following siblings until the next H2 into a .collapsible-content container
+      headings.forEach((h, idx) => {
+        // create container
+        const content = document.createElement('div');
+        content.className = 'collapsible-content';
+        // move following siblings into content until next H2 or end
+        let node = h.nextSibling;
+        while (node) {
+          const next = node.nextSibling;
+          if (node.nodeType === 1 && node.tagName === 'H2') break;
+          content.appendChild(node);
+          node = next;
+        }
+        // insert the content right after the heading
+        if (h.nextSibling) {
+          h.parentNode.insertBefore(content, h.nextSibling);
+        } else {
+          h.parentNode.appendChild(content);
+        }
+
+        // Accessibility & styling adjustments
+        h.classList.add('collapsible');
+        h.setAttribute('role', 'button');
+        h.setAttribute('tabindex', '0');
+        h.setAttribute('aria-expanded', 'true');
+
+        // initialize max-height so transition can animate
+        // a tiny timeout to ensure content has laid out
+        requestAnimationFrame(() => {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          content.style.opacity = '1';
+        });
+
+        // toggle function
+        function toggle() {
+          const isCollapsed = h.classList.toggle('collapsed');
+          if (isCollapsed) {
+            h.setAttribute('aria-expanded', 'false');
+            content.style.maxHeight = '0px';
+            content.classList.add('hidden');
+          } else {
+            h.setAttribute('aria-expanded', 'true');
+            content.classList.remove('hidden');
+            content.style.maxHeight = content.scrollHeight + 'px';
+          }
+        }
+
+        // click & keyboard handlers
+        h.addEventListener('click', toggle);
+        h.addEventListener('keydown', (ev) => {
+          if (ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar') {
+            ev.preventDefault();
+            toggle();
+          }
+        });
+
+        // make sure resize updates heights
+        window.addEventListener('resize', () => {
+          if (!h.classList.contains('collapsed')) {
+            content.style.maxHeight = content.scrollHeight + 'px';
+          }
+        });
+      }); // headings.forEach
+    }); // DOMContentLoaded
+  })();
 </script>
 
 </body>
