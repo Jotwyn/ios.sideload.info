@@ -13,393 +13,226 @@
   <script src="Scripts/darkness.js"></script>
 
   <!-- New detailed styling added inline as requested (Inter font, themes, animations, modern UI) -->
-  <style>
-    /* Import Inter as requested — will be used site-wide */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
 
-    /************************
-     *  Theme variables
-     ************************/
-    :root{
-      --bg: #ffffff;
-      --surface: #fbfdff;
-      --panel: #ffffff;
-      --muted: #6b7280;
-      --text: #0f172a;
-      --accent-1: #0ea5ff; /* blue */
-      --accent-2: #2563eb; /* deep blue */
-      --accent-grad: linear-gradient(135deg,var(--accent-2),var(--accent-1));
-      --glass: rgba(255,255,255,0.6);
-      --border: rgba(15,23,42,0.06);
-      --shadow-1: 0 6px 24px rgba(16,24,40,0.06);
-      --radius: 10px;
-      --mono: "SFMono-Regular", Consolas, "Menlo", monospace;
-    }
+  /************************
+   *  Theme variables
+   ************************/
+  :root {
+    --bg: #ffffff;
+    --surface: #fbfdff;
+    --panel: #ffffff;
+    --muted: #6b7280;
+    --text: #0f172a;
+    --accent-1: #0ea5ff;
+    --accent-2: #2563eb;
+    --accent-grad: linear-gradient(135deg, var(--accent-2), var(--accent-1));
+    --glass: rgba(255, 255, 255, 0.6);
+    --border: rgba(15, 23, 42, 0.08);
+    --shadow-1: 0 6px 24px rgba(16, 24, 40, 0.08);
+    --radius: 10px;
+  }
 
-    /* dark theme (recognize several toggles just in case darkness.js toggles different targets) */
-    [data-theme="dark"], .dark, body.dark {
-      --bg: #05060a;
-      --surface: #07070b;
-      --panel: #0b0b10;
-      --muted: #98a0b3;
-      --text: #f6f7fb;
-      --accent-1: #ff3cac; /* pink */
-      --accent-2: #2b86c5; /* blue */
-      --accent-grad: linear-gradient(135deg,#2b86c5,#784ba0,#ff3cac);
-      --glass: rgba(255,255,255,0.03);
-      --border: rgba(255,255,255,0.04);
-      --shadow-1: 0 10px 30px rgba(2,6,23,0.6);
-    }
+  [data-theme="dark"], .dark, body.dark {
+    --bg: #05060a;
+    --surface: #0b0c11;
+    --panel: #10111a;
+    --muted: #98a0b3;
+    --text: #f6f7fb;
+    --accent-1: #7b61ff;
+    --accent-2: #ff3cac;
+    --accent-grad: linear-gradient(135deg, #2b86c5, #7b61ff, #ff3cac);
+    --glass: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.06);
+    --shadow-1: 0 10px 30px rgba(2, 6, 23, 0.6);
+  }
 
-    /************************
-     *  Global reset + typography
-     ************************/
-    *{box-sizing: border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-    html,body{height:100%}
-    body{
-      margin:0;
-      min-height:100%;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(14,165,255,0.04), transparent 6%),
-                  radial-gradient(900px 400px at 90% 80%, rgba(37,99,235,0.03), transparent 6%),
-                  var(--bg);
-      color:var(--text);
-      font-family: 'Inter', 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      line-height:1.5;
-      transition: background .35s ease, color .25s ease;
-      padding-bottom:64px; /* leave room for footer */
-    }
+  * {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-    a{color:var(--accent-2); text-decoration: none}
-    a:hover{text-decoration: underline}
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    line-height: 1.5;
+    transition: background .3s ease, color .3s ease;
+    padding-bottom: 64px;
+  }
 
-    /************************
-     *  Header (fixed, fancy gradient)
-     ************************/
-    header{
-      position: fixed;
-      top:0;
-      left:0;
-      right:0;
-      height:68px;
-      display:flex;
-      align-items:center;
-      gap:16px;
-      padding:12px 22px;
-      background: linear-gradient(90deg, rgba(255,255,255,0.35), rgba(255,255,255,0.08));
-      backdrop-filter: blur(8px) saturate(1.05);
-      border-bottom: 1px solid var(--border);
-      z-index:1200;
-    }
+  /************************
+   * Header
+   ************************/
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    padding: 12px 22px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    z-index: 1200;
+  }
 
-    /* dark header tint in dark mode */
-    [data-theme="dark"] header, body.dark header {
-      background: linear-gradient(90deg, rgba(11,11,16,0.6), rgba(11,11,16,0.85));
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
+  header .logo {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text);
+  }
 
-    header .logo{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:700;
-      font-size:1.05rem;
-      letter-spacing: -0.02em;
-      color:var(--text);
-      user-select:none;
-    }
+  /************************
+   * Filter buttons
+   ************************/
+  #filterBtn {
+    background: var(--accent-grad);
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: transform .15s ease;
+  }
+  #filterBtn:hover { transform: scale(1.05); }
 
-    /* make header title collapsible indicator styling */
-    header .logo .subtitle {
-      font-weight:500;
-      font-size:0.85rem;
-      color:var(--muted);
-      margin-left:6px;
-    }
+  #filterDropdown {
+    position: absolute;
+    top: 46px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px;
+    min-width: 200px;
+    display: none;
+    box-shadow: var(--shadow-1);
+    z-index: 800;
+  }
 
-    /* Right controls */
-    header .controls {
-      margin-left:auto;
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
+  .filterOption {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 4px 0;
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    text-align: left;
+    transition: background .15s ease, transform .1s ease;
+  }
+  .filterOption:hover {
+    background: var(--accent-grad);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+  .filterOption.active {
+    background: var(--accent-grad);
+    color: #fff;
+  }
 
-    /* Hamburger button */
-    .hamburger{
-      display:inline-grid;
-      place-items:center;
-      width:44px;
-      height:44px;
-      border-radius:10px;
-      cursor:pointer;
-      background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0.25));
-      color: var(--text);
-      font-size:20px;
-      border: 1px solid var(--border);
-      transition: transform .18s ease, box-shadow .18s ease, background .2s ease;
-      box-shadow: var(--shadow-1);
-    }
-    .hamburger:hover{ transform: translateY(-2px) scale(1.02) }
-    [data-theme="dark"] .hamburger{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      color:var(--text);
-    }
+  /************************
+   * Tables
+   ************************/
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-1);
+  }
 
-    /* small icon button (dark mode toggle) */
-    #darkModeToggle{
-      width:44px;
-      height:44px;
-      border-radius:10px;
-      display:inline-grid;
-      place-items:center;
-      font-size:18px;
-      cursor:pointer;
-      border:1px solid var(--border);
-      background: transparent;
-      transition: transform .18s ease;
-    }
-    #darkModeToggle:hover{ transform: scale(1.05) }
+  table caption {
+    padding: 12px 18px;
+    font-weight: 800;
+    color: #fff;
+    background: var(--accent-grad);
+    text-align: left;
+  }
 
-    /* Menu dropdown (styled but JS controls display) */
-    .menu{
-      position:absolute;
-      top:72px;
-      right:18px;
-      min-width:220px;
-      background:var(--panel);
-      border-radius:12px;
-      box-shadow: 0 14px 40px rgba(2,6,23,0.08);
-      border: 1px solid var(--border);
-      padding:10px;
-      display:none; /* toggled by existing JS */
-      flex-direction:column;
-      gap:6px;
-      z-index:1300;
-    }
+  th, td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    color: var(--text);
+  }
+  tr:last-child td { border-bottom: none; }
 
-    .menu a{
-      display:block;
-      padding:10px 12px;
-      border-radius:8px;
-      color:var(--text);
-      font-weight:600;
-      transition: background .12s ease;
-    }
-    .menu a:hover{ background: rgba(0,0,0,0.04) }
+  /************************
+   * Collapsibles
+   ************************/
+  main h2 {
+    display: block;
+    position: relative;
+    padding: 12px 14px;
+    margin: 20px 0 8px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--text);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    transition: background .2s ease, border .2s ease;
+  }
+  main h2:hover {
+    background: var(--surface);
+    border-color: var(--accent-1);
+  }
 
-    .submenu{ padding-left:8px; display:none; }
-    .more-submenu{ position:absolute; top:0; right:100%; display:none; min-width: 200px; }
+  main h2::after {
+    content: "▾";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform .25s ease;
+  }
+  main h2.collapsed::after { transform: translateY(-50%) rotate(-90deg); }
 
-    /************************
-     *  Main content area
-     ************************/
-    main{
-      max-width: 980px;
-      margin: 96px auto 40px;
-      padding: 24px;
-      background: transparent;
-    }
+  .collapsible-content {
+    overflow: hidden;
+    transition: max-height .35s ease, opacity .25s ease;
+    opacity: 1;
+    padding-left: 6px;
+  }
+  .collapsible-content.hidden {
+    opacity: 0;
+  }
 
-    /* Title + Filter layout */
-    .title-filter-container{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content: space-between;
-      flex-wrap:wrap;
-      margin-bottom:12px;
-    }
+  /* Lists inside collapsibles */
+  .collapsible-content ul,
+  .collapsible-content ol {
+    margin: 10px 0 10px 24px;
+    padding: 0;
+  }
+  .collapsible-content li {
+    margin: 6px 0;
+    line-height: 1.4;
+  }
 
-    .title-filter-container h1{
-      font-size:1.8rem;
-      margin:0;
-      background: linear-gradient(90deg,var(--accent-2),var(--accent-1));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      font-weight:800;
-    }
-
-    /* Filter button & dropdown */
-    #filterBtn{
-      background:var(--panel);
-      border:1px solid var(--border);
-      padding:8px 12px;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:700;
-      box-shadow: var(--shadow-1);
-    }
-
-    #filterBtn:hover{ transform: translateY(-1px) }
-
-    #filterDropdown{
-      position:absolute;
-      top:46px;
-      left:0;
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:8px;
-      padding:8px;
-      min-width:200px;
-      display:none; /* JS toggles */
-      box-shadow: 0 14px 40px rgba(2,6,23,0.08);
-      z-index:800;
-    }
-
-    .filterOption{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:8px 10px;
-      width:100%;
-      border-radius:6px;
-      background:transparent;
-      color:var(--text);
-      font-weight:600;
-      cursor:pointer;
-    }
-    .filterOption:hover{ background: rgba(0,0,0,0.04) }
-
-    .filterOption.active{
-      outline: 2px solid rgba(2,132,199,0.12);
-      background: linear-gradient(90deg, rgba(2,132,199,0.06), transparent);
-    }
-
-    /************************
-     *  Tables / content
-     ************************/
-    table{
-      width:100%;
-      border-collapse:collapse;
-      overflow:hidden;
-      border-radius:12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
-      border:1px solid var(--border);
-      box-shadow: 0 8px 30px rgba(2,6,23,0.04);
-      transition: transform .18s ease;
-    }
-    [data-theme="dark"] table{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    }
-    table caption{
-      text-align:left;
-      padding:12px 18px;
-      font-weight:800;
-      color:#fff;
-      background: var(--accent-grad);
-      letter-spacing: -0.01em;
-      font-size:1rem;
-    }
-    th, td{
-      padding:14px 16px;
-      border-bottom:1px solid var(--border);
-      color:var(--text);
-      font-weight:600;
-      text-align:left;
-      vertical-align:middle;
-    }
-    tr:last-child td{ border-bottom: none }
-    table a{ color: var(--accent-2); text-decoration: underline; font-weight:700 }
-
-    /* small screens table scroll */
-    @media (max-width:720px){
-      table{ display:block; overflow:auto; white-space:nowrap }
-    }
-
-    /* caution boxes */
-    .caution-box{
-      border-radius:10px;
-      padding:12px 16px;
-      border: 2px solid #f59e0b;
-      background: linear-gradient(180deg, #fff8e1, #fffaf0);
-      color:#8a6d1d;
-      font-weight:700;
-      margin:12px 0;
-      max-width: 900px;
-    }
-    [data-theme="dark"] .caution-box{
-      background: linear-gradient(180deg, rgba(255,152,36,0.06), rgba(255,152,36,0.02));
-      color:#ffd7a6;
-      border-color: rgba(255,152,36,0.35);
-    }
-
-    /* small helpers */
-    .muted{ color:var(--muted); font-weight:500 }
-    .center{ text-align:center }
-
-    /************************
-     *  Collapsible header styling
-     ************************/
-    /* h2 is clickable; a caret is shown on the right */
-    main h2{
-      display:block;
-      position:relative;
-      padding:10px 12px;
-      margin:20px 0 6px;
-      font-size:1.15rem;
-      font-weight:700;
-      cursor:pointer;
-      color:var(--text);
-      border-radius:8px;
-      transition: background .16s ease, transform .12s ease;
-    }
-    main h2:hover{ background: rgba(0,0,0,0.03) }
-    [data-theme="dark"] main h2:hover{ background: rgba(255,255,255,0.02) }
-
-    main h2::after{
-      content: "▾";
-      position:absolute;
-      right:10px;
-      top:50%;
-      transform:translateY(-50%);
-      transition: transform .28s ease;
-      opacity:.9;
-      font-size:0.9rem;
-    }
-    main h2.collapsed::after{ transform: rotate(-90deg) }
-
-    .collapsible-content{
-      overflow:hidden;
-      transition: max-height .35s cubic-bezier(.2,.9,.2,1), opacity .25s ease;
-      will-change: max-height;
-      opacity:1;
-    }
-    .collapsible-content.hidden{ opacity:0 }
-
-    /* footer modernized */
-    footer{
-      position: relative;
-      margin-top: 36px;
-      padding:20px 18px;
-      text-align:center;
-      border-top-left-radius:12px;
-      border-top-right-radius:12px;
-      background: linear-gradient(90deg, rgba(2,132,199,0.12), rgba(255,58,136,0.06));
-      color:var(--text);
-      border: 1px solid var(--border);
-      max-width:100%;
-    }
-    footer a{ font-weight:700; color:var(--text); opacity:.95 }
-    footer .copyright{ color:var(--muted); margin-top:8px; display:block }
-
-    /************************
-     * Utility & responsive
-     ************************/
-    .row{ display:flex; gap:12px; align-items:center }
-    .stack{ display:flex; flex-direction:column; gap:8px }
-    @media (max-width:720px){
-      .title-filter-container{ flex-direction:column; align-items:stretch }
-      .title-filter-container h1{ font-size:1.4rem }
-    }
-
-    /* subtle entrance animations for content */
-    main > * { animation: contentFade .45s ease both }
-    @keyframes contentFade { from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none} }
-
-    /* focus outlines for accessibility */
-    :focus{ outline: 3px solid rgba(37,99,235,0.12); outline-offset:3px }
-  </style>
+  /************************
+   * Footer
+   ************************/
+  footer {
+    margin-top: 36px;
+    padding: 20px 18px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    background: var(--accent-grad);
+    color: #fff;
+  }
+  footer a { color: #fff; font-weight: 700; }
+  footer .copyright { margin-top: 8px; font-size: .9rem; opacity: .8; }
+</style>
 </head>
 <body>
 
