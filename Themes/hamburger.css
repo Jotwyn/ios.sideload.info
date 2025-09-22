@@ -62,7 +62,7 @@ body {
 }
 
 @keyframes fadeIn {
-@@ -70,230 +71,93 @@ header {
+  {
   display: flex;
   justify-content: space-between;
   align-items: center;
