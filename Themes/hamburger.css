@@ -6,7 +6,6 @@
   --header-shadow: rgba(0,0,0,0.1);
   --menu-bg: #ffffff;
   --menu-border: #ccc;
-@@ -22,24 +22,24 @@
 }
 
 body.dark {
@@ -44,7 +43,7 @@ body.dark {
   --caution-border: #f9a825;
   --caution-text: #fff3b0;
 }
-@@ -48,15 +48,16 @@ body.dark {
+body.dark {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
