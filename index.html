@@ -56,86 +56,6 @@ body {
   to { opacity: 1; }
 }
 
-header {
-  background: var(--header-bg);
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  transition: background 0.3s ease;
-}
-
-.hamburger {
-  font-size: 1.8rem;
-  cursor: pointer;
-  user-select: none;
-}
-
-.menu {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  top: 60px;
-  right: 20px;
-  background-color: var(--menu-bg);
-  border: 1px solid var(--menu-border);
-  border-radius: 10px;
-  overflow: visible;
-  min-width: 180px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  animation: fadeIn 0.3s ease;
-  z-index: 100;
-  transition: background 0.3s ease, border 0.3s ease;
-}
-
-.menu a, .menu button {
-  padding: 0.75rem 1.2rem;
-  color: var(--link-color);
-  text-decoration: none;
-  transition: background 0.3s ease;
-  background: none;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  font-size: 1rem;
-  white-space: nowrap;
-}
-
-.menu a:hover, .menu button:hover {
-  background-color: var(--link-hover-bg);
-}
-
-.submenu {
-  display: none;
-  flex-direction: column;
-  border-top: 1px solid var(--menu-border);
-}
-
-.more-submenu {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 100%;
-  background: var(--menu-bg);
-  border: 1px solid var(--menu-border);
-  border-radius: 10px;
-  min-width: 180px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  flex-direction: column;
-  z-index: 110;
-}
-
-.more-submenu a {
-  padding: 0.75rem 1.2rem;
-  color: var(--link-color);
-  text-decoration: none;
-}
-
-.more-submenu a:hover {
-  background-color: var(--link-hover-bg);
-}
 
 .banner {
   height: 250px; 
@@ -688,6 +608,7 @@ footer .copyright {
     
 </body>
 </html>
+
 
 
 
