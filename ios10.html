@@ -130,24 +130,6 @@ footer .copyright{margin-top:10px;font-size:.9rem;opacity:.9}
 main>*{animation:contentFade .45s ease both}
 @keyframes contentFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 :focus{outline:3px solid rgba(37,99,235,0.12);outline-offset:3px}
-
-.filterOption.active {
-  background: linear-gradient(90deg, rgba(2,132,199,0.1), rgba(2,132,199,0.04));
-  box-shadow: inset 0 0 0 2px rgba(2,132,199,0.06);
-  border: 2px solid #007acc;
-  border-radius: 6px;
-  font-weight: 700;
-  position: relative;
-}
-
-.filterOption.active::after {
-  content: "✔";
-  position: absolute;
-  right: 10px;
-  color: #007acc;
-  font-size: 0.9rem;
-}
-  
 </style>
 </head>
 <body>
@@ -348,51 +330,52 @@ main>*{animation:contentFade .45s ease both}
     }
   });
 
-const filterBtn = document.getElementById('filterBtn');
-const filterDropdown = document.getElementById('filterDropdown');
-const filterOptions = document.querySelectorAll('.filterOption');
+  const filterBtn = document.getElementById('filterBtn');
+  const filterDropdown = document.getElementById('filterDropdown');
+  const filterOptions = document.querySelectorAll('.filterOption');
 
-const tables = {
-  recommended: document.getElementById('recommendedTable'),
-  nocomputer: document.getElementById('noComputerTable'),
-  jailbroken: document.getElementById('jailbrokenTable')
-};
+  const tables = {
+    recommended: document.getElementById('recommendedTable'),
+    nocomputer: document.getElementById('noComputerTable'),
+    jailbroken: document.getElementById('jailbrokenTable')
+  };
 
-filterBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  filterDropdown.style.display =
-    filterDropdown.style.display === 'block' ? 'none' : 'block';
-});
-
-filterOptions.forEach(option => {
-  option.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const selected = option.getAttribute('data-filter');
-    for (const key in tables) {
-      tables[key].style.display = (key === selected) ? 'table' : 'none';
-    }
-    filterOptions.forEach(btn => {
-      btn.classList.remove('active');
-      btn.style.border = 'none';
-      btn.querySelector('span')?.remove();
-      btn.style.fontWeight = '600';
-    });
-    option.classList.add('active');
-    option.style.border = '2px solid #007acc';
-    option.style.borderRadius = '6px';
-    option.style.fontWeight = '700';
-    if (!option.querySelector('span')) {
-      const check = document.createElement('span');
-      check.textContent = '✔';
-      option.appendChild(check);
-    }
-    filterDropdown.style.display = 'none';
+  filterBtn.addEventListener('click', () => {
+    const open = filterDropdown.style.display === 'block';
+    filterDropdown.style.display = open ? 'none' : 'block';
+    filterBtn.setAttribute('aria-expanded', String(!open));
   });
-});
 
-document.addEventListener('click', () => {
-  filterDropdown.style.display = 'none';
-});
+  filterOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      const selected = option.getAttribute('data-filter');
+      for (const key in tables) {
+        tables[key].style.display = (key === selected) ? 'table' : 'none';
+      }
+      filterOptions.forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.border = 'none';
+        btn.querySelector('span')?.remove();
+        btn.style.fontWeight = '600';
+      });
+      option.classList.add('active');
+      option.style.border = '2px solid #007acc';
+      option.style.borderRadius = '6px';
+      option.style.fontWeight = '700';
+      if (!option.querySelector('span')) {
+        const check = document.createElement('span');
+        check.textContent = '✔';
+        option.appendChild(check);
+      }
+      filterDropdown.style.display = 'none';
+    });
+  });
+
+  document.addEventListener('click', e => {
+    if (!filterDropdown.contains(e.target) && e.target !== filterBtn) {
+      filterDropdown.style.display = 'none';
+    }
+  });
 </script>
 
 <script>
