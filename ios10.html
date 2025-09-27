@@ -131,33 +131,21 @@ main>*{animation:contentFade .45s ease both}
 @keyframes contentFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 :focus{outline:3px solid rgba(37,99,235,0.12);outline-offset:3px}
 
-.filter-btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: var(--gradient-light);
-  color: var(--text-light);
+.filterOption.active {
+  background: linear-gradient(90deg, rgba(2,132,199,0.1), rgba(2,132,199,0.04));
+  box-shadow: inset 0 0 0 2px rgba(2,132,199,0.06);
+  border: 2px solid #007acc;
+  border-radius: 6px;
+  font-weight: 700;
+  position: relative;
 }
 
-body.dark-mode .filter-btn {
-  background: var(--gradient-dark);
-  color: var(--text-dark);
-}
-
-.filter-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.filter-btn.active {
-  border: 2px solid var(--accent-color);
-  background: var(--gradient-accent);
-  color: #fff;
-  /* ❌ DO NOT disable clicks */
-  pointer-events: auto; 
+.filterOption.active::after {
+  content: "✔";
+  position: absolute;
+  right: 10px;
+  color: #007acc;
+  font-size: 0.9rem;
 }
   
 </style>
@@ -376,30 +364,43 @@ body.dark-mode .filter-btn {
     filterBtn.setAttribute('aria-expanded', String(!open));
   });
 
-  filterOptions.forEach(option => {
-    option.addEventListener('click', () => {
-      const selected = option.getAttribute('data-filter');
-      for (const key in tables) {
-        tables[key].style.display = (key === selected) ? 'table' : 'none';
-      }
-      filterOptions.forEach(btn => {
-        btn.classList.remove('active');
-        btn.style.border = 'none';
-        btn.querySelector('span')?.remove();
-        btn.style.fontWeight = '600';
-      });
-      option.classList.add('active');
-      option.style.border = '2px solid #007acc';
-      option.style.borderRadius = '6px';
-      option.style.fontWeight = '700';
-      if (!option.querySelector('span')) {
-        const check = document.createElement('span');
-        check.textContent = '✔';
-        option.appendChild(check);
-      }
-      filterDropdown.style.display = 'none';
+filterOptions.forEach(option => {
+  option.addEventListener('click', () => {
+    const selected = option.getAttribute('data-filter');
+    for (const key in tables) {
+      tables[key].style.display = (key === selected) ? 'table' : 'none';
+    }
+
+    filterOptions.forEach(btn => {
+      btn.classList.remove('active');
+      btn.style.border = 'none';
+      btn.querySelector('span')?.remove();
+      btn.style.fontWeight = '600';
     });
+
+    option.classList.add('active');
+    option.style.border = '2px solid #007acc';
+    option.style.borderRadius = '6px';
+    option.style.fontWeight = '700';
+
+    if (!option.querySelector('span')) {
+      const check = document.createElement('span');
+      check.textContent = '✔';
+      option.appendChild(check);
+    }
+
+
+    filterDropdown.style.display = 'none';
+    filterButton.setAttribute('data-open', 'false');
   });
+});
+
+
+filterButton.addEventListener('click', () => {
+  const isOpen = filterButton.getAttribute('data-open') === 'true';
+  filterDropdown.style.display = isOpen ? 'none' : 'block';
+  filterButton.setAttribute('data-open', String(!isOpen));
+});
 
   document.addEventListener('click', e => {
     if (!filterDropdown.contains(e.target) && e.target !== filterBtn) {
