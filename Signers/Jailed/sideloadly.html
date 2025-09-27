@@ -130,8 +130,142 @@ main>*{animation:contentFade .45s ease both}
 @keyframes contentFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 :focus{outline:3px solid rgba(37,99,235,0.12);outline-offset:3px}
 </style>
+  
+<head>
+<body>
 
-  <script>
+<header>
+  <div class="logo" id="siteTitle">
+    <strong>ios.sideload.info</strong>
+    <span class="site-expander" id="siteSubtitle"></span>
+  </div>
+
+  <div class="controls" aria-hidden="false">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" title="Open menu">☰</button>
+    <button id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+  </div>
+</header>
+
+<div class="menu-panel" id="menuPanel" aria-hidden="true">
+  <div class="panel-top">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <strong style="font-size:1rem">Menu</strong>
+      <small style="color:var(--muted);font-weight:700">Table of contents & search</small>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button class="close-btn" id="panelClose" aria-label="Close menu">✕</button>
+    </div>
+  </div>
+
+  <div class="search">
+    <input id="menuSearch" type="search" placeholder="Search headings or links..." aria-label="Search headings">
+  </div>
+
+  <div class="toc" id="tocContainer">
+    <h4>On this page</h4>
+    <nav id="tocList" aria-label="Table of contents"></nav>
+  </div>
+
+  <div class="guides" id="panelGuides">
+    <h4 style="margin-top:18px">Guides</h4>
+    <a href="signers.html">Signers</a>
+    <a href="utilities.html">Utilities</a>
+    <a href="faq.html">FAQ</a>
+    <a href="errors.html">Errors</a>
+    <a href="siteinfo.html">Site Info</a>
+    <div style="margin-top:8px">
+      <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
+      <div id="moreSubPanel" style="display:none;margin-top:8px;padding-left:8px">
+        <a href="enabling-jit.html">Enabling JIT</a>
+        <a href="decrypting-apps.html">Decrypting Apps</a>
+        <a href="injecting-tweaks.html">Injecting Tweaks</a>
+      </div>
+    </div>
+    <div style="margin-top:12px"><a href="getstarted.html">Get Started</a></div>
+  </div>
+</div>
+  
+</head>
+<body>
+
+
+  <main>
+    <div class="faq-section">
+      <h1>Sideloadly</h1>
+      <p>Sideloadly is an app signer that uses your apple ID to sign applications.</p>
+      <p>A standard Apple ID is only limited to 3 apps at a time, and must refresh apps every 7 days. However, you can pay $99 yearly for an Apple Developer Account to have unlimited apps and refresh every 365 days.</p>
+
+      <style>
+  .caution-box {
+    border: 2px solid #f9a825;
+    background-color: #fff8e1;
+    color: #8a6d1d;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    max-width: 600px;
+    margin: 1rem 0;
+  }
+</style>
+
+      <div class="caution-box">
+ On iOS 7, 8 & 9, you can sideload unlimited applications regardless of your Apple ID. Some devices that are vulernable to the <a href="https://ios.sideload.info/utillties/cowabunga.html">MacDirtyCow exploit can disable the 3 app limit (iOS 15 - 16.1.2).</a> and  <a href="https://ios.sideload.info/utillties/sparsebox.html">sparserestore exploit (iOS 17 - 18.0 RC/18.1 beta 4).</a>
+</div>
+
+      <h2>Prerequisites</h2>
+      <ul>
+        <li>A computer running Windows 7 or MacOS 10.12 or above</li>
+        <li>iPad, iPhone or Apple TV running iOS 7 or above</li>
+        <li>Latest version of <a href="https://sideloadly.io" target="_blank" rel="noopener noreferrer">Sideloadly.</a></li>
+        <li>Latest version of <a href="https://www.apple.com/itunes/download/win64/" target="_blank" rel="noopener noreferrer">iTunes (not from the Microsoft store)</a></li>
+        <li>Latest version of <a href="https://updates.cdn-apple.com/2020/windows/001-39935-20200911-1A70AA56-F448-11EA-8CC0-99D41950005E/iCloudSetup.exe" target="_blank" rel="noopener noreferrer">iCloud (not from the Microsoft store)</a></li>
+        <li>A working Apple ID</li>
+      </ul>
+
+      <h2>Enabling Developer Mode</h2>
+      <p>Starting iOS/iPadOS 16+, all users are required to enable developer mode to install developer apps.</p>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Scroll down to Privacy &amp; Security.</li>
+        <li>On Privacy &amp; Security, scroll down to Developer Mode. Click enable.</li>
+        <li>Your device may restart. Once enabled, proceed with the next steps.</li>
+      </ol>
+
+      <h2>Running Sideloadly</h2>
+      <ol>
+        <li>Run the sideloadly installer.</li>
+        <li>Once sideloadly has finished installing, open the application.</li>
+        <li>Connect your iPhone or iPad to your computer. Ensure the device is trusted and unlocked.</li>
+        <li>Drag & drop the .ipa file, or select it.</li>
+        <li>Enter your Apple ID credentials. Your login details will only be sent to Apple for verification and are not tracked by AltServer.</li>
+        <li>Tap "Install".</li>
+      </ol>
+
+      <h2>Verifying Application</h2>
+      <ol>
+        <li>Open Settings.</li>
+        <li>Go to General.</li>
+        <li>Scroll to VPN &amp; Device Management.</li>
+        <li>Open it and you will find a developer application.</li>
+        <li>Click on it. Once opened, click "Verify App".</li>
+      </ol>
+      
+      </ol>
+    </div>
+  </main>
+
+  <footer>
+    <div>
+    <a href="https://ios.sideload.info/siteinfo.html">Contact</a>
+    <a href="https://discord.gg/bRYhdA7t" target="_blank">Discord</a>
+    <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
+    </div>
+    <div class="copyright">
+      © 2025 - sideload.info - All rights reserved
+    </div>
+  </footer>
+
+    <script>
   function toggleMenu() {
     const panel = document.getElementById('menuPanel');
     const open = panel.classList.toggle('open');
@@ -308,139 +442,6 @@ main>*{animation:contentFade .45s ease both}
     });
   })();
 </script>
-<head>
-<body>
-
-<header>
-  <div class="logo" id="siteTitle">
-    <strong>ios.sideload.info</strong>
-    <span class="site-expander" id="siteSubtitle"></span>
-  </div>
-
-  <div class="controls" aria-hidden="false">
-    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" title="Open menu">☰</button>
-    <button id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
-  </div>
-</header>
-
-<div class="menu-panel" id="menuPanel" aria-hidden="true">
-  <div class="panel-top">
-    <div style="display:flex;align-items:center;gap:12px;">
-      <strong style="font-size:1rem">Menu</strong>
-      <small style="color:var(--muted);font-weight:700">Table of contents & search</small>
-    </div>
-    <div style="display:flex;gap:8px;align-items:center;">
-      <button class="close-btn" id="panelClose" aria-label="Close menu">✕</button>
-    </div>
-  </div>
-
-  <div class="search">
-    <input id="menuSearch" type="search" placeholder="Search headings or links..." aria-label="Search headings">
-  </div>
-
-  <div class="toc" id="tocContainer">
-    <h4>On this page</h4>
-    <nav id="tocList" aria-label="Table of contents"></nav>
-  </div>
-
-  <div class="guides" id="panelGuides">
-    <h4 style="margin-top:18px">Guides</h4>
-    <a href="signers.html">Signers</a>
-    <a href="utilities.html">Utilities</a>
-    <a href="faq.html">FAQ</a>
-    <a href="errors.html">Errors</a>
-    <a href="siteinfo.html">Site Info</a>
-    <div style="margin-top:8px">
-      <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
-      <div id="moreSubPanel" style="display:none;margin-top:8px;padding-left:8px">
-        <a href="enabling-jit.html">Enabling JIT</a>
-        <a href="decrypting-apps.html">Decrypting Apps</a>
-        <a href="injecting-tweaks.html">Injecting Tweaks</a>
-      </div>
-    </div>
-    <div style="margin-top:12px"><a href="getstarted.html">Get Started</a></div>
-  </div>
-</div>
   
-</head>
-<body>
-
-
-  <main>
-    <div class="faq-section">
-      <h1>Sideloadly</h1>
-      <p>Sideloadly is an app signer that uses your apple ID to sign applications.</p>
-      <p>A standard Apple ID is only limited to 3 apps at a time, and must refresh apps every 7 days. However, you can pay $99 yearly for an Apple Developer Account to have unlimited apps and refresh every 365 days.</p>
-
-      <style>
-  .caution-box {
-    border: 2px solid #f9a825;
-    background-color: #fff8e1;
-    color: #8a6d1d;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    max-width: 600px;
-    margin: 1rem 0;
-  }
-</style>
-
-      <div class="caution-box">
- On iOS 7, 8 & 9, you can sideload unlimited applications regardless of your Apple ID. Some devices that are vulernable to the <a href="https://ios.sideload.info/utillties/cowabunga.html">MacDirtyCow exploit can disable the 3 app limit (iOS 15 - 16.1.2).</a> and  <a href="https://ios.sideload.info/utillties/sparsebox.html">sparserestore exploit (iOS 17 - 18.0 RC/18.1 beta 4).</a>
-</div>
-
-      <h2>Prerequisites</h2>
-      <ul>
-        <li>A computer running Windows 7 or MacOS 10.12 or above</li>
-        <li>iPad, iPhone or Apple TV running iOS 7 or above</li>
-        <li>Latest version of <a href="https://sideloadly.io" target="_blank" rel="noopener noreferrer">Sideloadly.</a></li>
-        <li>Latest version of <a href="https://www.apple.com/itunes/download/win64/" target="_blank" rel="noopener noreferrer">iTunes (not from the Microsoft store)</a></li>
-        <li>Latest version of <a href="https://updates.cdn-apple.com/2020/windows/001-39935-20200911-1A70AA56-F448-11EA-8CC0-99D41950005E/iCloudSetup.exe" target="_blank" rel="noopener noreferrer">iCloud (not from the Microsoft store)</a></li>
-        <li>A working Apple ID</li>
-      </ul>
-
-      <h2>Enabling Developer Mode</h2>
-      <p>Starting iOS/iPadOS 16+, all users are required to enable developer mode to install developer apps.</p>
-      <ol>
-        <li>Open Settings.</li>
-        <li>Scroll down to Privacy &amp; Security.</li>
-        <li>On Privacy &amp; Security, scroll down to Developer Mode. Click enable.</li>
-        <li>Your device may restart. Once enabled, proceed with the next steps.</li>
-      </ol>
-
-      <h2>Running Sideloadly</h2>
-      <ol>
-        <li>Run the sideloadly installer.</li>
-        <li>Once sideloadly has finished installing, open the application.</li>
-        <li>Connect your iPhone or iPad to your computer. Ensure the device is trusted and unlocked.</li>
-        <li>Drag & drop the .ipa file, or select it.</li>
-        <li>Enter your Apple ID credentials. Your login details will only be sent to Apple for verification and are not tracked by AltServer.</li>
-        <li>Tap "Install".</li>
-      </ol>
-
-      <h2>Verifying Application</h2>
-      <ol>
-        <li>Open Settings.</li>
-        <li>Go to General.</li>
-        <li>Scroll to VPN &amp; Device Management.</li>
-        <li>Open it and you will find a developer application.</li>
-        <li>Click on it. Once opened, click "Verify App".</li>
-      </ol>
-      
-      </ol>
-    </div>
-  </main>
-
-  <footer>
-    <div>
-    <a href="https://ios.sideload.info/siteinfo.html">Contact</a>
-    <a href="https://discord.gg/bRYhdA7t" target="_blank">Discord</a>
-    <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
-    </div>
-    <div class="copyright">
-      © 2025 - sideload.info - All rights reserved
-    </div>
-  </footer>
-
 </body>
 </html>
