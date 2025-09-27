@@ -287,45 +287,55 @@ footer .copyright {
 <body>
 
 <header>
-  <div class="logo"><strong>ios.sideload.info</strong></div>
-
-  <div style="display: flex; align-items: center; gap: 10px; margin-left: auto;">
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-    
-<button id="darkModeToggle" style="
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    font-size: 18px;
-    position: relative;
-    top: 2px;
-">
-    🌙
-</button>
+  <div class="logo" id="siteTitle">
+    <strong>ios.sideload.info</strong>
+    <span class="site-expander" id="siteSubtitle"></span>
   </div>
 
-  <div class="menu" id="dropdownMenu">
-    <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
-    <div class="submenu" id="subMenu">
-      <a href="signers.html">Signers</a>
-      <a href="utilities.html">Utilities</a>
-      <a href="faq.html">FAQ</a>
-      <a href="errors.html">Errors</a>
-      <a href="siteinfo.html">Site Info</a>
-      <div style="position: relative;">
-        <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
-        <div class="more-submenu" id="moreSubMenu">
-          <a href="enabling-jit.html">Enabling JIT</a>
-          <a href="decrypting-apps.html">Decrypting Apps</a>
-          <a href="injecting-tweaks.html">Injecting Tweaks</a>
-        </div>
-      </div>
-    </div>
-    <a href="getstarted.html">Get Started</a>
+  <div class="controls" aria-hidden="false">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" title="Open menu">☰</button>
+    <button id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
   </div>
 </header>
 
+<div class="menu-panel" id="menuPanel" aria-hidden="true">
+  <div class="panel-top">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <strong style="font-size:1rem">Menu</strong>
+      <small style="color:var(--muted);font-weight:700">Table of contents & search</small>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button class="close-btn" id="panelClose" aria-label="Close menu">✕</button>
+    </div>
+  </div>
+
+  <div class="search">
+    <input id="menuSearch" type="search" placeholder="Search headings or links..." aria-label="Search headings">
+  </div>
+
+  <div class="toc" id="tocContainer">
+    <h4>On this page</h4>
+    <nav id="tocList" aria-label="Table of contents"></nav>
+  </div>
+
+  <div class="guides" id="panelGuides">
+    <h4 style="margin-top:18px">Guides</h4>
+    <a href="signers.html">Signers</a>
+    <a href="utilities.html">Utilities</a>
+    <a href="faq.html">FAQ</a>
+    <a href="errors.html">Errors</a>
+    <a href="siteinfo.html">Site Info</a>
+    <div style="margin-top:8px">
+      <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
+      <div id="moreSubPanel" style="display:none;margin-top:8px;padding-left:8px">
+        <a href="enabling-jit.html">Enabling JIT</a>
+        <a href="decrypting-apps.html">Decrypting Apps</a>
+        <a href="injecting-tweaks.html">Injecting Tweaks</a>
+      </div>
+    </div>
+    <div style="margin-top:12px"><a href="getstarted.html">Get Started</a></div>
+  </div>
+</div>
 <section class="banner">
   <img src="banner.jpeg" alt="Site banner">
 </section>
@@ -499,6 +509,7 @@ footer .copyright {
 
 </body>
 </html>
+
 
 
 
