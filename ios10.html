@@ -6,232 +6,130 @@
   <meta name="description" content="iOS 10 - Find out how to sideload on iOS 10. View all compatiable signers">
   <title>iOS 10 - sideload.info</title>
 
-  <!-- Keep original Poppins link (unchanged) -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="Themes/ios.css">
   <script src="Scripts/idk.js"></script>
   <script src="Scripts/darkness.js"></script>
 
-  <!-- New detailed styling added inline as requested (Inter font, themes, animations, modern UI) -->
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+:root{
+  --bg:#ffffff;
+  --panel:#ffffff;
+  --surface:#fbfdff;
+  --muted:#6b7280;
+  --text:#0f172a;
+  --accent-a:#2563eb;
+  --accent-b:#0ea5ff;
+  --accent-grad:linear-gradient(135deg,var(--accent-a),var(--accent-b));
+  --glass:rgba(255,255,255,0.6);
+  --border:rgba(15,23,42,0.08);
+  --shadow:0 10px 36px rgba(16,24,40,0.08);
+  --radius:12px;
+  --mono:"SFMono-Regular", Consolas, Menlo, monospace;
+}
+[data-theme="dark"], .dark, body.dark{
+  --bg:#07070b;
+  --panel:#0f1116;
+  --surface:#0b0c11;
+  --muted:#98a0b3;
+  --text:#f6f7fb;
+  --accent-a:#ff3cac;
+  --accent-b:#2b86c5;
+  --accent-grad:linear-gradient(135deg,var(--accent-b),#7b61ff,var(--accent-a));
+  --glass:rgba(255,255,255,0.03);
+  --border:rgba(255,255,255,0.04);
+  --shadow:0 18px 48px rgba(2,6,23,0.6);
+}
+*{box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+html,body{height:100%}
+body{
+  margin:0;
+  min-height:100%;
+  background:
+    radial-gradient(800px 400px at 10% 10%, rgba(37,99,235,0.06), transparent 6%),
+    radial-gradient(700px 300px at 92% 80%, rgba(14,165,255,0.04), transparent 6%),
+    var(--bg);
+  color:var(--text);
+  font-family:Inter, Poppins, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  line-height:1.5;
+  transition:background .35s ease,color .25s ease;
+  padding-bottom:96px;
+}
+a{color:var(--accent-a);text-decoration:none}
+a:hover{text-decoration:underline}
+header{
+  position:fixed;top:0;left:0;right:0;height:72px;display:flex;align-items:center;padding:12px 20px;
+  gap:14px;background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.15));backdrop-filter:blur(6px);border-bottom:1px solid var(--border);z-index:1400;
+}
+[data-theme="dark"] header{background:linear-gradient(180deg,rgba(11,11,16,0.85),rgba(11,11,16,0.65));border-bottom:1px solid rgba(255,255,255,0.04)}
+.logo{font-weight:800;font-size:1.05rem;display:flex;align-items:center;gap:8px}
+.logo .site-expander{font-weight:500;font-size:.85rem;color:var(--muted);display:inline-block}
+.controls{margin-left:auto;display:flex;align-items:center;gap:10px}
+.hamburger{
+  width:48px;height:48px;border-radius:10px;display:inline-grid;place-items:center;cursor:pointer;
+  background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.3));border:1px solid var(--border);box-shadow:var(--shadow);font-size:20px;color:var(--text)
+}
+[data-theme="dark"] .hamburger{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01))}
+#darkModeToggle{width:44px;height:44px;border-radius:10px;border:1px solid var(--border);display:inline-grid;place-items:center;background:transparent;cursor:pointer;font-size:18px}
+.menu-panel{
+  position:fixed;top:0;right:-420px;bottom:0;width:420px;background:var(--panel);box-shadow: -12px 0 48px rgba(2,6,23,0.12);transition:right .28s cubic-bezier(.2,.9,.2,1);z-index:1500;padding:18px;overflow:auto;
+  border-left:1px solid var(--border);
+}
+.menu-panel.open{right:0}
+@media(max-width:820px){ .menu-panel{width:100%;right:-100%;} .menu-panel.open{right:0}}
+.menu-panel .panel-top{display:flex;align-items:center;gap:12px;justify-content:space-between;margin-bottom:12px}
+.menu-panel .search{display:flex;gap:8px}
+.menu-panel input[type="search"]{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);width:100%;font-weight:600}
+.menu-panel .toc{margin-top:12px}
+.menu-panel .toc h4{margin:8px 0;font-size:0.95rem;color:var(--muted);font-weight:700}
+.menu-panel .toc a{display:block;padding:8px 10px;border-radius:8px;color:var(--text);text-decoration:none}
+.menu-panel .toc a:hover{background:linear-gradient(90deg,rgba(2,132,199,0.06),transparent)}
+.menu-panel .guides{margin-top:18px}
+.menu-panel .guides a{display:block;padding:8px 10px;border-radius:8px;color:var(--text);font-weight:700}
+.menu-panel .close-btn{width:40px;height:40px;border-radius:8px;border:none;background:transparent;cursor:pointer;font-size:18px}
 
-  /************************
-   *  Theme variables
-   ************************/
-  :root {
-    --bg: #ffffff;
-    --surface: #fbfdff;
-    --panel: #ffffff;
-    --muted: #6b7280;
-    --text: #0f172a;
-    --accent-1: #0ea5ff;
-    --accent-2: #2563eb;
-    --accent-grad: linear-gradient(135deg, var(--accent-2), var(--accent-1));
-    --glass: rgba(255, 255, 255, 0.6);
-    --border: rgba(15, 23, 42, 0.08);
-    --shadow-1: 0 6px 24px rgba(16, 24, 40, 0.08);
-    --radius: 10px;
-  }
+main{
+  max-width:980px;margin:104px auto 40px;padding:28px;
+}
+.title-filter-container{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:12px}
+.title-filter-container h1{font-size:1.8rem;margin:0;background:var(--accent-grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
+#filterBtn{background:var(--panel);border:1px solid var(--border);padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:800;box-shadow:0 8px 24px rgba(2,6,23,0.04)}
+#filterDropdown{position:absolute;top:56px;left:0;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:8px;min-width:220px;display:none;box-shadow:var(--shadow);z-index:900}
+.filterOption{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;background:transparent;color:var(--text);font-weight:700;cursor:pointer}
+.filterOption:hover{background:linear-gradient(90deg,rgba(2,132,199,0.06),transparent)}
+.filterOption.active{background:linear-gradient(90deg,rgba(2,132,199,0.1),rgba(2,132,199,0.04));box-shadow:inset 0 0 0 2px rgba(2,132,199,0.06)}
 
-  [data-theme="dark"], .dark, body.dark {
-    --bg: #05060a;
-    --surface: #0b0c11;
-    --panel: #10111a;
-    --muted: #98a0b3;
-    --text: #f6f7fb;
-    --accent-1: #7b61ff;
-    --accent-2: #ff3cac;
-    --accent-grad: linear-gradient(135deg, #2b86c5, #7b61ff, #ff3cac);
-    --glass: rgba(255, 255, 255, 0.05);
-    --border: rgba(255, 255, 255, 0.06);
-    --shadow-1: 0 10px 30px rgba(2, 6, 23, 0.6);
-  }
+table{width:100%;border-collapse:collapse;border-radius:12px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.4));border:1px solid var(--border);box-shadow:0 10px 36px rgba(2,6,23,0.04)}
+[data-theme="dark"] table{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01))}
+table caption{text-align:left;padding:12px 18px;font-weight:900;color:#fff;background:var(--accent-grad);font-size:1rem}
+th,td{padding:14px 16px;border-bottom:1px solid var(--border);color:var(--text);font-weight:600;text-align:left;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+@media(max-width:720px){ table{display:block;overflow:auto;white-space:nowrap} }
 
-  * {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+.caution-box{border-radius:10px;padding:12px 16px;border:2px solid #f59e0b;background:linear-gradient(180deg,#fff8e1,#fffaf0);color:#8a6d1d;font-weight:700;margin:12px 0;max-width:900px}
+[data-theme="dark"] .caution-box{background:linear-gradient(180deg,rgba(255,152,36,0.06),rgba(255,152,36,0.02));color:#ffd7a6;border-color:rgba(255,152,36,0.35)}
 
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    line-height: 1.5;
-    transition: background .3s ease, color .3s ease;
-    padding-bottom: 64px;
-  }
+main h2{display:block;position:relative;padding:12px 14px;margin:20px 0 8px;font-size:1.15rem;font-weight:700;cursor:pointer;color:var(--text);border:2px solid var(--border);border-radius:10px;background:var(--panel);transition:background .16s ease,border .12s ease}
+main h2:hover{background:var(--surface);border-color:var(--accent-b)}
+main h2::after{content:"▾";position:absolute;right:12px;top:50%;transform:translateY(-50%);transition:transform .28s ease;opacity:.95;font-size:.9rem}
+main h2.collapsed::after{transform:rotate(-90deg)}
+.collapsible-content{overflow:hidden;transition:max-height .35s cubic-bezier(.2,.9,.2,1),opacity .25s ease;will-change:max-height;opacity:1;padding-left:6px}
+.collapsible-content.hidden{opacity:0}
+.collapsible-content ul,.collapsible-content ol{margin:10px 0 10px 24px;padding:0}
+.collapsible-content li{margin:6px 0;line-height:1.4}
 
-  /************************
-   * Header
-   ************************/
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 68px;
-    display: flex;
-    align-items: center;
-    padding: 12px 22px;
-    background: var(--panel);
-    border-bottom: 1px solid var(--border);
-    z-index: 1200;
-  }
+footer{position:relative;margin-top:36px;padding:28px 18px;text-align:center;border-top-left-radius:12px;border-top-right-radius:12px;background:linear-gradient(90deg,var(--accent-b),var(--accent-a));color:#fff;border:1px solid var(--border);box-shadow:0 8px 28px rgba(2,6,23,0.06)}
+footer a{color:#fff;text-decoration:none;font-weight:800;margin:0 8px}
+footer a:hover{text-decoration:underline}
+footer .copyright{margin-top:10px;font-size:.9rem;opacity:.9}
 
-  header .logo {
-    font-weight: 700;
-    font-size: 1.05rem;
-    color: var(--text);
-  }
-
-  /************************
-   * Filter buttons
-   ************************/
-  #filterBtn {
-    background: var(--accent-grad);
-    color: #fff;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 700;
-    transition: transform .15s ease;
-  }
-  #filterBtn:hover { transform: scale(1.05); }
-
-  #filterDropdown {
-    position: absolute;
-    top: 46px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 8px;
-    min-width: 200px;
-    display: none;
-    box-shadow: var(--shadow-1);
-    z-index: 800;
-  }
-
-  .filterOption {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin: 4px 0;
-    border-radius: 6px;
-    background: var(--surface);
-    color: var(--text);
-    font-weight: 600;
-    cursor: pointer;
-    border: 1px solid var(--border);
-    text-align: left;
-    transition: background .15s ease, transform .1s ease;
-  }
-  .filterOption:hover {
-    background: var(--accent-grad);
-    color: #fff;
-    transform: translateY(-1px);
-  }
-  .filterOption.active {
-    background: var(--accent-grad);
-    color: #fff;
-  }
-
-  /************************
-   * Tables
-   ************************/
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 12px;
-    overflow: hidden;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-1);
-  }
-
-  table caption {
-    padding: 12px 18px;
-    font-weight: 800;
-    color: #fff;
-    background: var(--accent-grad);
-    text-align: left;
-  }
-
-  th, td {
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--border);
-    text-align: left;
-    color: var(--text);
-  }
-  tr:last-child td { border-bottom: none; }
-
-  /************************
-   * Collapsibles
-   ************************/
-  main h2 {
-    display: block;
-    position: relative;
-    padding: 12px 14px;
-    margin: 20px 0 8px;
-    font-size: 1.15rem;
-    font-weight: 700;
-    cursor: pointer;
-    color: var(--text);
-    border: 2px solid var(--border);
-    border-radius: 8px;
-    background: var(--panel);
-    transition: background .2s ease, border .2s ease;
-  }
-  main h2:hover {
-    background: var(--surface);
-    border-color: var(--accent-1);
-  }
-
-  main h2::after {
-    content: "▾";
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: transform .25s ease;
-  }
-  main h2.collapsed::after { transform: translateY(-50%) rotate(-90deg); }
-
-  .collapsible-content {
-    overflow: hidden;
-    transition: max-height .35s ease, opacity .25s ease;
-    opacity: 1;
-    padding-left: 6px;
-  }
-  .collapsible-content.hidden {
-    opacity: 0;
-  }
-
-  /* Lists inside collapsibles */
-  .collapsible-content ul,
-  .collapsible-content ol {
-    margin: 10px 0 10px 24px;
-    padding: 0;
-  }
-  .collapsible-content li {
-    margin: 6px 0;
-    line-height: 1.4;
-  }
-
-  /************************
-   * Footer
-   ************************/
-  footer {
-    margin-top: 36px;
-    padding: 20px 18px;
-    text-align: center;
-    border-top: 1px solid var(--border);
-    background: var(--accent-grad);
-    color: #fff;
-  }
-  footer a { color: #fff; font-weight: 700; }
-  footer .copyright { margin-top: 8px; font-size: .9rem; opacity: .8; }
+@media(max-width:720px){
+  .title-filter-container{flex-direction:column;align-items:stretch}
+  .title-filter-container h1{font-size:1.4rem}
+}
+main>*{animation:contentFade .45s ease both}
+@keyframes contentFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+:focus{outline:3px solid rgba(37,99,235,0.12);outline-offset:3px}
 </style>
 </head>
 <body>
@@ -239,55 +137,63 @@
 <header>
   <div class="logo" id="siteTitle">
     <strong>ios.sideload.info</strong>
-    <span class="subtitle" id="siteSubtitle"></span>
+    <span class="site-expander" id="siteSubtitle"></span>
   </div>
 
-  <div class="controls" style="margin-left:auto;">
-    <div class="hamburger" onclick="toggleMenu()" aria-label="Open menu" role="button" tabindex="0">☰</div>
-
-    <button id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode" style="background:none;border:none;padding:0;cursor:pointer;font-size:18px;position:relative;top:2px;">
-      🌙
-    </button>
-  </div>
-
-  <div class="menu" id="dropdownMenu" aria-hidden="true">
-    <a href="#" onclick="toggleSubMenu()">Guides ▾</a>
-    <div class="submenu" id="subMenu" aria-hidden="true">
-      <a href="signers.html">Signers</a>
-      <a href="utilities.html">Utilities</a>
-      <a href="faq.html">FAQ</a>
-      <a href="errors.html">Errors</a>
-      <a href="siteinfo.html">Site Info</a>
-      <div style="position: relative;">
-        <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
-        <div class="more-submenu" id="moreSubMenu" aria-hidden="true">
-          <a href="enabling-jit.html">Enabling JIT</a>
-          <a href="decrypting-apps.html">Decrypting Apps</a>
-          <a href="injecting-tweaks.html">Injecting Tweaks</a>
-        </div>
-      </div>
-    </div>
-    <a href="getstarted.html">Get Started</a>
+  <div class="controls" aria-hidden="false">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" title="Open menu">☰</button>
+    <button id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
   </div>
 </header>
 
+<div class="menu-panel" id="menuPanel" aria-hidden="true">
+  <div class="panel-top">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <strong style="font-size:1rem">Menu</strong>
+      <small style="color:var(--muted);font-weight:700">Table of contents & search</small>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button class="close-btn" id="panelClose" aria-label="Close menu">✕</button>
+    </div>
+  </div>
 
-  
+  <div class="search">
+    <input id="menuSearch" type="search" placeholder="Search headings or links..." aria-label="Search headings">
+  </div>
+
+  <div class="toc" id="tocContainer">
+    <h4>On this page</h4>
+    <nav id="tocList" aria-label="Table of contents"></nav>
+  </div>
+
+  <div class="guides" id="panelGuides">
+    <h4 style="margin-top:18px">Guides</h4>
+    <a href="signers.html">Signers</a>
+    <a href="utilities.html">Utilities</a>
+    <a href="faq.html">FAQ</a>
+    <a href="errors.html">Errors</a>
+    <a href="siteinfo.html">Site Info</a>
+    <div style="margin-top:8px">
+      <a href="#" onclick="toggleMoreSubMenu(event)">More.. ▸</a>
+      <div id="moreSubPanel" style="display:none;margin-top:8px;padding-left:8px">
+        <a href="enabling-jit.html">Enabling JIT</a>
+        <a href="decrypting-apps.html">Decrypting Apps</a>
+        <a href="injecting-tweaks.html">Injecting Tweaks</a>
+      </div>
+    </div>
+    <div style="margin-top:12px"><a href="getstarted.html">Get Started</a></div>
+  </div>
+</div>
+
 <main>
   <div class="title-filter-container">
     <h1>iOS 10</h1>
-    <div style="position: relative;">
-      <button id="filterBtn">Filter ▾</button>
+    <div style="position:relative;">
+      <button id="filterBtn" aria-expanded="false">Filter ▾</button>
       <div id="filterDropdown" aria-hidden="true">
-        <button class="filterOption active" data-filter="recommended">
-          Recommended <span>✔</span>
-        </button>
-        <button class="filterOption" data-filter="nocomputer">
-          No Computer
-        </button>
-        <button class="filterOption" data-filter="jailbroken">
-          Jailbroken
-        </button>
+        <button class="filterOption active" data-filter="recommended">Recommended <span>✔</span></button>
+        <button class="filterOption" data-filter="nocomputer">No Computer</button>
+        <button class="filterOption" data-filter="jailbroken">Jailbroken</button>
       </div>
     </div>
   </div>
@@ -295,8 +201,6 @@
   <p>Below shows a table of compatible signers with your chosen operating system version.</p>
   <p>Find your specific iOS version and click on the blue URL on the table to access the signer guide.</p>
 
-
-  
   <table id="recommendedTable">
     <caption><strong>Recommended</strong></caption>
     <tr>
@@ -339,7 +243,6 @@
     </tr>
   </table>
 
-
   <h2>Finding your iOS version</h2>
   <ol>
     <li>Open the “Settings” application</li>
@@ -347,46 +250,83 @@
   </ol>
 </main>
 
-
-  
-
 <footer>
   <div>
     <a href="https://ios.sideload.info/siteinfo.html">Contact</a> ·
     <a href="https://discord.gg/bRYhdA7t" target="_blank">Discord</a> ·
     <a href="https://ios.sideload.info/getstarted.html">Get Started</a>
   </div>
-  <div class="copyright">
-    © 2025 - sideload.info - All rights reserved
-  </div>
+  <div class="copyright">© 2025 - sideload.info - All rights reserved</div>
 </footer>
 
 <script>
-  /* --- keep your original JS behavior intact --- */
   function toggleMenu() {
-    const menu = document.getElementById("dropdownMenu");
-    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    const panel = document.getElementById('menuPanel');
+    const open = panel.classList.toggle('open');
+    panel.setAttribute('aria-hidden', open ? 'false' : 'true');
   }
 
   function toggleSubMenu() {
-    const sub = document.getElementById("subMenu");
-    sub.style.display = sub.style.display === "flex" ? "none" : "flex";
+    const sub = document.getElementById('subMenu');
+    sub.style.display = sub.style.display === 'flex' ? 'none' : 'flex';
   }
 
   function toggleMoreSubMenu(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const moreMenu = document.getElementById("moreSubMenu");
-    moreMenu.style.display = moreMenu.style.display === "flex" ? "none" : "flex";
+    if (event) { event.preventDefault(); event.stopPropagation(); }
+    const more = document.getElementById('moreSubPanel');
+    more.style.display = more.style.display === 'block' ? 'none' : 'block';
   }
 
-  document.addEventListener("click", function(event) {
-    const menu = document.getElementById("dropdownMenu");
-    const hamburger = document.querySelector(".hamburger");
-    if (!menu.contains(event.target) && event.target !== hamburger) {
-      menu.style.display = "none";
-      document.getElementById("subMenu").style.display = "none";
-      document.getElementById("moreSubMenu").style.display = "none";
+  document.getElementById('hamburgerBtn').addEventListener('click', toggleMenu);
+  document.getElementById('panelClose').addEventListener('click', toggleMenu);
+
+  document.addEventListener('click', function(event) {
+    const panel = document.getElementById('menuPanel');
+    const hamburger = document.getElementById('hamburgerBtn');
+    if (!panel.contains(event.target) && event.target !== hamburger && panel.classList.contains('open')) {
+      panel.classList.remove('open');
+      panel.setAttribute('aria-hidden','true');
+    }
+  });
+
+  const menuSearch = document.getElementById('menuSearch');
+  const tocList = document.getElementById('tocList');
+
+  function buildTOC() {
+    tocList.innerHTML = '';
+    const headings = Array.from(document.querySelectorAll('main h2'));
+    headings.forEach((h, idx) => {
+      if (!h.id) h.id = 'heading-' + idx;
+      const a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent;
+      a.addEventListener('click', () => {
+        document.getElementById('menuPanel').classList.remove('open');
+      });
+      tocList.appendChild(a);
+    });
+  }
+
+  menuSearch.addEventListener('input', () => {
+    const q = menuSearch.value.trim().toLowerCase();
+    const items = Array.from(tocList.querySelectorAll('a'));
+    items.forEach(a => {
+      const matches = a.textContent.toLowerCase().includes(q);
+      a.style.display = matches ? 'block' : 'none';
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    buildTOC();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const panel = document.getElementById('menuPanel');
+      if (panel.classList.contains('open')) {
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden','true');
+      }
     }
   });
 
@@ -401,24 +341,23 @@
   };
 
   filterBtn.addEventListener('click', () => {
-    filterDropdown.style.display = filterDropdown.style.display === 'block' ? 'none' : 'block';
+    const open = filterDropdown.style.display === 'block';
+    filterDropdown.style.display = open ? 'none' : 'block';
+    filterBtn.setAttribute('aria-expanded', String(!open));
   });
 
   filterOptions.forEach(option => {
     option.addEventListener('click', () => {
       const selected = option.getAttribute('data-filter');
-
       for (const key in tables) {
         tables[key].style.display = (key === selected) ? 'table' : 'none';
       }
-
       filterOptions.forEach(btn => {
         btn.classList.remove('active');
         btn.style.border = 'none';
         btn.querySelector('span')?.remove();
         btn.style.fontWeight = '600';
       });
-
       option.classList.add('active');
       option.style.border = '2px solid #007acc';
       option.style.borderRadius = '6px';
@@ -428,7 +367,6 @@
         check.textContent = '✔';
         option.appendChild(check);
       }
-
       filterDropdown.style.display = 'none';
     });
   });
@@ -440,26 +378,16 @@
   });
 </script>
 
-<!-- Collapsible headers script (non-invasive) -->
 <script>
   (function() {
-    // Wait for DOM content to exist
     document.addEventListener('DOMContentLoaded', () => {
       const main = document.querySelector('main');
       if (!main) return;
-
-      // Find all H2 headings within main
       const headings = Array.from(main.querySelectorAll('h2'));
-
-      // If no headings, nothing to do
       if (headings.length === 0) return;
-
-      // For each heading, wrap its following siblings until the next H2 into a .collapsible-content container
-      headings.forEach((h, idx) => {
-        // create container
+      headings.forEach((h) => {
         const content = document.createElement('div');
         content.className = 'collapsible-content';
-        // move following siblings into content until next H2 or end
         let node = h.nextSibling;
         while (node) {
           const next = node.nextSibling;
@@ -467,27 +395,19 @@
           content.appendChild(node);
           node = next;
         }
-        // insert the content right after the heading
         if (h.nextSibling) {
           h.parentNode.insertBefore(content, h.nextSibling);
         } else {
           h.parentNode.appendChild(content);
         }
-
-        // Accessibility & styling adjustments
         h.classList.add('collapsible');
         h.setAttribute('role', 'button');
         h.setAttribute('tabindex', '0');
         h.setAttribute('aria-expanded', 'true');
-
-        // initialize max-height so transition can animate
-        // a tiny timeout to ensure content has laid out
         requestAnimationFrame(() => {
           content.style.maxHeight = content.scrollHeight + 'px';
           content.style.opacity = '1';
         });
-
-        // toggle function
         function toggle() {
           const isCollapsed = h.classList.toggle('collapsed');
           if (isCollapsed) {
@@ -500,8 +420,6 @@
             content.style.maxHeight = content.scrollHeight + 'px';
           }
         }
-
-        // click & keyboard handlers
         h.addEventListener('click', toggle);
         h.addEventListener('keydown', (ev) => {
           if (ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar') {
@@ -509,15 +427,13 @@
             toggle();
           }
         });
-
-        // make sure resize updates heights
         window.addEventListener('resize', () => {
           if (!h.classList.contains('collapsed')) {
             content.style.maxHeight = content.scrollHeight + 'px';
           }
         });
-      }); // headings.forEach
-    }); // DOMContentLoaded
+      });
+    });
   })();
 </script>
 
