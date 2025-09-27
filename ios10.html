@@ -348,56 +348,47 @@ main>*{animation:contentFade .45s ease both}
     }
   });
 
-  const filterBtn = document.getElementById('filterBtn');
-  const filterDropdown = document.getElementById('filterDropdown');
-  const filterOptions = document.querySelectorAll('.filterOption');
+const filterBtn = document.getElementById('filterBtn');
+const filterDropdown = document.getElementById('filterDropdown');
+const filterOptions = document.querySelectorAll('.filterOption');
 
-  const tables = {
-    recommended: document.getElementById('recommendedTable'),
-    nocomputer: document.getElementById('noComputerTable'),
-    jailbroken: document.getElementById('jailbrokenTable')
-  };
+const tables = {
+  recommended: document.getElementById('recommendedTable'),
+  nocomputer: document.getElementById('noComputerTable'),
+  jailbroken: document.getElementById('jailbrokenTable')
+};
 
-
-filterButton.addEventListener('click', (e) => {
-  e.stopPropagation(); // prevent bubbling
+filterBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
   filterDropdown.style.display =
     filterDropdown.style.display === 'block' ? 'none' : 'block';
 });
 
-
 filterOptions.forEach(option => {
   option.addEventListener('click', (e) => {
-    e.stopPropagation(); // prevent closing immediately
-
+    e.stopPropagation();
     const selected = option.getAttribute('data-filter');
     for (const key in tables) {
       tables[key].style.display = (key === selected) ? 'table' : 'none';
     }
-
     filterOptions.forEach(btn => {
       btn.classList.remove('active');
       btn.style.border = 'none';
       btn.querySelector('span')?.remove();
       btn.style.fontWeight = '600';
     });
-
     option.classList.add('active');
     option.style.border = '2px solid #007acc';
     option.style.borderRadius = '6px';
     option.style.fontWeight = '700';
-
     if (!option.querySelector('span')) {
       const check = document.createElement('span');
       check.textContent = '✔';
       option.appendChild(check);
     }
-
-
     filterDropdown.style.display = 'none';
   });
 });
-
 
 document.addEventListener('click', () => {
   filterDropdown.style.display = 'none';
