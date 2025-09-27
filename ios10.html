@@ -358,14 +358,18 @@ main>*{animation:contentFade .45s ease both}
     jailbroken: document.getElementById('jailbrokenTable')
   };
 
-  filterBtn.addEventListener('click', () => {
-    const open = filterDropdown.style.display === 'block';
-    filterDropdown.style.display = open ? 'none' : 'block';
-    filterBtn.setAttribute('aria-expanded', String(!open));
-  });
+
+filterButton.addEventListener('click', (e) => {
+  e.stopPropagation(); // prevent bubbling
+  filterDropdown.style.display =
+    filterDropdown.style.display === 'block' ? 'none' : 'block';
+});
+
 
 filterOptions.forEach(option => {
-  option.addEventListener('click', () => {
+  option.addEventListener('click', (e) => {
+    e.stopPropagation(); // prevent closing immediately
+
     const selected = option.getAttribute('data-filter');
     for (const key in tables) {
       tables[key].style.display = (key === selected) ? 'table' : 'none';
@@ -391,22 +395,13 @@ filterOptions.forEach(option => {
 
 
     filterDropdown.style.display = 'none';
-    filterButton.setAttribute('data-open', 'false');
   });
 });
 
 
-filterButton.addEventListener('click', () => {
-  const isOpen = filterButton.getAttribute('data-open') === 'true';
-  filterDropdown.style.display = isOpen ? 'none' : 'block';
-  filterButton.setAttribute('data-open', String(!isOpen));
+document.addEventListener('click', () => {
+  filterDropdown.style.display = 'none';
 });
-
-  document.addEventListener('click', e => {
-    if (!filterDropdown.contains(e.target) && e.target !== filterBtn) {
-      filterDropdown.style.display = 'none';
-    }
-  });
 </script>
 
 <script>
