@@ -11,7 +11,54 @@
   <link rel="stylesheet" href="Themes/new.css">
   <script src="Scripts/idk.js"></script>
   <script src="Scripts/darkness.js"></script>
-
+  <style>
+    #filterDropdown button {
+      background: #f9f9f9;
+      color: #000;
+      padding: 6px 10px;
+      margin: 2px 0;
+      width: 100%;
+      text-align: left;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #filterDropdown button.active {
+      border: 2px solid #007acc !important;
+      background: linear-gradient(135deg, #007acc, #005fa3);
+      color: #fff !important;
+    }
+    body.dark-mode #filterDropdown button {
+      background: #222 !important;
+      color: #ddd !important;
+    }
+    body.dark-mode #filterDropdown button.active {
+      background: linear-gradient(135deg, #005fa3, #003f73) !important;
+      border-color: #3399ff !important;
+      color: #fff !important;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    table caption {
+      text-align: left;
+      font-weight: bold;
+      margin-bottom: .5rem;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+    table.active-table {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    body.dark-mode table {
+      border-color: #444;
+    }
+  </style>
 </head>
 <body>
 
@@ -79,22 +126,10 @@
     </div>
   </div>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2839980630023404"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-gw-3+1f-3d+2z"
-     data-ad-client="ca-pub-2839980630023404"
-     data-ad-slot="3483215591"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
   <p>Below shows a table of compatible signers with your chosen operating system version.</p>
   <p>Find your specific iOS version and click on the blue URL on the table to access the signer guide.</p>
 
-  <table id="recommendedTable">
+  <table id="recommendedTable" class="active-table">
     <caption><strong>Recommended</strong></caption>
     <tr>
       <th>From</th>
@@ -108,7 +143,7 @@
     </tr>
   </table>
 
-  <table id="noComputerTable" style="display:none; margin-top: 1rem;">
+  <table id="noComputerTable" style="display:none;">
     <caption><strong>No Computer</strong></caption>
     <tr>
       <th>From</th>
@@ -122,7 +157,7 @@
     </tr>
   </table>
 
-  <table id="jailbrokenTable" style="display:none; margin-top: 1rem;">
+  <table id="jailbrokenTable" style="display:none;">
     <caption><strong>Jailbroken</strong></caption>
     <tr>
       <th>From</th>
@@ -143,18 +178,6 @@
   </ol>
 </main>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2839980630023404"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-gw-3+1f-3d+2z"
-     data-ad-client="ca-pub-2839980630023404"
-     data-ad-slot="3483215591"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
 <footer>
   <div>
     <a href="https://ios.sideload.info/siteinfo.html">Contact</a> ·
@@ -165,108 +188,33 @@
 </footer>
 
 <script>
-  function toggleMenu() {
-    const panel = document.getElementById('menuPanel');
-    const open = panel.classList.toggle('open');
-    panel.setAttribute('aria-hidden', open ? 'false' : 'true');
-  }
-
-  function toggleSubMenu() {
-    const sub = document.getElementById('subMenu');
-    sub.style.display = sub.style.display === 'flex' ? 'none' : 'flex';
-  }
-
-  function toggleMoreSubMenu(event) {
-    if (event) { event.preventDefault(); event.stopPropagation(); }
-    const more = document.getElementById('moreSubPanel');
-    more.style.display = more.style.display === 'block' ? 'none' : 'block';
-  }
-
-  document.getElementById('hamburgerBtn').addEventListener('click', toggleMenu);
-  document.getElementById('panelClose').addEventListener('click', toggleMenu);
-
-  document.addEventListener('click', function(event) {
-    const panel = document.getElementById('menuPanel');
-    const hamburger = document.getElementById('hamburgerBtn');
-    if (!panel.contains(event.target) && event.target !== hamburger && panel.classList.contains('open')) {
-      panel.classList.remove('open');
-      panel.setAttribute('aria-hidden','true');
-    }
-  });
-
-  const menuSearch = document.getElementById('menuSearch');
-  const tocList = document.getElementById('tocList');
-
-  function buildTOC() {
-    tocList.innerHTML = '';
-    const headings = Array.from(document.querySelectorAll('main h2'));
-    headings.forEach((h, idx) => {
-      if (!h.id) h.id = 'heading-' + idx;
-      const a = document.createElement('a');
-      a.href = '#' + h.id;
-      a.textContent = h.textContent;
-      a.addEventListener('click', () => {
-        document.getElementById('menuPanel').classList.remove('open');
-      });
-      tocList.appendChild(a);
-    });
-  }
-
-  menuSearch.addEventListener('input', () => {
-    const q = menuSearch.value.trim().toLowerCase();
-    const items = Array.from(tocList.querySelectorAll('a'));
-    items.forEach(a => {
-      const matches = a.textContent.toLowerCase().includes(q);
-      a.style.display = matches ? 'block' : 'none';
-    });
-  });
-
-  document.addEventListener('DOMContentLoaded', () => {
-    buildTOC();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      const panel = document.getElementById('menuPanel');
-      if (panel.classList.contains('open')) {
-        panel.classList.remove('open');
-        panel.setAttribute('aria-hidden','true');
-      }
-    }
-  });
-
   const filterBtn = document.getElementById('filterBtn');
   const filterDropdown = document.getElementById('filterDropdown');
   const filterOptions = document.querySelectorAll('.filterOption');
-
   const tables = {
     recommended: document.getElementById('recommendedTable'),
     nocomputer: document.getElementById('noComputerTable'),
     jailbroken: document.getElementById('jailbrokenTable')
   };
 
-  filterBtn.addEventListener('click', () => {
-    const open = filterDropdown.style.display === 'block';
-    filterDropdown.style.display = open ? 'none' : 'block';
-    filterBtn.setAttribute('aria-expanded', String(!open));
+  filterBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    filterDropdown.style.display = filterDropdown.style.display === 'block' ? 'none' : 'block';
   });
 
   filterOptions.forEach(option => {
-    option.addEventListener('click', () => {
+    option.addEventListener('click', (e) => {
+      e.stopPropagation();
       const selected = option.getAttribute('data-filter');
       for (const key in tables) {
         tables[key].style.display = (key === selected) ? 'table' : 'none';
+        tables[key].classList.toggle('active-table', key === selected);
       }
       filterOptions.forEach(btn => {
         btn.classList.remove('active');
-        btn.style.border = 'none';
         btn.querySelector('span')?.remove();
-        btn.style.fontWeight = '600';
       });
       option.classList.add('active');
-      option.style.border = '2px solid #007acc';
-      option.style.borderRadius = '6px';
-      option.style.fontWeight = '700';
       if (!option.querySelector('span')) {
         const check = document.createElement('span');
         check.textContent = '✔';
@@ -276,70 +224,13 @@
     });
   });
 
-  document.addEventListener('click', e => {
-    if (!filterDropdown.contains(e.target) && e.target !== filterBtn) {
-      filterDropdown.style.display = 'none';
-    }
+  document.addEventListener('click', () => {
+    filterDropdown.style.display = 'none';
   });
-</script>
 
-<script>
-  (function() {
-    document.addEventListener('DOMContentLoaded', () => {
-      const main = document.querySelector('main');
-      if (!main) return;
-      const headings = Array.from(main.querySelectorAll('h2'));
-      if (headings.length === 0) return;
-      headings.forEach((h) => {
-        const content = document.createElement('div');
-        content.className = 'collapsible-content';
-        let node = h.nextSibling;
-        while (node) {
-          const next = node.nextSibling;
-          if (node.nodeType === 1 && node.tagName === 'H2') break;
-          content.appendChild(node);
-          node = next;
-        }
-        if (h.nextSibling) {
-          h.parentNode.insertBefore(content, h.nextSibling);
-        } else {
-          h.parentNode.appendChild(content);
-        }
-        h.classList.add('collapsible');
-        h.setAttribute('role', 'button');
-        h.setAttribute('tabindex', '0');
-        h.setAttribute('aria-expanded', 'true');
-        requestAnimationFrame(() => {
-          content.style.maxHeight = content.scrollHeight + 'px';
-          content.style.opacity = '1';
-        });
-        function toggle() {
-          const isCollapsed = h.classList.toggle('collapsed');
-          if (isCollapsed) {
-            h.setAttribute('aria-expanded', 'false');
-            content.style.maxHeight = '0px';
-            content.classList.add('hidden');
-          } else {
-            h.setAttribute('aria-expanded', 'true');
-            content.classList.remove('hidden');
-            content.style.maxHeight = content.scrollHeight + 'px';
-          }
-        }
-        h.addEventListener('click', toggle);
-        h.addEventListener('keydown', (ev) => {
-          if (ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar') {
-            ev.preventDefault();
-            toggle();
-          }
-        });
-        window.addEventListener('resize', () => {
-          if (!h.classList.contains('collapsed')) {
-            content.style.maxHeight = content.scrollHeight + 'px';
-          }
-        });
-      });
-    });
-  })();
+  document.getElementById('darkModeToggle').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
 </script>
 
 </body>
