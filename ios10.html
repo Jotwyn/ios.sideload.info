@@ -11,53 +11,144 @@
   <link rel="stylesheet" href="Themes/new.css">
   <script src="Scripts/idk.js"></script>
   <script src="Scripts/darkness.js"></script>
+
   <style>
-    #filterDropdown button {
-      background: #f9f9f9;
-      color: #000;
-      padding: 6px 10px;
-      margin: 2px 0;
-      width: 100%;
-      text-align: left;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    #filterDropdown button.active {
-      border: 2px solid #007acc !important;
-      background: linear-gradient(135deg, #007acc, #005fa3);
-      color: #fff !important;
-    }
-    body.dark-mode #filterDropdown button {
-      background: #222 !important;
-      color: #ddd !important;
-    }
-    body.dark-mode #filterDropdown button.active {
-      background: linear-gradient(135deg, #005fa3, #003f73) !important;
-      border-color: #3399ff !important;
-      color: #fff !important;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin-top: 1rem;
-    }
-    table caption {
-      text-align: left;
-      font-weight: bold;
-      margin-bottom: .5rem;
-    }
-    table th, table td {
-      border: 1px solid #ccc;
-      padding: 8px;
-    }
-    table.active-table {
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    body.dark-mode table {
-      border-color: #444;
-    }
+:root{
+  --bg:#ffffff;
+  --panel:#ffffff;
+  --surface:#fbfdff;
+  --muted:#6b7280;
+  --text:#0f172a;
+  --accent-a:#2563eb;
+  --accent-b:#0ea5ff;
+  --accent-grad:linear-gradient(135deg,var(--accent-a),var(--accent-b));
+  --glass:rgba(255,255,255,0.6);
+  --border:rgba(15,23,42,0.08);
+  --shadow:0 10px 36px rgba(16,24,40,0.08);
+  --radius:12px;
+  --mono:"SFMono-Regular", Consolas, Menlo, monospace;
+}
+[data-theme="dark"], .dark, body.dark{
+  --bg:#07070b;
+  --panel:#0f1116;
+  --surface:#0b0c11;
+  --muted:#98a0b3;
+  --text:#f6f7fb;
+  --accent-a:#ff3cac;
+  --accent-b:#2b86c5;
+  --accent-grad:linear-gradient(135deg,var(--accent-b),#7b61ff,var(--accent-a));
+  --glass:rgba(255,255,255,0.03);
+  --border:rgba(255,255,255,0.04);
+  --shadow:0 18px 48px rgba(2,6,23,0.6);
+}
+*{box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+html,body{height:100%}
+body{
+  margin:0;
+  min-height:100%;
+  background:
+    radial-gradient(800px 400px at 10% 10%, rgba(37,99,235,0.06), transparent 6%),
+    radial-gradient(700px 300px at 92% 80%, rgba(14,165,255,0.04), transparent 6%),
+    var(--bg);
+  color:var(--text);
+  font-family:Inter, Poppins, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  line-height:1.5;
+  transition:background .35s ease,color .25s ease;
+  padding-bottom:96px;
+}
+a{color:var(--accent-a);text-decoration:none}
+a:hover{text-decoration:underline}
+header{
+  position:fixed;top:0;left:0;right:0;height:72px;display:flex;align-items:center;padding:12px 20px;
+  gap:14px;background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.15));backdrop-filter:blur(6px);border-bottom:1px solid var(--border);z-index:1400;
+}
+[data-theme="dark"] header{background:linear-gradient(180deg,rgba(11,11,16,0.85),rgba(11,11,16,0.65));border-bottom:1px solid rgba(255,255,255,0.04)}
+.logo{font-weight:800;font-size:1.05rem;display:flex;align-items:center;gap:8px}
+.logo .site-expander{font-weight:500;font-size:.85rem;color:var(--muted);display:inline-block}
+.controls{margin-left:auto;display:flex;align-items:center;gap:10px}
+.hamburger{
+  width:48px;height:48px;border-radius:10px;display:inline-grid;place-items:center;cursor:pointer;
+  background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.3));border:1px solid var(--border);box-shadow:var(--shadow);font-size:20px;color:var(--text)
+}
+[data-theme="dark"] .hamburger{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01))}
+#darkModeToggle{width:44px;height:44px;border-radius:10px;border:1px solid var(--border);display:inline-grid;place-items:center;background:transparent;cursor:pointer;font-size:18px}
+.menu-panel{
+  position:fixed;top:0;right:-420px;bottom:0;width:420px;background:var(--panel);box-shadow: -12px 0 48px rgba(2,6,23,0.12);transition:right .28s cubic-bezier(.2,.9,.2,1);z-index:1500;padding:18px;overflow:auto;
+  border-left:1px solid var(--border);
+}
+.menu-panel.open{right:0}
+@media(max-width:820px){ .menu-panel{width:100%;right:-100%;} .menu-panel.open{right:0}}
+.menu-panel .panel-top{display:flex;align-items:center;gap:12px;justify-content:space-between;margin-bottom:12px}
+.menu-panel .search{display:flex;gap:8px}
+.menu-panel input[type="search"]{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);width:100%;font-weight:600}
+.menu-panel .toc{margin-top:12px}
+.menu-panel .toc h4{margin:8px 0;font-size:0.95rem;color:var(--muted);font-weight:700}
+.menu-panel .toc a{display:block;padding:8px 10px;border-radius:8px;color:var(--text);text-decoration:none}
+.menu-panel .toc a:hover{background:linear-gradient(90deg,rgba(2,132,199,0.06),transparent)}
+.menu-panel .guides{margin-top:18px}
+.menu-panel .guides a{display:block;padding:8px 10px;border-radius:8px;color:var(--text);font-weight:700}
+.menu-panel .close-btn{width:40px;height:40px;border-radius:8px;border:none;background:transparent;cursor:pointer;font-size:18px}
+
+main{
+  max-width:980px;margin:104px auto 40px;padding:28px;
+}
+.title-filter-container{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:12px}
+.title-filter-container h1{font-size:1.8rem;margin:0;background:var(--accent-grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
+#filterBtn{background:var(--panel);border:1px solid var(--border);padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:800;box-shadow:0 8px 24px rgba(2,6,23,0.04)}
+#filterDropdown{position:absolute;top:56px;left:0;background:transparent;border-radius:10px;padding:8px;min-width:220px;display:none;z-index:99999}
+.filterOption{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;background:var(--panel);color:var(--text);font-weight:700;cursor:pointer;position:relative;z-index:100000}
+.filterOption:hover{background:linear-gradient(90deg,rgba(2,132,199,0.06),transparent)}
+.filterOption.active{background:linear-gradient(90deg,rgba(2,132,199,0.1),rgba(2,132,199,0.04));box-shadow:inset 0 0 0 2px rgba(2,132,199,0.06)}
+
+table{width:100%;border-collapse:collapse;border-radius:12px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.4));border:1px solid var(--border);box-shadow:0 10px 36px rgba(2,6,23,0.04)}
+[data-theme="dark"] table{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01))}
+table caption{text-align:left;padding:12px 18px;font-weight:900;color:#fff;background:var(--accent-grad);font-size:1rem}
+th,td{padding:14px 16px;border-bottom:1px solid var(--border);color:var(--text);font-weight:600;text-align:left;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+@media(max-width:720px){ table{display:block;overflow:auto;white-space:nowrap} }
+
+.caution-box{border-radius:10px;padding:12px 16px;border:2px solid #f59e0b;background:linear-gradient(180deg,#fff8e1,#fffaf0);color:#8a6d1d;font-weight:700;margin:12px 0;max-width:900px}
+[data-theme="dark"] .caution-box{background:linear-gradient(180deg,rgba(255,152,36,0.06),rgba(255,152,36,0.02));color:#ffd7a6;border-color:rgba(255,152,36,0.35)}
+
+main h2{display:block;position:relative;padding:12px 14px;margin:20px 0 8px;font-size:1.15rem;font-weight:700;cursor:pointer;color:var(--text);border:2px solid var(--border);border-radius:10px;background:var(--panel);transition:background .16s ease,border .12s ease}
+main h2:hover{background:var(--surface);border-color:var(--accent-b)}
+main h2::after{content:"▾";position:absolute;right:12px;top:50%;transform:translateY(-50%);transition:transform .28s ease;opacity:.95;font-size:.9rem}
+main h2.collapsed::after{transform:rotate(-90deg)}
+.collapsible-content{overflow:hidden;transition:max-height .35s cubic-bezier(.2,.9,.2,1),opacity .25s ease;will-change:max-height;opacity:1;padding-left:6px}
+.collapsible-content.hidden{opacity:0}
+.collapsible-content ul,.collapsible-content ol{margin:10px 0 10px 24px;padding:0}
+.collapsible-content li{margin:6px 0;line-height:1.4}
+
+footer{position:relative;margin-top:36px;padding:28px 18px;text-align:center;border-top-left-radius:12px;border-top-right-radius:12px;background:linear-gradient(90deg,var(--accent-b),var(--accent-a));color:#fff;border:1px solid var(--border);box-shadow:0 8px 28px rgba(2,6,23,0.06)}
+footer a{color:#fff;text-decoration:none;font-weight:800;margin:0 8px}
+footer a:hover{text-decoration:underline}
+footer .copyright{margin-top:10px;font-size:.9rem;opacity:.9}
+
+@media(max-width:720px){
+  .title-filter-container{flex-direction:column;align-items:stretch}
+  .title-filter-container h1{font-size:1.4rem}
+}
+main>*{animation:contentFade .45s ease both}
+@keyframes contentFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+:focus{outline:3px solid rgba(37,99,235,0.12);outline-offset:3px}
+
+.filterOption.active {
+  background: linear-gradient(90deg, rgba(2,132,199,0.1), rgba(2,132,199,0.04));
+  box-shadow: inset 0 0 0 2px rgba(2,132,199,0.06);
+  border: 2px solid #007acc;
+  border-radius: 6px;
+  font-weight: 700;
+  position: relative;
+  z-index: 100001;
+}
+
+.filterOption.active::after {
+  content: "✔";
+  position: absolute;
+  right: 10px;
+  color: #007acc;
+  font-size: 0.9rem;
+}
   </style>
 </head>
 <body>
@@ -143,7 +234,7 @@
     </tr>
   </table>
 
-  <table id="noComputerTable" style="display:none;">
+  <table id="noComputerTable" style="display:none; margin-top: 1rem;">
     <caption><strong>No Computer</strong></caption>
     <tr>
       <th>From</th>
@@ -157,7 +248,7 @@
     </tr>
   </table>
 
-  <table id="jailbrokenTable" style="display:none;">
+  <table id="jailbrokenTable" style="display:none; margin-top: 1rem;">
     <caption><strong>Jailbroken</strong></caption>
     <tr>
       <th>From</th>
@@ -188,9 +279,43 @@
 </footer>
 
 <script>
+  // Hamburger / panel toggling (fixed)
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const menuPanel = document.getElementById('menuPanel');
+  const panelClose = document.getElementById('panelClose');
+
+  function openPanel() {
+    menuPanel.classList.add('open');
+    menuPanel.setAttribute('aria-hidden', 'false');
+  }
+  function closePanel() {
+    menuPanel.classList.remove('open');
+    menuPanel.setAttribute('aria-hidden', 'true');
+  }
+
+  hamburgerBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (menuPanel.classList.contains('open')) closePanel();
+    else openPanel();
+  });
+
+  panelClose.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closePanel();
+  });
+
+  // Close panel when clicking outside
+  document.addEventListener('click', (e) => {
+    if (menuPanel.classList.contains('open') && !menuPanel.contains(e.target) && e.target !== hamburgerBtn) {
+      closePanel();
+    }
+  });
+
+  // Keep existing filter logic; ensure dropdown sits on top and is clickable
   const filterBtn = document.getElementById('filterBtn');
   const filterDropdown = document.getElementById('filterDropdown');
   const filterOptions = document.querySelectorAll('.filterOption');
+
   const tables = {
     recommended: document.getElementById('recommendedTable'),
     nocomputer: document.getElementById('noComputerTable'),
@@ -224,13 +349,105 @@
     });
   });
 
+  // Clicking anywhere closes the dropdown (but we stopped propagation on the button and option clicks)
   document.addEventListener('click', () => {
     filterDropdown.style.display = 'none';
   });
 
+  // Dark mode toggle (kept)
   document.getElementById('darkModeToggle').addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
+    document.body.classList.toggle('dark');
   });
+
+  // TOC builder and menu search (kept from before)
+  const menuSearch = document.getElementById('menuSearch');
+  const tocList = document.getElementById('tocList');
+
+  function buildTOC() {
+    tocList.innerHTML = '';
+    const headings = Array.from(document.querySelectorAll('main h2'));
+    headings.forEach((h, idx) => {
+      if (!h.id) h.id = 'heading-' + idx;
+      const a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent;
+      a.addEventListener('click', () => {
+        closePanel();
+      });
+      tocList.appendChild(a);
+    });
+  }
+
+  menuSearch.addEventListener('input', () => {
+    const q = menuSearch.value.trim().toLowerCase();
+    const items = Array.from(tocList.querySelectorAll('a'));
+    items.forEach(a => {
+      const matches = a.textContent.toLowerCase().includes(q);
+      a.style.display = matches ? 'block' : 'none';
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    buildTOC();
+  });
+
+  // Collapsible headers (kept)
+  (function() {
+    document.addEventListener('DOMContentLoaded', () => {
+      const main = document.querySelector('main');
+      if (!main) return;
+      const headings = Array.from(main.querySelectorAll('h2'));
+      if (headings.length === 0) return;
+      headings.forEach((h) => {
+        const content = document.createElement('div');
+        content.className = 'collapsible-content';
+        let node = h.nextSibling;
+        while (node) {
+          const next = node.nextSibling;
+          if (node.nodeType === 1 && node.tagName === 'H2') break;
+          content.appendChild(node);
+          node = next;
+        }
+        if (h.nextSibling) {
+          h.parentNode.insertBefore(content, h.nextSibling);
+        } else {
+          h.parentNode.appendChild(content);
+        }
+        h.classList.add('collapsible');
+        h.setAttribute('role', 'button');
+        h.setAttribute('tabindex', '0');
+        h.setAttribute('aria-expanded', 'true');
+        requestAnimationFrame(() => {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          content.style.opacity = '1';
+        });
+        function toggle() {
+          const isCollapsed = h.classList.toggle('collapsed');
+          if (isCollapsed) {
+            h.setAttribute('aria-expanded', 'false');
+            content.style.maxHeight = '0px';
+            content.classList.add('hidden');
+          } else {
+            h.setAttribute('aria-expanded', 'true');
+            content.classList.remove('hidden');
+            content.style.maxHeight = content.scrollHeight + 'px';
+          }
+        }
+        h.addEventListener('click', toggle);
+        h.addEventListener('keydown', (ev) => {
+          if (ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar') {
+            ev.preventDefault();
+            toggle();
+          }
+        });
+        window.addEventListener('resize', () => {
+          if (!h.classList.contains('collapsed')) {
+            content.style.maxHeight = content.scrollHeight + 'px';
+          }
+        });
+      });
+    });
+  })();
 </script>
 
 </body>
